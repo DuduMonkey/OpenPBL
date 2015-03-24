@@ -1,4 +1,7 @@
 # OpenPBL
+
+[![Build Status](https://travis-ci.org/DuduMonkey/OpenPBL.svg?branch=master)](https://travis-ci.org/DuduMonkey/OpenPBL)
+
 OpenPBL Educational Tool
 
 ## Configurar o ambiente de desenvolvimento
