@@ -1,0 +1,25 @@
+{
+  "name": "OpenPBL",
+  "version": "1.0.0",
+  "description": "OpenPBL Educational Tool",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DuduMonkey/OpenPBL.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DuduMonkey/OpenPBL/issues"
+  },
+  "homepage": "https://github.com/DuduMonkey/OpenPBL",
+  "devDependencies": {
+    "grunt": "0.4.5",
+  },
+  "dependencies": {
+    "express": "4.12.3"
+  }
+}
