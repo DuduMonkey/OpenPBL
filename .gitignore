@@ -51,6 +51,9 @@ build/Release
 node_modules
 
 
+### Dist ###
+app/public/dist/
+
 ### Bower ###
 app/public/assets/libs/
 .bower-cache
