@@ -21,9 +21,10 @@ module.exports = function(grunt) {
       }
     },
     connect: {
-      server: {
+      dev: {
         options: {
           base: 'app/public/',
+          livereload: true,
           port: 9000,
           hostname: 'localhost',
           keepalive: true,
@@ -36,5 +37,5 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-connect');
 
-  grunt.registerTask('s', ['uglify', 'connect']);
+  grunt.registerTask('s', ['uglify', 'connect:dev']);
 }
