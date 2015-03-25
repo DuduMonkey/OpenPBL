@@ -5,7 +5,7 @@ module.exports = function(grunt) {
       options: {
         mangle: false,
       },
-      my_target: {
+      dev: {
         options: {
           sourceMap: true,
           sourceMapName: 'app/public/dist/js/bundle.min.map'
@@ -38,5 +38,5 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-connect');
 
-  grunt.registerTask('s', ['uglify', 'connect:dev']);
+  grunt.registerTask('s', ['uglify:dev', 'connect:dev']);
 }
