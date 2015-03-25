@@ -19,4 +19,5 @@ Instalar pacotes do bower
 
 ## Rodar servidor HTTP local
 
-TODO
+Sobe um servidor HTTP no endereço `localhost:9000`
+`grunt s`
