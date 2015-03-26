@@ -32,11 +32,24 @@ module.exports = function(grunt) {
           protocol: 'http'
         }
       }
+    },
+    express: {
+      options: {
+        background: true,
+        port: 9000,
+        debug: true
+      },
+      dev: {
+        options: {
+          script: 'app/server/server.js'
+        }
+      }
     }
   });
 
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-connect');
+  grunt.loadNpmTasks('grunt-express-server');
 
-  grunt.registerTask('s', ['uglify:dev', 'connect:dev']);
+  grunt.registerTask('s', ['uglify:dev', 'express:dev']);
 }
