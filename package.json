@@ -2,10 +2,7 @@
   "name": "OpenPBL",
   "version": "1.0.0",
   "description": "OpenPBL Educational Tool",
-  "main": "index.js",
-  "scripts": {
-    "test": "mocha"
-  },
+  "main": "app/server/server.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/DuduMonkey/OpenPBL.git"
@@ -18,10 +15,10 @@
   "homepage": "https://github.com/DuduMonkey/OpenPBL",
   "devDependencies": {
     "grunt": "0.4.5",
-    "grunt-contrib-connect": "^0.9.0",
-    "grunt-contrib-uglify": "^0.8.0",
-    "grunt-express-server": "^0.4.19",
-    "mocha": "^2.2.1"
+    "grunt-contrib-connect": "0.9.0",
+    "grunt-contrib-uglify": "0.8.0",
+    "grunt-express-server": "0.4.19",
+    "mocha": "2.2.1"
   },
   "dependencies": {
     "express": "4.12.3",
