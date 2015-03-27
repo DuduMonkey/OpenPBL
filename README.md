@@ -17,6 +17,16 @@ Instalar pacotes do bower
 
 `bower install`
 
+### Configurar a conexão com a base de dados
+Local
+```sh
+$ export CONN_STRING=localhost:<port>
+```
+Mongolab
+```sh
+$export CONN_STRING= mongodb://<dbuser>:<dbpassword>@123.mongolab.com:4232/base
+```
+
 ## Rodar servidor HTTP local
 
 `grunt s`
