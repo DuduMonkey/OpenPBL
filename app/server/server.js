@@ -1,3 +1,5 @@
+'use strict';
+
 // Environment & Configuration Variables
 var environment = process.env.NODE_ENV;
 var databaseURI = process.env.CONN_STRING;
@@ -9,7 +11,13 @@ var bodyParser = require('body-parser');
 var path = require('path');
 var mongoose = require('mongoose');
 
-app.use(express.static(path.resolve('app/public/')));
+app.use(express.static(path.resolve('app/public')));
+
+app.use(bodyParser.json());
+
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 
 // Database Connection
 var connectionString = "mongodb://" + databaseURI;
@@ -36,7 +44,7 @@ app.use('/api', router); //Prefix every route with /api
 
 // Server Initialization
 app.get('*', function(req, res) {
-    res.sendFile(path.resolve('app/public/index.html'));
+  res.sendFile(path.resolve('app/public/index.html'));
 });
 
 var port = process.env.PORT || 9000;
