@@ -15,6 +15,23 @@ app.use(express.static(path.resolve('app/public/')));
 var connectionString = "mongodb://" + databaseURI;
 mongoose.connect(connectionString);
 
+// Route Configuration
+var router = express.Router();
+
+// Middleware for routes
+router.use(function(req, res, next) {
+    console.log(req.body);
+    next();
+})
+
+// Default test route
+router.get('/', function(req, res) {
+    res.json({
+        success: true
+    });
+});
+
+app.use('/api', router); //Prefix every route with /api
 
 
 // Server Initialization
