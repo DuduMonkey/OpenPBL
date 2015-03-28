@@ -12,7 +12,7 @@ module.exports = function(grunt) {
         },
         files: {
           'app/public/dist/js/bundle.min.js': [
-            //'app/public/assets/libs/jquery/dist/jquery.min.js', 
+            'app/public/assets/libs/jquery/dist/jquery.min.js', 
             'app/public/assets/libs/angular/angular.min.js',
             'app/public/assets/libs/angular-route/angular-route.min.js',
             'app/public/app.modules.js',
@@ -46,12 +46,26 @@ module.exports = function(grunt) {
           script: 'app/server/server.js'
         }
       }
+    },
+    auto_install: {
+    local: {},
+      subdir: {
+        options: {
+          cwd: 'subdir',
+          stdout: true,
+          stderr: true,
+          failOnError: true,
+          npm: true,
+          bower: true
+        }
+      }
     }
   });
 
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-express-server');
+  grunt.loadNpmTasks('grunt-auto-install');
 
-  grunt.registerTask('s', ['uglify:dev', 'express:dev']);
+  grunt.registerTask('s', ['auto_install', 'uglify:dev', 'express:dev']);
 }
