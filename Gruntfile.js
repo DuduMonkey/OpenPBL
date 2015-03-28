@@ -8,13 +8,15 @@ module.exports = function(grunt) {
       dev: {
         options: {
           sourceMap: true,
-          sourceMapName: 'app/public/dist/js/bundle.min.map'
+          sourceMapName: 'app/public/dist/js/bundle.min.js.map'
         },
         files: {
           'app/public/dist/js/bundle.min.js': [
-            'app/public/assets/libs/jquery/dist/jquery.min.js', 
+            //'app/public/assets/libs/jquery/dist/jquery.min.js', 
             'app/public/assets/libs/angular/angular.min.js',
-            'app/public/app.module.js',
+            'app/public/assets/libs/angular-route/angular-route.min.js',
+            'app/public/app.modules.js',
+            'app/public/app.js',
             'app/public/shared/**/*.js',
             'app/public/sections/**/*.js'
           ]
