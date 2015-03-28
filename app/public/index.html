@@ -2,14 +2,20 @@
 <html ng-app="openpbl">
 <head>
 	<title>OpenPBL</title>
+
+	<!-- TODO: ver alternativa melhor para problema do base html5mode do angular-->
+	<script>
+      document.write('<base href="' + document.location + '" />');
+    </script>
 </head>
 
 <body>
 	<page-header></page-header>
+	<ng-view></ng-view>
 	<page-footer></page-footer>
 
 	<!-- Scripts -->
-	<script src="dist/js/bundle.min.js"></script>
+	<script type="text/javascript" src="dist/js/bundle.min.js"></script>
 </body>
 
 </html> 
