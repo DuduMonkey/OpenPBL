@@ -7,9 +7,12 @@
 
 <body>
 	<pbl-page-header></pbl-page-header>
-	<ng-view></ng-view>
-	<pbl-page-footer></pbl-page-footer>
+	<md-content>
+		<ng-view></ng-view>
+	</md-content>
 
+	<pbl-page-footer></pbl-page-footer>
+	
 	<!-- Scripts -->
 	<script type="text/javascript" src="dist/js/bundle.min.js"></script>
 </body>

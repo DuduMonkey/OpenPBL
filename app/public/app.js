@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('openpbl', ['ngRoute', 'openpbl.controllers']);
+var app = angular.module('openpbl', ['ngRoute', 'ngMaterial', 'openpbl.controllers']);
 
 /**
  * Rotas
