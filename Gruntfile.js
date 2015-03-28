@@ -19,7 +19,22 @@ module.exports = function(grunt) {
             'app/public/app.js',
             'app/public/shared/**/*.js',
             'app/public/sections/**/*.js'
-          ]
+            ]
+        }
+      }
+    },
+    cssmin: {
+      options: {
+        shorthandCompacting: false,
+        roundingPrecision: -1,
+        sourceMap: true,
+        report: 'min'
+      },
+      target: {
+        files: {
+          'app/public/dist/css/bundle.min.css': [
+            'app/public/assets/libs/bootstrap/dist/css/bootstrap.min.css'
+            ]
         }
       }
     },
@@ -63,9 +78,10 @@ module.exports = function(grunt) {
   });
 
   grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-express-server');
   grunt.loadNpmTasks('grunt-auto-install');
 
-  grunt.registerTask('s', ['auto_install', 'uglify:dev', 'express:dev']);
+  grunt.registerTask('s', ['auto_install', 'uglify:dev', 'cssmin', 'express:dev']);
 }
