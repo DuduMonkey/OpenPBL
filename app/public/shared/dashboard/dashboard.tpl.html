@@ -8,25 +8,44 @@
 	    </h2>
   	</md-toolbar>
   	<md-content>
-    <md-list>
-      <md-item ng-repeat="task in tasks">
-        <md-item-content>
-          <div class="md-tile-content">
-            <h3>{{task.name}}</h3>
-          </div>
-        </md-item-content>
-        <md-divider ng-if="!$last"></md-divider>
-      </md-item>
-    </md-list>
-  </md-content>
+	    <md-list>
+	      <md-item ng-repeat="task in tasks">
+	        <md-item-content>
+	          <div class="md-tile-content">
+	            <md-button class="md-primary md-hue-1" ng-click="setCurrentTask(task)">{{task.name}}</md-button>
+	          </div>
+	        </md-item-content>
+	        <md-divider ng-if="!$last"></md-divider>
+	      </md-item>
+	    </md-list>
+	</md-content>
   </div>
 
   <!-- Detalhes -->
   <div flex="66" flex-order="2">
     <md-toolbar class="md-theme-light">
 	    <h2 class="md-toolbar-tools">
-	      <span>NOME</span>
+	      <span>{{currentTask.name}}</span>
 	    </h2>
   	</md-toolbar>
+  	<md-content ng-if="currentTask">
+
+  		<!-- Sumário -->
+  		<h4>Sumário</h4>
+  		<p>
+  			{{currentTask.summary}}
+  		</p>
+  		<md-divider></md-divider>
+
+  		<!-- Status -->
+  		<h4>Status</h4>
+  		<p>
+  			{{currentTask.status}}
+  		</p>
+  		<md-divider></md-divider>
+
+  		<!-- Participantes -->
+  		<h4>Participantes</h4>
+  	</md-content>
   </div>
 </div>
