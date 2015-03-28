@@ -1,10 +1,13 @@
+'use strict';
+
 angular.module('openpbl.services')
-  .factory('dashboardService', ['$http', '$q', function ($http, $q) {
+  .factory('dashboardService', ['$http', '$q', 'globalValues', function ($http, $q, globalValues) {
+
     return {
       getTasks: function () {
         var deferred = $q.defer();
 
-        var url = 'http://private-bec97-openpbl.apiary-mock.com/api/dashboard/full';
+        var url = globalValues.API_URL +  '/dashboard/full';
 
         $http.get(url)
           .then(function (response) {

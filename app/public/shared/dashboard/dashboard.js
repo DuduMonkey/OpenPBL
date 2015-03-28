@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('openpbl.directives')
   .directive('pblDashboard', ['dashboardService', function (dashboardService) {
     return {
