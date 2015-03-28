@@ -33,7 +33,8 @@ module.exports = function(grunt) {
       target: {
         files: {
           'app/public/dist/css/bundle.min.css': [
-            'app/public/assets/libs/bootstrap/dist/css/bootstrap.min.css'
+            'app/public/assets/libs/bootstrap/dist/css/bootstrap.min.css',
+            'app/public/assets/css/**/*.css'
             ]
         }
       }

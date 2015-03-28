@@ -12,14 +12,6 @@ app.config(['$routeProvider',
         templateUrl: 'sections/dashboard/dashboard.html',
         controller: 'DashboardController'
       })
-      .when('/dashboard/teacher', {
-        templateUrl: 'sections/dashboard/teacher/teacher.html',
-        controller: 'DashboardTeacherController'
-      })
-      .when('/dashboard/student', {
-        templateUrl: 'sections/dashboard/student/student.html',
-        controller: 'DashboardStudentController'
-      })
       .otherwise({
         redirectTo: '/'
       });
