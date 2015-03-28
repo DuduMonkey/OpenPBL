@@ -19,6 +19,7 @@ module.exports = function(grunt) {
             'app/public/assets/libs/angular-material/angular-material.min.js',
             'app/public/app.modules.js',
             'app/public/app.js',
+            'app/public/app.constants.js',
             'app/public/shared/**/*.js',
             'app/public/sections/**/*.js'
             ]
