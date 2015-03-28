@@ -17,6 +17,12 @@ app.config(['$routeProvider',
       });
   }]);
 
+app.config(['$httpProvider', function($httpProvider) {
+    $httpProvider.defaults.useXDomain = true;
+    delete $httpProvider.defaults.headers.common['X-Requested-With'];
+  }
+]);
+
 app.config(['$locationProvider',
   function($locationProvider) {
     $locationProvider.html5Mode({ requireBase: true });
