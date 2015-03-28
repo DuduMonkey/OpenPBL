@@ -1,5 +1,5 @@
 angular.module('openpbl.directives')
-  .directive('dashboard', [function () {
+  .directive('pblDashboard', [function () {
     return {
       retrict: 'E',
       replace: true,

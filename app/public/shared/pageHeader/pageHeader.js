@@ -1,11 +1,11 @@
 angular.module('openpbl.directives')
-  .directive('pageHeader', function () {
+  .directive('pblPageHeader', function () {
     return {
       restrict: 'E',
       replace: true,
       templateUrl: '/shared/pageHeader/pageHeader.tpl.html',
       link: function () {
-        
+
       }
     }
   });

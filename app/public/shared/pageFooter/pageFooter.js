@@ -1,5 +1,5 @@
 angular.module('openpbl.directives')
-  .directive('pageFooter', function () {
+  .directive('pblPageFooter', function () {
     return {
       restrict: 'E',
       replace: true,
