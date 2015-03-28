@@ -5,10 +5,10 @@
 	<link rel="stylesheet" href="dist/css/bundle.min.css" />
 </head>
 
-<body>
+<body layout="column">
 	<pbl-page-header></pbl-page-header>
-	<md-content>
-		<ng-view></ng-view>
+
+	<md-content ng-view layout-fill role="main">
 	</md-content>
 
 	<pbl-page-footer></pbl-page-footer>
