@@ -12,7 +12,6 @@ module.exports = function(grunt) {
         },
         files: {
           'app/public/dist/js/bundle.min.js': [
-            'app/public/assets/libs/jquery/dist/jquery.min.js', 
             'app/public/assets/libs/angular/angular.min.js',
             'app/public/assets/libs/angular-route/angular-route.min.js',
             'app/public/assets/libs/angular-aria/angular-aria.min.js',

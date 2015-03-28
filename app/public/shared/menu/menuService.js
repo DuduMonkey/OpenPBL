@@ -13,10 +13,6 @@ angular.module('openpbl.services')
           {
             title: 'Painel',
             href: '#/dashboard'
-          },
-          {
-            title: 'BUCETA',
-            href: '#/buceta'
           }
         ];
 
