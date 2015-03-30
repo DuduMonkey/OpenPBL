@@ -9,7 +9,7 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var path = require('path');
-//var mongoose = require('mongoose');
+var mongoose = require('mongoose');
 
 app.use(express.static(path.resolve('app/public')));
 
@@ -21,26 +21,24 @@ app.use(bodyParser.urlencoded({
 
 // Database Connection
 var connectionString = "mongodb://" + databaseURI;
-//mongoose.connect(connectionString);
+mongoose.connect(connectionString);
 
 // Route Configuration
 var router = express.Router();
 
 // Middleware for routes
 router.use(function(req, res, next) {
-    console.log(req.body);
-    next();
+  next();
 })
 
 // Default test route
 router.get('/', function(req, res) {
-    res.json({
-        success: true
-    });
+  res.json({
+    success: true
+  });
 });
 
 app.use('/api', router); //Prefix every route with /api
-
 
 // Server Initialization
 app.get('*', function(req, res) {
