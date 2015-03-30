@@ -3,10 +3,6 @@
   "version": "1.0.0",
   "description": "OpenPBL Educational Tool",
   "main": "app/server/server.js",
-  "scripts": 
-    {
-      "start": "node app/server/server.js"
-    },
   "repository": {
     "type": "git",
     "url": "https://github.com/DuduMonkey/OpenPBL.git"
