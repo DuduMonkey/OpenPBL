@@ -4,7 +4,7 @@ var mongoose = require('mongoose'),
 var UserSchema = new Schema({
   id: {Type: Number, min: 1, max, 10},
   name: String,
-  role: String
+  role: {Type: Number, min: 1, max, 1}
 });
 
-module.exports = mongoose.model('User', RattusSchema);
+module.exports = mongoose.model('User', UserSchema);

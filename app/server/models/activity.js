@@ -4,8 +4,8 @@ var mongoose = require('mongoose'),
 var ActivitySchema = new Schema({
   id: {Type: Number, min: 1, max, 10},
   name: String,
-  state: String,
+  state: {Type: Number, min: 1, max, 1},
   story: String
 });
 
-module.exports = mongoose.model('Activity', RattusSchema);
+module.exports = mongoose.model('Activity', ActivitySchema);
