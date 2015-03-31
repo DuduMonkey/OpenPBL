@@ -56,7 +56,7 @@ http.createServer(function(req,res){
 
 //Initialize the main Router
 var router = express.Router();
-require('./route/router.js')(app, passport, path, router);
+require('./routes/router.js')(app, passport, path, router);
 
 // Server Initialization
 var port = process.env.PORT || 9000;
