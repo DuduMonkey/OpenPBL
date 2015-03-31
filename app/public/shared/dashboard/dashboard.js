@@ -12,8 +12,6 @@ angular.module('openpbl.directives')
           scope.currentTask = task;
         };
 
-        scope.tasks = [{name: 'hue 1'}, {name: 'hue 2'}];
-
         dashboardService.getTasks()
           .then(function (response) {
             scope.tasks = response.data;

@@ -7,7 +7,7 @@ angular.module('openpbl.services')
       getTasks: function () {
         var deferred = $q.defer();
 
-        var url = globalValues.API_URL +  '/dashboard/full';
+        var url = globalValues.API_URL + '/dashboard/full';
 
         $http.get(url)
           .then(function (response) {

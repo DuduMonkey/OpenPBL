@@ -20,6 +20,10 @@
           </md-item>
         </md-list>
       </md-content>
+      <md-divider></md-divider>
+      <div layout-margin>
+        <md-button class="md-raised md-primary">Criar nova atividade</md-button>
+      </div>
     </md-whiteframe>
   </div>
 
@@ -29,6 +33,7 @@
       <md-toolbar class="md-theme-light">
         <h2 class="md-toolbar-tools">
           <span>{{currentTask.name}}</span>
+          <md-button class="md-raised md-primary">Abrir</md-button>
         </h2>
       </md-toolbar>
       <md-content ng-if="currentTask">
