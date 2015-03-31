@@ -2,31 +2,69 @@
 
 	<!-- Atividades -->
   <div flex flex-order="1">
-    <md-toolbar class="md-theme-light">
-	    <h2 class="md-toolbar-tools">
-	      <span>Atividades</span>
-	    </h2>
-  	</md-toolbar>
-  	<md-content>
-    <md-list>
-      <md-item ng-repeat="task in tasks">
-        <md-item-content>
-          <div class="md-tile-content">
-            <h3>{{task.name}}</h3>
-          </div>
-        </md-item-content>
-        <md-divider ng-if="!$last"></md-divider>
-      </md-item>
-    </md-list>
-  </md-content>
+    <md-whiteframe class="md-whiteframe-z1" layout="column">
+      <md-toolbar class="md-theme-light">
+        <h2 class="md-toolbar-tools">
+          <span>Atividades</span>
+        </h2>
+      </md-toolbar>
+      <md-content>
+        <md-list>
+          <md-item ng-repeat="task in tasks">
+            <md-item-content>
+              <div class="md-tile-content">
+                <md-button class="md-primary md-hue-1" ng-click="setCurrentTask(task)">{{task.name}}</md-button>
+              </div>
+            </md-item-content>
+            <md-divider ng-if="!$last"></md-divider>
+          </md-item>
+        </md-list>
+      </md-content>
+      <md-divider></md-divider>
+      <div layout-margin>
+        <md-button class="md-raised md-primary">Criar nova atividade</md-button>
+      </div>
+    </md-whiteframe>
   </div>
 
   <!-- Detalhes -->
   <div flex="66" flex-order="2">
-    <md-toolbar class="md-theme-light">
-	    <h2 class="md-toolbar-tools">
-	      <span>NOME</span>
-	    </h2>
-  	</md-toolbar>
+    <md-whiteframe class="md-whiteframe-z1" layout="column">
+      <md-toolbar class="md-theme-light">
+        <h2 class="md-toolbar-tools">
+          <span>{{currentTask.name}}</span>
+          <md-button class="md-raised md-primary">Abrir</md-button>
+        </h2>
+      </md-toolbar>
+      <md-content ng-if="currentTask">
+
+        <!-- Sumário -->
+        <h4>Sumário</h4>
+        <p>
+          {{currentTask.summary}}
+        </p>
+        <md-divider></md-divider>
+
+        <!-- Status -->
+        <h4>Status</h4>
+        <p>
+          {{currentTask.status}}
+        </p>
+        <md-divider></md-divider>
+
+        <!-- Participantes -->
+        <h4>Participantes</h4>
+        <md-list>
+          <md-item ng-repeat="feedItem in currentTask.feed">
+            <md-item-content>
+              <div class="md-tile-content">
+                <h4>{{feedItem.participantName}}</h4>
+                <h4>{{feedItem.numberOfPosts}}</h4>
+              </div>
+            </md-item-content>
+          </md-item>
+        </md-list>
+      </md-content>
+    </md-whiteframe>
   </div>
 </div>
