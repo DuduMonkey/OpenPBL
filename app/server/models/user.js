@@ -4,9 +4,9 @@ var mongoose = require('mongoose'),
 var bcrypt = require ('bcrypt-nodejs');
 
 var UserSchema = new Schema({
-  id: {Type: Number, min: 1, max, 10},
+  id: {Type: Number, min: 1, max: 10},
   name: String,
-  role: {Type: Number, min: 1, max, 1},
+  role: {Type: Number, min: 1, max: 1},
   local: {
     email: String,
     password: String
