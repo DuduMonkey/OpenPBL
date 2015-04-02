@@ -1,19 +1,24 @@
-//LOGGER
-var finalhandler = require('finalhandler')
-var morgan = require('morgan');
-var logger = morgan('combined');
-
 //Services
 var authentication = require('../services/authenticationService');
 
-
-module.exports = function(app, passport, path, router){
+module.exports = function(app, path, router){
   // Default test route
   router.get('/', function(req, res) {
       res.json({
           success: true
       });
   });
+
+  //Authentication
+  router.route('/login')
+    .post(authentication.login);
+
+  router.route('/signup')
+    .post(authentication.signup);
+
+  router.route('/logout')
+    .post(authentication.logout);
+
 
   app.use('/api', router); //Prefix every route with /api
 
@@ -24,13 +29,6 @@ module.exports = function(app, passport, path, router){
 
     // Middleware for routes
   router.use(function(req, res, next) {
-
-    //LOGGER
-    var done = finalhandler(req,res);
-    logger(req, res, function(err){
-      if(err) return done(err);
-    });
-
     next();
   })
 }
