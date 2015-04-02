@@ -14,9 +14,6 @@ module.exports = function(grunt) {
           'app/public/dist/js/bundle.min.js': [
             'app/public/assets/libs/angular/angular.min.js',
             'app/public/assets/libs/angular-route/angular-route.min.js',
-            'app/public/assets/libs/angular-aria/angular-aria.min.js',
-            'app/public/assets/libs/angular-animate/angular-animate.min.js',
-            'app/public/assets/libs/angular-material/angular-material.min.js',
             'app/public/app.modules.js',
             'app/public/app.js',
             'app/public/app.constants.js',
@@ -36,7 +33,7 @@ module.exports = function(grunt) {
       target: {
         files: {
           'app/public/dist/css/bundle.min.css': [
-            'app/public/assets/libs/angular-material/angular-material.min.css',
+            'app/public/assets/libs/bootstrap/dist/css/bootstrap.min.css',
             'app/public/assets/css/**/*.css'
             ]
         }

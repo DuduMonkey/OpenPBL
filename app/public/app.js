@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('openpbl', ['ngRoute', 'ngMaterial', 'openpbl.controllers']);
+var app = angular.module('openpbl', ['ngRoute', 'openpbl.controllers']);
 
 /**
  * Rotas
@@ -23,7 +23,6 @@ app.config(['$httpProvider', function($httpProvider) {
   }
 ]);
 
-app.config(['$locationProvider',
-  function($locationProvider) {
-    $locationProvider.html5Mode({ requireBase: true });
-  }]);
+app.config(['$locationProvider', function($locationProvider) {
+  $locationProvider.html5Mode({ requireBase: true });
+}]);
