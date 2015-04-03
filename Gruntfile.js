@@ -23,7 +23,7 @@ module.exports = function(grunt) {
         sourceMap: true,
         report: 'min'
       },
-      target: {
+      all: {
         files: {
           'app/public/dist/css/bundle.min.css': [
             'app/public/assets/libs/bootstrap/dist/css/bootstrap.min.css',
@@ -59,6 +59,38 @@ module.exports = function(grunt) {
       ]
     },
 
+    plato: {
+      options: {
+        exclude: /\.min\.js$/,
+        jshint : grunt.file.readJSON('.jshintrc')
+      },
+      metrics: {
+        files: {
+          'reports': [
+          'app/public/*.js',
+          'app/public/sections/**/*.js',
+          'app/public/shared/**/*.js',
+          'app/server/**/*.js',
+          ]
+        }
+      }
+    },
+
+    shell: {
+      openReportsDarwin: {
+        command: 'open reports/index.html',
+        options: {
+          stdout: true
+        }
+      },
+      openReportsWin: {
+        command: 'start reports/index.html',
+        options: {
+          stdout: true
+        }
+      }
+    },
+
     uglify: {
       options: {
         mangle: false,
@@ -88,6 +120,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-express-server');
+  grunt.loadNpmTasks('grunt-shell');
+  grunt.loadNpmTasks('grunt-plato');
 
   grunt.registerTask('s', [
     'auto_install',
@@ -96,4 +130,7 @@ module.exports = function(grunt) {
     'cssmin',
     'express:dev'
     ]);
+
+  grunt.registerTask('metrics:win', ['plato:metrics', 'shell:openReportsWin']);
+  grunt.registerTask('metrics:darwin', ['plato:metrics', 'shell:openReportsDarwin']);
 };
