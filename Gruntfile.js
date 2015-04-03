@@ -27,6 +27,7 @@ module.exports = function(grunt) {
         files: {
           'app/public/dist/css/bundle.min.css': [
             'app/public/assets/libs/bootstrap/dist/css/bootstrap.min.css',
+            'app/public/assets/libs/toastr/toastr.min.css',
             'app/public/assets/css/**/*.css'
             ]
         }
@@ -106,6 +107,7 @@ module.exports = function(grunt) {
             'app/public/assets/libs/bootstrap/dist/js/bootstrap.min.js',
             'app/public/assets/libs/angular/angular.min.js',
             'app/public/assets/libs/angular-route/angular-route.min.js',
+            'app/public/assets/libs/toastr/toastr.min.js',
             'app/public/app.modules.js',
             'app/public/app.js',
             'app/public/app.constants.js',
