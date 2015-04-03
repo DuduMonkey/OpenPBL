@@ -14,7 +14,7 @@ Feature: Painel de usuário
 		And a api retorna os detalhes de uma "activity"
 		And os detalhes tem a "story" da atividade
 		And os detalhes tem o "status" da atividade
-		And os detalhes tem a lista de "student" com os "facts", exibindo o numero de fatos por aluno
+		And os detalhes tem a lista de "student" com os "posts", exibindo o numero de posts por aluno
 		And a lista atividades exibe o icone de configurações baseado na "permission"
 
 	Scenario: Paniel de usuário para um aluno com atividades cadastradas
@@ -24,5 +24,5 @@ Feature: Painel de usuário
 		And a api retorna os detalhes de uma "activity"
 		And os detalhes tem a "story" da atividade
 		And os detalhes tem o "status" da atividade
-		And os detalhes tem a lista de "student" com os "facts", exibindo o numero de fatos por aluno 
+		And os detalhes tem a lista de "student" com os "posts", exibindo o numero de posts por aluno 
 		And a lista de atividades exibe o icone de configurações baseado na "permission"
