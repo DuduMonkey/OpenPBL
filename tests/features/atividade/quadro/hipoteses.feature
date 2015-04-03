@@ -1,4 +1,4 @@
-Feature: Painel de atividade - hipóteses
+Feature: Painel de atividade - hip
 
 Scenario: 
 		Given 
