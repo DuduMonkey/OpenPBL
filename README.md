@@ -7,28 +7,53 @@ OpenPBL Educational Tool
 ## Configurar o ambiente de desenvolvimento
 Instalar grunt-cli e bower
 
-`npm install -g grunt-cli bower`
+```sh
+$ npm install -g grunt-cli bower
+```
 
 Instalar pacotes do node
 
-`npm install`
+```sh
+$ npm install
+```
 
 Instalar pacotes do bower
 
-`bower install`
+```sh
+$ bower install
+```
 
-### Configurar a conexão com a base de dados
-Local
+### Configurar a conexão com o Mongodb
+
+Instância local
 ```sh
 $ export CONN_STRING=localhost:<port>
 ```
 Mongolab
 ```sh
-$export CONN_STRING= mongodb://<dbuser>:<dbpassword>@123.mongolab.com:4232/base
+$ export CONN_STRING= mongodb://<dbuser>:<dbpassword>@123.mongolab.com:4232/base
 ```
 
-## Rodar servidor HTTP local
+## Rodando o express
 
-`grunt s`
+Para subir uma instância do `express` no endereço `localhost:9000`:
 
-Sobe um servidor HTTP no endereço `localhost:9000`
+```sh
+$ grunt s
+```
+
+## Métricas
+
+Para exibir um relatório de métricas de qualidade de código utilizando [plato](https://github.com/jsoverson/plato), execute o comando a seguir:
+
+#### Windows
+
+```sh
+grunt metrics:win
+```
+
+##### Linux/OSX
+
+```sh
+$ grunt metrics:darwin
+```
