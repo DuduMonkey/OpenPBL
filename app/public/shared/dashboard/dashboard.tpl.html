@@ -8,7 +8,7 @@
           <h3 class="panel-title">Atividades</h3>
         </div>
         <ul class="list-group">
-          <li class="list-group-item" ng-repeat="activity in activities">
+          <li class="list-group-item" ng-repeat="activity in activities.active">
             <span>{{activity.name}}</span>
           </li>
           <li class="list-group-item text-center">
@@ -103,7 +103,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-          <button type="button" class="btn btn-primary" ng-disabled="newActivityForm.$invalid" ng-click="saveTask()">Salvar</button>
+          <button type="button" class="btn btn-primary" ng-disabled="newActivityForm.$invalid" ng-click="saveActivity()">Salvar</button>
         </div>
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
