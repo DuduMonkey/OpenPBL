@@ -47,11 +47,15 @@ module.exports = function(grunt) {
     },
 
     jshint: {
+      options: {
+        jshintrc: true,
+        reporter: require('jshint-stylish')
+      },
       all: [
-      'Gruntfile.js',
-      'app/public/*.js',
-      'app/public/sections/**/*.js',
-      'app/public/shared/**/*.js'
+        'Gruntfile.js',
+        'app/public/*.js',
+        'app/public/sections/**/*.js',
+        'app/public/shared/**/*.js'
       ]
     },
 
@@ -92,4 +96,4 @@ module.exports = function(grunt) {
     'cssmin',
     'express:dev'
     ]);
-}
+};

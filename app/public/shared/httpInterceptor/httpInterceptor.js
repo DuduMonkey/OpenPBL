@@ -1,30 +1,32 @@
-'use strict';
+(function () {
+  'use strict';
 
-angular.module('openpbl')
-  .factory('httpInterceptor', ['$q', '$rootScope', function($q, $rootScope) {
-    return {
-      'request': function(config) {
-        $rootScope.requestInProgress = true;
+  angular.module('openpbl')
+    .factory('httpInterceptor', ['$q', '$rootScope', function($q, $rootScope) {
+      return {
+        'request': function(config) {
+          $rootScope.requestInProgress = true;
 
-        return config;
-      },
+          return config;
+        },
 
-     'requestError': function(rejection) {
-        $rootScope.requestInProgress = false;
+       'requestError': function(rejection) {
+          $rootScope.requestInProgress = false;
 
-        return $q.reject(rejection);
-      },
+          return $q.reject(rejection);
+        },
 
-      'response': function(response) {
-        $rootScope.requestInProgress = false;
+        'response': function(response) {
+          $rootScope.requestInProgress = false;
 
-        return response;
-      },
+          return response;
+        },
 
-     'responseError': function(rejection) {
-        $rootScope.requestInProgress = false;
+       'responseError': function(rejection) {
+          $rootScope.requestInProgress = false;
 
-        return $q.reject(rejection);
-      }
-    }
-  }]);
+          return $q.reject(rejection);
+        }
+      };
+    }]);
+}());

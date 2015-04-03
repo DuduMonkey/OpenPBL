@@ -1,22 +1,24 @@
-'use strict';
+(function () {
+  'use strict';
 
-angular.module('openpbl.services')
-  .factory('menuService', [function () {
+  angular.module('openpbl.services')
+    .factory('menuService', [function () {
 
-    return {
-      getMenuItems: function () {
-        var menuItems = [
-          {
-            title: 'Início',
-            href: '#'
-          },
-          {
-            title: 'Painel',
-            href: '#/dashboard'
-          }
-        ];
+      return {
+        getMenuItems: function () {
+          var menuItems = [
+            {
+              title: 'Início',
+              href: '#'
+            },
+            {
+              title: 'Painel',
+              href: '#/dashboard'
+            }
+          ];
 
-        return menuItems;
-      }
-    }
-  }]);
+          return menuItems;
+        }
+      };
+    }]);
+}());
