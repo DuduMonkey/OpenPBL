@@ -102,6 +102,8 @@ module.exports = function(grunt) {
         },
         files: {
           'app/public/dist/js/bundle.min.js': [
+            'app/public/assets/libs/jquery/dist/jquery.min.js',
+            'app/public/assets/libs/bootstrap/dist/js/bootstrap.min.js',
             'app/public/assets/libs/angular/angular.min.js',
             'app/public/assets/libs/angular-route/angular-route.min.js',
             'app/public/app.modules.js',
