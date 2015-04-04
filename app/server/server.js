@@ -9,10 +9,13 @@ var mongoose = require('mongoose');
 
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var session = require('express-session');
+//var session = require('express-session');
 
 
-require('./Configuration')(express,app,path,mongoose,cookieParser,bodyParser,session);
+require('./Configuration')(express,app,path,mongoose,cookieParser,bodyParser);
+
+//with session
+//require('./Configuration')(express,app,path,mongoose,cookieParser,bodyParser,session);
 
 //Initialize the main Router
 var router = express.Router();

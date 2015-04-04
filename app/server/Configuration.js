@@ -17,8 +17,6 @@ module.exports = function(express,app,path,mongoose,cookieParser,bodyParser,sess
 
   configureBodyParser(bodyParser);
 
-  configureSession(session, sessionSecret);
-
   configureDataBase(mongoose,databaseURI);
 
 };
@@ -40,6 +38,7 @@ var configureBodyParser = function(bodyParser){
 
 };
 
+/*
 var configureSession = function(session, secret){
   globalApplication.use(session({ 
     secret: secret, // session secret
@@ -47,6 +46,7 @@ var configureSession = function(session, secret){
     resave: false
   })); 
 }
+*/
 
 var configureDataBase = function(engine, url){
   // Database Connection
