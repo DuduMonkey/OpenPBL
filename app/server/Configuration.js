@@ -1,6 +1,6 @@
 var globalApplication;
 
-module.exports = function(express,app,path,mongoose,cookieParser,bodyParser,session){
+module.exports = function(express,app,path,mongoose,cookieParser,bodyParser){
 
   //set the global app
   globalApplication = app;
@@ -8,7 +8,6 @@ module.exports = function(express,app,path,mongoose,cookieParser,bodyParser,sess
   // Environment & Configuration Variables
   var environment = process.env.NODE_ENV;
   var databaseURI = process.env.CONN_STRING;
-  var sessionSecret = process.env.APP_SECRET;
 
   //Configure context
   configurePublicPath(express,path);
@@ -37,16 +36,6 @@ var configureBodyParser = function(bodyParser){
   }));
 
 };
-
-/*
-var configureSession = function(session, secret){
-  globalApplication.use(session({ 
-    secret: secret, // session secret
-    saveUninitialized: true,
-    resave: false
-  })); 
-}
-*/
 
 var configureDataBase = function(engine, url){
   // Database Connection
