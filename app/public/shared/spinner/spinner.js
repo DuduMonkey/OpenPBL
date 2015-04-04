@@ -2,13 +2,11 @@
   'use strict';
 
   angular.module('openpbl.directives')
-    .directive('pblPageFooter', function () {
+    .directive('pblSpinner', function () {
       return {
         restrict: 'E',
         replace: true,
-        templateUrl: '/shared/pageFooter/pageFooter.tpl.html',
-        link: function () {
-        }
+        templateUrl: '/shared/spinner/spinner.tpl.html'
       };
     });
 }());

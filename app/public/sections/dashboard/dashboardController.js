@@ -1,6 +1,8 @@
-'use strict';
+(function () {
+  'use strict';
 
-angular.module('openpbl.controllers')
-  .controller('DashboardController', ['$scope', function ($scope) {
+  angular.module('openpbl.controllers')
+    .controller('DashboardController', ['$scope', function ($scope) {
 
-  }]);
+    }]);
+}());

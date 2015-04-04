@@ -1,70 +1,124 @@
-<div layout="row" layout-sm="column" layout-margin>
+<div class="row">
 
 	<!-- Atividades -->
-  <div flex flex-order="1">
-    <md-whiteframe class="md-whiteframe-z1" layout="column">
-      <md-toolbar class="md-theme-light">
-        <h2 class="md-toolbar-tools">
-          <span>Atividades</span>
-        </h2>
-      </md-toolbar>
-      <md-content>
-        <md-list>
-          <md-item ng-repeat="task in tasks">
-            <md-item-content>
-              <div class="md-tile-content">
-                <md-button class="md-primary md-hue-1" ng-click="setCurrentTask(task)">{{task.name}}</md-button>
-              </div>
-            </md-item-content>
-            <md-divider ng-if="!$last"></md-divider>
-          </md-item>
-        </md-list>
-      </md-content>
-      <md-divider></md-divider>
-      <div layout-margin>
-        <md-button class="md-raised md-primary">Criar nova atividade</md-button>
+  <div class="col-md-4">
+    <div class="container2">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Atividades</h3>
+        </div>
+
+        <!-- Atividades ativas -->
+        <h4>Ativas</h4>
+        <ul class="list-group">
+          <li class="list-group-item" ng-repeat="activity in activities.active" ng-click="setCurrentActivity(activity)">
+            <button class="btn" ng-class="{'btn-primary': activity.id === currentActivity.id}">{{activity.name}}</button>
+          </li>
+        </ul>
+
+        <!-- Atividades inativas -->
+        <h4>Concluídas</h4>
+        <ul class="list-group">
+          <li class="list-group-item" ng-repeat="activity in activities.finished" ng-click="setCurrentActivity(activity)">
+            <button class="btn" ng-class="{'btn-primary': activity.id === currentActivity.id}">{{activity.name}}</button>
+          </li>
+        </ul>
+
+        <div class="text-center">
+          <button class="btn btn-primary" ng-click="createnewActivity()">Criar nova atividade</button>
+        </div>
       </div>
-    </md-whiteframe>
+    </div>
   </div>
 
   <!-- Detalhes -->
-  <div flex="66" flex-order="2">
-    <md-whiteframe class="md-whiteframe-z1" layout="column">
-      <md-toolbar class="md-theme-light">
-        <h2 class="md-toolbar-tools">
-          <span>{{currentTask.name}}</span>
-          <md-button class="md-raised md-primary">Abrir</md-button>
-        </h2>
-      </md-toolbar>
-      <md-content ng-if="currentTask">
+  <div class="col-md-4">
+    <div class="container2">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">{{currentActivity.name}}</h3>
+        </div>
+        <div class="panel-body">
 
-        <!-- Sumário -->
-        <h4>Sumário</h4>
-        <p>
-          {{currentTask.summary}}
-        </p>
-        <md-divider></md-divider>
+           <!-- Sumário -->
+            <h4>Sumário</h4>
+            <p>
+              {{currentActivity.summary}}
+            </p>
+            <hr />
 
-        <!-- Status -->
-        <h4>Status</h4>
-        <p>
-          {{currentTask.status}}
-        </p>
-        <md-divider></md-divider>
+            <!-- Status -->
+            <h4>Status</h4>
+            <p>
+              {{currentActivity.status}}
+            </p>
+            <hr />
 
-        <!-- Participantes -->
-        <h4>Participantes</h4>
-        <md-list>
-          <md-item ng-repeat="feedItem in currentTask.feed">
-            <md-item-content>
-              <div class="md-tile-content">
-                <h4>{{feedItem.participantName}}</h4>
-                <h4>{{feedItem.numberOfPosts}}</h4>
-              </div>
-            </md-item-content>
-          </md-item>
-        </md-list>
-      </md-content>
-    </md-whiteframe>
+            <!-- Participantes -->
+            <h4>Participantes</h4>
+            <ul>
+              <li ng-repeat="participant in currentActivity.participants">
+                <span>{{participant.name}} <span class="badge">{{participant.numberOfPosts}}</span></span>
+              </li>
+            </ul>
+        </div>
+      </div>
+    </div>
   </div>
+
+  <!-- Modal: cadastro de atividade -->
+  <div class="modal fade background-static" id="newActivityModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Nova atividade</h4>
+        </div>
+        <div class="modal-body">
+          <form class="form" name="newActivityForm">
+
+            <!-- Nome -->
+            <div class="form-group">
+              <label for="taskName">Nome</label>
+              <input type="text" class="form-control" name="taskName" placeholder="Nome" required ng-model="newActivity.name">
+            </div>
+          </form>
+
+          <!-- Adicionar participantes -->
+          <div class="form-group">
+            <label for="taskSummary">Participantes</label>
+            <div class="input-group">
+              <input type="email" class="form-control" name="taskNewParticipant" placeholder="aluno@escola.com.br" required ng-model="newActivity.participant">
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-primary" ng-disabled="!newActivity.participant || taskNewParticipant.$invalid" ng-click="addNewParticipant(newActivity.participant)">Adicionar</button>
+              </span>
+            </div><!-- /input-group -->
+
+            <!-- Lista de participantes convidados -->
+            <table class="table table-striped talbe-condensed" ng-if="newActivity.participants && newActivity.participants.length > 0">
+              <thead>
+                <tr>
+                  <th class="col-md-10">E-mail</th>
+                  <th class="col-md-2">Ações</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="participant in newActivity.participants">
+                  <td>{{participant.email}}</td>
+                  <td>
+                    <button type="button" class="btn btn-danger" ng-click="removeParticipant($index)">&times; Remover</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary" ng-disabled="newActivityForm.$invalid" ng-click="saveActivity()">Salvar</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
 </div>
+

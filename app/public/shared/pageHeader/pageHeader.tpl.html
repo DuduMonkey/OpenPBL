@@ -1,10 +1,25 @@
-<md-toolbar class="md-default-theme pbl-page-header">
-  <div class="md-toolbar-tools">
-    <div layout="row" flex class="fill-height">
-      <h4 class="md-toolbar-item">
-        <span>OpenPBL</span>
-      </h4>
-      <md-button class="md-toolbar-item" ng-repeat="item in menuItems" ng-href="{{item.href}}">{{item.title}}</md-button>
+<nav class="navbar navbar-fixed-top navbar-inverse">
+  <div class="container-fluid">
+
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">OpenPBL</a>
     </div>
-  </div>
-</md-toolbar>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse">
+
+      <!-- Esquerda -->
+      <ul class="nav navbar-nav">
+      	<li ng-repeat="item in menuItems">
+      		<a href="{{item.href}}">{{item.title}}</a>
+      	</li>
+      </ul>
+
+      <!-- Direita -->
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Logout</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
