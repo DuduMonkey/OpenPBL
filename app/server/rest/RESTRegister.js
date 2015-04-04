@@ -11,7 +11,6 @@ exports.post = function(req,res){
       });
     }else{
       res.send({
-        email: data.email,
         success: false,
         reason : error
       });
