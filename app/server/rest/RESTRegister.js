@@ -1,22 +1,20 @@
 var registerService = new (require('../Services/RegisterService'))(); //Initialize and run
-
+var Q = require ('Q');
 
 exports.post = function(req,res){
 
-  var responseData = function(error,data){
-    if(data){
+  registerService.registerUser(req.body)
+    .then(function(newUser){
       res.send({
-        email : data.local.email,
+        email : newUser.email,
         success: true
       });
-    }else{
+    })
+    .catch(function(errorMessage){
       res.send({
         success: false,
-        reason : error
+        reason : errorMessage
       });
-    }
-  }
-
-  registerService.registerUser(req.body,responseData);
+    });
 
 }
