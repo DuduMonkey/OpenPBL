@@ -1,5 +1,7 @@
 //Services
 var authentication = require('../REST/RESTAuthentication');
+var activity = require('../REST/RESTActivity');
+var register = require('../REST/RESTRegister');
 
 module.exports = function(app, path, router){
 
@@ -13,15 +15,9 @@ module.exports = function(app, path, router){
     });
   });
 
-  //Authentication
-  router.route('/login')
-  .post(authentication.login);
-
+  //Register
   router.route('/signup')
-  .post(authentication.signup);
-
-  router.route('/logout')
-  .post(authentication.logout);
+    .post(register.post);
 
   app.use('/api', router); //Prefix every route with /api
 
