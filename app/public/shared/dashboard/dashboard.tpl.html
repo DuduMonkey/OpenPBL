@@ -7,14 +7,26 @@
         <div class="panel-heading">
           <h3 class="panel-title">Atividades</h3>
         </div>
+
+        <!-- Atividades ativas -->
+        <h4>Ativas</h4>
         <ul class="list-group">
-          <li class="list-group-item" ng-repeat="activity in activities.active">
-            <span>{{activity.name}}</span>
-          </li>
-          <li class="list-group-item text-center">
-            <button class="btn btn-primary" ng-click="createnewActivity()">Criar nova atividade</button>
+          <li class="list-group-item" ng-repeat="activity in activities.active" ng-click="setCurrentActivity(activity)">
+            <button class="btn" ng-class="{'btn-primary': activity.id === currentActivity.id}">{{activity.name}}</button>
           </li>
         </ul>
+
+        <!-- Atividades inativas -->
+        <h4>Concluídas</h4>
+        <ul class="list-group">
+          <li class="list-group-item" ng-repeat="activity in activities.finished" ng-click="setCurrentActivity(activity)">
+            <button class="btn" ng-class="{'btn-primary': activity.id === currentActivity.id}">{{activity.name}}</button>
+          </li>
+        </ul>
+
+        <div class="text-center">
+          <button class="btn btn-primary" ng-click="createnewActivity()">Criar nova atividade</button>
+        </div>
       </div>
     </div>
   </div>
