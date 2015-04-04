@@ -7,7 +7,7 @@ var Schema = mongoose.Schema;
 
 var UserSchema = new Schema({
   name: String,
-  role: {Type: Number},
+  role: {type: Number, min: 1, max: 1},
   local: {
     email: String,
     password: String
