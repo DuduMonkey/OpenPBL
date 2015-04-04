@@ -7,11 +7,9 @@ var Schema = mongoose.Schema;
 
 var UserSchema = new Schema({
   name: String,
-  role: {type: Number, min: 1, max: 1},
-  local: {
-    email: String,
-    password: String
-  }
+  role: {type: Number, min: 1, max: 2},
+  email: String,
+  password: String
 });
 
 //password encrypt
