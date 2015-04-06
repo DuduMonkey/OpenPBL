@@ -13,8 +13,9 @@ var UserSchema = new Schema({
 });
 
 //password encrypt
-UserSchema.methods.generateHash = function(password) {
-  return bcrypt.hashSync(password, bcrypt.gentSaltSync(8), null);
+UserSchema.methods.saveHashPassword = function(password) {
+  var hash = bcrypt.hashSync(password);
+  this.password = hash;
 };
 
 //password decrypt and compare
