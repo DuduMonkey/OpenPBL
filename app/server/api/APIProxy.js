@@ -7,7 +7,7 @@ module.exports = function(router){
 
     if(pathNeedsAuthentication(url,baseUrl)){
 
-      res.redirect(401,'/');
+      res.status(401).send({message: 'faça login'});
 
     }else{
 
