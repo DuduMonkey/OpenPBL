@@ -47,9 +47,10 @@ RegisterService.prototype.registerUser = function(userData, callback) {
       var newUser = new User({
         name : userData.name,
         role : userData.role,
-        email : userData.email,
-        password : userData.password
+        email : userData.email
       });
+
+      newUser.saveHashPassword(userData.password);
 
       newUser.save(function(error,data){
 
