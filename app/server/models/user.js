@@ -19,7 +19,7 @@ UserSchema.methods.saveHashPassword = function(password) {
 };
 
 //password decrypt and compare
-UserSchema.methods.validPassword = function(password){
+UserSchema.methods.validatePassword = function(password){
   return bcrypt.compareSync(password, this.password);
 };
 
