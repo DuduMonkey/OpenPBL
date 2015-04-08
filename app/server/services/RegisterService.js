@@ -52,7 +52,8 @@ RegisterService.prototype.registerUser = function(userData, callback) {
     newUser.save(function(error,data){
 
       if (error) {
-        var errorMessage = 'Erro na persistencia dos dados';
+        var errorMessage = 'Erro na persistencia dos dados: ';
+        errorMessage = errorMessage.concat(error.message);
         deferred.reject(errorMessage);
 
       } else {

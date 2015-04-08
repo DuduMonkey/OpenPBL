@@ -3,7 +3,7 @@ var Token = require('../token/TokenProvider');
 var Q = require ('Q');
 
 
-AuthenticationService.prototype.loginUser = function(userMail, userPassword){
+AuthenticationService.prototype.authenticateUser = function(userMail, userPassword){
 
   var deferred = Q.defer();
 
@@ -37,7 +37,6 @@ function AuthenticationService() {
     var query = {email : userMail};
 
     User.findOne(query).exec(function(error, user){
-      
       if(error){
         var errorMessage = 'Erro na busca de usuário';
         deferred.reject(errorMessage);
@@ -45,9 +44,9 @@ function AuthenticationService() {
       }else if(!user){
         var errorMessage = 'Usuário inexistente';
         deferred.reject(errorMessage);
-      }
-
-      var passwordIsValid = user.validatePassword(userPassword);
+      }else{
+        var passwordIsValid = user.validatePassword(userPassword);
+      }         
 
       if(passwordIsValid){
         deferred.resolve();
@@ -62,3 +61,6 @@ function AuthenticationService() {
     return deferred.promise;
   };
 }
+
+// export the class
+module.exports = AuthenticationService;
