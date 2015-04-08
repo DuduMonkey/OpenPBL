@@ -1,11 +1,28 @@
-exports.login = function(req, res){
-  res.send({logged: true});
-}
+var authenticationService = new (require('../Services/AuthenticationService'))();
+var Q = require ('Q');
 
-exports.signup = function(req, res){
-  res.send({registered: true});
-}
+exports.post = function(req, res){
 
-exports.logout = function(req, res){
-  res.send({loggedout: true});
+  var userEmail = req.body.email;
+  var userPassword = req.body.password;
+
+  authenticationService.authenticateUser(userEmail,userPassword)
+    .then(function(authToken){
+      var headerName = 'auth-pbl-code';
+
+      var loggedMessage = 'autenticado com sucesso';
+
+      res
+        .status(200)
+        .setHeader(headerName, authToken)
+        .send({successMessage: loggedMessage});
+
+    })
+    .catch(function(errorMessage){
+      res.send({
+        success : false,
+        reason: errorMessage
+      });
+    });
+
 }
