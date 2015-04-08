@@ -18,9 +18,9 @@ TokenProvider.prototype.createToken = function(email) {
 
   var newToken = new Token({
     email : email,
-    token : token
+    token : tokenHash
   });
-
+  
   newToken.save(function(error, token){
 
     if(error){
