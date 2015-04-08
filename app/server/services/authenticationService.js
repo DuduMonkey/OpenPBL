@@ -1,5 +1,5 @@
 var User = require('../models/User');
-var Token = require('../token/TokenProvider');
+var TokenProvider = new (require('../token/TokenProvider'))();
 var Q = require ('Q');
 
 
@@ -9,8 +9,8 @@ AuthenticationService.prototype.authenticateUser = function(userMail, userPasswo
 
   this.verifyUserCredentials(userMail, userPassword)
   .then(function(){
-
-    Token.createToken(email)
+    
+    TokenProvider.createToken(userMail)
       .then(function(validToken){
         deferred.resolve(validToken);
 

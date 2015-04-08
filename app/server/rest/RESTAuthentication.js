@@ -8,12 +8,12 @@ exports.post = function(req, res){
 
   authenticationService.authenticateUser(userEmail,userPassword)
     .then(function(authToken){
+
       var headerName = 'auth-pbl-code';
 
       var loggedMessage = 'autenticado com sucesso';
 
-      res
-        .status(200)
+      res.status(200)
         .setHeader(headerName, authToken)
         .send({successMessage: loggedMessage});
 
