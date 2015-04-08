@@ -19,6 +19,9 @@ module.exports = function(app, path, router){
   router.route('/signup')
     .post(register.post);
 
+  router.route('/login')
+    .post(authentication.post);
+
   app.use('/api', router); //Prefix every route with /api
 
   // Default '/' site route
