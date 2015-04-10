@@ -13,9 +13,7 @@ exports.post = function(req, res){
 
       var loggedMessage = 'autenticado com sucesso';
 
-      res.status(200)
-        .setHeader(headerName, authToken)
-        .send({successMessage: loggedMessage});
+      res.status(200).send({successMessage: loggedMessage});
 
     })
     .catch(function(errorMessage){

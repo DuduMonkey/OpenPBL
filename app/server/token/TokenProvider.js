@@ -1,3 +1,5 @@
+//https://www.npmjs.com/package/json-web-token
+
 var Token = require('./Token');
 var Q = require ('Q');
 

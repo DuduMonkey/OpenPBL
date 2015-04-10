@@ -1,7 +1,11 @@
 'use strict';
 
+//http://www.kdelemme.com/2014/03/09/authentication-with-angularjs-and-a-node-js-rest-api/
+//https://www.npmjs.com/package/json-web-token
+
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var bcrypt = require('bcrypt-then');
 
 var TokenSchema = new Schema({
   email: String,
@@ -13,8 +17,13 @@ var TokenSchema = new Schema({
 TokenSchema.statics.generateHash = function() {
   
   var sessionSecret = process.env.SESSION_SECRET;
-
-  return 'TokenMock';
+  bcrypt.hash(sessionSecret)
+    .then(function(token){
+      return token;
+    })
+    .catch(function(){
+      return 'nada';
+    });
 };
 
 module.exports = mongoose.model('Token', TokenSchema);
