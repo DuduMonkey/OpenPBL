@@ -12,12 +12,14 @@ AuthenticationService.prototype.authenticateUser = function(userMail, userPasswo
     
     TokenProvider.createToken(userMail)
       .then(function(token){
-
+        
         deferred.resolve(token);
 
       })
       .catch(function(error){
+
         deferred.reject(error);
+        
       });
   })
   .catch(function(error){
@@ -50,21 +52,13 @@ function AuthenticationService() {
         //Valida a senha
         user.validatePassword(candidatePassword)
         .then(function(isValid){
-          if(isValid){
 
             deferred.resolve();
 
-          }else{
-
-            errorMessage = 'Senha inválida';
-            deferred.reject(errorMessage);
-
-          }
         })
         .catch(function(error){
 
-          errorMessage = 'Erro na validação de senha';
-          deferred.reject(errorMessage);
+          deferred.reject(error);
           
         });
       };

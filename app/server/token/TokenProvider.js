@@ -13,14 +13,12 @@ TokenProvider.prototype.createToken = function(userMail) {
 
   var deferred = Q.defer();
 
-  var token = Token.generateHash(userMail);
-
   var newToken = new Token({
-    email : email,
-    token : token
+    email : userMail,
+    token : 'defaultToken'
   });
   
-  newToken.save(function(error, token){
+  newToken.save(function(error, data){
 
     if(error){
 
@@ -29,8 +27,8 @@ TokenProvider.prototype.createToken = function(userMail) {
 
     }else{
 
-      deferred.resolve(token);
-
+      deferred.resolve(data.token);
+      
     };
 
   });
