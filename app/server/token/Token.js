@@ -13,7 +13,7 @@ var Q = require ('Q');
 var TokenSchema = new Schema({
   email: String,
   token: String,
-  expirationTime: {type: Date, expires: 60, default: Date.now()}
+  expirationTime: {type: Date, expireAfterSeconds: 3600, default: Date.now}
 });
 
 
