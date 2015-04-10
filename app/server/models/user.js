@@ -8,10 +8,10 @@ var bcrypt = require('bcrypt-then');
 var Q = require ('Q');
 
 var UserSchema = new Schema({
-  name: String,
-  role: {type: Number, min: 1, max: 2},
-  email: String,
-  password: String
+  name: { type: String, required: true},
+  role: { type: Number, min: 1, max: 2, required: true},
+  email: { type: String, required: true, index: { unique: true }},
+  password: { type: String, required: true }
 });
 
 //Middlaware for hashing password before save on database
