@@ -5,6 +5,7 @@ var Schema = mongoose.Schema;
 
 var bcrypt = require('bcrypt-then');
 
+var Q = require ('Q');
 
 var UserSchema = new Schema({
   name: String,
@@ -30,8 +31,19 @@ UserSchema.pre('save', function(next){
 });
 
 //password decrypt and compare
-UserSchema.methods.validatePassword = function(password){
-  return true;
+UserSchema.methods.validatePassword = function(candidatePassword){
+
+  var deferred = Q.defer();
+
+  bcrypt.compare(candidatePassword, this.password)
+    .then(function(isValid){
+      deferred.resolve(isValid);
+    })
+    .catch(function(error){
+      deferred.reject(error);
+    });
+
+  return deferred.promise;
 };
 
 module.exports = mongoose.model('User', UserSchema);
