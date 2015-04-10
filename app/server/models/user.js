@@ -3,7 +3,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var bcrypt = require('bcrypt-then');
+var bcrypt = require('bcrypt-nodejs');
 
 var Q = require ('Q');
 
@@ -20,14 +20,14 @@ UserSchema.pre('save', function(next){
 
   if(!user.isModified('password')) return next();
 
-  bcrypt.hash(user.password, 8)
-    .then(function(hash){
-      user.password = hash;
-      next();
-    })
-    .catch(function(error){
-      return err;
-    });
+  var hash = bcrypt.hashSync(user.password);
+
+  if(hash){
+    user.password = hash;
+    next();
+  }else{
+    return {error : 'Erro no hash de senha'};
+  }
 });
 
 //password decrypt and compare
@@ -35,13 +35,18 @@ UserSchema.methods.validatePassword = function(candidatePassword){
 
   var deferred = Q.defer();
 
-  bcrypt.compare(candidatePassword, this.password)
-    .then(function(isValid){
-      deferred.resolve(isValid);
-    })
-    .catch(function(error){
-      deferred.reject(error);
-    });
+  var isMatch = bcrypt.compareSync(candidatePassword, this.password);
+  
+  if(isMatch){
+    
+    deferred.resolve(isMatch);
+
+  }else{
+
+    var error = 'Senha não confere';
+    deferred.reject(error);
+
+  }
 
   return deferred.promise;
 };
