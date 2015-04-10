@@ -10,14 +10,7 @@ AuthenticationService.prototype.authenticateUser = function(userMail, userPasswo
   this.verifyUserCredentials(userMail, userPassword)
   .then(function(){
     
-    TokenProvider.createToken(userMail)
-      .then(function(validToken){
-        deferred.resolve(validToken);
-
-      })
-      .catch(function(error){
-        deferred.reject(error);
-      });
+    deferred.resolve('token mockada');
 
   })
   .catch(function(error){
