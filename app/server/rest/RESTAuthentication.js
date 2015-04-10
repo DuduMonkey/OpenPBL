@@ -9,11 +9,7 @@ exports.post = function(req, res){
   authenticationService.authenticateUser(userEmail,userPassword)
     .then(function(authToken){
 
-      var headerName = 'auth-pbl-code';
-
-      var loggedMessage = 'autenticado com sucesso';
-
-      res.status(200).send({successMessage: loggedMessage});
+      res.status(200);
 
     })
     .catch(function(errorMessage){

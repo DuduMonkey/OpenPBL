@@ -6,24 +6,22 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var bcrypt = require('bcrypt-then');
+var jwt = require('jwt-simple');
 
 var TokenSchema = new Schema({
   email: String,
   token: String,
-  expirationTime: {type: Date, expires: '60', default: Date.now}
+  expirationTime: {type: Date, expires: '10', default: Date.now}
 });
 
 //password encrypt
-TokenSchema.statics.generateHash = function() {
-  
-  var sessionSecret = process.env.SESSION_SECRET;
-  bcrypt.hash(sessionSecret)
-    .then(function(token){
-      return token;
-    })
-    .catch(function(){
-      return 'nada';
-    });
+TokenSchema.statics.generateHash = function(userMail) {
+
+  var sessionSecret = process.env.SECRET;
+
+  var token = jwt.encode({ email: userMail }, sessionSecret);
+
+  return token;
 };
 
 module.exports = mongoose.model('Token', TokenSchema);
