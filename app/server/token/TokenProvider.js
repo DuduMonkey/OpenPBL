@@ -1,5 +1,3 @@
-//https://www.npmjs.com/package/json-web-token
-
 var Token = require('./Token');
 var Q = require ('Q');
 
@@ -11,16 +9,15 @@ function TokenProvider() {
 };
 
 // Class Methods
-TokenProvider.prototype.createToken = function(email) {
+TokenProvider.prototype.createToken = function(userMail) {
 
   var deferred = Q.defer();
 
-  var tokenHash = Token.generateHash();
-
+  var token = Token.generateHash(userMail);
 
   var newToken = new Token({
     email : email,
-    token : tokenHash
+    token : token
   });
   
   newToken.save(function(error, token){
