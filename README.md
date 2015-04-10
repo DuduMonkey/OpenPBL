@@ -5,6 +5,13 @@
 OpenPBL Educational Tool
 
 ## Configurar o ambiente de desenvolvimento
+
+Para ambiente Windows é necessário ter o Python 2.7 instalado
+e apontar o executável para variavel de configuração do npm
+```sh
+$ npm config set python c:/Caminho/Para/Python27/Python.exe
+```
+
 Instalar grunt-cli e bower
 
 ```sh
