@@ -5,23 +5,40 @@
 
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var bcrypt = require('bcrypt-then');
+
 var jwt = require('jwt-simple');
+var Q = require ('Q');
+
 
 var TokenSchema = new Schema({
   email: String,
   token: String,
-  expirationTime: {type: Date, expires: '10', default: Date.now}
+  expirationTime: {type: Date, expires: 60, default: Date.now()}
 });
 
-//password encrypt
-TokenSchema.statics.generateHash = function(userMail) {
+
+//Middlaware for hashing password before save on database
+TokenSchema.pre('save', function(next){
+
+  var tokenEntity = this;
+
+  if(!tokenEntity.isModified('token')) return next();
 
   var sessionSecret = process.env.SECRET;
 
-  var token = jwt.encode({ email: userMail }, sessionSecret);
+  var tokenHash = jwt.encode({ email: tokenEntity.email }, sessionSecret);
 
-  return token;
-};
+  if(tokenHash){
+
+    tokenEntity.token = tokenHash;
+    next();
+
+  }else{
+
+    return {error : 'Erro no hash de senha'};
+    
+  }
+
+});
 
 module.exports = mongoose.model('Token', TokenSchema);
