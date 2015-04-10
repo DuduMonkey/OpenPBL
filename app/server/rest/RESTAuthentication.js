@@ -8,8 +8,8 @@ exports.post = function(req, res){
 
   authenticationService.authenticateUser(userEmail,userPassword)
     .then(function(authToken){
-
-      res.status(200);
+      
+      res.status(200).send({ token : authToken });
 
     })
     .catch(function(errorMessage){
