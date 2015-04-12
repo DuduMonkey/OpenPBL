@@ -1,43 +1,42 @@
+/*global module, require*/
+'use strict';
+
+// Modules in use
 var Token = require('./Token');
 var Q = require ('Q');
 
 // Constructor
 function TokenProvider() {
+}
 
+/**
+  Create a token using the user email payload
 
-
-};
-
-// Class Methods
+  Return the promise as resolved if token was generated (save)
+*/
 TokenProvider.prototype.createToken = function(userMail) {
 
   var deferred = Q.defer();
 
   var newToken = new Token({
-    email : userMail,
-    token : 'defaultToken'
+    email: userMail,
+    token: userMail,
   });
   
-  newToken.save(function(error, data){
-
-    if(error){
-
-      var errorMessage = {message: 'Erro na criação ao gerar token de sessão'}
-      deferred.reject(errorMessage);
-
-    }else{
-
-      deferred.resolve(data.token);
+  newToken.save(function(error, data) {
+    if (error) {
+      var errorMessage = { message: 'Erro na criação ao gerar token de sessão' };
       
-    };
-
+      deferred.reject(errorMessage);
+    }
+      
+    deferred.resolve(data.token);
   });
 
   return deferred.promise;
-  
 };
 
 
 
-// export the class
+// Export the module as TokenProvider
 module.exports = TokenProvider;
