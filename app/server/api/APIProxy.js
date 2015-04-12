@@ -1,3 +1,5 @@
+var TokenValidator = new (require('../token/TokenValidator'))();
+
 module.exports = function(router){
 
   router.use(function(req, res, next) {
@@ -5,9 +7,23 @@ module.exports = function(router){
     var url = req.url;
     var baseUrl = req.baseUrl;
 
+
     if(pathNeedsAuthentication(url,baseUrl)){
 
-      res.status(401).send({message: 'faça login'});
+      var tokenField = 'x-pbl-user-auth';
+      var headerToken = req.headers[tokenField];
+
+       TokenValidator.validateToken(headerToken)
+         .then(function(){
+
+            next();
+
+          })
+          .catch(function(){
+
+            res.status(401).send({message: 'Acesso não autorizado'});
+
+          });
 
     }else{
 
