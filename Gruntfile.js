@@ -65,6 +65,51 @@ module.exports = function(grunt) {
         }
       }
     },
+    jshint: {
+      options: {
+        jshintrc: true,
+        reporter: require('jshint-stylish')
+      },
+      all: [
+        'Gruntfile.js',
+        'app/server/*.js',
+        'app/api/*.js',
+        'app/models/*.js',
+        'app/server/services/*.js'
+      ]
+    },
+
+    plato: {
+      options: {
+        exclude: /\.min\.js$/,
+        jshint : grunt.file.readJSON('.jshintrc')
+      },
+      metrics: {
+        files: {
+          'reports': [
+          'app/server/*.js',
+          'app/api/*.js',
+          'app/models/*.js',
+          'app/server/services/*.js'
+          ]
+        }
+      }
+    },
+
+    shell: {
+      openReportsDarwin: {
+        command: 'open reports/index.html',
+        options: {
+          stdout: true
+        }
+      },
+      openReportsWin: {
+        command: 'start reports/index.html',
+        options: {
+          stdout: true
+        }
+      }
+    },
     auto_install: {
     local: {},
       subdir: {
@@ -82,9 +127,21 @@ module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-express-server');
   grunt.loadNpmTasks('grunt-auto-install');
+  grunt.loadNpmTasks('grunt-shell');
+  grunt.loadNpmTasks('grunt-plato');
 
-  grunt.registerTask('s', ['auto_install', 'uglify:dev', 'cssmin', 'express:dev']);
+  grunt.registerTask('s', [
+    'auto_install', 
+    'uglify:dev', 
+    'cssmin', 
+    'express:dev',
+    'jshint'
+    ]);
+
+  grunt.registerTask('metrics:win', ['plato:metrics', 'shell:openReportsWin']);
+  grunt.registerTask('metrics:darwin', ['plato:metrics', 'shell:openReportsDarwin']);
 }
