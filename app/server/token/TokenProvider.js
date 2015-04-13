@@ -3,7 +3,7 @@
 
 // Modules in use
 var Token = require('./Token');
-var Q = require ('Q');
+var Q = require ('q');
 
 // Constructor
 function TokenProvider() {
