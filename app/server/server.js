@@ -12,7 +12,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 // Start the configurations
-require('./Configuration')(express,app,path,mongoose,cookieParser,bodyParser);
+require('./Configuration')(express, app, path, mongoose, cookieParser, bodyParser);
 
 // Set the main router
 var router = express.Router();
