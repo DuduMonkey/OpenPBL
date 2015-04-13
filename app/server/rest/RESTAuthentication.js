@@ -1,5 +1,5 @@
-var authenticationService = new (require('../Services/AuthenticationService'))();
-var Q = require ('Q');
+var authenticationService = new (require('../services/AuthenticationService'))();
+var Q = require ('q');
 
 exports.post = function(req, res){
 
