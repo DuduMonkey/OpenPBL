@@ -16,7 +16,7 @@ require('./Configuration')(express,app,path,mongoose,cookieParser,bodyParser);
 
 // Set the main router
 var router = express.Router();
-require('./API/APIGateway.js')(app, path, router);
+require('./api/APIGateway.js')(app, path, router);
 
 // Server Initialization
 var port = process.env.PORT || 9000;

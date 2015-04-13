@@ -1,6 +1,6 @@
 var User = require('../models/User');
 var TokenProvider = new (require('../token/TokenProvider'))();
-var Q = require ('Q');
+var Q = require ('q');
 
 
 AuthenticationService.prototype.authenticateUser = function(userMail, userPassword){

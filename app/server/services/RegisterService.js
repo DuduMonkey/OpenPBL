@@ -1,6 +1,6 @@
 var User = require('../models/User');
 var Role = require('../models/constants/user_role');
-var Q = require ('Q');
+var Q = require ('q');
 
 // Constructor
 function RegisterService() {
