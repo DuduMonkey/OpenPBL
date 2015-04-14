@@ -3,11 +3,7 @@
 
 // Modules in use
 var Token = require('./Token');
-var Q = require ('q');
-
-// Constructor
-function TokenProvider() {
-}
+var Q = require('q');
 
 /**
   Validate a token candidate with collection from database
@@ -16,22 +12,25 @@ function TokenProvider() {
 
   return the promise as resolved
 */
-TokenProvider.prototype.validateToken = function(tokenCandidate) {
+var validateCandidate = function (tokenCandidate) {
   var deferred = Q.defer();
 
   var query = {token : tokenCandidate};
 
-  Token.find(query).exec(function(err, tokens){
-    
+  Token.find(query).exec(function (err, tokens) {
     if (tokens.length > 0) {
       deferred.resolve();
     }
-    
-    deferred.reject();
+    deferred.reject(err);
   });
 
   return deferred.promise;
 };
 
-// Export the module as TokenProvider
-module.exports = TokenProvider;
+
+// Export the module as singleton the token validation Type
+module.exports = {
+
+  validateToken: validateCandidate
+
+};

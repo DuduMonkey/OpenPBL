@@ -1,4 +1,4 @@
-var TokenValidator = new (require('../token/TokenValidator'))();
+var TokenValidator = require('../token/TokenValidator');
 
 module.exports = function(router){
 
