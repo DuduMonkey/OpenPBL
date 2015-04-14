@@ -1,6 +1,5 @@
 //Services
 var authentication = require('../rest/RESTAuthentication');
-var activity = require('../rest/RESTActivity');
 var register = require('../rest/RESTRegister');
 
 module.exports = function(app, path, router){
