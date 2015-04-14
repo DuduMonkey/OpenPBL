@@ -1,4 +1,4 @@
-var registerService = new (require('../services/RegisterService'))(); //Initialize and run
+var registerService = require('../services/RegisterService'); //Initialize and run
 var Q = require ('q');
 
 exports.post = function(req,res){
