@@ -32,5 +32,4 @@ var validateCandidate = function (tokenCandidate) {
 module.exports = {
 
   validateToken: validateCandidate
-
 };

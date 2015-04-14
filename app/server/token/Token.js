@@ -48,7 +48,7 @@ TokenSchema.pre('save', function(next) {
 
 // Generate one Random Numeric word
 var generateRandomWord = function(){
-  var randomDecimalString = Math.Random().toString();
+  var randomDecimalString = Math.random().toString();
 
   var randomMathWord = randomDecimalString.split('.')[1];
 

@@ -1,5 +1,5 @@
 var User = require('../models/User');
-var TokenProvider = new (require('../token/TokenProvider'))();
+var TokenProvider = require('../token/TokenProvider');
 var Q = require ('q');
 
 
