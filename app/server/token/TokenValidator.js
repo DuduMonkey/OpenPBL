@@ -30,6 +30,5 @@ var validateCandidate = function (tokenCandidate) {
 
 // Export the module as singleton the token validation Type
 module.exports = {
-
   validateToken: validateCandidate
 };
