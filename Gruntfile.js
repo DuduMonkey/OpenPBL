@@ -73,9 +73,12 @@ module.exports = function(grunt) {
       all: [
         'Gruntfile.js',
         'app/server/*.js',
-        'app/api/*.js',
-        'app/models/*.js',
-        'app/server/services/*.js'
+        'app/server/api/*.js',
+        'app/server/models/*.js',
+        'app/server/models/constants/*.js',
+        'app/server/rest/*.js',
+        'app/server/services/*.js',
+        'app/server/token/*.js',
       ]
     },
 
@@ -88,9 +91,12 @@ module.exports = function(grunt) {
         files: {
           'reports': [
           'app/server/*.js',
-          'app/api/*.js',
-          'app/models/*.js',
-          'app/server/services/*.js'
+          'app/server/api/*.js',
+          'app/server/models/*.js',
+          'app/server/models/constants/*.js',
+          'app/server/rest/*.js',
+          'app/server/services/*.js',
+          'app/server/token/*.js'
           ]
         }
       }
