@@ -1,4 +1,4 @@
-/*global module, require, process*/
+/*global module, require*/
 'use strict';
 
 // Modules in use
