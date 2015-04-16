@@ -71,7 +71,7 @@ module.exports = function(grunt) {
           'app/public/*.js',
           'app/public/sections/**/*.js',
           'app/public/shared/**/*.js',
-          'app/server/**/*.js',
+          'app/server/**/*.js'
           ]
         }
       }
