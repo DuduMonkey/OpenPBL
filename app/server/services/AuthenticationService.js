@@ -5,6 +5,7 @@
 var User = require('../models/User');
 var TokenProvider = require('../token/TokenProvider');
 var Q = require('q');
+var Exception = require('../shared/Exceptions');
 
 /**
   Validate user credentials
@@ -20,11 +21,9 @@ var verifyUserCredentials = function (userMail, candidatePassword) {
 
   User.findOne(query).exec(function (error, user) {
     if (error) {
-      errorMessage = 'Erro na busca de usuário';
-      deferred.reject(errorMessage);
+      deferred.reject(Exception.USER_FIND_ERROR);
     } else if (!user) {
-      errorMessage = 'Usuário inexistente';
-      deferred.reject(errorMessage);
+      deferred.reject(Exception.USER_NOT_FIND);
     } else {
       user.validatePassword(candidatePassword)
         .then(function () {

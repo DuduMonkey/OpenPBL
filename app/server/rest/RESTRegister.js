@@ -16,10 +16,7 @@ exports.post = function (req, res) {
         success: true
       });
     })
-    .catch(function (errorMessage) {
-      res.send({
-        success: false,
-        reason : errorMessage
-      });
+    .catch(function (error) {
+      res.send(error);
     });
 };

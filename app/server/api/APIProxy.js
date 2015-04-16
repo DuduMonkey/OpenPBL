@@ -39,8 +39,8 @@ var validateToken = function (tokenCandidate, next, res) {
     .then(function () {
       next();
     })
-    .catch(function () {
-      res.status(401).send({ message: 'Acesso não autorizado' });
+    .catch(function (error) {
+      res.status(401).send(error);
     });
 };
 

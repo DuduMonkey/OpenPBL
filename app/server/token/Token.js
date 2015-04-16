@@ -5,6 +5,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var jwt = require('jwt-simple');
+var Exception = require('../shared/Exceptions');
 
 // Create a Token Scheme (Entity)
 // email          -> unique                   =>  asserts 1:1 token for users
@@ -52,7 +53,7 @@ TokenSchema.pre('save', function (next) {
     next();
   }
 
-  return { error: 'Erro no hash de senha' };
+  return Exception.TOKEN_HASHING_ERROR;
 });
 
 //Export the module as Token

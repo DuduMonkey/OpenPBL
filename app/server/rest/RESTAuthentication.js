@@ -16,10 +16,7 @@ exports.post = function (req, res) {
     .then(function (authToken) {
       res.status(200).send({ token: authToken });
     })
-    .catch(function (errorMessage) {
-      res.send({
-        success: false,
-        reason: errorMessage
-      });
+    .catch(function (error) {
+      res.send(error);
     });
 };
