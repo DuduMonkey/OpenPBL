@@ -13,7 +13,7 @@ var jwt = require('jwt-simple');
 var TokenSchema = new Schema({
   email: String,
   token: String,
-  expirationTime: {type: Date, expireAfterSeconds: 3600, default: Date.now}
+  expirationTime: {type: Date, expires: 3600, default: Date.now}
 });
 
 // Auxiliar function, generate one Random Numeric word

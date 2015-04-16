@@ -1,51 +1,63 @@
+/*global module, require, process*/
 'use strict';
 
+// Modules in use
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-
 var bcrypt = require('bcrypt-nodejs');
+var Q = require('q');
 
-var Q = require ('q');
 
+/**
+  Defines the mongo user schema
+    Name: String required
+    Role: Number, accepts only 1 and 2
+    Email: String required and unique,
+    Password: String required
+*/
 var UserSchema = new Schema({
-  name: { type: String, required: true},
-  role: { type: Number, min: 1, max: 2, required: true},
-  email: { type: String, required: true, index: { unique: true }},
+  name: { type: String, required: true },
+  role: { type: Number, min: 1, max: 2, required: true },
+  email: { type: String, required: true, index: { unique: true } },
   password: { type: String, required: true }
 });
 
-//Middlaware for hashing password before save on database
-UserSchema.pre('save', function(next){
+/**
+  Middlaware for hashing password before save on database,
+  capture the "save" action and exchange the string password
+  for the hashed password.
+*/
+UserSchema.pre('save', function (next) {
   var user = this;
 
-  if(!user.isModified('password')) return next();
+  if (!user.isModified('password')) {
+    return next();
+  }
 
   var hash = bcrypt.hashSync(user.password);
 
-  if(hash){
+  if (hash) {
     user.password = hash;
     next();
-  }else{
-    return {error : 'Erro no hash de senha'};
+  } else {
+    return { error: 'Erro no hash de senha'};
   }
 });
 
-//password decrypt and compare
-UserSchema.methods.validatePassword = function(candidatePassword){
-
+/**
+  Decrypt the hashed password from "this" user instance (find on database)
+  and compare with the candidate password, on valid. resolve the promise
+*/
+UserSchema.methods.validatePassword = function (candidatePassword) {
   var deferred = Q.defer();
 
   var isMatch = bcrypt.compareSync(candidatePassword, this.password);
-  
-  if(isMatch){
-    
-    deferred.resolve(isMatch);
 
-  }else{
-
+  if (isMatch) {
+    deferred.resolve();
+  } else {
     var error = 'Senha não confere';
     deferred.reject(error);
-
   }
 
   return deferred.promise;
