@@ -9,6 +9,7 @@
 
           if (authenticationService.isAuthenticated()) {
             var token = authenticationService.getToken();
+            config.headers['x-pbl-user-auth'] = token;
           }
 
           return config;
