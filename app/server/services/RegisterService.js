@@ -6,7 +6,10 @@ var User = require('../models/User');
 var Role = require('../models/constants/user_role');
 var Q = require('q');
 
-  //Private Methods
+/**
+  Validate if email from new user already exists on database
+  'then' deferrer the promise as resolved if not
+*/
 var isNewValidUser = function (mailAddress) {
     var errorMessage;
 
@@ -25,12 +28,16 @@ var isNewValidUser = function (mailAddress) {
         deferred.resolve();
       }
     });
+
     return deferred.promise;
   };
 
-
-// Class Methods
-var registerUser = function (userData, callback) {
+/**
+  Register the new user.
+    Uses mongoose structure to save the new user instance,
+    then resolve the user data as resolved.
+*/
+var registerUser = function (userData) {
   var deferred = Q.defer();
 
   var newMail = userData.email;
@@ -45,30 +52,25 @@ var registerUser = function (userData, callback) {
       });
 
       newUser.save(function (error, data) {
-
-      if (error) {
-        var errorMessage = 'Erro na persistencia dos dados: ';
-        errorMessage = errorMessage.concat(error.message);
-        deferred.reject(errorMessage);
-
-      } else {
-        deferred.resolve(data);    
-
-      };
+        if (error) {
+          var errorMessage = 'Erro na persistencia dos dados: ';
+          errorMessage = errorMessage.concat(error.message);
+          deferred.reject(errorMessage);
+        } else {
+          deferred.resolve(data);
+        }
+      });
+    })
+    .catch(function (error) {
+      deferred.reject(error);
     });
-  })
-  .catch(function (error) {
-    deferred.reject(error);
-
-  });
 
   return deferred.promise;
-
 };
 
 
 
-// export the class
+// Export the module as the singleton RegisterUser type
 module.exports = {
   registerUser: registerUser
 };
