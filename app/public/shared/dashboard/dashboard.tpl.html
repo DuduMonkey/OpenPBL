@@ -1,65 +1,113 @@
 <div id="page-wrapper" ng-cloak>
 
-    <!-- Sidebar -->
-    <div id="sidebar-wrapper">
+  <!-- Sidebar -->
+  <div id="sidebar-wrapper">
+    <div class="sidebar-main">
+      <p><span class="menu-icon glyphicon glyphicon-home" aria-hidden="true"></span>Painel do Usuário</p>
+    </div>
+    <div class="sidebar-title">
+      <span>Atividades</span><button class="btn btn-primary" ng-click="createnewActivity()">Criar nova</button>
+    </div>
+    <div class="sidebar-items">
       <ul class="sidebar">
-        <li class="sidebar-main">
-          <a><h4>Painel do Professor</h4><span class="menu-icon glyphicon glyphicon-home"></span></a>
-        </li>
-        <li class="sidebar-title"><span>Atividades</span><button class="btn btn-primary" ng-click="">Criar nova</button></li>
-        <li class="sidebar-list" ng-repeat="activity in activities.active">
-            <a>{{activity.name}}</a>
+        <li class="sidebar-list" ng-repeat="activity in activities.active" ng-click="setCurrentActivity(activity)">
+          <a href="" ng-class="{activity.id === currentActivity.id}">{{activity.name}}</a>
         </li>
       </ul>
-      <!-- Sidebar footer -->
-      <div class="sidebar-footer">
-        <div class="col-xs-4">
-          <a href="#">
-            Ajuda
-          </a>
+    </div>
+    <!-- Sidebar footer -->
+    <div class="sidebar-footer">
+      <div class="col-xs-4">
+        <a href="#">Ajuda</a>
+      </div>
+      <div class="col-xs-4">
+        <a href="#">Sobre</a>
+      </div>
+      <div class="col-xs-4">
+        <a href="#">Links</a>
+      </div>
+    </div>
+    <!-- End Sidebar Footer -->
+  </div>
+  <!-- End Sidebar -->
+
+  <!-- Page Content -->
+  <!-- Activity Header Row -->
+  <div class="row header">
+    <div class="col-xs-12">
+      <div class="actions pull-right">
+        <button class="btn btn-primary" ng-click="">Abrir</button>
+      </div>
+      <div class="meta">
+        <div class="page">
+          <span class="panel-title">{{currentActivity.name}}</span>
         </div>
-        <div class="col-xs-4">
-          <a href="#">
-            Sobre
-          </a>
-        </div>
-        <div class="col-xs-4">
-          <a href="#">
-            Links
-          </a>
+        <div class="activity-details">
+          Detalhes sobre a atividade
         </div>
       </div>
-      <!-- End Sidebar Footer -->
     </div>
-    <!-- End Sidebar -->
+  </div>
+  <!-- End Activity Header Row -->
+  <div class="page-content">
 
-    <!-- Page Content -->
-    <div id="content-wrapper">
-      <div class="page-content">
-
-        <!-- Header Bar -->
-        <div class="row header">
-          <div class="col-xs-12">
-            <div class="user pull-right">
-                <button class="btn btn-primary" ng-click="">Abrir</button>
-            </div>
-            <div class="meta">
-              <div class="page">
-                Dashboard
+    <!-- Main Content -->
+    <!-- Widgets row -->
+    <div ui-view>
+      <div class="row">
+        <div class="col-lg-3 col-md-6 col-xs-12">
+          <div class="widget color-secondary-2-2">
+            <div class="widget-body">
+              <div class="widget-icon pull-left">
+                <i class="fa fa-users"></i>
               </div>
-              <div class="activity-details">
-                Detalhes sobre a atividade
-              </div>
+              <div class="title"><h3>{{currentActivity.participants.length}}</h3></div>
+              <div class="comment"><h5>Participantes</h5></div>
             </div>
           </div>
         </div>
-        <!-- End Header Bar -->
+        <div class="col-lg-3 col-md-6 col-xs-12">
+          <div class="widget color-secondary-1-2">
+            <div class="widget-body">
+              <div class="widget-icon pull-left">
+                <i class="fa fa-tasks"></i>
+              </div>
+              <div class="title"><h3>{{currentActivity.participants.length}}</h3></div>
+              <div class="comment"><h5>Participantes</h5></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-xs-12">
+          <div class="widget color-primary-2">
+            <div class="widget-body">
+              <div class="widget-icon pull-left">
+                <i class="fa fa-sitemap"></i>
+              </div>
+              <div class="title"><h3>{{currentActivity.participants.length}}</h3></div>
+              <div class="comment"><h5>Participantes</h5></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-xs-12">
+          <div class="widget color-secondary-3-2">
+            <div class="widget-body">
+              <div class="widget-icon pull-left">
+                <i class="fa fa-support"></i>
+              </div>
+              <div class="title"><h3>{{currentActivity.participants.length}}</h3></div>
+              <div class="comment"><h5>Participantes</h5></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End widgets row -->
+      <!-- Widgets -->
 
-        <!-- Main Content -->
-        <div ui-view></div>
+      <!-- End widgets -->
+    </div>
 
-      </div><!-- End Page Content -->
-    </div><!-- End Content Wrapper -->
+  </div>
+  <!-- End Page Content -->
 
   <!-- Modal: cadastro de atividade -->
   <div class="modal fade background-static" id="newActivityModal">
