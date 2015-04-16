@@ -1,60 +1,62 @@
 /*global module, require, process*/
-'use strict';
+(function () {
+  'use strict';
 
-// Modules in use
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
-var jwt = require('jwt-simple');
-var Exception = require('../shared/Exceptions');
+  // Modules in use
+  var mongoose = require('mongoose');
+  var Schema = mongoose.Schema;
+  var jwt = require('jwt-simple');
+  var Exception = require('../shared/Exceptions');
 
-// Create a Token Scheme (Entity)
-// email          -> unique                   =>  asserts 1:1 token for users
-// token          -> hashing                  =>  asserts securty for tokens
-// expirationTime -> Date.now + 3600 seconds  =>  asserts auto-delete from database
-var TokenSchema = new Schema({
-  email: String,
-  token: String,
-  expirationTime: {type: Date, expires: 3600, default: Date.now}
-});
+  // Create a Token Scheme (Entity)
+  // email          -> unique                   =>  asserts 1:1 token for users
+  // token          -> hashing                  =>  asserts securty for tokens
+  // expirationTime -> Date.now + 3600 seconds  =>  asserts auto-delete from database
+  var TokenSchema = new Schema({
+    email: String,
+    token: String,
+    expirationTime: {type: Date, expires: 3600, default: Date.now}
+  });
 
-// Auxiliar function, generate one Random Numeric word
-// used
-var generateRandomWord = function () {
-  var randomDecimalString = Math.random().toString();
+  // Auxiliar function, generate one Random Numeric word
+  // used
+  var generateRandomWord = function () {
+    var randomDecimalString = Math.random().toString();
 
-  var randomMathWord = randomDecimalString.split('.')[1];
+    var randomMathWord = randomDecimalString.split('.')[1];
 
-  return randomMathWord;
-};
+    return randomMathWord;
+  };
 
-/** 
-  Middleware for 'save' operation on this model
-  
-  Uses the environment variable SECRET or generate one random string if SECRET=undefined
-  "In case os missused export SECRET=yaddayadda"
-  
-  Generate the hash using JSON Web Token (jwt)
+  /** 
+    Middleware for 'save' operation on this model
+    
+    Uses the environment variable SECRET or generate one random string if SECRET=undefined
+    "In case os missused export SECRET=yaddayadda"
+    
+    Generate the hash using JSON Web Token (jwt)
 
-  return the token if that are save
-*/
-TokenSchema.pre('save', function (next) {
-  var tokenEntity = this;
+    return the token if that are save
+  */
+  TokenSchema.pre('save', function (next) {
+    var tokenEntity = this;
 
-  if (!tokenEntity.isModified('token')) {
-    return next();
-  }
+    if (!tokenEntity.isModified('token')) {
+      return next();
+    }
 
-  var sessionSecret = process.env.SECRET || generateRandomWord();
+    var sessionSecret = process.env.SECRET || generateRandomWord();
 
-  var tokenHash = jwt.encode({ email: tokenEntity.email }, sessionSecret);
+    var tokenHash = jwt.encode({ email: tokenEntity.email }, sessionSecret);
 
-  if (tokenHash) {
-    tokenEntity.token = tokenHash;
-    next();
-  }
+    if (tokenHash) {
+      tokenEntity.token = tokenHash;
+      next();
+    }
 
-  return Exception.TOKEN_HASHING_ERROR;
-});
+    return Exception.TOKEN_HASHING_ERROR;
+  });
 
-//Export the module as Token
-module.exports = mongoose.model('Token', TokenSchema);
+  //Export the module as Token
+  module.exports = mongoose.model('Token', TokenSchema);
+}());
