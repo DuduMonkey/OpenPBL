@@ -1,9 +1,8 @@
-/*global module, require, process*/
+/*global require, exports*/
 'use strict';
 
 // Modules in use
 var authenticationService = require('../services/AuthenticationService');
-var Q = require('q');
 
 /**
   Define the post action for user authentication
