@@ -5,7 +5,7 @@
 var globalApplication;
 
 // Database connection address, by default its the local mongo instance.
-var databaseURI = process.env.CONN_STRING || "localhost:27017";
+var databaseURI = process.env.CONN_STRING || 'localhost:27017';
 
 /**
   Private Fields:
