@@ -1,11 +1,21 @@
-const FACT = 2;
-const HIPOTESYS = 3;
-const DISABLED_KNOWLEDGE = 4;
-const NEW_KNOWLEDGE = 5;
+/*global module*/
+'use strict';
+
+/**
+  Constant list
+  1 = The post is an Fact
+  2 = The post is an Hipotesys
+  3 = The post is an Disablet Knowledge
+  4 = The post is an New Knowledge
+*/
+var __FACT = 1;
+var __HIPOTESYS = 2;
+var __DISABLED_KNOWLEDGE = 3;
+var __NEW_KNOWLEDGE = 4;
 
 module.exports = {
-  FACT : FACT,
-  HIPOTESYS : HIPOTESYS,
-  DISABLED_KNOWLEDGE : DISABLED_KNOWLEDGE,
-  NEW_KNOWLEDGE : NEW_KNOWLEDGE
+  FACT : __FACT,
+  HIPOTESYS : __HIPOTESYS,
+  DISABLED_KNOWLEDGE : __DISABLED_KNOWLEDGE,
+  NEW_KNOWLEDGE : __NEW_KNOWLEDGE
 };

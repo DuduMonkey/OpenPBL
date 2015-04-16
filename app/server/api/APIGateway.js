@@ -1,31 +1,41 @@
-//Services
+/*global module, require*/
+'use strict';
+
+// Services in use
 var authentication = require('../rest/RESTAuthentication');
-var activity = require('../rest/RESTActivity');
 var register = require('../rest/RESTRegister');
 
-module.exports = function(app, path, router){
+/**
+  Global router
+*/
+module.exports = function (app, path, router) {
 
-  //middleware
+  // Initialize the middleware proxy oversee
   require('./APIProxy')(router);
 
-  // Default test route
-  router.get('/', function(req, res) {
+  // Prefix every route api with API
+  // Remember, all prefixed routes needs authentication
+  app.use('/api', router);
+
+  /*jslint unparam: true*/
+  // Default html document (main site)
+  app.get('*', function (req, res) {
+    res.sendFile(path.resolve('app/public/index.html'));
+  });
+
+  // Default authentication test route
+  router.get('/', function (req, res) {
     res.json({
       success: true
     });
   });
+  /*jslint unparam: false*/
 
-  //Register
+  // User Register route (RESTRegister)
   router.route('/signup')
     .post(register.post);
 
+  // User Authentication route (RESTAuthentication)
   router.route('/login')
     .post(authentication.post);
-
-  app.use('/api', router); //Prefix every route with /api
-
-  // Default '/' site route
-  app.get('*', function(req, res) {
-    res.sendFile(path.resolve('app/public/index.html'));
-  });
-}
+};
