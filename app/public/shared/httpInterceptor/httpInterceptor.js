@@ -2,10 +2,14 @@
   'use strict';
 
   angular.module('openpbl')
-    .factory('httpInterceptor', ['$q', '$rootScope', function($q, $rootScope) {
+    .factory('httpInterceptor', ['$q', '$rootScope', 'authenticationService', function($q, $rootScope, authenticationService) {
       return {
         'request': function(config) {
           $rootScope.requestInProgress = true;
+
+          if (authenticationService.isAuthenticated()) {
+            var token = authenticationService.getToken();
+          }
 
           return config;
         },
