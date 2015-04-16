@@ -7,7 +7,6 @@ var Schema = mongoose.Schema;
 var bcrypt = require('bcrypt-nodejs');
 var Q = require('q');
 
-
 /**
   Defines the mongo user schema
     Name: String required
