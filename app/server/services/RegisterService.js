@@ -4,25 +4,22 @@
 // Modules in use
 var User = require('../models/User');
 var Q = require('q');
+var Exception = require('../shared/Exceptions');
 
 /**
   Validate if email from new user already exists on database
   'then' deferrer the promise as resolved if not
 */
 var isNewValidUser = function (mailAddress) {
-    var errorMessage;
-
     var deferred = Q.defer();
 
     var query = {email : mailAddress};
 
     User.find(query).exec(function (error, users) {
       if (error) {
-        errorMessage = 'Erro na busca de usuário';
-        deferred.reject(errorMessage);
+        deferred.reject(Exception.USER_FIND_ERROR);
       } else if (users.length > 0) {
-        errorMessage = 'Email já cadastrado';
-        deferred.reject(errorMessage);
+        deferred.reject(Exception.USER_ALREADY_EXISTS);
       } else {
         deferred.resolve();
       }
@@ -52,9 +49,7 @@ var registerUser = function (userData) {
 
       newUser.save(function (error, data) {
         if (error) {
-          var errorMessage = 'Erro na persistencia dos dados: ';
-          errorMessage = errorMessage.concat(error.message);
-          deferred.reject(errorMessage);
+          deferred.reject(Exception.USER_PERSISTENCE_ERROR);
         } else {
           deferred.resolve(data);
         }

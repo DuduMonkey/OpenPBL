@@ -6,6 +6,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var bcrypt = require('bcrypt-nodejs');
 var Q = require('q');
+var Exception = require('../shared/Exceptions');
 
 /**
   Defines the mongo user schema
@@ -39,7 +40,7 @@ UserSchema.pre('save', function (next) {
     user.password = hash;
     next();
   } else {
-    return { error: 'Erro no hash de senha'};
+    return Exception.PASSWORD_HASHING_ERROR;
   }
 });
 
@@ -55,8 +56,7 @@ UserSchema.methods.validatePassword = function (candidatePassword) {
   if (isMatch) {
     deferred.resolve();
   } else {
-    var error = 'Senha não confere';
-    deferred.reject(error);
+    deferred.reject(Exception.PASSWORD_NOT_MATCH);
   }
 
   return deferred.promise;
