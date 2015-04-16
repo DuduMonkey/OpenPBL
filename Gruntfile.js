@@ -79,6 +79,7 @@ module.exports = function(grunt) {
         'app/server/rest/*.js',
         'app/server/services/*.js',
         'app/server/token/*.js',
+        'app/server/shared/*.js'
       ]
     },
 
@@ -96,7 +97,8 @@ module.exports = function(grunt) {
           'app/server/models/constants/*.js',
           'app/server/rest/*.js',
           'app/server/services/*.js',
-          'app/server/token/*.js'
+          'app/server/token/*.js',
+          'app/server/shared/*.js'
           ]
         }
       }
