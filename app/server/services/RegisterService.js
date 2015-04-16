@@ -1,9 +1,8 @@
-/*global module, require, process*/
+/*global module, require*/
 'use strict';
 
 // Modules in use
 var User = require('../models/User');
-var Role = require('../models/constants/user_role');
 var Q = require('q');
 
 /**
