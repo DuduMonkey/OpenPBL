@@ -5,7 +5,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-
 var ActivitySchema = new Schema({
   id: {Type: Number, min: 1, max: 10},
   name: String,
