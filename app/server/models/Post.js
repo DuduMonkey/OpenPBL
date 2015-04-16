@@ -1,14 +1,16 @@
 /*global module, require*/
-'use strict';
+(function () {
+  'use strict';
 
-// Modules in use
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+  // Modules in use
+  var mongoose = require('mongoose');
+  var Schema = mongoose.Schema;
 
-var PostSchema = new Schema({
-  id: { Type: Number, min: 1, max: 10 },
-  content: String,
-  type: { Type: Number, min: 1, max: 1 }
-});
+  var PostSchema = new Schema({
+    id: { Type: Number, min: 1, max: 10 },
+    content: String,
+    type: { Type: Number, min: 1, max: 1 }
+  });
 
-module.exports = mongoose.model('Post', PostSchema);
+  module.exports = mongoose.model('Post', PostSchema);
+}());
