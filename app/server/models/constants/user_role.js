@@ -9,6 +9,6 @@
 
   module.exports = {
     TEACHER: declareNewRole(1, "Professor"),
-    STUDENT: declareNewRole(1, "Aluno")
+    STUDENT: declareNewRole(2, "Aluno")
   };
 }());
