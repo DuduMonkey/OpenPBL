@@ -1,5 +1,6 @@
 <div id="page-wrapper" ng-cloak>
 
+<<<<<<< HEAD
   <!-- Sidebar -->
   <div id="sidebar-wrapper">
     <div class="sidebar-main">
@@ -25,6 +26,35 @@
       </div>
       <div class="col-xs-4">
         <a href="#">Links</a>
+=======
+	<!-- Atividades -->
+  <div class="col-md-4">
+    <div class="container2">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Atividades</h3>
+        </div>
+
+        <!-- Atividades ativas -->
+        <h4>Ativas</h4>
+        <ul class="list-group">
+          <li class="list-group-item" ng-repeat="activity in activities.active" ng-click="setCurrentActivity(activity)">
+            <button class="btn" ng-class="{'btn-primary': activity.id === currentActivity.id}">{{activity.name}}</button>
+          </li>
+        </ul>
+
+        <!-- Atividades inativas -->
+        <h4>Concluídas</h4>
+        <ul class="list-group">
+          <li class="list-group-item" ng-repeat="activity in activities.finished" ng-click="setCurrentActivity(activity)">
+            <button class="btn" ng-class="{'btn-primary': activity.id === currentActivity.id}">{{activity.name}}</button>
+          </li>
+        </ul>
+
+        <div class="text-center">
+          <button class="btn btn-primary" ng-click="createnewActivity()">Criar nova atividade</button>
+        </div>
+>>>>>>> master
       </div>
     </div>
     <!-- End Sidebar Footer -->
@@ -43,7 +73,7 @@
           <span class="panel-title">{{currentActivity.name}}</span>
         </div>
         <div class="activity-details">
-          Detalhes da atividade
+          Detalhes sobre a atividade
         </div>
       </div>
     </div>
@@ -56,7 +86,7 @@
     <div ui-view>
       <div class="row">
         <div class="col-lg-3 col-md-6 col-xs-12">
-          <div class="widget">
+          <div class="widget color-secondary-2-2">
             <div class="widget-body">
               <div class="widget-icon pull-left">
                 <i class="fa fa-users"></i>
@@ -67,91 +97,42 @@
           </div>
         </div>
         <div class="col-lg-3 col-md-6 col-xs-12">
-          <div class="widget">
+          <div class="widget color-secondary-1-2">
             <div class="widget-body">
               <div class="widget-icon pull-left">
                 <i class="fa fa-tasks"></i>
               </div>
-              <div class="title"><h3>{{currentActivity.status}}</h3></div>
-              <div class="comment"><h5>Estado Atual</h5></div>
+              <div class="title"><h3>{{currentActivity.participants.length}}</h3></div>
+              <div class="comment"><h5>Participantes</h5></div>
             </div>
           </div>
         </div>
         <div class="col-lg-3 col-md-6 col-xs-12">
-          <div class="widget">
+          <div class="widget color-primary-2">
             <div class="widget-body">
               <div class="widget-icon pull-left">
                 <i class="fa fa-sitemap"></i>
               </div>
-              <div class="title"><h3>{{currentActivity.participants.length}}%</h3></div>
-              <div class="comment"><h5>Progresso</h5></div>
+              <div class="title"><h3>{{currentActivity.participants.length}}</h3></div>
+              <div class="comment"><h5>Participantes</h5></div>
             </div>
           </div>
         </div>
         <div class="col-lg-3 col-md-6 col-xs-12">
-          <div class="widget">
+          <div class="widget color-secondary-3-2">
             <div class="widget-body">
               <div class="widget-icon pull-left">
                 <i class="fa fa-support"></i>
               </div>
-              <div class="title"><h3>{{currentActivity.created | date:'MM/dd/yy'}}</h3></div>
-              <div class="comment"><h5>Data de Início</h5></div>
+              <div class="title"><h3>{{currentActivity.participants.length}}</h3></div>
+              <div class="comment"><h5>Participantes</h5></div>
             </div>
           </div>
         </div>
       </div>
       <!-- End widgets row -->
       <!-- Widgets -->
-      <div class="row">
-        <div class="col-lg-8 col-md-12 col-xs-12">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h5 class="panel-title">Sumário</h5>
-            </div>
-            <div class="panel-body">
-            {{currentActivity.summary | limitTo:300}} ...
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-12 col-xs-12">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h5 class="panel-title">?</h5>
-            </div>
-            <div class="panel-body">
-              ????????
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-6 col-md-12 col-xs-12">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h5 class="panel-title">Participantes</h5>
-            </div>
-            <table class="table" data-height="299" data-sort-name="posts" data-sort-order="desc">
-              <thead>
-                <tr>
-                  <th data-field="posts" data-align="right" data-sortable="true">Participações</th>
-                  <th data-field="name" data-align="right" data-sortable="true">Nome</th>
-                  <th data-field="remove" data-sortable="true">Excluir</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr ng-repeat="user in currentActivity.participants | orderBy:'numberOfPosts'">
-                  <td>{{user.numberOfPosts}}</td>
-                  <td>{{user.name}}</td> 
-                  <td>X</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-        <div class="col-lg-6 col-md-12 col-xs-12">
 
-        </div>
-      </div>
       <!-- End widgets -->
     </div>
 

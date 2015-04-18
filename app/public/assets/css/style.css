@@ -62,7 +62,7 @@ Buttons
 Navbar
 */
 .navbar {
-	background-color: #013149;
+	background-color: #013249;
 	-webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1);
  -moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1);
  box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1);
@@ -73,10 +73,10 @@ Navbar
  */
 
  /* Bg Colors */
- #page-wrapper, #page-wrapper:after, #content-wrapper, .page-content { background: #94D1EE }
- #sidebar-wrapper { background: #fff }
- .sidebar-footer, ul.sidebar .sidebar-list a:hover, ul.sidebar .sidebar-list a:active { background: #bdc9cf }
- .sidebar-main p { background: #476a7b }
+ #page-wrapper, #page-wrapper:after, #content-wrapper, .page-content { background: #eceff0 }
+ #sidebar-wrapper { background: #4d6f7f }
+ .sidebar-footer, ul.sidebar .sidebar-list a:hover, ul.sidebar .sidebar-list a:active { background: #5e7d8b }
+ .sidebar-main p { background: #456372 }
  .sidebar-footer div a:hover { background: #ae5e5a }
  .row.header { background: #fff }
  ul.sidebar .sidebar-list a:focus { background: #456372 }
@@ -114,15 +114,15 @@ Navbar
     top: 122px;
     margin-left: 280px;
     height: auto;
-    padding: 10px;
-    padding-top: 22px;
+    padding: 20px;
+    padding-top: 30px;
 }
 
 /* Sidebar */
 #sidebar-wrapper {
     position: fixed;
     top: 50px;
-    width: 270px;
+    width: 280px;
     height: 100%;
     text-indent: 20px;
     z-index: 999;
@@ -144,7 +144,12 @@ ul.sidebar {
     position: fixed;
     height: 80%;
     top: 177px;
-    overflow-y: hidden;
+    overflow-y: scroll;
+}
+
+ul.sidebar .sidebar-list a:hover a {
+    border-left: 3px solid #e99d1a;
+    text-indent: 22px;
 }
 
 ul.sidebar li a {
@@ -152,7 +157,7 @@ ul.sidebar li a {
     display: block;
     float: left;
     text-decoration: none;
-    width: 270px;
+    width: 280px;
 }
 
 .sidebar-main {
@@ -179,7 +184,7 @@ ul.sidebar li a {
 
 .sidebar-title {
     color: #b7c5cb;
-    font-size: 14px;
+    font-size: 15px;
     height: 55px;
     line-height: 45px;
     padding-top: 5px;
@@ -189,7 +194,7 @@ ul.sidebar li a {
 }
 
 .sidebar-title button {
-	margin-left: 65px;
+	margin-left: 78px;
 	margin-bottom: 5px;
 }
 
@@ -206,9 +211,8 @@ ul.sidebar .sidebar-list a {
 
 ul.sidebar .sidebar-list a:hover {
     color: #eee;
-    /*border-left: 3px solid #94D1EE;*/
-    text-indent: 28px;
-    transition: all 300ms;
+    border-left: 3px solid #94D1EE;
+    text-indent: 22px;
 }
 
 ul.sidebar .sidebar-list a:hover .menu-icon {
@@ -392,8 +396,7 @@ Dashboard Widgets
     border: 1px solid transparent;
     border-radius: 5px;
     margin-bottom: 20px;
-    min-width: 220px;
-    background: #fff;
+    min-width: 208px;
 }
 .widget .widget-footer .pagination, .widget .widget-header .pagination {
     margin: 0;
@@ -461,7 +464,7 @@ Dashboard Widgets
     vertical-align: middle;
     margin-right: 15px;
     margin-top: 15px;
-    background: #4B436D;
+    background: #fff;
 }
 .widget .widget-icon i {
     line-height: 66px;
