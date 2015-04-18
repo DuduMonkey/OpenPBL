@@ -18,7 +18,8 @@
   var pathNeedsAuthentication = function (url, baseUrl) {
     var freeFromAuthenticationPaths = [
       '/signup',
-      '/login'
+      '/login',
+      '/roles',
     ];
 
     if (!baseUrl) {

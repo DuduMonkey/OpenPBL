@@ -3,15 +3,10 @@ module.exports = function(grunt) {
   grunt.initConfig({
 
     auto_install: {
-      local: {},
-      subdir: {
+      dev: {},
+      heroku: {
         options: {
-          cwd: 'subdir',
-          stdout: true,
-          stderr: true,
-          failOnError: true,
-          npm: true,
-          bower: true
+          npm: false
         }
       }
     },
@@ -91,20 +86,6 @@ module.exports = function(grunt) {
         }
       }
     },
-    auto_install: {
-    local: {},
-      subdir: {
-        options: {
-          stdout: true
-        }
-      },
-      openReportsWin: {
-        command: 'start reports/index.html',
-        options: {
-          stdout: true
-        }
-      }
-    },
 
     uglify: {
       options: {
@@ -137,17 +118,22 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-express-server');
   grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-plato');
 
   grunt.registerTask('s', [
-    'auto_install', 
+    'auto_install:dev', 
     'uglify:dev', 
     'cssmin', 
     'express:dev',
     'jshint'
+    ]);
+
+  grunt.registerTask('heroku', [
+    'auto_install:heroku',
+    'uglify:dev',
+    'cssmin'
     ]);
 
   grunt.registerTask('metrics:win', ['plato:metrics', 'shell:openReportsWin']);
