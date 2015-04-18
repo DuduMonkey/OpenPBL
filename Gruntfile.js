@@ -130,6 +130,12 @@ module.exports = function(grunt) {
     'jshint'
     ]);
 
+  grunt.registerTask('heroku', [
+    'auto_install:heroku',
+    'uglify:dev',
+    'cssmin'
+    ]);
+
   grunt.registerTask('metrics:win', ['plato:metrics', 'shell:openReportsWin']);
   grunt.registerTask('metrics:darwin', ['plato:metrics', 'shell:openReportsDarwin']);
 
