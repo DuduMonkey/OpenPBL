@@ -12,6 +12,7 @@ e apontar o executável para variavel de configuração do npm
 $ npm config set python c:/Caminho/Para/Python27/Python.exe
 ```
 
+
 Instalar grunt-cli e bower
 
 ```sh
