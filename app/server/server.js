@@ -1,52 +1,25 @@
-'use strict';
+/*global require, process*/
+(function () {
+  'use strict';
 
-// Environment & Configuration Variables
-var environment = process.env.NODE_ENV;
-var databaseURI = process.env.CONN_STRING;
+  // Basic Modules in use
+  var express = require('express');
+  var app = express();
+  var path = require('path');
 
-// Set Up
-var express = require('express');
-var app = express();
-var bodyParser = require('body-parser');
-var path = require('path');
-//var mongoose = require('mongoose');
+  var mongoose = require('mongoose');
 
-app.use(express.static(path.resolve('app/public')));
+  var cookieParser = require('cookie-parser');
+  var bodyParser = require('body-parser');
 
-app.use(bodyParser.json());
+  // Start the configurations
+  require('./Configuration')(express, app, path, mongoose, cookieParser, bodyParser);
 
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
+  // Set the main router
+  var router = express.Router();
+  require('./api/APIGateway.js')(app, path, router);
 
-// Database Connection
-var connectionString = "mongodb://" + databaseURI;
-//mongoose.connect(connectionString);
-
-// Route Configuration
-var router = express.Router();
-
-// Middleware for routes
-router.use(function(req, res, next) {
-    console.log(req.body);
-    next();
-})
-
-// Default test route
-router.get('/', function(req, res) {
-    res.json({
-        success: true
-    });
-});
-
-app.use('/api', router); //Prefix every route with /api
-
-
-// Server Initialization
-app.get('*', function(req, res) {
-  res.sendFile(path.resolve('app/public/index.html'));
-});
-
-var port = process.env.PORT || 9000;
-
-app.listen(port);
+  // Server Initialization
+  var port = process.env.PORT || 9000;
+  app.listen(port);
+}());
