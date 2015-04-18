@@ -11,7 +11,7 @@
             var token = authenticationService.getToken();
 
             if (angular.isDefined(token)) {
-              config.headers['x-pbl-user-auth'] = token;
+              config.headers['X-Pbl-Token'] = token;
             }
           }
 

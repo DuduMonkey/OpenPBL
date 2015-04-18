@@ -2,7 +2,7 @@
   'use strict';
 
   angular.module('openpbl.directives')
-    .directive('pblLogin', ['authenticationService', 'notificationService', function (authenticationService, notificationService) {
+    .directive('pblLogin', ['httpService', 'notificationService', function (httpService, notificationService) {
       return {
         restrict: 'E',
         replace: true,
@@ -10,7 +10,7 @@
         link: function (scope) {
           scope.authenticate = function () {
             if (angular.isDefined(scope.login)) {
-              authenticationService.authenticate(scope.login.email, scope.login.password)
+              httpService.authenticate(scope.login.email, scope.login.password)
                 .then(function () {
                   scope.init();
                   angular.element('#loginModal').modal('hide');
