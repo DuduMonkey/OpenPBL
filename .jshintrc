@@ -1,5 +1,12 @@
 {
 	"undef": true,
 	"unused": true,
-	"predef": ["node", "angular"]
+	"predef": ["node", "angular"],
+	"globals": {
+		"console": false,
+		"localStorage": false,
+		"module": false,
+		"require": false,
+		"toastr": false
+	}
 }

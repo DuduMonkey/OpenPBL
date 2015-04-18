@@ -2,13 +2,52 @@
   'use strict';
 
   angular.module('openpbl.directives')
-    .directive('pblPageHeader', ['menuService', function (menuService) {
+    .directive('pblPageHeader', ['$rootScope', 'appEvents', 'authenticationService', 'menuService',
+      function ($rootScope, appEvents, authenticationService, menuService) {
       return {
         restrict: 'E',
         replace: true,
         templateUrl: '/shared/pageHeader/pageHeader.tpl.html',
         link: function (scope) {
-          scope.menuItems = menuService.getMenuItems();
+          scope.init = function () {
+            scope.isAuthenticated = authenticationService.isAuthenticated();
+            scope.loadMenu();
+          };
+
+          scope.loadMenu = function () {
+            console.log('loadmenu');
+
+            scope.menuItems = [];
+            var menuItems = menuService.getMenuItems();
+            var menuItem = null;
+            
+            for (var i = 0, length = menuItems.length; i < length; i++) {
+              menuItem = menuItems[i];
+
+              if (menuItem.authenticated === scope.isAuthenticated || menuItem.authenticated === false) {
+                scope.menuItems.push(menuItem);
+              }
+            }
+          };
+
+          scope.openLogin = function () {
+            angular.element('#loginModal').modal('show');
+          };
+
+          scope.logout = function () {
+            authenticationService.logout();
+          };
+
+          // Tratar eventos de login e logout
+          [appEvents.USER_LOGIN, appEvents.USER_LOGOUT]
+            .forEach(function (event) {
+              $rootScope.$on(event, function () {
+                scope.isAuthenticated = authenticationService.isAuthenticated();
+                scope.loadMenu();
+              });
+          });
+
+          scope.init();
         }
       };
     }]);
