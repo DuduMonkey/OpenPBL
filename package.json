@@ -50,7 +50,6 @@
     "q": "^1.2.0"
   },
   "scripts": {
-    "postinstall": "echo postinstall bower; ./node_modules/bower/bin/bower install",
     "postinstall": "echo postinstall heroku; ./node_modules/grunt-cli/bin/grunt heroku"
   }
 }
