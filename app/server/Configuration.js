@@ -21,7 +21,7 @@
                                 by default, 'mongodb://' is already set.                          
   */
   var configurePublicPath = function (express, path) {
-    globalApplication.use(express.static(path.resolve('/app/public')));
+    globalApplication.use(express.static(path.resolve('app/public')));
   };
 
   var configureCookieParser = function (cookieParser) {
