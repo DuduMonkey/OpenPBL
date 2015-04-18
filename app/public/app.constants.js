@@ -6,6 +6,8 @@
       API_URL: 'http://private-bec97-openpbl.apiary-mock.com/api',
       APP_NAME: 'OpenPBL',
       APP_VERSION: '1.0.0',
+      KEY_AUTHENTICATION_TOKEN: '$AUTH_TOKEN',
+      KEY_USER_DATA: '$USER_DATA',
       activity: {
         status: {
           CREATING_STORY: 1,
@@ -17,5 +19,17 @@
           FINISHED: 7
         }
       }
+    })
+    .constant('appEvents', {
+
+      /**
+       * Usuário efetua login com sucesso
+       */
+      USER_LOGIN: 'EVENT_USER_LOGIN',
+
+      /**
+       * Usuário sai do sistema
+       */
+      USER_LOGOUT: 'EVENT_USER_LOGOUT'
     });
 }());
