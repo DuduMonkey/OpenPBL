@@ -6,11 +6,11 @@
     1 = The user are a Teacher
     2 = The user are a Student
   */
-  var __TEACHER = 1;
-  var __STUDENT = 2;
+  var _TEACHER = 1;
+  var _STUDENT = 2;
 
   module.exports = {
-    TEACHER: __TEACHER,
-    STUDENT: __STUDENT
+    TEACHER: _TEACHER,
+    STUDENT: _STUDENT
   };
 }());
