@@ -3,6 +3,8 @@
 <head>
 	<title>OpenPBL</title>
 	<link rel="stylesheet" href="dist/css/bundle.min.css" />
+	<link rel="stylesheet" href="assets/css/style.css">
+	<link rel="stylesheet" href="assets/css/bootstrap-table.css">
 </head>
 
 <body>
@@ -10,12 +12,13 @@
 
 	<ng-view role="main"></ng-view>
 
-	<pbl-page-footer></pbl-page-footer>
+	<!-- pbl-page-footer></pbl-page-footer -->
 	
 	<pbl-spinner ng-if="requestInProgress"></pbl-spinner>
 
 	<!-- Scripts -->
 	<script type="text/javascript" src="dist/js/bundle.min.js"></script>
+	<script src="assets/js/bootstrap-table.js"></script>
 </body>
 
 </html> 
