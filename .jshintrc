@@ -1,3 +1,5 @@
 {
-  "predef": ["angular"]
+	"undef": true,
+	"unused": true,
+	"predef": ["node", "angular"]
 }

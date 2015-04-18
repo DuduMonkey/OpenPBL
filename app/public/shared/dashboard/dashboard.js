@@ -39,7 +39,7 @@
                 }
               })
               .catch(function (error) {
-                // TODO: tratar erro
+                notificationService.error('Erro', error);
               });
           };
 

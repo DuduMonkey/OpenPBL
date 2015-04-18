@@ -46,7 +46,6 @@ module.exports = function(grunt) {
         }
       }
     },
-
     jshint: {
       options: {
         jshintrc: true,
@@ -56,7 +55,8 @@ module.exports = function(grunt) {
         'Gruntfile.js',
         'app/public/*.js',
         'app/public/sections/**/*.js',
-        'app/public/shared/**/*.js'
+        'app/public/shared/**/*.js',
+        'app/server/**/*.js'
       ]
     },
 
@@ -71,7 +71,7 @@ module.exports = function(grunt) {
           'app/public/*.js',
           'app/public/sections/**/*.js',
           'app/public/shared/**/*.js',
-          'app/server/**/*.js',
+          'app/server/**/*.js'
           ]
         }
       }
@@ -80,6 +80,20 @@ module.exports = function(grunt) {
     shell: {
       openReportsDarwin: {
         command: 'open reports/index.html',
+        options: {
+          stdout: true
+        }
+      },
+      openReportsWin: {
+        command: 'start reports/index.html',
+        options: {
+          stdout: true
+        }
+      }
+    },
+    auto_install: {
+    local: {},
+      subdir: {
         options: {
           stdout: true
         }
@@ -123,18 +137,20 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-express-server');
   grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-plato');
 
   grunt.registerTask('s', [
-    'auto_install',
-    'jshint',
-    'uglify:dev',
-    'cssmin',
-    'express:dev'
+    'auto_install', 
+    'uglify:dev', 
+    'cssmin', 
+    'express:dev',
+    'jshint'
     ]);
 
   grunt.registerTask('metrics:win', ['plato:metrics', 'shell:openReportsWin']);
   grunt.registerTask('metrics:darwin', ['plato:metrics', 'shell:openReportsDarwin']);
+
 };
