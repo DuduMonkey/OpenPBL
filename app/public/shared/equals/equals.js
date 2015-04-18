@@ -8,6 +8,7 @@
         require: '?ngModel', // get a hold of NgModelController
         link: function(scope, element, attrs, ngModel) {
           if (!ngModel) {
+            console.log('meh')
             return; // do nothing if no ng-model
           }
 
@@ -17,17 +18,19 @@
           });
 
           // observe the other value and re-validate on change
-          attrs.$observe('equals', function () {
+          attrs.$observe('pbl-equals', function () {
             validate();
           });
 
           var validate = function () {
             // values
-            var value1 = ngModel.$viewValue;
-            var value2 = attrs.equals;
+            var value1 = ngModel.$viewValue
+            , value2 = attrs.pblEquals
+            , isValid = !!value1 && !!value2 && value1 === value2;
 
+            console.log('validate', isValid, value1, value2);
             // set validity
-            ngModel.$setValidity('equals', ! value1 || ! value2 || value1 === value2);
+            ngModel.$setValidity('equals', isValid);
           };
         }
       }

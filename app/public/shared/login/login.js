@@ -46,10 +46,7 @@
 
             roleService.getRoles()
               .then(function (roles) {
-                scope.register.roles = roles;
-              })
-              .catch(function () {
-                console.log('eduardo viado');
+                scope.roles = roles;
               });
 
             // Default para login
@@ -59,19 +56,11 @@
           };
 
           scope.register = function () {
-            if (angular.isDefined(scope.register)) {
-              httpService.authenticate(scope.login.email, scope.login.password)
-                .then(function () {
-                  scope.init();
-                  angular.element('#loginModal').modal('hide');
-                })
-                .catch(function (error) {
-                  notificationService.error('Erro', error);
-                });
-            }
+            
           };
 
           scope.setModalMode = function (mode) {
+            scope.currentForm = mode === scope.modal.mode.login ? scope.loginForm : scope.registerForm;
             scope.modalMode = mode;
             resetModels();
           };

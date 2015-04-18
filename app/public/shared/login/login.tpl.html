@@ -6,10 +6,10 @@
         <h4 class="modal-title">{{modal[modalMode].title}}</h4>
       </div>
       <div class="modal-body">
+        <form name="loginForm">
 
-        <!-- Login -->
-        <div ng-if="modalMode === modal.mode.login">
-          <form name="loginForm">
+          <!-- Login -->
+          <div ng-if="modalMode === modal.mode.login">
             <div class="form-group">
               <label for="email">E-mail</label>
               <input type="email" class="form-control" name="email" required ng-model="login.email">
@@ -18,16 +18,14 @@
               <label for="password">Senha</label>
               <input type="password" class="form-control" name="password" required ng-model="login.password">
             </div>
-            <div class="form-group">
+            <div class="text-center">
               <span><strong>Não possui conta?</strong></span>
-              <button type="button" class="btn btn-primary" ng-click="setModalMode(modal.mode.register)">Registre-se</button>
+              <a href="javascript:void(0)" ng-click="setModalMode(modal.mode.register)">Registre-se</a>
             </div>
-          </form>
-        </div>
+          </div>
 
-        <!-- Registro -->
-        <div ng-if="modalMode === modal.mode.register">
-          <form name="registerForm">
+          <!-- Registro -->
+          <div ng-if="modalMode === modal.mode.register">
             <div class="form-group">
               <label for="name">Nome</label>
               <input type="text" class="form-control" name="name" required ng-model="register.name">
@@ -37,31 +35,30 @@
               <input type="email" class="form-control" name="email" required ng-model="register.email">
             </div>
             <div class="form-group">
-              {{register.roles}}
               <span>Sou</span>
-              <label class="radio-inline" ng-repeat="role in register.roles">
+              <label class="radio-inline" ng-repeat="role in roles">
                 <input type="radio" name="userRole" id="{{'userRole' + $index}}" value="{{role.value}}">
                 {{role.name}}
               </label>
             </div>
             <div class="form-group">
               <label for="password">Senha</label>
-              <input type="password" class="form-control" name="password" required ng-model="register.password" pbl-equals="{{register.confirmPassword}}">
+              <input type="password" class="form-control" name="password" required ng-model="register.password">
             </div>
             <div class="form-group">
               <label for="password">Confirme sua senha</label>
               <input type="password" class="form-control" name="confirmPassword" required ng-model="register.confirmPassword" pbl-equals="{{register.password}}">
             </div>
-            <div class="form-group">
+            <div class="text-center">
               <span><strong>Já possui uma conta?</strong></span>
-              <button type="button" class="btn btn-primary" ng-click="setModalMode(modal.mode.login)">Faça login</button>
+              <a href="javascript:void(0)"  ng-click="setModalMode(modal.mode.login)">Faça login</a>
             </div>
-          </form>
-        </div>
+          </div>
+        </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-success" ng-disabled="loginForm.$invalid && registerForm.$invalid" ng-click="modal[modalMode].confirmAction()">{{modal[modalMode].confirmButton}}</button>
+        <button type="button" class="btn btn-success" ng-disabled="loginForm.$invalid" ng-click="modal[modalMode].confirmAction()">{{modal[modalMode].confirmButton}}</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
