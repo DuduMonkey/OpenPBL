@@ -91,20 +91,6 @@ module.exports = function(grunt) {
         }
       }
     },
-    auto_install: {
-    local: {},
-      subdir: {
-        options: {
-          stdout: true
-        }
-      },
-      openReportsWin: {
-        command: 'start reports/index.html',
-        options: {
-          stdout: true
-        }
-      }
-    },
 
     uglify: {
       options: {

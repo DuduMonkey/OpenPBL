@@ -9,11 +9,13 @@
           var menuItems = [
             {
               title: 'Início',
-              href: '#'
+              href: '#',
+              authenticated: false
             },
             {
               title: 'Painel',
-              href: '#/dashboard'
+              href: '#/dashboard',
+              authenticated: true
             }
           ];
 
