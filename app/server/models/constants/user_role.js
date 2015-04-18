@@ -2,15 +2,13 @@
 (function () {
   'use strict';
 
-  /**
-    1 = The user are a Teacher
-    2 = The user are a Student
-  */
-  var _TEACHER = 1;
-  var _STUDENT = 2;
+  var declareNewRole = function (roleValue, roleName) {
+    var newRole = { name: roleName, value: roleValue };
+    return newRole;
+  };
 
   module.exports = {
-    TEACHER: _TEACHER,
-    STUDENT: _STUDENT
+    TEACHER: declareNewRole(1, "Professor"),
+    STUDENT: declareNewRole(1, "Aluno")
   };
 }());

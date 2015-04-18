@@ -3,14 +3,16 @@
   'use strict';
 
   // Modules in use
-  var user_roles = require('../models/constants/user_role');
+  var userRoleService = require('../services/UserRoleService');
 
   /**
     Send the role constant bundle
   */
   /*jslint unparam: true*/
   exports.get = function (req, res) {
-    res.send(user_roles);
+    var userRoles = userRoleService.getRoleBag();
+
+    res.send(userRoles);
   };
   /*jslint unparam: false*/
 }());
