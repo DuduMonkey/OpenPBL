@@ -3,15 +3,10 @@ module.exports = function(grunt) {
   grunt.initConfig({
 
     auto_install: {
-      local: {},
-      subdir: {
+      dev: {},
+      heroku: {
         options: {
-          cwd: 'subdir',
-          stdout: true,
-          stderr: true,
-          failOnError: true,
-          npm: true,
-          bower: true
+          npm: false
         }
       }
     },
@@ -128,7 +123,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-plato');
 
   grunt.registerTask('s', [
-    'auto_install', 
+    'auto_install:dev', 
     'uglify:dev', 
     'cssmin', 
     'express:dev',
