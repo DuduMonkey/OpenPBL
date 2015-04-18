@@ -55,7 +55,7 @@ module.exports = function(grunt) {
         'Gruntfile.js',
         'app/public/*.js',
         'app/public/sections/**/*.js',
-        'app/public/shared/**/*.js'
+        'app/public/shared/**/*.js',
         'app/server/**/*.js'
       ]
     },
