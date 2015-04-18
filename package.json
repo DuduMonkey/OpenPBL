@@ -34,10 +34,14 @@
     "express": "4.12.3",
     "express-session": "^1.10.4",
     "finalhandler": "^0.3.4",
+    "grunt-cli": "^0.1.13",
     "jwt-simple": "^0.3.0",
     "method-override": "^2.3.2",
     "mongoose": "3.8.x",
     "morgan": "^1.5.2",
     "q": "^1.2.0"
+  },
+"scripts": {
+    "postinstall": "echo postinstall time; ./node_modules/grunt-cli/bin/grunt heroku"
   }
 }

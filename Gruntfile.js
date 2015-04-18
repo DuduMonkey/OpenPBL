@@ -131,7 +131,7 @@ module.exports = function(grunt) {
     ]);
 
   grunt.registerTask('heroku', [
-    'auto_install',
+    'auto_install:heroku',
     'uglify:dev',
     'cssmin'
     ]);
