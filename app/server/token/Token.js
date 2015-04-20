@@ -19,16 +19,6 @@
     expirationTime: {type: Date, expires: 3600, default: Date.now}
   });
 
-  // Auxiliar function, generate one Random Numeric word
-  // used
-  var generateRandomWord = function () {
-    var randomDecimalString = Math.random().toString();
-
-    var randomMathWord = randomDecimalString.split('.')[1];
-
-    return randomMathWord;
-  };
-
   /** 
     Middleware for 'save' operation on this model
     
@@ -46,7 +36,7 @@
       return next();
     }
 
-    var sessionSecret = process.env.SECRET || generateRandomWord();
+    var sessionSecret = process.env.SECRET;
 
     var tokenHash = jwt.encode({ email: tokenEntity.email }, sessionSecret);
 
