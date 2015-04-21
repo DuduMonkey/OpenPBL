@@ -48,7 +48,7 @@
       <div id="btn-open">
         <button type="button" class="btn btn-primary btn-block" ng-click="">Abrir</button>
       </div>
-      <a href=""><i class="fa fa-bars pull-right"></i></a>
+      <a href=""><i class="fa fa-trash-o pull-right"></i></a>
     </div>
   </div>
   <!-- End Activity Header Row -->
@@ -98,7 +98,7 @@
                 <i class="fa fa-calendar"></i>
               </div>
               <div class="title"><h3>{{currentActivity.created | date:'dd/MM/yy' }}</h3></div>
-              <div class="comment"><h5>Data Início</h5></div>
+              <div class="comment"><h5>Data de Início</h5></div>
             </div>
           </div>
         </div>
@@ -106,116 +106,119 @@
       <!-- End widgets row -->
       <!-- Widgets -->
       <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-6 col-md-12 col-xs-12">
           <div class="panel panel-default">
             <div class="panel-heading">
-              <h3 class="panel-title">Panel title</h3>
+              <h3 class="panel-title">Problema</h3>
             </div>
-              <table class="table" data-toggle="table" data-sort-name="stargazers_count" data-sort-order="desc">
-                  <thead>
-                  <tr>
-                      <th data-field="name" data-sortable="true">Nome</th>
-                      <th data-field="posts" data-sortable="true">Participações</th>
-                      <th>Excluir</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  <tr ng-repeat="participant in currentActivity.participants">
-                      <td>{{participant.name}}</td>
-                      <td>{{participant.numberOfPosts}}</td>
-                      <td>X</td>
-                  </tr>
-                  </tbody>
-              </table>
+            <div class="panel-body">{{currentActivity.summary}}</div>
           </div>
         </div>
-        <div class="col-lg-6">
-          <div class="btn-group">
-            <button type="button" class="btn btn-primary">Abrir</button>
-            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-              <span class="caret"></span>
-              <span class="sr-only">Toggle Dropdown</span>
-            </button>
-            <ul class="dropdown-menu" role="menu">
-              <li><a href="#">Deletar Atividade</a></li>
-            </ul>
-          </div>
-<!--               <table data-toggle="table" data-sort-name="stargazers_count" data-sort-order="desc">
-                  <thead>
-                  <tr>
-                      <th data-field="name" data-sortable="true">Nome</th>
-                      <th data-field="posts" data-sortable="true">Participações</th>
-                      <th>Excluir</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  <tr ng-repeat="participant in currentActivity.participants">
-                      <td>{{participant.name}}</td>
-                      <td>{{participant.numberOfPosts}}</td>
-                      <td>X</td>
-                  </tr>
-                  </tbody>
-              </table> -->
+        <div class="col-lg-6 col-md-12 col-xs-12">
+          <table data-toggle="table" data-sort-name="stargazers_count" data-sort-order="desc">
+            <thead>
+              <tr>
+                <th data-field="name" data-sortable="true">Nome</th>
+                <th data-field="posts" data-sortable="true">Participações</th>
+                <th>Excluir</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="participant in currentActivity.participants">
+                <td>{{participant.name}}</td>
+                <td>{{participant.numberOfPosts}}</td>
+                <td>X</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
-      <!-- End widgets -->
-    </div>
-
-  </div>
-  <!-- End Page Content -->
-
-  <!-- Modal: cadastro de atividade -->
-  <div class="modal fade background-static" id="newActivityModal">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title">Nova atividade</h4>
-        </div>
-        <div class="modal-body">
-          <form class="form" name="newActivityForm">
-
-            <!-- Nome -->
-            <div class="form-group">
-              <label for="taskName">Nome</label>
-              <input type="text" class="form-control" name="taskName" placeholder="Nome" required ng-model="newActivity.name">
+      <div class="row">
+        <div class="col-lg-6 col-md-12 col-xs-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Participantes</h3>
             </div>
-          </form>
-
-          <!-- Adicionar participantes -->
-          <div class="form-group">
-            <label for="taskSummary">Participantes</label>
-            <div class="input-group">
-              <input type="email" class="form-control" name="taskNewParticipant" placeholder="aluno@escola.com.br" required ng-model="newActivity.participant">
-              <span class="input-group-btn">
-                <button type="button" class="btn btn-primary" ng-disabled="!newActivity.participant || taskNewParticipant.$invalid" ng-click="addNewParticipant(newActivity.participant)">Adicionar</button>
-              </span>
-            </div><!-- /input-group -->
-
-            <!-- Lista de participantes convidados -->
-            <table class="table table-striped talbe-condensed" ng-if="newActivity.participants && newActivity.participants.length > 0">
+            <table class="table" data-toggle="table" data-sort-name="stargazers_count" data-sort-order="desc">
               <thead>
                 <tr>
-                  <th class="col-md-10">E-mail</th>
-                  <th class="col-md-2">Ações</th>
+                  <th data-field="name" data-sortable="true">Nome</th>
+                  <th data-field="posts" data-sortable="true">Participações</th>
+                  <th>Excluir</th>
                 </tr>
               </thead>
               <tbody>
-                <tr ng-repeat="participant in newActivity.participants">
-                  <td>{{participant.email}}</td>
-                  <td>
-                    <button type="button" class="btn btn-danger" ng-click="removeParticipant($index)">&times; Remover</button>
-                  </td>
+                <tr ng-repeat="participant in currentActivity.participants">
+                  <td>{{participant.name}}</td>
+                  <td>{{participant.numberOfPosts}}</td>
+                  <td>X</td>
                 </tr>
               </tbody>
             </table>
           </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-          <button type="button" class="btn btn-primary" ng-disabled="newActivityForm.$invalid" ng-click="saveActivity()">Salvar</button>
+        <div class="col-lg-6 col-md-12 col-xs-12">
+
         </div>
-      </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-  </div><!-- /.modal -->
-</div>
+        <!-- End widgets -->
+      </div>
+    </div>
+    <!-- End Page Content -->
+
+    <!-- Modal: cadastro de atividade -->
+    <div class="modal fade background-static" id="newActivityModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+            <img src="assets/images/logo.png" />
+            <div class="modal-title"><h4>Nova atividade</h4></div>
+          </div>
+          <div class="modal-body">
+            <form class="form" name="newActivityForm">
+
+              <!-- Nome -->
+              <div class="form-group">
+                <label for="taskName">Nome</label>
+                <input type="text" class="form-control" name="taskName" placeholder="Nome" required ng-model="newActivity.name">
+              </div>
+            </form>
+
+            <!-- Adicionar participantes -->
+            <div class="form-group">
+              <label for="taskSummary">Participantes</label>
+              <div class="input-group">
+                <input type="email" class="form-control" name="taskNewParticipant" placeholder="aluno@escola.com.br" required ng-model="newActivity.participant">
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-primary" ng-disabled="!newActivity.participant || taskNewParticipant.$invalid" ng-click="addNewParticipant(newActivity.participant)">Adicionar</button>
+                </span>
+              </div><!-- /input-group -->
+
+              <!-- Lista de participantes convidados -->
+              <table class="table table-striped talbe-condensed" ng-if="newActivity.participants && newActivity.participants.length > 0">
+                <thead>
+                  <tr>
+                    <th class="col-md-10">E-mail</th>
+                    <th class="col-md-2">Ações</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="participant in newActivity.participants">
+                    <td>{{participant.email}}</td>
+                    <td>
+                      <button type="button" class="btn btn-danger" ng-click="removeParticipant($index)">&times; Remover</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-primary" ng-disabled="newActivityForm.$invalid" ng-click="saveActivity()">Salvar</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+  </div>
 
