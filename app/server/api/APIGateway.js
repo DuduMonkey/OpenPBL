@@ -5,6 +5,7 @@
   // Services in use
   var authentication = require('../rest/RESTAuthentication');
   var register = require('../rest/RESTRegister');
+  var activity = require('../rest/RESTActivity');
   var roles = require('../rest/RESTRole');
 
   /**
@@ -43,5 +44,8 @@
     // User Authentication route (RESTAuthentication)
     router.route('/login')
       .post(authentication.post);
+
+    router.route('/dashboard/activity')
+      .post(activity.post);
   };
 }());
