@@ -73,12 +73,14 @@ Navbar
  */
 
  /* Bg Colors */
- #page-wrapper, #page-wrapper:after, #content-wrapper, .page-content { background: #eceff0 }
- #sidebar-wrapper { background: #4d6f7f }
- .sidebar-footer, ul.sidebar .sidebar-list a:hover, ul.sidebar .sidebar-list a:active { background: #5e7d8b }
- .sidebar-main p { background: #456372 }
- .sidebar-footer div a:hover { background: #ae5e5a }
+ #page-wrapper, #page-wrapper:after, #content-wrapper, .page-content { background: #F2F6F7 }
+ #sidebar-wrapper { background: #4A7287 }
+ .sidebar-main p { background: #4A7287 }
+ .sidebar-footer { background: #5c8093 }
+ .sidebar-footer div a:hover { background: #6e8e9f }
  .row.header { background: #fff }
+ .widget { background: #44A3A3 }
+ ul.sidebar .sidebar-list a:hover, ul.sidebar .sidebar-list a:active { background: #628ead }
  ul.sidebar .sidebar-list a:focus { background: #456372 }
 
  #page-wrapper {
@@ -178,7 +180,7 @@ ul.sidebar li a {
     left: 0;
     line-height: 60px;
     height: 100%;
-    color: #374f5b;
+    color: #2c4451;
 }
 
 .sidebar-main p i {
@@ -188,13 +190,14 @@ ul.sidebar li a {
 }
 
 .sidebar-title {
-    color: #b7c5cb;
+    color: #92aab7;
     font-size: 14px;
     height: 55px;
     line-height: 45px;
     padding-top: 5px;
     padding-right: 5px;
-    border-bottom: 1px solid #456372;
+    border-top: 1px solid #5c8093;
+    border-bottom: 1px solid #426679;
     text-transform: uppercase;
 }
 
@@ -210,7 +213,7 @@ ul.sidebar .sidebar-list {
 ul.sidebar .sidebar-list a {
     text-indent: 25px;
     font-size: 14px;
-    color: #dbe2e5;
+    color: #c8d4db;
     line-height: 50px;
 }
 
@@ -293,6 +296,7 @@ ul.sidebar .sidebar-list .menu-icon {
 
 .row.header .header-actions i {
     font-size: 25px;
+    margin-top: -30px;
 }
 
 .row.header .meta .page {
@@ -432,7 +436,7 @@ Dashboard Widgets
     padding: 20px;
     padding-top: 5px;
     height: 105px;
-    color: #000;
+    color: #1b4141;
 }
 .widget .widget-body .title {
     margin-top: 0px;
@@ -485,7 +489,7 @@ Dashboard Widgets
 }
 .widget .widget-icon i {
     line-height: 66px;
-    color: #000;
+    color: #1b4141;
     font-size: 30px;
 }
 .widget .widget-footer {
