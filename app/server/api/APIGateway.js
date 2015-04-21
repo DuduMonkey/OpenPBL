@@ -5,7 +5,11 @@
   // Services in use
   var authentication = require('../rest/RESTAuthentication');
   var register = require('../rest/RESTRegister');
+<<<<<<< HEAD
   var activity = require('../rest/RESTActivity');
+=======
+  var roles = require('../rest/RESTRole');
+>>>>>>> master
 
   /**
     Global router
@@ -36,6 +40,9 @@
     // User Register route (RESTRegister)
     router.route('/signup')
       .post(register.post);
+
+    router.route('/roles')
+      .get(roles.get);
 
     // User Authentication route (RESTAuthentication)
     router.route('/login')

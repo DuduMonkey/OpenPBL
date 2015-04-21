@@ -2,10 +2,10 @@
   'use strict';
 
   angular.module('openpbl.services')
-    .factory('httpService', ['$rootScope', '$http', '$q', 'globalValues', 'appEvents', 'authenticationService',
+    .factory('loginService', ['$rootScope', '$http', '$q', 'globalValues', 'appEvents', 'authenticationService',
       function ($rootScope, $http, $q, globalValues, appEvents, authenticationService) {
       return {
-        authenticate: function (login, password) {
+        login: function (login, password) {
           var deferred = $q.defer();
           var url = globalValues.API_URL + '/login';
           var data = {
