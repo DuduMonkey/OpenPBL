@@ -1,18 +1,17 @@
 <div id="page-wrapper" ng-cloak>
 
-<<<<<<< HEAD
   <!-- Sidebar -->
   <div id="sidebar-wrapper">
     <div class="sidebar-main">
-      <p><span class="menu-icon glyphicon glyphicon-home" aria-hidden="true"></span>Painel do Usuário</p>
+      <p><i class="fa fa-home"></i>Painel do Usuário</p>
     </div>
     <div class="sidebar-title">
-      <span>Atividades</span><button class="btn btn-primary" ng-click="createnewActivity()">Criar nova</button>
+      <span>Atividades</span><button class="btn btn-primary pull-right" ng-click="createnewActivity()">Criar nova</button>
     </div>
     <div class="sidebar-items">
       <ul class="sidebar">
         <li class="sidebar-list" ng-repeat="activity in activities.active" ng-click="setCurrentActivity(activity)">
-          <a href="" ng-class="{activity.id === currentActivity.id}">{{activity.name}}</a>
+          <a href="" ng-class="{activity.id === currentActivity.id}">{{activity.name}}<i class="fa fa-cube pull-right"></i></a>
         </li>
       </ul>
     </div>
@@ -26,35 +25,6 @@
       </div>
       <div class="col-xs-4">
         <a href="#">Links</a>
-=======
-	<!-- Atividades -->
-  <div class="col-md-4">
-    <div class="container2">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title">Atividades</h3>
-        </div>
-
-        <!-- Atividades ativas -->
-        <h4>Ativas</h4>
-        <ul class="list-group">
-          <li class="list-group-item" ng-repeat="activity in activities.active" ng-click="setCurrentActivity(activity)">
-            <button class="btn" ng-class="{'btn-primary': activity.id === currentActivity.id}">{{activity.name}}</button>
-          </li>
-        </ul>
-
-        <!-- Atividades inativas -->
-        <h4>Concluídas</h4>
-        <ul class="list-group">
-          <li class="list-group-item" ng-repeat="activity in activities.finished" ng-click="setCurrentActivity(activity)">
-            <button class="btn" ng-class="{'btn-primary': activity.id === currentActivity.id}">{{activity.name}}</button>
-          </li>
-        </ul>
-
-        <div class="text-center">
-          <button class="btn btn-primary" ng-click="createnewActivity()">Criar nova atividade</button>
-        </div>
->>>>>>> master
       </div>
     </div>
     <!-- End Sidebar Footer -->
@@ -65,17 +35,20 @@
   <!-- Activity Header Row -->
   <div class="row header">
     <div class="col-xs-12">
-      <div class="actions pull-right">
-        <button class="btn btn-primary" ng-click="">Abrir</button>
-      </div>
       <div class="meta">
         <div class="page">
           <span class="panel-title">{{currentActivity.name}}</span>
         </div>
         <div class="activity-details">
-          Detalhes sobre a atividade
+          Detalhes da atividade
         </div>
       </div>
+    </div>
+    <div class="header-actions pull-right">
+      <div id="btn-open">
+        <button type="button" class="btn btn-primary btn-block" ng-click="">Abrir</button>
+      </div>
+      <a href=""><i class="fa fa-bars pull-right"></i></a>
     </div>
   </div>
   <!-- End Activity Header Row -->
@@ -100,10 +73,10 @@
           <div class="widget color-secondary-1-2">
             <div class="widget-body">
               <div class="widget-icon pull-left">
-                <i class="fa fa-tasks"></i>
+                <i class="fa fa-anchor"></i>
               </div>
-              <div class="title"><h3>{{currentActivity.participants.length}}</h3></div>
-              <div class="comment"><h5>Participantes</h5></div>
+              <div class="title"><h3>{{currentActivity.status}}</h3></div>
+              <div class="comment"><h5>Estado</h5></div>
             </div>
           </div>
         </div>
@@ -111,10 +84,10 @@
           <div class="widget color-primary-2">
             <div class="widget-body">
               <div class="widget-icon pull-left">
-                <i class="fa fa-sitemap"></i>
+                <i class="fa fa-line-chart"></i>
               </div>
-              <div class="title"><h3>{{currentActivity.participants.length}}</h3></div>
-              <div class="comment"><h5>Participantes</h5></div>
+              <div class="title"><h3>40%</h3></div>
+              <div class="comment"><h5>Progresso</h5></div>
             </div>
           </div>
         </div>
@@ -122,17 +95,68 @@
           <div class="widget color-secondary-3-2">
             <div class="widget-body">
               <div class="widget-icon pull-left">
-                <i class="fa fa-support"></i>
+                <i class="fa fa-calendar"></i>
               </div>
-              <div class="title"><h3>{{currentActivity.participants.length}}</h3></div>
-              <div class="comment"><h5>Participantes</h5></div>
+              <div class="title"><h3>{{currentActivity.created | date:'dd/MM/yy' }}</h3></div>
+              <div class="comment"><h5>Data Início</h5></div>
             </div>
           </div>
         </div>
       </div>
       <!-- End widgets row -->
       <!-- Widgets -->
-
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Panel title</h3>
+            </div>
+              <table class="table" data-toggle="table" data-sort-name="stargazers_count" data-sort-order="desc">
+                  <thead>
+                  <tr>
+                      <th data-field="name" data-sortable="true">Nome</th>
+                      <th data-field="posts" data-sortable="true">Participações</th>
+                      <th>Excluir</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr ng-repeat="participant in currentActivity.participants">
+                      <td>{{participant.name}}</td>
+                      <td>{{participant.numberOfPosts}}</td>
+                      <td>X</td>
+                  </tr>
+                  </tbody>
+              </table>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="btn-group">
+            <button type="button" class="btn btn-primary">Abrir</button>
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+              <span class="caret"></span>
+              <span class="sr-only">Toggle Dropdown</span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="#">Deletar Atividade</a></li>
+            </ul>
+          </div>
+<!--               <table data-toggle="table" data-sort-name="stargazers_count" data-sort-order="desc">
+                  <thead>
+                  <tr>
+                      <th data-field="name" data-sortable="true">Nome</th>
+                      <th data-field="posts" data-sortable="true">Participações</th>
+                      <th>Excluir</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr ng-repeat="participant in currentActivity.participants">
+                      <td>{{participant.name}}</td>
+                      <td>{{participant.numberOfPosts}}</td>
+                      <td>X</td>
+                  </tr>
+                  </tbody>
+              </table> -->
+      </div>
       <!-- End widgets -->
     </div>
 

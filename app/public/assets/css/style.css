@@ -112,17 +112,17 @@ Navbar
 .page-content{
     position: relative;
     top: 122px;
-    margin-left: 280px;
+    margin-left: 270px;
     height: auto;
-    padding: 20px;
-    padding-top: 30px;
+    padding: 10px;
+    padding-top: 20px;
 }
 
 /* Sidebar */
 #sidebar-wrapper {
     position: fixed;
     top: 50px;
-    width: 280px;
+    width: 270px;
     height: 100%;
     text-indent: 20px;
     z-index: 999;
@@ -144,12 +144,13 @@ ul.sidebar {
     position: fixed;
     height: 80%;
     top: 177px;
-    overflow-y: scroll;
+    overflow-y: hidden;
 }
 
 ul.sidebar .sidebar-list a:hover a {
     border-left: 3px solid #e99d1a;
     text-indent: 22px;
+    transition: all 300ms;
 }
 
 ul.sidebar li a {
@@ -157,7 +158,13 @@ ul.sidebar li a {
     display: block;
     float: left;
     text-decoration: none;
-    width: 280px;
+    width: 270px;
+    text-overflow: ellipsis;
+}
+
+.sidebar-list i {
+    margin-right: 20px;
+    margin-top: 18px;
 }
 
 .sidebar-main {
@@ -165,8 +172,8 @@ ul.sidebar li a {
 }
 
 .sidebar-main p {
-    font-size: 20px;
-    padding-top: 5px;
+    font-size: 18px;
+    padding-top: 7px;
     padding-left: 0px;
     left: 0;
     line-height: 60px;
@@ -174,17 +181,15 @@ ul.sidebar li a {
     color: #374f5b;
 }
 
-.sidebar-main .menu-icon {
-    float: left;
-    font-size: 18px;
-    padding-left: 12px;
-    padding-right: 10px;
-    margin-top: 22px;
+.sidebar-main p i {
+    font-size: 28px;
+    margin-left: -15px;
+    padding-right: 22px;
 }
 
 .sidebar-title {
     color: #b7c5cb;
-    font-size: 15px;
+    font-size: 14px;
     height: 55px;
     line-height: 45px;
     padding-top: 5px;
@@ -194,8 +199,8 @@ ul.sidebar li a {
 }
 
 .sidebar-title button {
-	margin-left: 78px;
-	margin-bottom: 5px;
+	margin-right: 5px;
+    margin-top: 5px;
 }
 
 ul.sidebar .sidebar-list {
@@ -204,7 +209,7 @@ ul.sidebar .sidebar-list {
 
 ul.sidebar .sidebar-list a {
     text-indent: 25px;
-    font-size: 15px;
+    font-size: 14px;
     color: #dbe2e5;
     line-height: 50px;
 }
@@ -266,7 +271,7 @@ ul.sidebar .sidebar-list .menu-icon {
     width: 100%;
     min-width: 400px;
     top: 50px;
-    padding-left: 280px;
+    padding-left: 270px;
     z-index: 89;
     border-bottom: 1px solid #eee;
     -webkit-box-shadow: -4px -3px 6px 5px rgba(0,0,0,0.27);
@@ -274,8 +279,20 @@ ul.sidebar .sidebar-list .menu-icon {
     box-shadow: -4px -3px 6px 5px rgba(0,0,0,0.27);
 }
 
-.row.header>div:last-child {
-    padding-right: 0;
+.row.header .header-actions {
+    position: fixed;
+    padding: 19px;
+    right: 0;
+    min-width: 200px;
+}
+
+.row.header .header-actions #btn-open {
+    width: 120px;
+    padding-right: 2px;
+}
+
+.row.header .header-actions i {
+    font-size: 25px;
 }
 
 .row.header .meta .page {
@@ -306,7 +323,7 @@ ul.sidebar .sidebar-list .menu-icon {
     padding-right: 15px;
 }
 
-.row .actions .btn {
+/*.row .btn-group .pull-right .actions {
 	vertical-align: center;
 	width: 100%;
 }
@@ -384,7 +401,7 @@ ul.sidebar .sidebar-list .menu-icon {
 
 div.input-mask {
     padding-top: 7px;
-}
+}*/
 
 /*
 Dashboard Widgets
@@ -396,7 +413,7 @@ Dashboard Widgets
     border: 1px solid transparent;
     border-radius: 5px;
     margin-bottom: 20px;
-    min-width: 208px;
+    min-width: 220px;
 }
 .widget .widget-footer .pagination, .widget .widget-header .pagination {
     margin: 0;
@@ -468,7 +485,7 @@ Dashboard Widgets
 }
 .widget .widget-icon i {
     line-height: 66px;
-    color: #fff;
+    color: #000;
     font-size: 30px;
 }
 .widget .widget-footer {
