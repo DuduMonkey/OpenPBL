@@ -22,6 +22,8 @@
     PASSWORD_NOT_MATCH: declareNewError('A senha não confere'),
     //Activity
     ERROR_CREATING_NEW_ACTIVITY: declareNewError('Erro na persistencia da nova atividade'),
+    //JSON Helper
+    PARSE_TO_JSON_EXCEPTION: declareNewError('Falha ao fazer o parse para JSON'),
   };
 }());
 
