@@ -7,7 +7,7 @@
   var Schema = mongoose.Schema;
 
   var ActivitySchema = new Schema({
-    _creator: { type: Number, ref: 'User' },
+    _creator: { type: String, ref: 'User' },
     name: { type: String, required: true},
     story: String,
     status: {type: Number, min: 1, max: 7, default: 1},
