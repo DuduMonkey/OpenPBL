@@ -66,6 +66,25 @@
     return deferred.promise;
   };
 
+  /** Persist new token entity on database  **/
+  TokenSchema.statics.saveNewToken = function (userMail) {
+    var deferred = Q.defer();
+
+    var newToken = new this({
+      email: userMail,
+      token: userMail,
+    });
+
+    newToken.save(function (error, token) {
+      if (error) {
+        deferred.reject(Exception.TOKEN_CREATION_ERROR);
+      }
+      deferred.resolve(token);
+    });
+
+    return deferred.promise;
+  };
+
   //Export the module as Token
   module.exports = mongoose.model('Token', TokenSchema);
 }());

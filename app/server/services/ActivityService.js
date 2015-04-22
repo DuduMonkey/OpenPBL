@@ -21,7 +21,7 @@
     });
 
     newActivity.save(function (error, activity) {
-      if(error){
+      if (error) {
         deferred.reject(Exception.ERROR_CREATING_NEW_ACTIVITY);
       }
       deferred.resolve(activity);
@@ -43,14 +43,14 @@
 
     deferred.resolve(responseBag);
     return deferred.promise;
-  }
+  };
 
   /**
     Make the promise chain to create the new activity
   **/
   var createNewActivity = function (token, activityData) {
     var deferred = Q.defer();
-    
+
     userService.getSessionUser(token)
       .then(function (sessionUser) {
         return saveNewActivity(activityData, sessionUser);

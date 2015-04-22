@@ -6,7 +6,6 @@
   var User = require('../models/User');
   var TokenProvider = require('../token/TokenProvider');
   var Q = require('q');
-  var Exception = require('../shared/Exceptions');
 
   /**
     Validate user credentials
@@ -17,8 +16,6 @@
   var verifyUserCredentials = function (userMail, candidatePassword) {
     var deferred = Q.defer();
 
-    var query = {email: userMail};
-
     User.getUserByEmail(userMail)
       .then(function (user) {
         return user.validatePassword(candidatePassword);
@@ -27,7 +24,7 @@
         deferred.resolve();
       })
       .catch(function (error) {
-        deferred.reject();
+        deferred.reject(error);
       });
 
     return deferred.promise;
