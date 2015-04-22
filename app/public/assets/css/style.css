@@ -438,6 +438,20 @@ Dashboard Widgets
     background-color: #d9dcd0;
     border: none;
     color: #50524b;
+    min-height: 45px;
+}
+
+.panel .panel-heading button {
+    margin-right: -9px;
+    margin-top: -4px;
+}
+
+.panel-heading .panel-title {
+    margin-top: 4px;
+}
+
+a.list-group-item .list-group-item-heading, .list-group-item-text {
+  color: #3c3d38;
 }
 
 /* 

@@ -104,65 +104,59 @@
         </div>
       </div>
       <!-- End widgets row -->
-      <!-- Widgets -->
+      <!-- Panels -->
       <div class="row">
-        <div class="col-lg-6 col-md-12 col-xs-12">
+        <div class="col-lg-7 col-md-12 col-xs-12">
           <div class="panel panel-default">
             <div class="panel-heading">
-              <h3 class="panel-title">Problema</h3>
+              <h3 class="panel-title"><i class="fa fa-info-circle"> Problema</i></h3>
             </div>
             <div class="panel-body">{{currentActivity.summary}}</div>
           </div>
-        </div>
-        <div class="col-lg-6 col-md-12 col-xs-12">
-          <table data-toggle="table" data-sort-name="stargazers_count" data-sort-order="desc">
-            <thead>
-              <tr>
-                <th data-field="name" data-sortable="true">Nome</th>
-                <th data-field="posts" data-sortable="true">Participações</th>
-                <th>Excluir</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr ng-repeat="participant in currentActivity.participants">
-                <td>{{participant.name}}</td>
-                <td>{{participant.numberOfPosts}}</td>
-                <td>X</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-6 col-md-12 col-xs-12">
           <div class="panel panel-default">
             <div class="panel-heading">
-              <h3 class="panel-title">Participantes</h3>
+              <button type="button" class="btn btn-default navbar-btn navbar-right"><i class="fa fa-user-plus"> Adicionar</i></button>
+              <h3 class="panel-title"><i class="fa fa-users"> Participantes</i></h3>
             </div>
-            <table class="table" data-toggle="table" data-sort-name="stargazers_count" data-sort-order="desc">
-              <thead>
-                <tr>
-                  <th data-field="name" data-sortable="true">Nome</th>
-                  <th data-field="posts" data-sortable="true">Participações</th>
-                  <th>Excluir</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr ng-repeat="participant in currentActivity.participants">
-                  <td>{{participant.name}}</td>
-                  <td>{{participant.numberOfPosts}}</td>
-                  <td>X</td>
-                </tr>
-              </tbody>
-            </table>
+            <div class="panel-body">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>Nome</th>
+                    <th class="col-md-1 col-xs-1 table-txt-middle">Participações</th>
+                    <th class="col-md-1 col-xs-1 table-txt-middle">Excluir</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="participant in currentActivity.participants">
+                    <td>{{participant.name}}</td>
+                    <td class="table-txt-middle"><span class="badge">{{participant.numberOfPosts}}</span></td>
+                    <td class="table-txt-middle"><i class="fa fa-user-times"></i></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
-        <div class="col-lg-6 col-md-12 col-xs-12">
-
+        <div class="col-lg-5 col-md-12 col-xs-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title"><i class="fa fa-tags"> Participações recentes</i></h3>
+            </div>
+            <div class="panel-body">
+              <div class="list-group">
+                <a class="list-group-item" ng-repeat="participant in currentActivity.participants">
+                  <h4 class="list-group-item-heading">{{participant.name}} postou um fato</h4>
+                  <p class="list-group-item-text">Aliquam eleifend ligula nec nulla cursus gravida. Curabitur consequat lectus lorem, id semper urna vulputate vel. Proin convallis turpis pretium velit venenatis, pulvinar pharetra massa dapibus</p>
+                  <p><small class="pull-right">12/03/15</small></p>
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
-        <!-- End widgets -->
       </div>
     </div>
+    <!-- End Panels -->
     <!-- End Page Content -->
 
     <!-- Modal: cadastro de atividade -->
