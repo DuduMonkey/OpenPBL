@@ -1,5 +1,5 @@
 (function () {
-  'use strict'
+  'use strict';
 
   //Modules in use
   var Q = require('q');
@@ -12,9 +12,9 @@
     req.setEncoding('utf8');
     var jsonData = null;
 
-    req.on('data', function(chunk) { 
+    req.on('data', function (chunk) {
       jsonData = JSON.parse(chunk);
-      if(!!jsonData){
+      if (!!jsonData) {
         deferred.resolve(jsonData);
       }
       deferred.reject(Exception.PARSE_TO_JSON_EXCEPTION);
@@ -32,5 +32,4 @@
     parseRawRequestToJSON: parseRawRequestToJSON,
     isEmptyJSON: isEmptyJSON
   };
-
 }());
