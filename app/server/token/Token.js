@@ -59,8 +59,10 @@
     query.exec(function (err, data) {
       if (err) {
         deferred.reject(Exception.TOKEN_FIND_ERROR);
+      }else if(!!data){
+        deferred.resolve(data.email);
       }
-      deferred.resolve(data.email);
+      deferred.reject(Exception.INVALID_TOKEN);
     });
 
     return deferred.promise;

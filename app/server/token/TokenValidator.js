@@ -19,10 +19,7 @@
 
     Token.getUserEmail(tokenCandidate)
       .then(function (userMail) {
-        if (!!userMail) {
-          deferred.resolve();
-        }
-        deferred.reject(Exception.INVALID_TOKEN);
+        deferred.resolve();
       })
       .catch(function (error) {
         deferred.reject(error);
