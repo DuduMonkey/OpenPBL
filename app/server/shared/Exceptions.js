@@ -19,7 +19,9 @@
     USER_NOT_FIND: declareNewError('Usuário não encontrado'),
     //PASSWORD ERROR
     PASSWORD_HASHING_ERROR: declareNewError('Erro no hash de senha'),
-    PASSWORD_NOT_MATCH: declareNewError('A senha não confere')
+    PASSWORD_NOT_MATCH: declareNewError('A senha não confere'),
+    //Activity
+    ERROR_CREATING_NEW_ACTIVITY: declareNewError('Erro na persistencia da nova atividade'),
   };
 }());
 

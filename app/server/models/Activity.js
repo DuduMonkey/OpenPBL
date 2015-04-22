@@ -7,14 +7,10 @@
   var Schema = mongoose.Schema;
 
   var ActivitySchema = new Schema({
-    id: {
-      type: mongoose.Schema.ObjectId,
-      default: mongoose.Types.ObjectId
-    },
-    creator: { type: Number, ref: 'User' },
-    name: String,
+    _creator: { type: Number, ref: 'User' },
+    name: { type: String, required: true},
     story: String,
-    status: {type: Number, min: 1, max: 2, required: true},
+    status: {type: Number, min: 1, max: 7, default: 1},
     created: {type: Date, default: Date.now},
     participants: [{ type: Number, ref: 'User'}]
   });

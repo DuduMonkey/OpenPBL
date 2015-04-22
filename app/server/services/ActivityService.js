@@ -9,13 +9,33 @@
   var Q = require('q');
 
 
+  var saveNewActivity = function (activityData, activityCreator) {
+    var deferred = Q.defer();
+
+    var newActivity = new Activity({
+      name: activityData.name,
+      _creator: activityCreator._id
+    });
+
+    newActivity.save(function (error, activity) {
+      if(error){
+        deferred.reject(Exception.ERROR_CREATING_NEW_ACTIVITY);
+      }
+      deferred.resolve(activity);
+    });
+
+    return deferred.promise;
+  };
 
   var createNewActivity = function (token, activityData) {
     var deferred = Q.defer();
-
+    
     userService.getSessionUser(token)
-      .then(function (user) {
-        deferred.resolve(user);
+      .then(function (sessionUser) {
+        return saveNewActivity(activityData, sessionUser);
+      })
+      .then(function (newActivity) {
+        deferred.resolve(newActivity);
       })
       .catch(function (error) {
         deferred.reject(error);

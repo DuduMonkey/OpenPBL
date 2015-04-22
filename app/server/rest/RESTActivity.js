@@ -14,7 +14,7 @@
   exports.post = function (req, res) {
     var headerToken = req.headers[_TOKEN_HEADER];
 
-    activityService.createNewActivity(headerToken, null)
+    activityService.createNewActivity(headerToken, req.body)
       .then(function (user) {
         res.send(user);
       })
