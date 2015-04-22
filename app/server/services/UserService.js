@@ -15,12 +15,9 @@
   var getSessionUser = function (userToken) {
     var deferred = Q.defer();
 
-    var userEmail;
-
     Token.getUserEmail(userToken)
-      .then(function (tokenEmail) {
-        userEmail = tokenEmail;
-        return User.getUserByEmail(userEmail);
+      .then(function (emailFromToken) {
+        return User.getUserByEmail(emailFromToken);
       })
       .then(function (user) {
         deferred.resolve(user);

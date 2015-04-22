@@ -28,7 +28,7 @@
       } else {
         user.validatePassword(candidatePassword)
           .then(function () {
-            deferred.resolve();
+            deferred.resolve(user);
           })
           .catch(function (error) {
             deferred.reject(error);
@@ -49,13 +49,13 @@
 
     verifyUserCredentials(userMail, userPassword)
       .then(function () {
-        TokenProvider.createToken(userMail)
-          .then(function (token) {
-            deferred.resolve(token);
-          })
-          .catch(function (error) {
-            deferred.reject(error);
-          });
+        return tokenProvider.createToken(userMail);
+      })
+      .then(function (token) {
+        return userService.getSessionUserResponseBag(token);
+      })
+      .then(function (sessionUserResponseBag) {
+        deferred.resolve(sessionUserResponseBag);
       })
       .catch(function (error) {
         deferred.reject(error);
