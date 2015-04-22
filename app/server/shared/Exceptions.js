@@ -19,7 +19,11 @@
     USER_NOT_FIND: declareNewError('Usuário não encontrado'),
     //PASSWORD ERROR
     PASSWORD_HASHING_ERROR: declareNewError('Erro no hash de senha'),
-    PASSWORD_NOT_MATCH: declareNewError('A senha não confere')
+    PASSWORD_NOT_MATCH: declareNewError('A senha não confere'),
+    //ROLE
+    ROLE_VALUE_NOT_ASSIGNED: declareNewError('Não existe role com o valor consultado'),
+    //RESPONSE BAG
+    ERROR_ON_LOGIN_RESPONSE_GENERATION: declareNewError('Erro na geração da responsta de login'),
   };
 }());
 

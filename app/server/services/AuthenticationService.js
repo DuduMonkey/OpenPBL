@@ -4,9 +4,10 @@
 
   // Modules in use
   var User = require('../models/User');
-  var TokenProvider = require('../token/TokenProvider');
-  var Q = require('q');
   var Exception = require('../shared/Exceptions');
+  var tokenProvider = require('../token/TokenProvider');
+  var userService = require('./UserService');
+  var Q = require('q');
 
   /**
     Validate user credentials

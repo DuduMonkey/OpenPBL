@@ -3,6 +3,8 @@
   'use strict';
 
   var user_role = require('../models/constants/user_role');
+  var Exception = require('../shared/Exceptions');
+  var Q = require('q');
 
   /** Parse all roles from user_role to an simple JSON List **/
   var getRolesAsSimpleJSONList = function () {

@@ -5,6 +5,8 @@
   //Modules in use
   var User = require('../models/User');
   var Token = require('../token/Token');
+  var Exception = require('../shared/Exceptions');
+  var userRoleService = require('./UserRoleService');
   var Q = require('q');
 
   /**

@@ -14,8 +14,8 @@
     var userPassword = req.body.password;
 
     authenticationService.authenticateUser(userEmail, userPassword)
-      .then(function (authToken) {
-        res.status(200).send({ token: authToken });
+      .then(function (authenticationResponse) {
+        res.status(200).send(authenticationResponse);
       })
       .catch(function (error) {
         res.send(error);
