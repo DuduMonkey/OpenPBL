@@ -18,8 +18,30 @@
     return simpleRoleJSONList;
   };
 
+  /** Get the role object for the passed value **/
+  var getRoleByValue = function (value) {
+    var deferred = Q.defer();
+
+    var role = null;
+
+    for (var type in user_role) {
+      role = user_role[type];
+
+      if (role.value == value) {
+        deferred.resolve(role);
+      }
+    }
+
+    if (!role) {
+      deferred.reject(Exception.ROLE_VALUE_NOT_ASSIGNED);
+    }
+
+    return deferred.promise;
+  };
+
   // Export the module as the singleton RegisterUser type
   module.exports = {
-    getRoleBag: getRolesAsSimpleJSONList
+    getRoleBag: getRolesAsSimpleJSONList,
+    getRoleByValue: getRoleByValue
   };
 }());
