@@ -64,26 +64,6 @@
   };
 
   /** 
-    Schema method to find user using email 
-  **/
-  UserSchema.statics.getUserByEmail = function (userEmail) {
-    var deferred = Q.defer();
-
-    var query = this.findOne({
-      email: userEmail
-    });
-
-    query.exec(function (err, user) {
-      if (err) {
-        deferred.reject(Exception.USER_FIND_ERROR);
-      }
-      deferred.resolve(user);
-    });
-
-    return deferred.promise;
-  };
-
-  /** 
     Persist new user entity on database 
   **/
   UserSchema.statics.saveNewUser = function (userData) {
@@ -96,12 +76,47 @@
       password: userData.password
     });
 
-    newUser.save(function (error, data) {
-      if (error) {
-        deferred.reject(Exception.USER_PERSISTENCE_ERROR);
-      } else {
-        deferred.resolve(data);
-      }
+    newUser.save(function (err, data) {
+      if (err) { deferred.reject(Exception.USER_PERSISTENCE_ERROR); }
+      deferred.resolve(data);
+    });
+
+    return deferred.promise;
+  };
+
+  /** 
+    Schema method to find user using email 
+  **/
+  UserSchema.statics.getUserByEmail = function (userEmail) {
+    var deferred = Q.defer();
+
+    var query = this.findOne({
+      email: userEmail
+    });
+
+    query.exec(function (err, user) {
+      if (err) { deferred.reject(Exception.USER_FIND_ERROR); }
+      deferred.resolve(user);
+    });
+
+    return deferred.promise;
+  };
+
+  /**
+    Method who finds all users using a passed selector and a list of criteria
+  **/
+  UserSchema.statics.findAllUsersIn = function (selectColumn, whereColumn, whereConditions) {
+    var deferred = Q.defer();
+
+    var query = this.find();
+
+    query.where(whereColumn).in(whereConditions);
+
+    if (selectColumn) { query.select(selectColumn); }
+
+    query.exec(function (err, users) {
+      if (err) { deferred.reject(Exception.USER_LIST_FIND_ERROR); }
+      deferred.resolve(users);
     });
 
     return deferred.promise;
