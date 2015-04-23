@@ -54,9 +54,27 @@
     return deferred.promise;
   };
 
+  /**
+    Get the passed attribute values for a passed list of users 
+  **/
+  var getAttributeFromUserList = function (attributeName, userList) {
+    var deferred = Q.defer();
+
+    var usersAttributeValues = [];
+
+    userList.forEach(function (user) {
+      usersAttributeValues.push(user[attributeName]);
+    });
+
+    deferred.resolve(usersAttributeValues);
+
+    return deferred.promise;
+  };
+
   // export the class
   module.exports = {
     getSessionUser: getSessionUser,
     getUsersFromEmailList: getUsersFromEmailList,
+    getAttributeFromUserList: getAttributeFromUserList
   };
 }());
