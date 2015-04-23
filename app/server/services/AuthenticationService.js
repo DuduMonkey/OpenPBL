@@ -5,6 +5,7 @@
   // Modules in use
   var User = require('../models/User');
   var TokenProvider = require('../token/TokenProvider');
+  var Exception = require('../shared/Exceptions');
   var Q = require('q');
 
   /**
@@ -18,7 +19,10 @@
 
     User.getUserByEmail(userMail)
       .then(function (user) {
-        return user.validatePassword(candidatePassword);
+        if (!!user){
+          return user.validatePassword(candidatePassword);
+        }
+        deferred.reject(Exception.USER_NOT_FIND);
       })
       .then(function () {
         deferred.resolve();
