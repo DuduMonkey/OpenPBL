@@ -16,7 +16,8 @@
     USER_FIND_ERROR: declareNewError('Erro na busca de usuário'),
     USER_ALREADY_EXISTS: declareNewError('Email já cadastrado'),
     USER_PERSISTENCE_ERROR: declareNewError('Erro na persistencia dos dados de usuário'),
-    USER_NOT_FIND: declareNewError('Usuário não encontrado'),
+    USER_NOT_FIND: declareNewError('Email inválido'),
+    USER_LIST_FIND_ERROR: declareNewError('Erro na busca da lista de usuários'),
     // Password
     PASSWORD_HASHING_ERROR: declareNewError('Erro no hash de senha'),
     PASSWORD_NOT_MATCH: declareNewError('A senha não confere'),
