@@ -14,7 +14,7 @@
     story: String,
     status: {type: Number, min: 1, max: 7, default: 1},
     created: {type: Date, default: Date.now},
-    participants: [{ type: Number, ref: 'User'}]
+    participants: [{ type: String, ref: 'User'}]
   });
 
   ActivitySchema.statics.saveNewActivity = function (activityData) {
@@ -32,6 +32,7 @@
       }
       deferred.resolve(activity);
     });
+
     return deferred.promise;
   };
 
