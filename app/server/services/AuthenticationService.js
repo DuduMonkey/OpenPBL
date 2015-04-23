@@ -19,7 +19,7 @@
 
     User.getUserByEmail(userMail)
       .then(function (user) {
-        if (!!user){
+        if (!!user) {
           return user.validatePassword(candidatePassword);
         }
         deferred.reject(Exception.USER_NOT_FIND);
