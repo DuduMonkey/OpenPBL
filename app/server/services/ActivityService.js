@@ -8,28 +8,6 @@
   var userService = require('./UserService');
   var Q = require('q');
 
-  /** 
-    Persists the new Activity, link the activity with the creator
-  **/
-  var saveNewActivity = function (activityData, activityCreator) {
-    var deferred = Q.defer();
-
-    var newActivity = {
-      name: activityData.name,
-      creatorId: activityCreator._id,
-      participants: []
-    };
-
-    Activity.saveNewActivity(newActivity)
-      .then(function (activity) {
-        deferred.resolve(activity);
-      })
-      .catch(function (error) {
-        deferred.reject(error);
-      });
-
-    return deferred.promise;
-  };
 
   /**
     Transforms the new activity data into an response bag 
@@ -46,21 +24,39 @@
     return deferred.promise;
   };
 
-  /**
+  /** 
+    Mount and persists the new Activity, 
+    link the activity with the creator
+    get all users from participants (email list)
+    send registration emails for non-registered users
     Make the promise chain to create the new activity
   **/
   var createNewActivity = function (token, activityData) {
     var deferred = Q.defer();
 
+    var activity = {
+      name: activityData.name,
+      creatorId: '',
+      participants: []
+    };
+
     userService.getSessionUser(token)
       .then(function (sessionUser) {
-        return saveNewActivity(activityData, sessionUser);
+        activity.creatorId = sessionUser._id;
+        return userService.getUsersFromEmailList(activityData.participants);
+      })
+      .then(function (users) {
+        return userService.getAttributeFromUserList('_id', users);
+      })
+      .then(function (usersIds) {
+        activity.participants = usersIds;
+        return Activity.saveNewActivity(activity);
       })
       .then(function (newActivity) {
         return newActivityResponseBag(newActivity);
       })
-      .then(function (responseBag) {
-        deferred.resolve(responseBag);
+      .then(function (activityResponseBag) {
+        deferred.resolve(activityResponseBag);
       })
       .catch(function (error) {
         deferred.reject(error);
