@@ -5,7 +5,6 @@
   // Modules in use
   var Token = require('./Token');
   var Q = require('q');
-  var Exception = require('../shared/Exceptions');
 
   /**
     Validate a token candidate with collection from database
@@ -19,7 +18,9 @@
 
     Token.getUserEmail(tokenCandidate)
       .then(function (userMail) {
-        deferred.resolve();
+        if (!!userMail) {
+          deferred.resolve();
+        }
       })
       .catch(function (error) {
         deferred.reject(error);

@@ -5,7 +5,6 @@
   // Modules in use
   var activityService = require('../services/ActivityService');
   var jsonHelper = require('../shared/JSONHelper');
-
   var _TOKEN_HEADER = 'x-pbl-token';
 
   /**

@@ -17,27 +17,10 @@
       Password: String required
   */
   var UserSchema = new Schema({
-    name: {
-      type: String,
-      required: true
-    },
-    role: {
-      type: Number,
-      min: 1,
-      max: 2,
-      required: true
-    },
-    email: {
-      type: String,
-      required: true,
-      index: {
-        unique: true
-      }
-    },
-    password: {
-      type: String,
-      required: true
-    }
+    name: { type: String, required: true },
+    role: { type: Number, min: 1, max: 2, required: true },
+    email: { type: String, required: true, index: { unique: true } },
+    password: { type: String, required: true }
   });
 
   /**
@@ -80,7 +63,9 @@
     return deferred.promise;
   };
 
-  /** Schema method to find user using email */
+  /** 
+    Schema method to find user using email 
+  **/
   UserSchema.statics.getUserByEmail = function (userEmail) {
     var deferred = Q.defer();
 
@@ -98,7 +83,9 @@
     return deferred.promise;
   };
 
-  /** Persist new user entity on database **/
+  /** 
+    Persist new user entity on database 
+  **/
   UserSchema.statics.saveNewUser = function (userData) {
     var deferred = Q.defer();
 
