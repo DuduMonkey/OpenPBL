@@ -4,7 +4,6 @@
 
   //Modules in use
   var Activity = require('../models/Activity');
-  var Exception = require('../shared/Exceptions');
   var Message = require('../shared/MessageResource');
   var userService = require('./UserService');
   var Q = require('q');
@@ -15,17 +14,19 @@
   var saveNewActivity = function (activityData, activityCreator) {
     var deferred = Q.defer();
 
-    var newActivity = new Activity({
+    var newActivity = {
       name: activityData.name,
-      _creator: activityCreator._id
-    });
+      creatorId: activityCreator._id,
+      participants: []
+    };
 
-    newActivity.save(function (error, activity) {
-      if (error) {
-        deferred.reject(Exception.ERROR_CREATING_NEW_ACTIVITY);
-      }
-      deferred.resolve(activity);
-    });
+    Activity.saveNewActivity(newActivity)
+      .then(function (activity) {
+        deferred.resolve(activity);
+      })
+      .catch(function (error) {
+        deferred.reject(error);
+      });
 
     return deferred.promise;
   };
