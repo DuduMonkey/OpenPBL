@@ -30,8 +30,33 @@
     return deferred.promise;
   };
 
+  /**
+    Find all users in passed emailList
+  **/
+  var getUsersFromEmailList = function (emailListJSON) {
+    var deferred = Q.defer();
+
+    var listOfEmailCriteria = [];
+    var emailSelector = 'email';
+
+    emailListJSON.forEach(function (emailObject) {
+      listOfEmailCriteria.push(emailObject.email);
+    });
+
+    User.findAllUsersIn(null, emailSelector, listOfEmailCriteria)
+      .then(function (users) {
+        deferred.resolve(users);
+      })
+      .catch(function (err) {
+        deferred.reject(err);
+      });
+
+    return deferred.promise;
+  };
+
   // export the class
   module.exports = {
-    getSessionUser: getSessionUser
+    getSessionUser: getSessionUser,
+    getUsersFromEmailList: getUsersFromEmailList,
   };
 }());
