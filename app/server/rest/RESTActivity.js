@@ -25,4 +25,17 @@
         res.status(418).send(error);
       });
   };
+
+  exports.list = function (req, res) {
+    var headerToken = req.headers[_TOKEN_HEADER];
+
+    activityService.getTeacherActivities(headerToken)
+      .then(function (responseBag) {
+        res.send(responseBag);
+      })
+      .catch(function (error) {
+        res.status(418).send(error);
+      });
+  };
+
 }());

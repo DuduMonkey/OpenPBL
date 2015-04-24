@@ -6,6 +6,7 @@
   var Activity = require('../models/Activity');
   var Message = require('../shared/MessageResource');
   var userService = require('./UserService');
+  var Exception = require('../shared/Exceptions');
   var Q = require('q');
 
 
@@ -65,8 +66,40 @@
     return deferred.promise;
   };
 
+  /**
+
+  **/
+  var getTeacherActivities = function (token) {
+    var deferred = Q.defer();
+
+    userService.getSessionUser(token)
+      .then(function (sessionUser) {
+        //find all activities from user and populate participants
+        return Activity.findAllActivities({
+          select: '_id name story created participants',
+          where: ['_creator'],
+          conditions: [sessionUser._id],
+          join: [
+                  { 
+                    path: 'participants', 
+                    select: '-_id name' 
+                  }
+                ]
+        });
+      })
+      .then(function (activities) {
+        deferred.resolve({activities: activities});
+      })
+      .catch(function (error) {
+        deferred.reject(error);
+      });
+
+    return deferred.promise;
+  };
+
   // export the class
   module.exports = {
-    createNewActivity: createNewActivity
+    createNewActivity: createNewActivity,
+    getTeacherActivities : getTeacherActivities
   };
 }());

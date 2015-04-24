@@ -23,8 +23,11 @@
     PASSWORD_NOT_MATCH: declareNewError('A senha não confere'),
     // Activity
     ERROR_CREATING_NEW_ACTIVITY: declareNewError('Erro na persistencia da nova atividade'),
+    ACTIVITY_LIST_FIND_ERROR: declareNewError('Erro na busca da lista de atividades'),
     // JSON Helper
     PARSE_TO_JSON_EXCEPTION: declareNewError('Falha ao fazer o parse para JSON'),
+    //Exception for not implemented functions
+    NOT_IMPLEMENTED: declareNewError('Função não implementada no servidor'),
   };
 }());
 

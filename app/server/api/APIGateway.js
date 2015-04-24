@@ -46,6 +46,7 @@
       .post(authentication.post);
 
     router.route('/dashboard/activity')
-      .post(activity.post);
+      .post(activity.post)
+      .get(activity.list);
   };
 }());
