@@ -10,7 +10,7 @@ Feature: Painel de usuário - professor
 		When o painel de usuário abre
 		Then a tela não retorna nenhuma atividade
 		And a tela exibe a figura animada "dashboard-empty.svg"
-		And a figura animada exibe dicas gerais sobre as atividades e o OpenPBL ao passar o mouse sobre a figura
+		And a figura animada exibe dicas gerais sobre as atividades e o OpenPBL ao passar o mouse sobre a figura (específicas para o professor)
 		And a tela exibe a mensagem "Bem vindo ao OpenPBL, que tal começar criando uma atividade?"
 		And uma seta aponta para o botão de criar atividade
 
