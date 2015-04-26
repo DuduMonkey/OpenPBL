@@ -19,7 +19,7 @@
     var freeFromAuthenticationPaths = [
       '/signup',
       '/login',
-      '/roles',
+      '/role',
     ];
 
     if (!baseUrl) {

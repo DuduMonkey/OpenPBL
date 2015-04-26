@@ -38,7 +38,7 @@
     router.route('/signup')
       .post(register.post);
 
-    router.route('/roles')
+    router.route('/role')
       .get(roles.get);
 
     // User Authentication route (RESTAuthentication)
