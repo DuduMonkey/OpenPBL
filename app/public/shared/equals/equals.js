@@ -27,6 +27,6 @@
             ngModel.$setValidity('equals', isValid);
           };
         }
-      }
+      };
     });
 })();
