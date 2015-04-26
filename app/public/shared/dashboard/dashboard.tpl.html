@@ -33,7 +33,7 @@
 
   <!-- Page Content -->
   <!-- Activity Header Row -->
-  <div class="row header">
+  <div class="row header" ng-hide="activities.length == 0">
     <div class="col-xs-12">
       <div class="meta">
         <div class="page">
@@ -57,101 +57,116 @@
     <!-- Main Content -->
     <!-- Widgets row -->
     <div ui-view>
-      <div class="row">
-        <div class="col-lg-3 col-md-6 col-xs-12">
-          <div class="widget color-secondary-2-2">
-            <div class="widget-body">
-              <div class="widget-icon pull-left">
-                <i class="fa fa-users"></i>
+
+      <div name="activity-content" ng-hide="activities.length == 0">
+        <div class="row">
+          <div class="col-lg-3 col-md-6 col-xs-12">
+            <div class="widget color-secondary-2-2">
+              <div class="widget-body">
+                <div class="widget-icon pull-left">
+                  <i class="fa fa-users"></i>
+                </div>
+                <div class="title"><h3>{{currentActivity.participants.length}}</h3></div>
+                <div class="comment"><h5>Participantes</h5></div>
               </div>
-              <div class="title"><h3>{{currentActivity.participants.length}}</h3></div>
-              <div class="comment"><h5>Participantes</h5></div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-xs-12">
+            <div class="widget color-secondary-1-2">
+              <div class="widget-body">
+                <div class="widget-icon pull-left">
+                  <i class="fa fa-anchor"></i>
+                </div>
+                <div class="title"><h3>{{currentActivity.status}}</h3></div>
+                <div class="comment"><h5>Estado</h5></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-xs-12">
+            <div class="widget color-primary-2">
+              <div class="widget-body">
+                <div class="widget-icon pull-left">
+                  <i class="fa fa-line-chart"></i>
+                </div>
+                <div class="title"><h3>40%</h3></div>
+                <div class="comment"><h5>Progresso</h5></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-xs-12">
+            <div class="widget color-secondary-3-2">
+              <div class="widget-body">
+                <div class="widget-icon pull-left">
+                  <i class="fa fa-calendar"></i>
+                </div>
+                <div class="title"><h3>{{currentActivity.created | date:'dd/MM/yy' }}</h3></div>
+                <div class="comment"><h5>Data de Criação</h5></div>
+              </div>
             </div>
           </div>
         </div>
-        <div class="col-lg-3 col-md-6 col-xs-12">
-          <div class="widget color-secondary-1-2">
-            <div class="widget-body">
-              <div class="widget-icon pull-left">
-                <i class="fa fa-anchor"></i>
+        <!-- End widgets row -->
+        <!-- Panels -->
+        <div class="row">
+          <div class="col-lg-7 col-md-12 col-xs-12">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title"><i class="fa fa-info-circle"> Problema</i></h3>
               </div>
-              <div class="title"><h3>{{currentActivity.status}}</h3></div>
-              <div class="comment"><h5>Estado</h5></div>
+              <div class="panel-body">{{currentActivity.summary | limitTo:'300'}} ...</div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <button type="button" class="btn btn-default navbar-btn navbar-right"><i class="fa fa-user-plus"> Adicionar</i></button>
+                <h3 class="panel-title"><i class="fa fa-users"> Participantes</i></h3>
+              </div>
+              <div class="panel-body">
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th>Nome</th>
+                      <th class="col-md-1 col-xs-1 table-txt-middle">Participações</th>
+                      <th class="col-md-1 col-xs-1 table-txt-middle">Excluir</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr ng-repeat="participant in currentActivity.participants">
+                      <td>{{participant.name}}</td>
+                      <td><span class="badge">{{participant.numberOfPosts}}</span></td>
+                      <td><i class="fa fa-user-times"></i></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-xs-12">
-          <div class="widget color-primary-2">
-            <div class="widget-body">
-              <div class="widget-icon pull-left">
-                <i class="fa fa-line-chart"></i>
+          <div class="col-lg-5 col-md-12 col-xs-12">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title"><i class="fa fa-tags"> Participações recentes</i></h3>
               </div>
-              <div class="title"><h3>40%</h3></div>
-              <div class="comment"><h5>Progresso</h5></div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-xs-12">
-          <div class="widget color-secondary-3-2">
-            <div class="widget-body">
-              <div class="widget-icon pull-left">
-                <i class="fa fa-calendar"></i>
+              <div class="panel-body">
+                <div class="list-group">
+                  <a class="list-group-item" ng-repeat="participant in currentActivity.participants">
+                    <h4 class="list-group-item-heading">{{participant.name}} postou um fato</h4>
+                    <p class="list-group-item-text">Aliquam eleifend ligula nec nulla cursus gravida. Curabitur consequat lectus lorem, id semper urna vulputate vel. Proin convallis turpis pretium velit venenatis, pulvinar pharetra massa dapibus</p>
+                    <p><small class="pull-right">12/03/15</small></p>
+                  </a>
+                </div>
               </div>
-              <div class="title"><h3>{{currentActivity.created | date:'dd/MM/yy' }}</h3></div>
-              <div class="comment"><h5>Data de Início</h5></div>
             </div>
           </div>
         </div>
       </div>
-      <!-- End widgets row -->
-      <!-- Panels -->
-      <div class="row">
-        <div class="col-lg-7 col-md-12 col-xs-12">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h3 class="panel-title"><i class="fa fa-info-circle"> Problema</i></h3>
-            </div>
-            <div class="panel-body">{{currentActivity.summary}}</div>
-          </div>
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <button type="button" class="btn btn-default navbar-btn navbar-right"><i class="fa fa-user-plus"> Adicionar</i></button>
-              <h3 class="panel-title"><i class="fa fa-users"> Participantes</i></h3>
-            </div>
-            <div class="panel-body">
-              <table class="table table-hover">
-                <thead>
-                  <tr>
-                    <th>Nome</th>
-                    <th class="col-md-1 col-xs-1 table-txt-middle">Participações</th>
-                    <th class="col-md-1 col-xs-1 table-txt-middle">Excluir</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr ng-repeat="participant in currentActivity.participants">
-                    <td>{{participant.name}}</td>
-                    <td class="table-txt-middle"><span class="badge">{{participant.numberOfPosts}}</span></td>
-                    <td class="table-txt-middle"><i class="fa fa-user-times"></i></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
+
+      <!-- Dashboard No Content -->
+      <div ng-hide="activities.length != 0">
+        <div class="row">
+          <img id="svg-dash-arrow" src="assets/images/arrow.svg"/>
         </div>
-        <div class="col-lg-5 col-md-12 col-xs-12">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h3 class="panel-title"><i class="fa fa-tags"> Participações recentes</i></h3>
-            </div>
-            <div class="panel-body">
-              <div class="list-group">
-                <a class="list-group-item" ng-repeat="participant in currentActivity.participants">
-                  <h4 class="list-group-item-heading">{{participant.name}} postou um fato</h4>
-                  <p class="list-group-item-text">Aliquam eleifend ligula nec nulla cursus gravida. Curabitur consequat lectus lorem, id semper urna vulputate vel. Proin convallis turpis pretium velit venenatis, pulvinar pharetra massa dapibus</p>
-                  <p><small class="pull-right">12/03/15</small></p>
-                </a>
-              </div>
-            </div>
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-xs-12">
+            <img id="svg-dashboard-init" src="assets/images/dashboard-empty.svg" />
           </div>
         </div>
       </div>

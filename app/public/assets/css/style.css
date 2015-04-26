@@ -454,6 +454,14 @@ a.list-group-item .list-group-item-heading, .list-group-item-text {
   color: #3c3d38;
 }
 
+td .badge {
+    margin-left: 34px;
+}
+
+td .fa {
+    margin-left: 15px;
+}
+
 /* 
 * Modal 
 */
@@ -481,4 +489,20 @@ a.list-group-item .list-group-item-heading, .list-group-item-text {
     background: #F2F6F7;
 }
 
+/*
+* SVGs
+*/
+#svg-dashboard-init {
+    position: fixed;
+    max-width: 100%;
+    max-height: 100%;
+    bottom: -45px;
+    left: 38%;
+}
 
+#svg-dash-arrow {
+    position: fixed;
+    max-width: 130px;
+    height: auto;
+    top: 120px;
+}
