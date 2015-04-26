@@ -18,7 +18,7 @@
         return deferred.promise;
       };
 
-      var deleteHypothesis = function (hypothesisId) {
+      var deleteHypothesis = function (activityId, hypothesisId) {
         var deferred = $q.defer()
         , url = globalValues.API_URL + '/activity/' + activityId + '/hypothesis/' + hypothesisId;
 
