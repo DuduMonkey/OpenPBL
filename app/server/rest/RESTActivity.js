@@ -4,7 +4,6 @@
 
   // Modules in use
   var activityService = require('../services/ActivityService');
-  var jsonHelper = require('../shared/JSONHelper');
   var _TOKEN_HEADER = 'x-pbl-token';
 
   /**
@@ -13,11 +12,8 @@
   */
   exports.post = function (req, res) {
     var headerToken = req.headers[_TOKEN_HEADER];
-
-    jsonHelper.parseRawRequestToJSON(req)
-      .then(function (requestBody) {
-        return activityService.createNewActivity(headerToken, requestBody);
-      })
+    
+    activityService.createNewActivity(headerToken, req.body)
       .then(function (responseBag) {
         res.send(responseBag);
       })
