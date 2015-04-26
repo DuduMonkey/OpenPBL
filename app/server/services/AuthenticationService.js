@@ -4,8 +4,9 @@
 
   // Modules in use
   var User = require('../models/User');
-  var TokenProvider = require('../token/TokenProvider');
   var Exception = require('../shared/Exceptions');
+  var tokenProvider = require('../token/TokenProvider');
+  var userService = require('./UserService');
   var Q = require('q');
 
   /**
@@ -44,10 +45,13 @@
 
     verifyUserCredentials(userMail, userPassword)
       .then(function () {
-        return TokenProvider.createToken(userMail);
+        return tokenProvider.createToken(userMail);
       })
       .then(function (token) {
-        deferred.resolve(token);
+        return userService.getSessionUserResponseBag(token);
+      })
+      .then(function (sessionUserResponseBag) {
+        deferred.resolve(sessionUserResponseBag);
       })
       .catch(function (error) {
         deferred.reject(error);

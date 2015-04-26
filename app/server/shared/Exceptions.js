@@ -28,6 +28,10 @@
     PARSE_TO_JSON_EXCEPTION: declareNewError('Falha ao fazer o parse para JSON'),
     //Exception for not implemented functions
     NOT_IMPLEMENTED: declareNewError('Função não implementada no servidor'),
+    //ROLE
+    ROLE_VALUE_NOT_ASSIGNED: declareNewError('Não existe role com o valor consultado'),
+    //RESPONSE BAG
+    ERROR_ON_LOGIN_RESPONSE_GENERATION: declareNewError('Erro na geração da responsta de login'),
   };
 }());
 

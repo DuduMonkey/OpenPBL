@@ -8,7 +8,7 @@
         getActivities: function () {
           var deferred = $q.defer();
 
-          var url = globalValues.API_URL + '/dashboard/activities';
+          var url = globalValues.API_URL + '/activity';
 
           $http.get(url, { cache: false })
             .then(function (response) {
@@ -41,7 +41,7 @@
         saveActivity: function (task) {
           var deferred = $q.defer();
 
-          var url = globalValues.API_URL + '/dashboard/activity';
+          var url = globalValues.API_URL + '/activity';
 
           $http.post(url, task)
             .then(function (response) {
