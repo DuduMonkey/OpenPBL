@@ -63,5 +63,21 @@
     return deferred.promise;
   };
 
+  /** Schema method to find user using email */
+  UserSchema.statics.getUserByEmail = function (userEmail) {
+    var deferred = Q.defer();
+
+    var query = this.findOne({ email: userEmail });
+
+    query.exec(function (err, user) {
+      if (err) {
+        deferred.reject(Exception.USER_FIND_ERROR);
+      }
+      deferred.resolve(user);
+    });
+
+    return deferred.promise;
+  };
+
   module.exports = mongoose.model('User', UserSchema);
 }());
