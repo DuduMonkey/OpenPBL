@@ -34,6 +34,8 @@ html {
 body {
     height: 100%;
     width: 100%;
+    font-family: "Oxygen Droid Sans", sans-serif, Arial;
+    font-weight: 500; 
 }
 
 body > .container {
