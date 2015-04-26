@@ -6,7 +6,6 @@
   var Activity = require('../models/Activity');
   var Message = require('../shared/MessageResource');
   var userService = require('./UserService');
-  var Exception = require('../shared/Exceptions');
   var Q = require('q');
 
 
@@ -76,15 +75,15 @@
       .then(function (sessionUser) {
         //find all activities from user and populate participants
         return Activity.findAllActivities({
-          select: '_id name story created participants',
+          select: '_id name story created participants status',
           where: ['_creator'],
           conditions: [sessionUser._id],
           join: [
-                  { 
-                    path: 'participants', 
-                    select: '-_id name' 
-                  }
-                ]
+            {
+              path: 'participants',
+              select: '-_id name'
+            }
+          ]
         });
       })
       .then(function (activities) {
