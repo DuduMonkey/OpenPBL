@@ -3,6 +3,10 @@
 <head>
 	<title>OpenPBL</title>
 	<link rel="stylesheet" href="dist/css/bundle.min.css" />
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.7.0/bootstrap-table.min.css">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="assets/css/style.css" />
+
 </head>
 
 <body>
@@ -12,12 +16,14 @@
 
 	<ng-view role="main"></ng-view>
 
-	<pbl-page-footer></pbl-page-footer>
+	<!-- pbl-page-footer></pbl-page-footer -->
 	
 	<pbl-spinner ng-if="requestInProgress"></pbl-spinner>
 
 	<!-- Scripts -->
 	<script type="text/javascript" src="dist/js/bundle.min.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.7.0/bootstrap-table.min.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.7.0/locale/bootstrap-table-pt-BR.min.js"></script>
 </body>
 
 </html> 
