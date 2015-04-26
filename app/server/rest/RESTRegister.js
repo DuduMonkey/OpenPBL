@@ -11,11 +11,8 @@
   */
   exports.post = function (req, res) {
     registerService.registerUser(req.body)
-      .then(function (newUser) {
-        res.send({
-          email : newUser.email,
-          success: true
-        });
+      .then(function (responseBag) {
+        res.send(responseBag);
       })
       .catch(function (error) {
         res.send(error);

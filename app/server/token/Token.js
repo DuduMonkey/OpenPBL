@@ -59,8 +59,29 @@
     query.exec(function (err, data) {
       if (err) {
         deferred.reject(Exception.TOKEN_FIND_ERROR);
+      } else if (!!data) {
+        deferred.resolve(data.email);
       }
-      deferred.resolve(data.email);
+      deferred.reject(Exception.INVALID_TOKEN);
+    });
+
+    return deferred.promise;
+  };
+
+  /** Persist new token entity on database  **/
+  TokenSchema.statics.saveNewToken = function (userMail) {
+    var deferred = Q.defer();
+
+    var newToken = new this({
+      email: userMail,
+      token: userMail,
+    });
+
+    newToken.save(function (error, token) {
+      if (error) {
+        deferred.reject(Exception.TOKEN_CREATION_ERROR);
+      }
+      deferred.resolve(token);
     });
 
     return deferred.promise;

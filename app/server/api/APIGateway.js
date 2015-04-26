@@ -34,18 +34,22 @@
     });
     /*jslint unparam: false*/
 
-    // User Register route (RESTRegister)
+    // [GET] the role list
+    router.route('/role')
+      .get(roles.get);
+
+    // [POST] New user data to create user
     router.route('/signup')
       .post(register.post);
 
-    router.route('/roles')
-      .get(roles.get);
-
-    // User Authentication route (RESTAuthentication)
+    // [POST] User data to login on application
     router.route('/login')
       .post(authentication.post);
 
-    router.route('/dashboard/activity')
-      .post(activity.post);
+    // [POST] Activity data to create new activity
+    // [GET] List of activities
+    router.route('/activity')
+      .post(activity.post)
+      .get(activity.list);
   };
 }());
