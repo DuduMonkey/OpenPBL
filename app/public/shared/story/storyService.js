@@ -2,7 +2,7 @@
   'use strict';
 
   angular.module('openpbl.services')
-    .factory('hypothesisService', ['$http', '$q', 'globalValues', function ($http, $q, globalValues) {
+    .factory('storyService', ['$http', '$q', 'globalValues', function ($http, $q, globalValues) {
       var addStory = function (activityId, story) {
         var deferred = $q.defer()
         , url = globalValues.API_URL + '/activity/' + activityId + '/story';
