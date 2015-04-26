@@ -2,23 +2,39 @@
   'use strict';
 
   angular.module('openpbl.services')
-    .factory('activityService', ['$http', '$q', 'factService', 'globalValues', 'hypothesisService',
-      function ($http, $q, factService, globalValues, hypothesisService) {
+    .factory('activityService', ['$http', '$q', 'factService', 'globalValues', 'hypothesisService', 'participantService', 'storyService',
+      function ($http, $q, factService, globalValues, hypothesisService, participantService, storyService) {
 
       var addActivityFact = function (activityId, fact) {
         return factService.addFact(activityId, fact);
       };
 
-      addActivityHypothesis = function (activityId, hypothesis) {
-        return hypothesisService.addhypothesis(hypothesis);
+      var addActivityHypothesis = function (activityId, hypothesis) {
+        return hypothesisService.addHypothesis(activityId, hypothesis);
       };
 
-      var deleteActivityFact = function (factId) {
-        return factService.deleteFact(factId);
+      var addActivityStory = function (activityId, story) {
+        return storyService.addStory(activityId, story);
       };
 
-      var deleteActivityHypothesis = function (hypothesisId) {
+      var addActivityParticipant = function (activityId, participant) {
+        return participantService.addParticipant(activityId, participant);
+      };
+
+      var deleteActivityFact = function (activityId, factId) {
+        return factService.deleteFact(activityId, factId);
+      };
+
+      var deleteActivityHypothesis = function (activityId, hypothesisId) {
         return hypothesisService.deleteHypothesis(hypothesisId);
+      };
+
+      var deleteActivityPartipant = function (activityId, participantId) {
+        return participantService.deleteParticipant(activityId, participantId);
+      };
+
+      var deleteActivityStory = function (activityId, storyId) {
+        return storyService.deleteStory(activityId, storyId);
       };
 
       var getActivities = function () {
@@ -61,7 +77,12 @@
         return hypothesisService.getHypotheses(activityId);
       };
 
+      var getActivityParticipants = function (activityId) {
+        return participantService.getParticipants(activityId);
+      };
+
       var getActivityStories = function (activityId) {
+        return storyService.deleteStories(activityId);
       };
 
       var saveActivity = function (activity) {
@@ -69,12 +90,12 @@
         , url = globalValues.API_URL + '/activity';
 
         $http.post(url, activity)
-          .then(function (reponse) {
+          .then(function (response) {
             deferred.resolve(response.data);
           })
           .catch(function (error) {
             deferred.reject(error);
-          })
+          });
 
         return deferred.promise;
       };
@@ -82,13 +103,18 @@
       return {
         addActivityFact: addActivityFact,
         addActivityHypothesis: addActivityHypothesis,
+        addActivityParticipant: addActivityParticipant,
+        addActivityStory: addActivityStory,
         deleteActivityFact: deleteActivityFact,
         deleteActivityHypothesis: deleteActivityHypothesis,
+        deleteActivityPartipant: deleteActivityPartipant,
+        deleteActivityStory: deleteActivityStory,
         getActivities: getActivities,
         getActivityFacts: getActivityFacts, 
         getActivityHypotheses: getActivityHypotheses,
+        getActivityParticipants: getActivityParticipants,
         getActivityStories: getActivityStories,
-        saveActivity: saveActivity,
+        saveActivity: saveActivity
       };
     }]);
 })();
