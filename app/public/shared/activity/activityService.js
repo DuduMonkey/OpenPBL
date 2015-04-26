@@ -21,6 +21,21 @@
         return participantService.addParticipant(activityId, participant);
       };
 
+      var deleteActivity = function (activityId) {
+        var deferred = $q.defer()
+        , url = globalValues.API_URL + '/activity/' + activityId;
+
+        $http.delete(url)
+          .then(function (response) {
+            deferred.resolve(response.data);
+          })
+          .catch(function (error) {
+            deferred.reject(error);
+          });
+
+          return deferred.promise;
+      };
+
       var deleteActivityFact = function (activityId, factId) {
         return factService.deleteFact(activityId, factId);
       };
@@ -105,6 +120,7 @@
         addActivityHypothesis: addActivityHypothesis,
         addActivityParticipant: addActivityParticipant,
         addActivityStory: addActivityStory,
+        deleteActivity: deleteActivity,
         deleteActivityFact: deleteActivityFact,
         deleteActivityHypothesis: deleteActivityHypothesis,
         deleteActivityPartipant: deleteActivityPartipant,
