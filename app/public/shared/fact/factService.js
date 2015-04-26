@@ -18,7 +18,7 @@
         return deferred.promise;
       };
 
-      var deleteFact = function (factId) {
+      var deleteFact = function (activityId, factId) {
         var deferred = $q.defer()
         , url = globalValues.API_URL + '/activity/' + activityId + '/facts/' + factId;
 
