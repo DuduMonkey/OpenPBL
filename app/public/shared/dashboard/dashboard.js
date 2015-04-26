@@ -18,7 +18,7 @@
             scope.newActivity.participant = null;
           };
 
-          scope.createnewActivity = function () {
+          scope.createNewActivity = function () {
             scope.newActivity = {
               name: '',
               summary: '',
@@ -29,7 +29,20 @@
             scope.toggleModal();
           };
 
-          scope.getActivities = function () {
+          scope.deleteActivity = function (activityId) {
+            activityService.deleteActivity(activityId)
+              .then(function (response) {
+                notificationService.success(respose.message);
+                scope.init();
+              })
+              .catch(function (error) {
+                notificationService.error(error.message);
+              });
+          };
+
+          scope.getActivities = function (setCurrentActivity) {
+            setCurrentActivity = angular.isDefined(setCurrentActivity) ? setCurrentActivity : true;
+
             activityService.getActivities()
               .then(function (response) {
                 scope.activities = response;
@@ -47,10 +60,21 @@
             scope.getActivities();
           };
 
-          scope.removeParticipant = function (index) {
-            if (index <= scope.newActivity.participants.length) {
-              scope.newActivity.participants.splice(index, 1);
-            }
+          scope.removeParticipant = function (participantId) {
+            var activityId = scope.currentActivity.id;
+
+            activityService.deleteActivityPartipant(activityId, participantId)
+              .then(function (response) {
+
+                // Recarrega as atividades sem alterar a atividade
+                // selecionada
+                scope.getActivities(false);
+
+                notificationService.success(response.message);
+              })
+              .catch(function (error) {
+                notificationService.error(error.message);
+              });
           };
 
           scope.saveActivity = function () {
