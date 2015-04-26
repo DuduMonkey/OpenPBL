@@ -11,7 +11,7 @@
     <div class="sidebar-items">
       <ul class="sidebar">
         <li class="sidebar-list" ng-repeat="activity in activities.active" ng-click="setCurrentActivity(activity)">
-          <a href="" ng-class="{activity.id === currentActivity.id}">{{activity.name}}<i class="fa fa-cube pull-right"></i></a>
+          <a href="" ng-class="{'active': activity.id === currentActivity.id}">{{activity.name}}<i class="fa fa-cube pull-right"></i></a>
         </li>
       </ul>
     </div>
