@@ -33,10 +33,9 @@
     Find all users in passed emailList
   **/
   var getUsersFromEmailList = function (emailListJSON) {
-    var deferred = Q.defer();
-
-    var listOfEmailCriteria = [];
-    var emailSelector = 'email';
+    var deferred = Q.defer()
+    , listOfEmailCriteria = []
+    , emailSelector = 'email';
 
     emailListJSON.forEach(function (emailObject) {
       listOfEmailCriteria.push(emailObject.email);
@@ -92,9 +91,8 @@
     Get the passed attribute values for a passed list of users 
   **/
   var getAttributeFromUserList = function (attributeName, userList) {
-    var deferred = Q.defer();
-
-    var usersAttributeValues = [];
+    var deferred = Q.defer()
+    , usersAttributeValues = [];
 
     userList.forEach(function (user) {
       usersAttributeValues.push(user[attributeName]);

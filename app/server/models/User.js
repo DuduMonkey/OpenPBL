@@ -50,9 +50,8 @@
     and compare with the candidate password, on valid. resolve the promise
   */
   UserSchema.methods.validatePassword = function (candidatePassword) {
-    var deferred = Q.defer();
-
-    var isMatch = bcrypt.compareSync(candidatePassword, this.password);
+    var deferred = Q.defer()
+    , isMatch = bcrypt.compareSync(candidatePassword, this.password);
 
     if (isMatch) {
       deferred.resolve();
@@ -77,7 +76,9 @@
     });
 
     newUser.save(function (err, data) {
-      if (err) { deferred.reject(Exception.USER_PERSISTENCE_ERROR); }
+      if (err) { 
+        deferred.reject(Exception.USER_PERSISTENCE_ERROR); 
+      }
       deferred.resolve(data);
     });
 
@@ -95,7 +96,9 @@
     });
 
     query.exec(function (err, user) {
-      if (err) { deferred.reject(Exception.USER_FIND_ERROR); }
+      if (err) { 
+        deferred.reject(Exception.USER_FIND_ERROR); 
+      }
       deferred.resolve(user);
     });
 
@@ -106,16 +109,19 @@
     Method who finds all users using a passed selector and a list of criteria
   **/
   UserSchema.statics.findAllUsersIn = function (selectColumn, whereColumn, whereConditions) {
-    var deferred = Q.defer();
-
-    var query = this.find();
+    var deferred = Q.defer()
+    , query = this.find();
 
     query.where(whereColumn).in(whereConditions);
 
-    if (selectColumn) { query.select(selectColumn); }
+    if (selectColumn) { 
+      query.select(selectColumn); 
+    }
 
     query.exec(function (err, users) {
-      if (err) { deferred.reject(Exception.USER_LIST_FIND_ERROR); }
+      if (err) { 
+        deferred.reject(Exception.USER_LIST_FIND_ERROR); 
+      }
       deferred.resolve(users);
     });
 

@@ -73,11 +73,12 @@
       without id, exclude the id from selected participants.
   **/
   ActivitySchema.statics.findAllActivities = function (queryAttr) {
-    var deferred = Q.defer();
+    var deferred = Q.defer()
+    , query = this.find();
 
-    var query = this.find();
-
-    if (!!queryAttr.select) { query.select(queryAttr.select); }
+    if (!!queryAttr.select) { 
+      query.select(queryAttr.select); 
+    }
 
     if (!!queryAttr.where.length) {
       queryAttr.where.forEach(function (column, index){
@@ -88,11 +89,13 @@
     if (!!queryAttr.join.length) {
       queryAttr.join.forEach(function (documentAttr) {
         query.populate(documentAttr);
-      })
+      });
     }
 
     query.exec(function (err, activities) {
-      if(err) { deferred.reject(Exception.ACTIVITY_LIST_FIND_ERROR); }
+      if(err) { 
+        deferred.reject(Exception.ACTIVITY_LIST_FIND_ERROR); 
+      }
       deferred.resolve(activities);      
     });
 

@@ -33,9 +33,9 @@
     Transforms the passed user data into a success response bag
   **/
   var newUserResponseBag = function (userData) {
-    var deferred = Q.defer();
+    var deferred = Q.defer()
+    , responseBag = {};
 
-    var responseBag = {};
     responseBag.email = userData.email;
     responseBag.message = Message.SUCCESS_CREATING_USER;
 
@@ -49,9 +49,8 @@
       then resolve the user data as resolved.
   */
   var registerUser = function (userData) {
-    var deferred = Q.defer();
-
-    var newMail = userData.email;
+    var deferred = Q.defer()
+    , newMail = userData.email;
 
     isNewValidUser(newMail)
       .then(function () {

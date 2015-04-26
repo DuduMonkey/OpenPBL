@@ -7,10 +7,10 @@
 
   /** Parse the raw body to JSON using tf8 encoding **/
   var parseRawRequestToJSON = function (req) {
-    var deferred = Q.defer();
+    var deferred = Q.defer()
+    , jsonData = null;
 
     req.setEncoding('utf8');
-    var jsonData = null;
 
     req.on('data', function (chunk) {
       jsonData = JSON.parse(chunk);

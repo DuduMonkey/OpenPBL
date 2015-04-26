@@ -14,9 +14,9 @@
     with activity id and
   **/
   var newActivityResponseBag = function (activityData) {
-    var deferred = Q.defer();
-
-    var responseBag = {};
+    var deferred = Q.defer()
+    , responseBag = {};
+    
     responseBag.id = activityData._id;
     responseBag.message = Message.SUCCESS_CREATING_ACTIVITY;
 
