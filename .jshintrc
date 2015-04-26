@@ -2,6 +2,7 @@
 	"undef": true,
 	"unused": true,
 	"predef": ["node", "angular"],
+	"laxcomma": true,
 	"globals": {
 		"console": false,
 		"localStorage": false,
