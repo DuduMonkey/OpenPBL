@@ -50,9 +50,8 @@
     and compare with the candidate password, on valid. resolve the promise
   */
   UserSchema.methods.validatePassword = function (candidatePassword) {
-    var deferred = Q.defer();
-
-    var isMatch = bcrypt.compareSync(candidatePassword, this.password);
+    var deferred = Q.defer()
+    , isMatch = bcrypt.compareSync(candidatePassword, this.password);
 
     if (isMatch) {
       deferred.resolve();
@@ -63,17 +62,67 @@
     return deferred.promise;
   };
 
-  /** Schema method to find user using email */
+  /** 
+    Persist new user entity on database 
+  **/
+  UserSchema.statics.saveNewUser = function (userData) {
+    var deferred = Q.defer();
+
+    var newUser = new this({
+      name: userData.name,
+      role: userData.role,
+      email: userData.email,
+      password: userData.password
+    });
+
+    newUser.save(function (err, data) {
+      if (err) { 
+        deferred.reject(Exception.USER_PERSISTENCE_ERROR); 
+      }
+      deferred.resolve(data);
+    });
+
+    return deferred.promise;
+  };
+
+  /** 
+    Schema method to find user using email 
+  **/
   UserSchema.statics.getUserByEmail = function (userEmail) {
     var deferred = Q.defer();
 
-    var query = this.findOne({ email: userEmail });
+    var query = this.findOne({
+      email: userEmail
+    });
 
     query.exec(function (err, user) {
-      if (err) {
-        deferred.reject(Exception.USER_FIND_ERROR);
+      if (err) { 
+        deferred.reject(Exception.USER_FIND_ERROR); 
       }
       deferred.resolve(user);
+    });
+
+    return deferred.promise;
+  };
+
+  /**
+    Method who finds all users using a passed selector and a list of criteria
+  **/
+  UserSchema.statics.findAllUsersIn = function (selectColumn, whereColumn, whereConditions) {
+    var deferred = Q.defer()
+    , query = this.find();
+
+    query.where(whereColumn).in(whereConditions);
+
+    if (selectColumn) { 
+      query.select(selectColumn); 
+    }
+
+    query.exec(function (err, users) {
+      if (err) { 
+        deferred.reject(Exception.USER_LIST_FIND_ERROR); 
+      }
+      deferred.resolve(users);
     });
 
     return deferred.promise;
