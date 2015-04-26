@@ -2,7 +2,7 @@
   'use strict';
 
   angular.module('openpbl.directives')
-    .directive('pblDashboard', ['notificationService', 'dashboardService', function (notificationService, dashboardService) {
+    .directive('pblDashboard', ['activityService', 'notificationService', function (activityService, notificationService) {
       return {
         retrict: 'E',
         replace: true,
@@ -30,7 +30,7 @@
           };
 
           scope.getActivities = function () {
-            dashboardService.getActivities()
+            activityService.getActivities()
               .then(function (response) {
                 scope.activities = response;
 
@@ -54,7 +54,7 @@
           };
 
           scope.saveActivity = function () {
-            dashboardService.saveActivity(scope.newActivity)
+            activityService.saveActivity(scope.newActivity)
               .then(function (response) {
                 notificationService.success(response.message);
                 scope.toggleModal();
