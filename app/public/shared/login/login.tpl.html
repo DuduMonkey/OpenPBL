@@ -12,11 +12,11 @@
           <div ng-if="modalMode === modal.mode.login">
             <div class="form-group">
               <label for="email">E-mail</label>
-              <input type="email" class="form-control" name="email" required ng-model="login.email">
+              <input type="email" class="form-control" name="email" required ng-model="loginData.email">
             </div>
             <div class="form-group">
               <label for="password">Senha</label>
-              <input type="password" class="form-control" name="password" required ng-model="login.password">
+              <input type="password" class="form-control" name="password" required ng-model="loginData.password">
             </div>
             <div class="text-center">
               <span><strong>Não possui conta?</strong></span>
@@ -28,11 +28,11 @@
           <div ng-if="modalMode === modal.mode.register">
             <div class="form-group">
               <label for="name">Nome</label>
-              <input type="text" class="form-control" name="name" required ng-model="register.name">
+              <input type="text" class="form-control" name="name" required ng-model="registerData.name">
             </div>
             <div class="form-group">
               <label for="email">E-mail</label>
-              <input type="email" class="form-control" name="email" required ng-model="register.email">
+              <input type="email" class="form-control" name="email" required ng-model="registerData.email">
             </div>
             <div class="form-group">
               <span>Sou</span>
@@ -43,11 +43,11 @@
             </div>
             <div class="form-group">
               <label for="password">Senha</label>
-              <input type="password" class="form-control" name="password" required ng-model="register.password">
+              <input type="password" class="form-control" name="password" required ng-model="registerData.password">
             </div>
             <div class="form-group">
               <label for="password">Confirme sua senha</label>
-              <input type="password" class="form-control" name="confirmPassword" required ng-model="register.confirmPassword" pbl-equals="{{register.password}}">
+              <input type="password" class="form-control" name="confirmPassword" required ng-model="registerData.confirmPassword" pbl-equals="{{registerData.password}}">
             </div>
             <div class="text-center">
               <span><strong>Já possui uma conta?</strong></span>
