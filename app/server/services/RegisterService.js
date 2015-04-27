@@ -6,28 +6,42 @@
   var User = require('../models/User');
   var Q = require('q');
   var Exception = require('../shared/Exceptions');
+  var Message = require('../shared/MessageResource');
 
   /**
     Validate if email from new user already exists on database
     'then' deferrer the promise as resolved if not
   */
   var isNewValidUser = function (mailAddress) {
-      var deferred = Q.defer();
+    var deferred = Q.defer();
 
-      var query = {email : mailAddress};
-
-      User.find(query).exec(function (error, users) {
-        if (error) {
-          deferred.reject(Exception.USER_FIND_ERROR);
-        } else if (users.length > 0) {
+    User.getUserByEmail(mailAddress)
+      .then(function (user) {
+        if (!!user) {
           deferred.reject(Exception.USER_ALREADY_EXISTS);
-        } else {
-          deferred.resolve();
         }
+        deferred.resolve();
+      })
+      .catch(function (error) {
+        deferred.reject(error);
       });
 
-      return deferred.promise;
-    };
+    return deferred.promise;
+  };
+
+  /** 
+    Transforms the passed user data into a success response bag
+  **/
+  var newUserResponseBag = function (userData) {
+    var deferred = Q.defer()
+    , responseBag = {};
+
+    responseBag.email = userData.email;
+    responseBag.message = Message.SUCCESS_CREATING_USER;
+
+    deferred.resolve(responseBag);
+    return deferred.promise;
+  };
 
   /**
     Register the new user.
@@ -35,26 +49,18 @@
       then resolve the user data as resolved.
   */
   var registerUser = function (userData) {
-    var deferred = Q.defer();
-
-    var newMail = userData.email;
+    var deferred = Q.defer()
+    , newMail = userData.email;
 
     isNewValidUser(newMail)
       .then(function () {
-        var newUser = new User({
-          name : userData.name,
-          role : userData.role,
-          email : userData.email,
-          password : userData.password
-        });
-
-        newUser.save(function (error, data) {
-          if (error) {
-            deferred.reject(Exception.USER_PERSISTENCE_ERROR);
-          } else {
-            deferred.resolve(data);
-          }
-        });
+        return User.saveNewUser(userData);
+      })
+      .then(function (userData) {
+        return newUserResponseBag(userData);
+      })
+      .then(function (responseBag) {
+        deferred.resolve(responseBag);
       })
       .catch(function (error) {
         deferred.reject(error);
