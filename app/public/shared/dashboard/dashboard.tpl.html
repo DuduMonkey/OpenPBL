@@ -6,7 +6,7 @@
       <p>Painel do Usuário<i class="fa fa-home"></i></p>
     </div>
     <div class="sidebar-title">
-      <span>Atividades</span><button class="btn btn-default pull-right" ng-click="createnewActivity()">Criar nova</button>
+      <span>Atividades</span><button class="btn btn-primary pull-right" ng-click="createnewActivity()">Criar nova</button>
     </div>
     <div class="sidebar-items">
       <ul class="sidebar">
@@ -44,7 +44,7 @@
     <div class="header-actions pull-right">
       <div>
         <button id="btn-open" type="button" class="btn btn-primary btn-block" ng-click=""><i class="fa fa-graduation-cap"></i> Abrir</button>
-        <button id="btn-delete" type="button" class="btn btn-primary btn-block" ng-click=""><i class="fa fa-trash"></i> Excluir</button>
+        <button id="btn-delete" type="button" class="btn btn-danger btn-block" ng-click=""><i class="fa fa-trash"></i> Excluir</button>
       </div>
       <!-- <a href=""><i class="fa fa-trash-o pull-right"></i></a> -->
     </div>
@@ -109,14 +109,14 @@
           <div class="col-lg-7 col-md-12 col-xs-12">
             <div class="panel panel-default">
               <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-info-circle"> Problema</i></h3>
+                <h3 class="panel-title"><i class="fa fa-info-circle"></i> Problema</h3>
               </div>
               <div class="panel-body">{{currentActivity.summary | limitTo:'300'}} ...</div>
             </div>
             <div class="panel panel-default">
               <div class="panel-heading">
                 <button type="button" class="btn btn-default navbar-btn navbar-right"><i class="fa fa-user-plus"> Adicionar</i></button>
-                <h3 class="panel-title"><i class="fa fa-users"> Participantes</i></h3>
+                <h3 class="panel-title"><i class="fa fa-users"></i> Participantes</h3>
               </div>
               <div class="panel-body">
                 <table class="table table-hover">
@@ -141,7 +141,7 @@
           <div class="col-lg-5 col-md-12 col-xs-12">
             <div class="panel panel-default">
               <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-tags"> Participações recentes</i></h3>
+                <h3 class="panel-title"><i class="fa fa-tags"></i> Participações recentes</h3>
               </div>
               <div class="panel-body">
                 <div class="list-group">

@@ -34,7 +34,7 @@ html {
 body {
     height: 100%;
     width: 100%;
-    font-family: "Oxygen Droid Sans", sans-serif, Arial;
+    font-family: "Droid Sans", "Oxygen", sans-serif, Arial, "Helvetica Neue", Helvetica;
     font-weight: 500; 
 }
 
@@ -58,6 +58,16 @@ Buttons
 .btn-primary {
 	background-color: #2C8DBC;
 	border-color: #277ea9;
+}
+
+.btn-danger {
+    background-color: #B75252;
+    border-color: #a44949;
+}
+
+.btn-danger:hover {
+    background-color: #924141;
+    border-color: #803939;
 }
 
 /**
@@ -87,7 +97,7 @@ Navbar
  .sidebar-footer { background: #454c5b }
  .sidebar-footer div a:hover { background: #5a606d }
  .row.header { background: #fff }
- .widget { background: #A0DB8E }
+ .widget { background: #8dc295 }
  ul.sidebar .sidebar-list a:hover, ul.sidebar .sidebar-list a:active { background: #628ead }
  ul.sidebar .sidebar-list a:focus { background: #272d3a }
 
@@ -194,8 +204,9 @@ ul.sidebar li a {
 .sidebar-main p i {
     position: absolute;
     font-size: 35px;
-    right: 10px;
+    right: 32px;
     padding-top: 10px;
+    color: #2C8DBC;
 }
 
 .sidebar-title {
@@ -318,8 +329,8 @@ ul.sidebar .sidebar-list .menu-icon {
     position: absolute;
     right: 20px;
     top: 10px;
-    background-color: #B75252;
-    border: #a44949;
+    /*background-color: #B75252;
+    border: #a44949;*/
 }
 
 .row.header .header-actions #btn-delete i {
@@ -486,6 +497,14 @@ td .badge {
 
 td .fa {
     margin-left: 15px;
+}
+
+.list-group {
+    margin-bottom: 0;
+}
+
+.list-group-item:hover {
+    border-left: 3px solid #2C8DBC;
 }
 
 /* 
