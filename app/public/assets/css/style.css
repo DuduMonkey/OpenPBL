@@ -237,6 +237,16 @@ ul.sidebar .sidebar-list a {
     transition: all 200ms;
 }
 
+ul.sidebar .sidebar-list a.finished {
+    color: #838891;
+}
+
+ul.sidebar .sidebar-list a.finished img {
+    height: 17px;
+    margin-right: 5px;
+    margin-top: 17px;
+}
+
 ul.sidebar .sidebar-list a:hover {
     color: #eee;
     border-left: 3px solid #94D1EE;

@@ -14,6 +14,11 @@
           <a href="" ng-class="{activity.id === currentActivity.id}">{{activity.name}}<i class="fa fa-cube pull-right"></i></a>
         </li>
       </ul>
+      <ul class="sidebar">
+        <li class="sidebar-list" ng-repeat="activity in activities.finished" ng-click="setCurrentActivity(activity)">
+          <a class="finished" href="" ng-class="{activity.id === currentActivity.id}">{{activity.name}}<img class="pull-right" src="assets/images/finished-tag.svg"/></a>
+        </li>
+      </ul>
     </div>
     <!-- Sidebar footer -->
     <div class="sidebar-footer">
@@ -97,7 +102,7 @@
                 <div class="widget-icon pull-left">
                   <i class="fa fa-calendar"></i>
                 </div>
-                <div class="title"><h3>{{currentActivity.created | date:'dd/MM/yy' }}</h3></div>
+                <div class="title"><h3>{{currentActivity.created | date:'dd/MM/yy'}}</h3></div>
                 <div class="comment"><h5>Data de Criação</h5></div>
               </div>
             </div>
@@ -145,10 +150,10 @@
               </div>
               <div class="panel-body">
                 <div class="list-group">
-                  <a class="list-group-item" ng-repeat="participant in currentActivity.participants">
-                    <h4 class="list-group-item-heading">{{participant.name}} postou um fato</h4>
-                    <p class="list-group-item-text">Aliquam eleifend ligula nec nulla cursus gravida. Curabitur consequat lectus lorem, id semper urna vulputate vel. Proin convallis turpis pretium velit venenatis, pulvinar pharetra massa dapibus</p>
-                    <p><small class="pull-right">12/03/15</small></p>
+                  <a class="list-group-item" ng-repeat="post in currentActivity.posts">
+                    <h4 class="list-group-item-heading">{{post.owner}} postou um fato</h4>
+                    <p class="list-group-item-text">{{post.content}}</p>
+                    <p><small class="pull-right">{{currentActivity.created | date:'dd/MM/yy'}}</small></p>
                   </a>
                 </div>
               </div>
