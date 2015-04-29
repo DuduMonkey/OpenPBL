@@ -34,8 +34,8 @@ html {
 body {
     height: 100%;
     width: 100%;
-    font-family: "Droid Sans", "Oxygen", sans-serif, Arial, "Helvetica Neue", Helvetica;
-    font-weight: 500; 
+    font-family: "Roboto", sans-serif, Arial, "Helvetica Neue", Helvetica;
+    font-weight: 400; 
 }
 
 body > .container {
@@ -353,8 +353,8 @@ ul.sidebar .sidebar-list .menu-icon {
 
 .row.header .meta .page {
     font-size: 20px;
-    padding-top: 5px;
-    color: #313949;
+    padding-top: 3px;
+    color: #555;
 }
 
 .row.header .meta .activity-details {
@@ -390,7 +390,7 @@ Dashboard Widgets
     border: 1px solid transparent;
     border-radius: 5px;
     margin-bottom: 20px;
-    min-width: 220px;
+    min-width: 230px;
 }
 .widget .widget-footer .pagination, .widget .widget-header .pagination {
     margin: 0;
@@ -515,10 +515,6 @@ td .fa {
     margin-bottom: 0;
 }
 
-.list-group-item:hover {
-    border-left: 3px solid #2C8DBC;
-}
-
 #del-user {
     color: #B75252;
 }
@@ -552,6 +548,10 @@ td .fa {
 
 .modal-body {
     background: #F2F6F7;
+}
+
+.badge {
+    background-color: #2C8DBC;
 }
 
 /*

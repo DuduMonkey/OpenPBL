@@ -64,7 +64,7 @@
       <div name="activity-content" ng-hide="!currentActivity">
         <div class="row">
           <div class="col-lg-3 col-md-6 col-xs-12">
-            <div class="widget color-secondary-2-2">
+            <div class="widget">
               <div class="widget-body">
                 <div class="widget-icon pull-left">
                   <i class="fa fa-users"></i>
@@ -75,7 +75,7 @@
             </div>
           </div>
           <div class="col-lg-3 col-md-6 col-xs-12">
-            <div class="widget color-secondary-1-2">
+            <div class="widget">
               <div class="widget-body">
                 <div class="widget-icon pull-left">
                   <i class="fa fa-anchor"></i>
@@ -86,7 +86,7 @@
             </div>
           </div>
           <div class="col-lg-3 col-md-6 col-xs-12">
-            <div class="widget color-primary-2">
+            <div class="widget">
               <div class="widget-body">
                 <div class="widget-icon pull-left">
                   <i class="fa fa-line-chart"></i>
@@ -97,7 +97,7 @@
             </div>
           </div>
           <div class="col-lg-3 col-md-6 col-xs-12">
-            <div class="widget color-secondary-3-2">
+            <div class="widget">
               <div class="widget-body">
                 <div class="widget-icon pull-left">
                   <i class="fa fa-calendar"></i>
@@ -133,7 +133,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr ng-repeat="participant in currentActivity.participants">
+                    <tr ng-repeat="participant in currentActivity.participants | orderBy:'-numberOfPosts'">
                       <td>{{participant.name}}</td>
                       <td><span class="badge">{{participant.numberOfPosts}}</span></td>
                       <td><a id="del-user" href=""><i class="fa fa-user-times"></i></a></td>
