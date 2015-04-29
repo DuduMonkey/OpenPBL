@@ -11,12 +11,12 @@
     <div class="sidebar-items">
       <ul class="sidebar">
         <li class="sidebar-list" ng-repeat="activity in activities.active" ng-click="setCurrentActivity(activity)">
-          <a href="" ng-class="{activity.id === currentActivity.id}">{{activity.name}}<i class="fa fa-cube pull-right"></i></a>
+          <a href="" ng-class="{activity.id === currentActivity.id}"><i class="fa fa-cube pull-right"></i>{{activity.name}}</a>
         </li>
       </ul>
       <ul class="sidebar">
         <li class="sidebar-list" ng-repeat="activity in activities.finished" ng-click="setCurrentActivity(activity)">
-          <a class="finished" href="" ng-class="{activity.id === currentActivity.id}">{{activity.name}}<img class="pull-right" src="assets/images/finished-tag.svg"/></a>
+          <a class="finished" href="" ng-class="{activity.id === currentActivity.id}"><img class="pull-right" src="assets/images/finished-tag.svg"/>{{activity.name}}</a>
         </li>
       </ul>
     </div>
@@ -120,7 +120,7 @@
             </div>
             <div class="panel panel-default">
               <div class="panel-heading">
-                <button type="button" class="btn btn-default navbar-btn navbar-right"><i class="fa fa-user-plus"> Adicionar</i></button>
+                <button type="button" class="btn btn-default navbar-btn navbar-right"><i class="fa fa-user-plus"></i>Adicionar</button>
                 <h3 class="panel-title"><i class="fa fa-users"></i> Participantes</h3>
               </div>
               <div class="panel-body">
@@ -136,7 +136,7 @@
                     <tr ng-repeat="participant in currentActivity.participants">
                       <td>{{participant.name}}</td>
                       <td><span class="badge">{{participant.numberOfPosts}}</span></td>
-                      <td><i class="fa fa-user-times"></i></td>
+                      <td><a id="del-user" href=""><i class="fa fa-user-times"></i></a></td>
                     </tr>
                   </tbody>
                 </table>

@@ -233,7 +233,11 @@ ul.sidebar .sidebar-list {
 ul.sidebar .sidebar-list a {
     font-size: 14px;
     color: #c8d4db;
+    white-space: nowrap;
+    display: block;
+    overflow: hidden;
     line-height: 50px;
+    text-overflow: ellipsis;
     transition: all 200ms;
 }
 
@@ -243,7 +247,7 @@ ul.sidebar .sidebar-list a.finished {
 
 ul.sidebar .sidebar-list a.finished img {
     height: 17px;
-    margin-right: 5px;
+    margin-right: 15px;
     margin-top: 17px;
 }
 
@@ -339,8 +343,6 @@ ul.sidebar .sidebar-list .menu-icon {
     position: absolute;
     right: 20px;
     top: 10px;
-    /*background-color: #B75252;
-    border: #a44949;*/
 }
 
 .row.header .header-actions #btn-delete i {
@@ -517,8 +519,16 @@ td .fa {
     border-left: 3px solid #2C8DBC;
 }
 
+#del-user {
+    color: #B75252;
+}
+
+#del-user:hover {
+    color: #924141;
+}
+
 /* 
-* Modal 
+* Modals 
 */
 .modal-header img {
     max-width: 150px;
