@@ -51,7 +51,6 @@
         <button id="btn-open" type="button" class="btn btn-primary btn-block" ng-click=""><i class="fa fa-graduation-cap"></i> Abrir</button>
         <button id="btn-delete" type="button" class="btn btn-danger btn-block" ng-click=""><i class="fa fa-trash"></i> Excluir</button>
       </div>
-      <!-- <a href=""><i class="fa fa-trash-o pull-right"></i></a> -->
     </div>
   </div>
   <!-- End Activity Header Row -->
@@ -114,9 +113,15 @@
           <div class="col-lg-7 col-md-12 col-xs-12">
             <div class="panel panel-default">
               <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-info-circle"></i> Problema</h3>
+                <h3 class="panel-title"><i class="fa fa-info-circle"></i> Resumo do Problema</h3>
               </div>
-              <div class="panel-body">{{currentActivity.summary | limitTo:'300'}} ...</div>
+              <div class="panel-body">
+                <div class="dash-empty-panel" ng-hide="currentActivity.summary">
+                  <h4>O problema ainda não foi definido nesta atividade</h4>
+                  <img id="empty-panel-pr" src="assets/images/empty-panel.svg">
+                </div>
+                <div ng-show="currentActivity.summary">{{currentActivity.summary | limitTo:'300'}} ...</div>
+              </div>
             </div>
             <div class="panel panel-default">
               <div class="panel-heading">
@@ -124,7 +129,7 @@
                 <h3 class="panel-title"><i class="fa fa-users"></i> Participantes</h3>
               </div>
               <div class="panel-body">
-                <table class="table table-hover">
+                <table class="table table-hover" ng-if="currentActivity.participants.length">
                   <thead>
                     <tr>
                       <th>Nome</th>
@@ -140,6 +145,10 @@
                     </tr>
                   </tbody>
                 </table>
+                <div class="dash-empty-panel" ng-if="!currentActivity.participants.length">
+                  <h4>Nenhum participante foi convidado ainda</h4>
+                  <img id="empty-panel-pr" src="assets/images/empty-panel.svg">
+                </div>
               </div>
             </div>
           </div>
@@ -149,7 +158,11 @@
                 <h3 class="panel-title"><i class="fa fa-tags"></i> Participações recentes</h3>
               </div>
               <div class="panel-body">
-                <div class="list-group">
+                <div class="dash-empty-panel" ng-if="!currentActivity.posts.length">
+                  <h4>Ninguém participou desta atividade</h4>
+                  <img id="empty-panel-pr" src="assets/images/empty-panel.svg">
+                </div>
+                <div class="list-group" ng-if="currentActivity.posts.length">
                   <a class="list-group-item" ng-repeat="post in currentActivity.posts">
                     <h4 class="list-group-item-heading">{{post.owner}} postou um fato</h4>
                     <p class="list-group-item-text">{{post.content}}</p>

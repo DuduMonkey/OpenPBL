@@ -499,6 +499,12 @@ Dashboard Widgets
     margin-top: 4px;
 }
 
+.dash-empty-panel h4 {
+    color: #bbb;
+    text-align: center;
+    padding-top: 30px;
+}
+
 a.list-group-item .list-group-item-heading, .list-group-item-text {
   color: #3c3d38;
 }
@@ -574,4 +580,11 @@ td .fa {
 
 .svg-hover:hover {
     opacity: 0.5;
+}
+
+#empty-panel-pr {
+    padding-top: 40px;
+    width: 100%;
+    opacity: 0.8;
+    border: white 1px solid;
 }
