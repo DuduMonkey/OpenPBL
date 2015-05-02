@@ -117,7 +117,7 @@
               </div>
               <div class="panel-body">
                 <div class="dash-empty-panel" ng-hide="currentActivity.summary">
-                  <h4>O problema ainda não foi definido nesta atividade</h4>
+                  <h4>O problema ainda não foi definido nesta atividade <i class="fa fa-frown-o"></i></h4>
                   <img id="empty-panel-pr" src="assets/images/empty-panel.svg">
                 </div>
                 <div ng-show="currentActivity.summary">{{currentActivity.summary | limitTo:'300'}} ...</div>
@@ -146,7 +146,7 @@
                   </tbody>
                 </table>
                 <div class="dash-empty-panel" ng-if="!currentActivity.participants.length">
-                  <h4>Nenhum participante foi convidado ainda</h4>
+                  <h4>Nenhum participante foi convidado ainda <i class="fa fa-frown-o"></i></h4>
                   <img id="empty-panel-pr" src="assets/images/empty-panel.svg">
                 </div>
               </div>
@@ -159,7 +159,7 @@
               </div>
               <div class="panel-body">
                 <div class="dash-empty-panel" ng-if="!currentActivity.posts.length">
-                  <h4>Ninguém participou desta atividade</h4>
+                  <h4>Ninguém participou desta atividade <i class="fa fa-frown-o"></i></h4>
                   <img id="empty-panel-pr" src="assets/images/empty-panel.svg">
                 </div>
                 <div class="list-group" ng-if="currentActivity.posts.length">
