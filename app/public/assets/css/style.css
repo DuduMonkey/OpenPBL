@@ -567,8 +567,8 @@ td .fa {
     position: fixed;
     max-width: 80%;
     max-height: 80%;
-    bottom: -20px;
-    left: 42%;
+    bottom: 40px;
+    left: 40%;
 }
 
 #svg-dash-arrow {
