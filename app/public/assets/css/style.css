@@ -183,8 +183,9 @@ ul.sidebar li a {
 }
 
 .sidebar-list i {
-    margin-right: 20px;
+    margin-right: 12px;
     margin-top: 18px;
+    text-indent: 0;
 }
 
 .sidebar-main {
@@ -239,6 +240,7 @@ ul.sidebar .sidebar-list a {
     line-height: 50px;
     text-overflow: ellipsis;
     transition: all 200ms;
+    padding-right: 15px;
 }
 
 ul.sidebar .sidebar-list a.finished {
@@ -247,8 +249,8 @@ ul.sidebar .sidebar-list a.finished {
 
 ul.sidebar .sidebar-list a.finished img {
     height: 17px;
-    margin-right: 15px;
-    margin-top: 17px;
+    margin-right: 12px;
+    margin-left: -10px;
 }
 
 ul.sidebar .sidebar-list a:hover {
@@ -595,12 +597,14 @@ td .fa {
 .sidebar-help {
   position: fixed;
   width: 300px;
-  background: #fff;
-  bottom: 20px;
+  background: #D9DCD0;
+  color: #41423e;
+  bottom: 40px;
   top: 0;
   overflow-y: auto;
   text-align: justify;
-  border-right: 1px solid #eee;
+  border-right: 1px solid #adb0a6;
+  z-index: 100;
 }
 
 #sb-help-title{
@@ -618,24 +622,44 @@ td .fa {
   right: 0;
   bottom: 0;
   top: 0;
-  background: #666;
-  padding: 10px;
+  background: #D9DCD0;
+  padding: 0px;
 }
 
 .content-wrapper .panel {
   height: 100%;
+  border: none;
+  border-radius: 0;
   background-color: #2F4F4F;
 }
 
 .content-wrapper .panel-body {
   padding: 0px;
-  overflow-y: auto;
 }
 
 .content-wrapper .panel-heading {
   height: 60px;
+  border-radius: 0;
+  background: #fff;
+  z-index: 100;
+  -webkit-box-shadow: 0px 0px 19px -3px rgba(0,0,0,0.61);
+-moz-box-shadow: 0px 0px 19px -3px rgba(0,0,0,0.61);
+box-shadow: 0px 0px 19px -3px rgba(0,0,0,0.61);
 }
-
+.panel-footer {
+  position: fixed;
+  bottom: 0px;
+  height: 70px;
+  width: auto;
+  left: 300px;
+  right: 0px;
+  border-radius: 0;
+  border-top: none;
+  z-index: 10;
+  -webkit-box-shadow: 0px 0px 19px -3px rgba(0,0,0,0.61);
+  -moz-box-shadow: 0px 0px 19px -3px rgba(0,0,0,0.61);
+  box-shadow: 0px 0px 19px -3px rgba(0,0,0,0.61);
+}
 main {
   background: #FFF;
   width: 100%;
@@ -655,13 +679,13 @@ label {
   display: block;
   float: left;
   padding: 12px;
-  border-bottom: 3px solid #2C8DBC;
+  border-bottom: 4px solid #2C8DBC;
   background: #2C8DBC;
   margin-bottom: 0;
 }
 .fake {
   width: 14%;
-  height: 47px;
+  color: transparent;
 }
 label:not(.fake):hover {
   cursor: pointer;
@@ -673,10 +697,6 @@ input:disabled + label:hover {
   cursor: default;
   background-color: #2C8DBC;
 }
-/*.panel-content {
-  transition: all 3s;
-  padding: 15px;
-}*/
 #tab1:checked ~ #content1, #tab2:checked ~ #content2, #tab3:checked ~ #content3, #tab4:checked ~ #content4, #tab5:checked ~ #content5, #tab6:checked ~ #content6 {
   display: block;
   transition: all 2s;
@@ -690,24 +710,23 @@ input:checked + label {
 input:disabled + label {
   color: #56a3c9;
 }
-.panel-footer {
-  position: fixed;
-  bottom: 11px;
-  height: 70px;
-  width: auto;
-  left: 311px;
-  right: 11px;
-  float: bottom;
-}
+
 /* panel content per tab */
 .chalkboard {
+  position: fixed;
   color: #c0caca;
   font-size: 14px;
   font-weight: 300;
   padding: 10px;
   background-color: #2F4F4F;
+  overflow-y: auto;
+  width: auto;
+  right: 0px;
+  left: 300px;
+  bottom: 71px;
+  top: 107px;
 }
-#problem, #links, #resources {
+#problem, #links, #resources, #research, #resolution, #abstraction {
   border: 1px dashed #436060;
   border-radius: 10px;
   padding: 10px;
