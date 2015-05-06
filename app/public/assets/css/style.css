@@ -596,80 +596,108 @@ td .fa {
 */
 .sidebar-help {
   position: fixed;
-  width: 300px;
+  width: 285px;
   background: #D9DCD0;
   color: #41423e;
-  bottom: 40px;
-  top: 0;
+  bottom: 50px;
+  top: 60px;
   overflow-y: auto;
   text-align: justify;
-  border-right: 1px solid #adb0a6;
-  z-index: 100;
 }
 
-#sb-help-title{
+.sidebar-help-top {
+  position: fixed;
+  width: 285px;
+  background: #D9DCD0;
+  color: #41423e;
+  height: 60px;
+  top: 0px;
+  padding: 10px;
+}
+
+.sidebar-help-bottom {
+  position: fixed;
+  width: 285px;
+  background: #D9DCD0;
+  color: #41423e;
+  bottom: 0px;
+  height: 50px;
+  padding: 5px 0px 5px 10px;
+}
+
+#sb-help-title {
   padding: 20px;
   padding-bottom: 0;
 }
 
 #sb-help-content {
-  padding: 18px;
+  padding: 15px 10px 20px 20px;
 }
 
 .content-wrapper {
   position: fixed;
-  left: 300px;
+  left: 285px;
   right: 0;
   bottom: 0;
   top: 0;
   background: #D9DCD0;
-  padding: 0px;
+  padding: 10px 5px 10px 12px;
 }
 
 .content-wrapper .panel {
   height: 100%;
   border: none;
-  border-radius: 0;
-  background-color: #2F4F4F;
+  background-color: #aaa;
+  -webkit-box-shadow: 0px 0px 19px -3px rgba(0, 0, 0, 0.61);
+  -moz-box-shadow: 0px 0px 19px -3px rgba(0, 0, 0, 0.61);
+  box-shadow: 0px 0px 19px -3px rgba(0, 0, 0, 0.61);
 }
 
 .content-wrapper .panel-body {
   padding: 0px;
+  transition: all 2s;
 }
 
 .content-wrapper .panel-heading {
   height: 60px;
-  border-radius: 0;
   background: #fff;
   z-index: 100;
-  -webkit-box-shadow: 0px 0px 19px -3px rgba(0,0,0,0.61);
--moz-box-shadow: 0px 0px 19px -3px rgba(0,0,0,0.61);
-box-shadow: 0px 0px 19px -3px rgba(0,0,0,0.61);
+  padding: 20px;
 }
+
+.content-wrapper .panel-title {
+  color: #313949;
+  display: inline-block;
+  padding: 0px 10px;
+}
+
 .panel-footer {
   position: fixed;
-  bottom: 0px;
+  bottom: 10px;
   height: 70px;
   width: auto;
-  left: 300px;
-  right: 0px;
-  border-radius: 0;
+  left: 297px;
+  right: 5px;
   border-top: none;
+  background: #fff;
   z-index: 10;
-  -webkit-box-shadow: 0px 0px 19px -3px rgba(0,0,0,0.61);
-  -moz-box-shadow: 0px 0px 19px -3px rgba(0,0,0,0.61);
-  box-shadow: 0px 0px 19px -3px rgba(0,0,0,0.61);
+  -webkit-box-shadow: 0px -5px 12px -5px rgba(0, 0, 0, 0.41);
+  -moz-box-shadow: 0px -5px 12px -5px rgba(0, 0, 0, 0.41);
+  box-shadow: 0px -5px 12px -5px rgba(0, 0, 0, 0.41);
 }
+
 main {
   background: #FFF;
   width: 100%;
 }
 
-input, section {
+input,
+section {
   clear: both;
   display: none;
   transition: all 2s;
 }
+
 label {
   font-weight: bold;
   font-size: 14px;
@@ -679,39 +707,50 @@ label {
   display: block;
   float: left;
   padding: 12px;
-  border-bottom: 4px solid #2C8DBC;
+  border-bottom: 3px solid #2C8DBC;
   background: #2C8DBC;
   margin-bottom: 0;
 }
+
 .fake {
   width: 14%;
   color: transparent;
 }
+
 label:not(.fake):hover {
   cursor: pointer;
   text-decoration: none;
   background-color: #4198c2;
   transition: all 200ms;
 }
+
 input:disabled + label:hover {
   cursor: default;
   background-color: #2C8DBC;
 }
-#tab1:checked ~ #content1, #tab2:checked ~ #content2, #tab3:checked ~ #content3, #tab4:checked ~ #content4, #tab5:checked ~ #content5, #tab6:checked ~ #content6 {
+
+#tab1:checked ~ #content1,
+#tab2:checked ~ #content2,
+#tab3:checked ~ #content3,
+#tab4:checked ~ #content4,
+#tab5:checked ~ #content5,
+#tab6:checked ~ #content6 {
   display: block;
   transition: all 2s;
 }
+
 input:checked + label {
   color: #fff;
   border-bottom-color: #F9D695;
   text-decoration: none;
   transition: all 200ms;
 }
+
 input:disabled + label {
   color: #56a3c9;
 }
-
 /* panel content per tab */
+
 .chalkboard {
   position: fixed;
   color: #c0caca;
@@ -721,12 +760,19 @@ input:disabled + label {
   background-color: #2F4F4F;
   overflow-y: auto;
   width: auto;
-  right: 0px;
-  left: 300px;
-  bottom: 71px;
-  top: 107px;
+  right: 5px;
+  left: 297px;
+  bottom: 80px;
+  top: 117px;
+  transition: all 2s;
 }
-#problem, #links, #resources, #research, #resolution, #abstraction {
+
+#problem,
+#links,
+#resources,
+#research,
+#resolution,
+#abstraction {
   border: 1px dashed #436060;
   border-radius: 10px;
   padding: 10px;
