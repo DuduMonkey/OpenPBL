@@ -594,13 +594,14 @@ td .fa {
 /*
 *  Activity page and Sidebar help
 */
+
 .sidebar-help {
   position: fixed;
   width: 285px;
   background: #D9DCD0;
   color: #41423e;
-  bottom: 50px;
-  top: 60px;
+  bottom: 65px;
+  top: 170px;
   overflow-y: auto;
   text-align: justify;
 }
@@ -610,9 +611,21 @@ td .fa {
   width: 285px;
   background: #D9DCD0;
   color: #41423e;
-  height: 60px;
+  height: 170px;
   top: 0px;
   padding: 10px;
+}
+
+.sidebar-help-top a {
+  position: fixed;
+  font-size: 17px;
+  color: #41423e;
+}
+
+.svg-top {
+  height: 140px;
+  margin-left: 58px;
+  margin-top: 10px;
 }
 
 .sidebar-help-bottom {
@@ -621,17 +634,25 @@ td .fa {
   background: #D9DCD0;
   color: #41423e;
   bottom: 0px;
-  height: 50px;
-  padding: 5px 0px 5px 10px;
+  height: 65px;
+  padding: 5px 0px 0px 10px;
 }
 
 #sb-help-title {
-  padding: 20px;
+  padding: 15px 20px;
   padding-bottom: 0;
+  text-align: center;
 }
 
 #sb-help-content {
   padding: 15px 10px 20px 20px;
+}
+
+.btn-default.help {
+  height: 50px;
+  background-color: #adb0a6;
+  border: none;
+  font-size: 13px;
 }
 
 .content-wrapper {
@@ -752,6 +773,7 @@ input:disabled + label {
 /* panel content per tab */
 
 .chalkboard {
+  font-family: 'Cabin Sketch', cursive;
   position: fixed;
   color: #c0caca;
   font-size: 14px;
