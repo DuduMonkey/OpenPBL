@@ -3,22 +3,22 @@
   'use strict';
 
   // Modules in use
-  var authenticationService = require('../services/AuthenticationService');
+  var storyService = require('../services/StoryService');
 
   /**
     Define the post action for user authentication
     Return HTTP status 200 and the session token on valid authentication
   */
   exports.post = function (req, res) {
-    var userEmail = req.body.email;
-    var userPassword = req.body.password;
+    var activityId = req.params.id;
 
-    authenticationService.authenticateUser(userEmail, userPassword)
-      .then(function (authenticationResponse) {
-        res.status(200).send(authenticationResponse);
+    storyService.insertActivityStory(activityId, req.body)
+      .then(function (responseBag) {
+        res.status(200).send(responseBag);
       })
       .catch(function (error) {
         res.status(400).send(error);
       });
   };
+
 }());

@@ -10,10 +10,10 @@
 
   var ActivitySchema = new Schema({
     _creator: { type: String, ref: 'User' },
-    name: { type: String, required: true},
-    story: String,
-    status: {type: Number, min: 1, max: 7, default: 1},
-    created: {type: Date, default: Date.now},
+    name: { type: String, required: true },
+    story: { type: String, ref: 'Story', required: false },
+    status: {type: Number, min: 1, max: 7, default: 1 },
+    created: {type: Date, default: Date.now },
     participants: [{ type: String, ref: 'User'}]
   });
 
@@ -36,8 +36,33 @@
     });
 
     newActivity.save(function (err, activity) {
-      if (err) {
+      if (!!err) {
         deferred.reject(Exception.ERROR_CREATING_NEW_ACTIVITY);
+      }
+      deferred.resolve(activity);
+    });
+
+    return deferred.promise;
+  };
+
+  /**
+    Update an activity document by Id
+
+    updatedAttrs => attributes to be update
+
+    updatedAttrs format:
+    i.e:
+    {
+      
+    }
+  **/
+  ActivitySchema.statics.updateActivity = function (activityId, updatedAttrs) {
+    var deferred = Q.defer();
+    //, set = { $set: updatedAttrs };
+    
+    this.findByIdAndUpdate(activityId, updatedAttrs, function (err, activity) {
+      if (!!err) {
+        deferred.reject(Exception.ERROR_UPDATING_ACTIVITY);
       }
       deferred.resolve(activity);
     });
@@ -76,12 +101,12 @@
     var deferred = Q.defer()
     , query = this.find();
 
-    if (!!queryAttr.select) { 
-      query.select(queryAttr.select); 
+    if (!!queryAttr.select) {
+      query.select(queryAttr.select);
     }
 
     if (!!queryAttr.where.length) {
-      queryAttr.where.forEach(function (column, index){
+      queryAttr.where.forEach(function (column, index) {
         query.where(column).equals(queryAttr.conditions[index]);
       });
     }
@@ -93,10 +118,10 @@
     }
 
     query.exec(function (err, activities) {
-      if(err) { 
-        deferred.reject(Exception.ACTIVITY_LIST_FIND_ERROR); 
+      if (!!err) {
+        deferred.reject(Exception.ACTIVITY_LIST_FIND_ERROR);
       }
-      deferred.resolve(activities);      
+      deferred.resolve(activities);
     });
 
     return deferred.promise;

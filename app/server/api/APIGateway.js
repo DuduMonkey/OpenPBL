@@ -6,6 +6,7 @@
   var authentication = require('../rest/RESTAuthentication');
   var register = require('../rest/RESTRegister');
   var activity = require('../rest/RESTActivity');
+  var story = require('../rest/RESTStory');
   var roles = require('../rest/RESTRole');
 
   /**
@@ -51,5 +52,9 @@
     router.route('/activity')
       .post(activity.post)
       .get(activity.list);
+
+    // [POST] Story data to save activity story
+    router.route('/activity/:id/story')
+      .post(story.post);
   };
 }());
