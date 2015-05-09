@@ -84,6 +84,21 @@
         return deferred.promise;
       };
 
+      var getActivityById = function (activityId) {
+        var deferred = $q.defer()
+        , url = globalValues.API_URL + '/activity/' + activityId;
+
+        $http.get(url)
+          .then(function (response) {
+            deferred.resolve(response.data);
+          })
+          .catch(function (error) {
+            deferred.reject(error);
+          });
+
+        return deferred.promise;
+      };
+
       var getActivityFacts = function (activityId) {
         return factService.getFacts(activityId);
       };
@@ -126,6 +141,7 @@
         deleteActivityPartipant: deleteActivityPartipant,
         deleteActivityStory: deleteActivityStory,
         getActivities: getActivities,
+        getActivityById: getActivityById,
         getActivityFacts: getActivityFacts, 
         getActivityHypotheses: getActivityHypotheses,
         getActivityParticipants: getActivityParticipants,

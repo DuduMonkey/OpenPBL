@@ -2,7 +2,7 @@
   'use strict';
 
   angular.module('openpbl.directives')
-    .directive('pblDashboard', ['activityService', 'notificationService', function (activityService, notificationService) {
+    .directive('pblDashboard', ['$location', 'activityService', 'notificationService', function ($location, activityService, notificationService) {
       return {
         retrict: 'E',
         replace: true,
@@ -58,6 +58,12 @@
 
           scope.init = function () {
             scope.getActivities();
+          };
+
+          scope.openActivity = function (id) {
+            var route = '/activity/' + id;
+            console.log('openActivity', route);
+            $location.path(route);
           };
 
           scope.removeParticipant = function (participantId) {

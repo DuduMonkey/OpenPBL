@@ -13,6 +13,10 @@
           templateUrl: 'sections/dashboard/dashboard.html',
           controller: 'DashboardController'
         })
+        .when('/activity/:id', {
+          templateUrl: 'sections/activity/activity.html',
+          controller: 'ActivityController'
+        })
         .otherwise({
           redirectTo: '/'
         });
