@@ -24,6 +24,8 @@
     // Activity
     ERROR_CREATING_NEW_ACTIVITY: declareNewError('Erro na persistencia da nova atividade'),
     ACTIVITY_LIST_FIND_ERROR: declareNewError('Erro na busca da lista de atividades'),
+    ERROR_INSERTING_STORY: declareNewError('Erro ao salvar o problema'),
+    ERROR_UPDATING_ACTIVITY: declareNewError('Erro ao atualizar a atividade'),
     // JSON Helper
     PARSE_TO_JSON_EXCEPTION: declareNewError('Falha ao fazer o parse para JSON'),
     //Exception for not implemented functions
