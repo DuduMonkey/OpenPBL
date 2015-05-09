@@ -9,7 +9,7 @@
           var deferred = $q.defer();
           var url = globalValues.API_URL + '/login';
           var data = {
-            login: login,
+            email: login,
             password: password
           };
 
