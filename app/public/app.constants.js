@@ -3,7 +3,7 @@
 
   angular.module('openpbl')
     .constant('globalValues', {
-      API_URL: 'https://private-bec97-openpbl.apiary-mock.com/api',
+      API_URL: '/api',
       APP_NAME: 'OpenPBL',
       APP_VERSION: '1.0.0',
       KEY_AUTHENTICATION_TOKEN: '$AUTH_TOKEN',

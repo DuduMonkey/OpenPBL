@@ -12,7 +12,7 @@
   exports.get = function (req, res) {
     var userRoles = userRoleService.getRoleBag();
 
-    res.send(userRoles);
+    res.status(200).send(userRoles);
   };
   /*jslint unparam: false*/
 }());
