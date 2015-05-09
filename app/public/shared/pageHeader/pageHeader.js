@@ -15,8 +15,6 @@
           };
 
           scope.loadMenu = function () {
-            console.log('loadmenu');
-
             scope.menuItems = [];
             var menuItems = menuService.getMenuItems();
             var menuItem = null;

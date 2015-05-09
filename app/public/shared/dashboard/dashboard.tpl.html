@@ -6,12 +6,12 @@
       <p><i class="fa fa-home"></i>Painel do Usuário</p>
     </div>
     <div class="sidebar-title">
-      <span>Atividades</span><button class="btn btn-primary pull-right" ng-click="createnewActivity()">Criar nova</button>
+      <span>Atividades</span><button class="btn btn-primary pull-right" ng-click="createNewActivity()">Criar nova</button>
     </div>
     <div class="sidebar-items">
       <ul class="sidebar">
         <li class="sidebar-list" ng-repeat="activity in activities.active" ng-click="setCurrentActivity(activity)">
-          <a href="" ng-class="{activity.id === currentActivity.id}">{{activity.name}}<i class="fa fa-cube pull-right"></i></a>
+          <a href="" ng-class="{'active': activity.id === currentActivity.id}">{{activity.name}}<i class="fa fa-cube pull-right"></i></a>
         </li>
       </ul>
     </div>
@@ -46,9 +46,11 @@
     </div>
     <div class="header-actions pull-right">
       <div id="btn-open">
-        <button type="button" class="btn btn-primary btn-block" ng-click="">Abrir</button>
+        <button type="button" class="btn btn-primary btn-block" ng-click="openActivity(currentActivity._id)">Abrir</button>
       </div>
-      <a href=""><i class="fa fa-trash-o pull-right"></i></a>
+      <a href="javascript:void(0);" ng-click="deleteActivity(currentActivity.id)">
+        <i class="fa fa-trash-o pull-right"></i>
+      </a>
     </div>
   </div>
   <!-- End Activity Header Row -->
@@ -133,7 +135,11 @@
                     <tr ng-repeat="participant in currentActivity.participants">
                       <td>{{participant.name}}</td>
                       <td><span class="badge">{{participant.numberOfPosts}}</span></td>
-                      <td><i class="fa fa-user-times"></i></td>
+                      <td>
+                        <a href="javascript:void(0);" ng-click="removeParticipant(participant.id)">
+                          <i class="fa fa-user-times"></i>
+                        </a>
+                      </td>
                     </tr>
                   </tbody>
                 </table>
