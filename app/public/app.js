@@ -40,4 +40,12 @@
     // Configuração necessária para habilitar o CORS
     $locationProvider.html5Mode({ requireBase: true });
   }]);
+
+  app.run(['$rootScope', '$location', 'authenticationService', function($rootScope, $location, authenticationService) {
+    $rootScope.$on('$routeChangeStart', function() {
+      if (authenticationService.isAuthenticated() !== true) {
+        $location.path('/');
+      }
+    });
+  }]);
 }());
