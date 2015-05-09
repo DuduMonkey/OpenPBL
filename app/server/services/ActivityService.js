@@ -14,14 +14,12 @@
     with activity id and
   **/
   var newActivityResponseBag = function (activityData) {
-    var deferred = Q.defer()
-    , responseBag = {};
+    var responseBag = {};
     
     responseBag.id = activityData._id;
     responseBag.message = Message.SUCCESS_CREATING_ACTIVITY;
 
-    deferred.resolve(responseBag);
-    return deferred.promise;
+    return responseBag;
   };
 
   /** 
@@ -53,10 +51,8 @@
         return Activity.saveNewActivity(activity);
       })
       .then(function (newActivity) {
-        return newActivityResponseBag(newActivity);
-      })
-      .then(function (activityResponseBag) {
-        deferred.resolve(activityResponseBag);
+        var responseBag = newActivityResponseBag(newActivity);
+        deferred.resolve(responseBag);
       })
       .catch(function (error) {
         deferred.reject(error);
@@ -66,7 +62,7 @@
   };
 
   /**
-
+    Get teacher Activities
   **/
   var getTeacherActivities = function (token) {
     var deferred = Q.defer();
@@ -82,6 +78,10 @@
             {
               path: 'participants',
               select: '-_id name'
+            },
+            {
+              path: 'story',
+              select: '-_id description'
             }
           ]
         });
