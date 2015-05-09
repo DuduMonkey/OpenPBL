@@ -2,7 +2,7 @@
   'use strict';
 
   angular.module('openpbl.directives')
-    .directive('pblLogin', ['loginService', 'notificationService', 'registerService', 'roleService', function (loginService, notificationService, registerService, roleService) {
+    .directive('pblLogin', ['$location', 'loginService', 'notificationService', 'registerService', 'roleService', function ($location, loginService, notificationService, registerService, roleService) {
       return {
         restrict: 'E',
         replace: true,
@@ -19,6 +19,7 @@
                 .then(function () {
                   scope.init();
                   angular.element('#loginModal').modal('hide');
+                  $location.path('/dashboard');
                 })
                 .catch(function (error) {
                   notificationService.error('Erro', error);
@@ -65,7 +66,7 @@
 
                 // Tendo feito o cadastro com sucesso, faz login
                 // automaticamente do usuário
-                scope.loginData.user = user.email;
+                scope.loginData.email = user.email;
                 scope.loginData.password = user.password;
 
                 scope.login();
