@@ -63,7 +63,7 @@
   };
 
   /** 
-    Persist new user entity on database 
+    Schema method to persist new user document on database 
   **/
   UserSchema.statics.saveNewUser = function (userData) {
     var deferred = Q.defer();
