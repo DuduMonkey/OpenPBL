@@ -600,7 +600,7 @@ td .fa {
   width: 285px;
   background: #D9DCD0;
   color: #41423e;
-  bottom: 65px;
+  bottom: 60px;
   top: 170px;
   overflow-y: auto;
   text-align: justify;
@@ -634,8 +634,8 @@ td .fa {
   background: #D9DCD0;
   color: #41423e;
   bottom: 0px;
-  height: 65px;
-  padding: 5px 0px 0px 10px;
+  height: 60px;
+  padding: 5px 5px 0px 15px;
 }
 
 #sb-help-title {
@@ -649,10 +649,10 @@ td .fa {
 }
 
 .btn-default.help {
-  height: 50px;
+  height: 45px;
   background-color: #adb0a6;
-  border: none;
-  font-size: 13px;
+  border: 1px solid #D9DCD0;
+  font-size: 14px;
 }
 
 .content-wrapper {
@@ -773,7 +773,7 @@ input:disabled + label {
 /* panel content per tab */
 
 .chalkboard {
-  font-family: 'Cabin Sketch', cursive;
+  font-family: 'McLaren', cursive;
   position: fixed;
   color: #c0caca;
   font-size: 14px;
@@ -787,6 +787,25 @@ input:disabled + label {
   bottom: 80px;
   top: 117px;
   transition: all 2s;
+}
+
+.chalkboard h4 {
+  padding: 0px 0px 15px 15px;
+  font-size: 20px;
+  color: #bcdf8a;
+  opacity: 0.8;
+}
+
+.chalkboard h4 span {
+  position: relative;
+  margin-left: 15px;
+  color: #fff;
+  font-size: 11px;
+  bottom: 4px;
+}
+
+.chalkboard h4 a {
+  text-decoration: none;
 }
 
 #problem,
