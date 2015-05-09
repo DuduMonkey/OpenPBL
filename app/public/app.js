@@ -17,6 +17,15 @@
           templateUrl: 'sections/activity/activity.html',
           controller: 'ActivityController'
         })
+        .when('/about', {
+          templateUrl:'sections/about/about.html'
+        })
+        .when('/help', {
+          templateUrl:'sections/help/help.html'
+        })
+        .when('/pbl', {
+          templateUrl:'sections/pbl/pbl.html'
+        })
         .otherwise({
           redirectTo: '/'
         });
@@ -46,8 +55,23 @@
   }]);
 
   app.run(['$rootScope', '$location', 'authenticationService', function($rootScope, $location, authenticationService) {
-    $rootScope.$on('$routeChangeStart', function() {
-      if (authenticationService.isAuthenticated() !== true) {
+    $rootScope.$on('$routeChangeStart', function (event, next) {
+      var noAuth = ['/about', '/help', '/pbl']
+      , requiresAuth = true
+      , route = null;
+
+      if (angular.isDefined(next.$$route)) {
+        route = next.$$route.originalPath;
+
+        for (var i = 0, length = noAuth.length; i < length; i++) {
+          if (route === noAuth[i]) {
+            requiresAuth = false;
+            break;
+          }
+        }
+      }
+
+      if (requiresAuth === true && authenticationService.isAuthenticated() !== true) {
         $location.path('/');
       }
     });
