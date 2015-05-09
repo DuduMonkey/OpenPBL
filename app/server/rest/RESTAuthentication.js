@@ -18,7 +18,7 @@
         res.status(200).send(authenticationResponse);
       })
       .catch(function (error) {
-        res.send(error);
+        res.status(400).send(error);
       });
   };
 }());

@@ -2,8 +2,8 @@
   'use strict';
 
   angular.module('openpbl.directives')
-    .directive('pblPageHeader', ['$rootScope', 'appEvents', 'authenticationService', 'menuService',
-      function ($rootScope, appEvents, authenticationService, menuService) {
+    .directive('pblPageHeader', ['$rootScope', '$location', 'appEvents', 'authenticationService', 'menuService',
+      function ($rootScope, $location, appEvents, authenticationService, menuService) {
       return {
         restrict: 'E',
         replace: true,
@@ -34,6 +34,7 @@
 
           scope.logout = function () {
             authenticationService.logout();
+            $location.path('/');
           };
 
           // Tratar eventos de login e logout

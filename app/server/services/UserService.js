@@ -30,6 +30,29 @@
   };
 
   /**
+    Find all users in passed emailList
+  **/
+  var getUsersFromEmailList = function (emailListJSON) {
+    var deferred = Q.defer()
+    , listOfEmailCriteria = []
+    , emailSelector = 'email';
+
+    emailListJSON.forEach(function (emailObject) {
+      listOfEmailCriteria.push(emailObject.email);
+    });
+
+    User.findAllUsersIn(null, emailSelector, listOfEmailCriteria)
+      .then(function (users) {
+        deferred.resolve(users);
+      })
+      .catch(function (err) {
+        deferred.reject(err);
+      });
+
+    return deferred.promise;
+  };
+
+  /**
     Create an user response bag using chained promises
       First promise call gets the user for session
       Second promise call gets the role by role value on user entity
@@ -64,9 +87,27 @@
     return deferred.promise;
   };
 
+  /**
+    Get the passed attribute values for a passed list of users 
+  **/
+  var getAttributeFromUserList = function (attributeName, userList) {
+    var deferred = Q.defer()
+    , usersAttributeValues = [];
+
+    userList.forEach(function (user) {
+      usersAttributeValues.push(user[attributeName]);
+    });
+
+    deferred.resolve(usersAttributeValues);
+
+    return deferred.promise;
+  };
+
   // export the class
   module.exports = {
     getSessionUser: getSessionUser,
+    getUsersFromEmailList: getUsersFromEmailList,
+    getAttributeFromUserList: getAttributeFromUserList,
     getSessionUserResponseBag: getSessionUserResponseBag
   };
 }());

@@ -18,23 +18,19 @@
   var verifyUserCredentials = function (userMail, candidatePassword) {
     var deferred = Q.defer();
 
-    var query = {email: userMail};
-
-    User.findOne(query).exec(function (error, user) {
-      if (error) {
-        deferred.reject(Exception.USER_FIND_ERROR);
-      } else if (!user) {
+    User.getUserByEmail(userMail)
+      .then(function (user) {
+        if (!!user) {
+          return user.validatePassword(candidatePassword);
+        }
         deferred.reject(Exception.USER_NOT_FIND);
-      } else {
-        user.validatePassword(candidatePassword)
-          .then(function () {
-            deferred.resolve(user);
-          })
-          .catch(function (error) {
-            deferred.reject(error);
-          });
-      }
-    });
+      })
+      .then(function () {
+        deferred.resolve();
+      })
+      .catch(function (error) {
+        deferred.reject(error);
+      });
 
     return deferred.promise;
   };

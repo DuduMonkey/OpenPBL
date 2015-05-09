@@ -33,7 +33,7 @@
 
   <!-- Page Content -->
   <!-- Activity Header Row -->
-  <div class="row header" ng-hide="activities.length == 0">
+  <div class="row header" ng-hide="!currentActivity">
     <div class="col-xs-12">
       <div class="meta">
         <div class="page">
@@ -60,7 +60,7 @@
     <!-- Widgets row -->
     <div ui-view>
 
-      <div name="activity-content" ng-hide="activities.length == 0">
+      <div name="activity-content" ng-hide="!currentActivity">
         <div class="row">
           <div class="col-lg-3 col-md-6 col-xs-12">
             <div class="widget color-secondary-2-2">
@@ -166,7 +166,7 @@
       </div>
 
       <!-- Dashboard No Content -->
-      <div ng-hide="activities.length != 0">
+      <div ng-hide="currentActivity">
         <div class="row">
           <img id="svg-dash-arrow" src="assets/images/arrow.svg"/>
         </div>

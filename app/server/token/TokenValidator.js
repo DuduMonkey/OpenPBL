@@ -5,7 +5,6 @@
   // Modules in use
   var Token = require('./Token');
   var Q = require('q');
-  var Exception = require('../shared/Exceptions');
 
   /**
     Validate a token candidate with collection from database
@@ -17,16 +16,16 @@
   var validateCandidate = function (tokenCandidate) {
     var deferred = Q.defer();
 
-    var query = {token : tokenCandidate};
+    Token.getUserEmail(tokenCandidate)
+      .then(function (userMail) {
+        if (!!userMail) {
+          deferred.resolve();
+        }
+      })
+      .catch(function (error) {
+        deferred.reject(error);
+      });
 
-    /*jslint unparam: true*/
-    Token.find(query).exec(function (err, tokens) {
-      if (tokens.length > 0) {
-        deferred.resolve();
-      }
-      deferred.reject(Exception.INVALID_TOKEN);
-    });
-    /*jslint unparam: false*/
     return deferred.promise;
   };
 

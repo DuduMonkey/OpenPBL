@@ -4,7 +4,6 @@
 
   // Modules in use
   var activityService = require('../services/ActivityService');
-
   var _TOKEN_HEADER = 'x-pbl-token';
 
   /**
@@ -13,13 +12,26 @@
   */
   exports.post = function (req, res) {
     var headerToken = req.headers[_TOKEN_HEADER];
-
-    activityService.createNewActivity(headerToken, null)
-      .then(function (user) {
-        res.send(user);
+    
+    activityService.createNewActivity(headerToken, req.body)
+      .then(function (responseBag) {
+        res.send(responseBag);
       })
       .catch(function (error) {
-        res.send(error);
+        res.status(418).send(error);
       });
   };
+
+  exports.list = function (req, res) {
+    var headerToken = req.headers[_TOKEN_HEADER];
+
+    activityService.getTeacherActivities(headerToken)
+      .then(function (responseBag) {
+        res.send(responseBag);
+      })
+      .catch(function (error) {
+        res.status(418).send(error);
+      });
+  };
+
 }());
