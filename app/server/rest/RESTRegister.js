@@ -12,10 +12,10 @@
   exports.post = function (req, res) {
     registerService.registerUser(req.body)
       .then(function (responseBag) {
-        res.send(responseBag);
+        res.status(200).send(responseBag);
       })
       .catch(function (error) {
-        res.send(error);
+        res.status(400).send(error);
       });
   };
 }());
