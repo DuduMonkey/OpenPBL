@@ -160,7 +160,18 @@
   var insertNewUser = function (activityId, userEmail) {
     var deferred = Q.defer();
 
-    User.getUserByEmail(userEmail)
+    var activitySizeBeforeUpdate = GLOBAL.CONST_EMPTY_NUMBER;
+    var queryActivityParticipants = {
+          select: '-_id participants',
+          where: ['_id'],
+          conditions: [activityId]
+    }
+
+    Activity.findAllActivities(queryActivityParticipants)
+      .then(function (activities) {
+        activitySizeBeforeUpdate = activities[0].participants.length;
+        return User.getUserByEmail(userEmail);
+      })  
       .then(function (user) {
         if (user === GLOBAL.CONST_NULL_OBJECT) {
           return userService.inviteUserToApplication(userEmail, activityId);
@@ -171,7 +182,11 @@
         return Activity.updateActivity(activityId, updateQuery);
       })
       .then(function (activity) {
-        deferred.resolve(Message.SUCCESS_INSERTING_USER);
+        if (activity.participants.length > activitySizeBeforeUpdate) {
+          deferred.resolve(Message.SUCCESS_INSERTING_USER);
+        } else {
+          deferred.reject(Exception.ERROR_ACTIVITY_USER_INSERT);
+        }
       })
       .catch(function () {
         deferred.reject(Exception.USER_INSERTING_ERROR);
