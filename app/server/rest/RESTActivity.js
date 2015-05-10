@@ -46,4 +46,16 @@
       });
   };
 
+  exports.insertUser = function (req, res) {
+    var activityId = req.params.id;
+
+    activityService.insertNewUser(activityId, req.body.email)
+      .then(function (responseBag) {
+        res.status(200).send(responseBag);
+      })
+      .catch(function (error) {
+        res.status(400).send(error);
+      });
+  };
+
 }());

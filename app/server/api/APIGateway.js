@@ -60,5 +60,9 @@
     // [POST] Story data to save activity story
     router.route('/activity/:id/story')
       .post(story.post);
+
+    // [POST] User on activity
+    router.route('/activity/:id/participant')
+      .post(activity.insertUser);
   };
 }());
