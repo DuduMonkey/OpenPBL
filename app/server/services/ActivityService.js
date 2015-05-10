@@ -1,4 +1,4 @@
-/*global require, module*/
+/*global require, module, GLOBAL*/
 (function () {
   'use strict';
 
@@ -135,9 +135,27 @@
     return deferred.promise;
   };
 
+  /**
+    Delete an user activity by id
+  **/
+  var deleteActivity = function (activityId) {
+    var deferred = Q.defer();
+
+    Activity.removeActivity(activityId)
+      .then(function () {
+        deferred.resolve();
+      })
+      .catch(function (error) {
+        deferred.reject(error);
+      });
+
+    return deferred.promise;
+  };
+
   // export the class
   module.exports = {
     createNewActivity: createNewActivity,
-    getTeacherActivities : getTeacherActivities
+    getTeacherActivities : getTeacherActivities,
+    deleteActivity: deleteActivity
   };
 }());
