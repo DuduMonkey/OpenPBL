@@ -105,13 +105,13 @@
       query.select(queryAttr.select);
     }
 
-    if (!!queryAttr.where.length) {
+    if (!!queryAttr.where && !!queryAttr.where.length) {
       queryAttr.where.forEach(function (column, index) {
         query.where(column).equals(queryAttr.conditions[index]);
       });
     }
 
-    if (!!queryAttr.join.length) {
+    if (!!queryAttr.join && !!queryAttr.join.length) {
       queryAttr.join.forEach(function (documentAttr) {
         query.populate(documentAttr);
       });
