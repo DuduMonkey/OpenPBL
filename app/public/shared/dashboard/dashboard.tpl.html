@@ -3,7 +3,7 @@
   <!-- Sidebar -->
   <div id="sidebar-wrapper">
     <div class="sidebar-main">
-      <p><i class="fa fa-home"></i>Painel do Usuário</p>
+      <p>Painel do Usuário<i class="fa fa-home"></i></p>
     </div>
     <div class="sidebar-title">
       <span>Atividades</span><button class="btn btn-primary pull-right" ng-click="createNewActivity()">Criar nova</button>
@@ -11,7 +11,12 @@
     <div class="sidebar-items">
       <ul class="sidebar">
         <li class="sidebar-list" ng-repeat="activity in activities.active" ng-click="setCurrentActivity(activity)">
-          <a href="" ng-class="{'active': activity.id === currentActivity.id}">{{activity.name}}<i class="fa fa-cube pull-right"></i></a>
+          <a href="" ng-class="{activity.id === currentActivity.id}"><i class="fa fa-cube pull-right"></i>{{activity.name}}</a>
+        </li>
+      </ul>
+      <ul class="sidebar">
+        <li class="sidebar-list" ng-repeat="activity in activities.finished" ng-click="setCurrentActivity(activity)">
+          <a class="finished" href="" ng-class="{activity.id === currentActivity.id}"><img class="pull-right" src="assets/images/finished-tag.svg"/>{{activity.name}}</a>
         </li>
       </ul>
     </div>
@@ -37,20 +42,13 @@
     <div class="col-xs-12">
       <div class="meta">
         <div class="page">
-          <span class="panel-title">{{currentActivity.name}}</span>
-        </div>
-        <div class="activity-details">
-          Detalhes da atividade
+          <h3>{{currentActivity.name}}</h3>
         </div>
       </div>
     </div>
     <div class="header-actions pull-right">
-      <div id="btn-open">
-        <button type="button" class="btn btn-primary btn-block" ng-click="openActivity(currentActivity._id)">Abrir</button>
-      </div>
-      <a href="javascript:void(0);" ng-click="deleteActivity(currentActivity.id)">
-        <i class="fa fa-trash-o pull-right"></i>
-      </a>
+      <button id="btn-open" type="button" class="btn btn-primary btn-block" ng-click="openActivity(currentActivity._id)"><i class="fa fa-graduation-cap"></i> Abrir</button>
+      <button id="btn-delete" type="button" class="btn btn-danger btn-block" ng-click="deleteActivity(currentActivity.id)"><i class="fa fa-trash"></i> Excluir</button>
     </div>
   </div>
   <!-- End Activity Header Row -->
@@ -63,7 +61,7 @@
       <div name="activity-content" ng-hide="!currentActivity">
         <div class="row">
           <div class="col-lg-3 col-md-6 col-xs-12">
-            <div class="widget color-secondary-2-2">
+            <div class="widget">
               <div class="widget-body">
                 <div class="widget-icon pull-left">
                   <i class="fa fa-users"></i>
@@ -74,7 +72,7 @@
             </div>
           </div>
           <div class="col-lg-3 col-md-6 col-xs-12">
-            <div class="widget color-secondary-1-2">
+            <div class="widget">
               <div class="widget-body">
                 <div class="widget-icon pull-left">
                   <i class="fa fa-anchor"></i>
@@ -85,7 +83,7 @@
             </div>
           </div>
           <div class="col-lg-3 col-md-6 col-xs-12">
-            <div class="widget color-primary-2">
+            <div class="widget">
               <div class="widget-body">
                 <div class="widget-icon pull-left">
                   <i class="fa fa-line-chart"></i>
@@ -96,12 +94,12 @@
             </div>
           </div>
           <div class="col-lg-3 col-md-6 col-xs-12">
-            <div class="widget color-secondary-3-2">
+            <div class="widget">
               <div class="widget-body">
                 <div class="widget-icon pull-left">
                   <i class="fa fa-calendar"></i>
                 </div>
-                <div class="title"><h3>{{currentActivity.created | date:'dd/MM/yy' }}</h3></div>
+                <div class="title"><h3>{{currentActivity.created | date:'dd/MM/yy'}}</h3></div>
                 <div class="comment"><h5>Data de Criação</h5></div>
               </div>
             </div>
@@ -113,17 +111,23 @@
           <div class="col-lg-7 col-md-12 col-xs-12">
             <div class="panel panel-default">
               <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-info-circle"> Problema</i></h3>
+                <h3 class="panel-title"><i class="fa fa-info-circle"></i> Resumo do Problema</h3>
               </div>
-              <div class="panel-body">{{currentActivity.summary | limitTo:'300'}} ...</div>
+              <div class="panel-body">
+                <div class="dash-empty-panel" ng-hide="currentActivity.summary">
+                  <h4>O problema ainda não foi definido nesta atividade <i class="fa fa-frown-o"></i></h4>
+                  <img id="empty-panel-pr" src="assets/images/empty-panel.svg">
+                </div>
+                <div ng-show="currentActivity.summary">{{currentActivity.summary | limitTo:'300'}} ...</div>
+              </div>
             </div>
             <div class="panel panel-default">
               <div class="panel-heading">
-                <button type="button" class="btn btn-default navbar-btn navbar-right"><i class="fa fa-user-plus"> Adicionar</i></button>
-                <h3 class="panel-title"><i class="fa fa-users"> Participantes</i></h3>
+                <button type="button" class="btn btn-default navbar-btn navbar-right"><i class="fa fa-user-plus"></i>Adicionar</button>
+                <h3 class="panel-title"><i class="fa fa-users"></i> Participantes</h3>
               </div>
               <div class="panel-body">
-                <table class="table table-hover">
+                <table class="table table-hover" ng-if="currentActivity.participants.length">
                   <thead>
                     <tr>
                       <th>Nome</th>
@@ -132,7 +136,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr ng-repeat="participant in currentActivity.participants">
+                    <tr ng-repeat="participant in currentActivity.participants | orderBy:'-numberOfPosts'">
                       <td>{{participant.name}}</td>
                       <td><span class="badge">{{participant.numberOfPosts}}</span></td>
                       <td>
@@ -143,20 +147,28 @@
                     </tr>
                   </tbody>
                 </table>
+                <div class="dash-empty-panel" ng-if="!currentActivity.participants.length">
+                  <h4>Nenhum participante foi convidado ainda <i class="fa fa-frown-o"></i></h4>
+                  <img id="empty-panel-pr" src="assets/images/empty-panel.svg">
+                </div>
               </div>
             </div>
           </div>
           <div class="col-lg-5 col-md-12 col-xs-12">
             <div class="panel panel-default">
               <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-tags"> Participações recentes</i></h3>
+                <h3 class="panel-title"><i class="fa fa-tags"></i> Participações recentes</h3>
               </div>
               <div class="panel-body">
-                <div class="list-group">
-                  <a class="list-group-item" ng-repeat="participant in currentActivity.participants">
-                    <h4 class="list-group-item-heading">{{participant.name}} postou um fato</h4>
-                    <p class="list-group-item-text">Aliquam eleifend ligula nec nulla cursus gravida. Curabitur consequat lectus lorem, id semper urna vulputate vel. Proin convallis turpis pretium velit venenatis, pulvinar pharetra massa dapibus</p>
-                    <p><small class="pull-right">12/03/15</small></p>
+                <div class="dash-empty-panel" ng-if="!currentActivity.posts.length">
+                  <h4>Ninguém participou desta atividade <i class="fa fa-frown-o"></i></h4>
+                  <img id="empty-panel-pr" src="assets/images/empty-panel.svg">
+                </div>
+                <div class="list-group" ng-if="currentActivity.posts.length">
+                  <a class="list-group-item" ng-repeat="post in currentActivity.posts">
+                    <h4 class="list-group-item-heading">{{post.owner}} postou um fato</h4>
+                    <p class="list-group-item-text">{{post.content}}</p>
+                    <p><small class="pull-right">{{currentActivity.created | date:'dd/MM/yy'}}</small></p>
                   </a>
                 </div>
               </div>
@@ -172,7 +184,7 @@
         </div>
         <div class="row">
           <div class="col-lg-12 col-md-12 col-xs-12">
-            <img id="svg-dashboard-init" src="assets/images/dashboard-empty.svg" />
+            <img id="svg-dashboard-init" src="assets/images/dashboard-empty.svg"/>
           </div>
         </div>
       </div>
