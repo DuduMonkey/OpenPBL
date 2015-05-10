@@ -205,8 +205,9 @@
 
               <!-- Nome -->
               <div class="form-group">
-                <label for="taskName">Nome</label>
+                <label for="taskName">Nome da atividade</label>
                 <input type="text" class="form-control" name="taskName" placeholder="Nome" required ng-model="newActivity.name">
+                <small>O nome da atividade deve ser simples e objetivo. Ex: <i>Teorema de pitágoras</i></small>
               </div>
             </form>
 
@@ -214,17 +215,18 @@
             <div class="form-group">
               <label for="taskSummary">Participantes</label>
               <div class="input-group">
-                <input type="email" class="form-control" name="taskNewParticipant" placeholder="aluno@escola.com.br" required ng-model="newActivity.participant">
+                <input type="email" class="form-control" name="taskNewParticipant" placeholder="aluno@exemplo.com.br" required ng-model="newActivity.participant">
                 <span class="input-group-btn">
                   <button type="button" class="btn btn-primary" ng-disabled="!newActivity.participant || taskNewParticipant.$invalid" ng-click="addNewParticipant(newActivity.participant)">Adicionar</button>
                 </span>
               </div><!-- /input-group -->
+              <small>Use este campo para convidar alunos para esta atividade. Você também pode convidá-los mais tarde, não se preocupe.</small> 
 
               <!-- Lista de participantes convidados -->
               <table class="table table-striped talbe-condensed" ng-if="newActivity.participants && newActivity.participants.length > 0">
                 <thead>
                   <tr>
-                    <th class="col-md-10">E-mail</th>
+                    <th class="col-md-10">e-mail</th>
                     <th class="col-md-2">Ações</th>
                   </tr>
                 </thead>
@@ -232,7 +234,7 @@
                   <tr ng-repeat="participant in newActivity.participants">
                     <td>{{participant.email}}</td>
                     <td>
-                      <button type="button" class="btn btn-danger" ng-click="removeParticipant($index)">&times; Remover</button>
+                      <a class="modal-del" ng-click="removeParticipant($index)">&times; remover</a>
                     </td>
                   </tr>
                 </tbody>

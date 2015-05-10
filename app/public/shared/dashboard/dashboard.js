@@ -32,7 +32,7 @@
           scope.deleteActivity = function (activityId) {
             activityService.deleteActivity(activityId)
               .then(function (response) {
-                notificationService.success(respose.message);
+                notificationService.success(response.message);
                 scope.init();
               })
               .catch(function (error) {

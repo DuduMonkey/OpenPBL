@@ -584,6 +584,11 @@ td .fa {
     border-top: 1px solid #2d586e;
 }
 
+.modal-del {
+    color: #B75252;
+    text-decoration: none;
+}
+
 /*
 * SVGs
 */
