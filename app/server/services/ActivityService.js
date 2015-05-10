@@ -4,7 +4,9 @@
 
   //Modules in use
   var Activity = require('../models/Activity');
+  var User = require('../models/User');
   var Message = require('../shared/MessageResource');
+  var Exception = require('../shared/Exceptions');
   var userService = require('./UserService');
   var Q = require('q');
 
@@ -152,10 +154,37 @@
     return deferred.promise;
   };
 
+  /**
+    Insert a (new)User on Activity
+  **/
+  var insertNewUser = function (activityId, userEmail) {
+    var deferred = Q.defer();
+
+    User.getUserByEmail(userEmail)
+      .then(function (user) {
+        if (user === GLOBAL.CONST_NULL_OBJECT) {
+          return userService.inviteUserToApplication(userEmail, activityId);
+        }
+        var updateQuery = {
+          $push: { participants: user._id }
+        };
+        return Activity.updateActivity(activityId, updateQuery);
+      })
+      .then(function (activity) {
+        deferred.resolve(Message.SUCCESS_INSERTING_USER);
+      })
+      .catch(function () {
+        deferred.reject(Exception.USER_INSERTING_ERROR);
+      });
+
+    return deferred.promise;
+  };
+
   // export the class
   module.exports = {
     createNewActivity: createNewActivity,
     getTeacherActivities : getTeacherActivities,
-    deleteActivity: deleteActivity
+    deleteActivity: deleteActivity,
+    insertNewUser: insertNewUser,
   };
 }());
