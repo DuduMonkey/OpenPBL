@@ -54,7 +54,7 @@
         res.status(200).send(responseBag);
       })
       .catch(function (error) {
-        res.status(401).send(error);
+        res.status(400).send(error);
       });
   };
 
