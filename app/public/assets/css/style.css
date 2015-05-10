@@ -541,7 +541,6 @@ td .fa {
 * Modals 
 */
 .modal-header {
-    background: #16465e url("../images/logo-mod.png") no-repeat 50% 20%;
     border-radius: 5px 5px 0px 0px;
 }
 
@@ -550,16 +549,15 @@ td .fa {
 }
 
 .modal-header, .modal-footer {
-    background-color: #16465e;
+    background: #16465e;
     color: #D9DCD0;
 }
 
 .modal-title {
-    margin-top: 65px;
-    padding-top: 8px;
+    margin-top: -5px;
+    padding-top: 0px;
     padding-left: 20px;
     margin-bottom: -5px;
-    border-top: 1px solid #2d586e;
 }
 
 .modal-body {
@@ -576,7 +574,15 @@ td .fa {
     margin: 30px auto;
 }
 
+#login-modal .modal-header {
+    background: #16465e url("../images/logo-mod.png") no-repeat 50% 20%;
+}
 
+#login-modal .modal-title {
+    margin-top: 65px;
+    padding-top: 8px;
+    border-top: 1px solid #2d586e;
+}
 
 /*
 * SVGs
