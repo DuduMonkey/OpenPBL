@@ -3,7 +3,7 @@
 
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand" href="#/dashboard">
         <img src="assets/images/logo.png" />
       </a>
     </div>
@@ -13,16 +13,19 @@
 
       <!-- Esquerda -->
       <ul class="nav navbar-nav">
-      	<li ng-repeat="item in menuItems">
-      		<a href="{{item.href}}">{{item.title}}</a>
-      	</li>
+
       </ul>
 
       <!-- Direita -->
       <ul class="nav navbar-nav navbar-right">
+        <li ng-if="isAuthenticated === false"><a href="">Conheça o PBL</a></li>
+        <li ng-if="isAuthenticated === false"><a href="">Sobre o sistema</a></li>
+        <li ng-if="isAuthenticated === false"><a href="">Ajuda</a></li>
+        <li ng-if="isAuthenticated === true"><p>Bem vindo, Fulaninho!</p></li>
+        <li ng-if="isAuthenticated === true"><img src="assets/images/user-profile2.png"/></li>
         <li>
-          <button type="button" class="btn btn-primary" ng-click="openLogin()" ng-if="isAuthenticated === false">Login</button>
-          <button type="button" class="btn btn-primary" ng-click="logout()" ng-if="isAuthenticated === true">Logout</button>
+          <button type="button" class="btn btn-primary" ng-click="openLogin()" ng-if="isAuthenticated === false">Entrar</button>
+          <a href="" ng-click="logout()" ng-if="isAuthenticated === true">Sair</a>
         </li>
       </ul>
     </div><!-- /.navbar-collapse -->
