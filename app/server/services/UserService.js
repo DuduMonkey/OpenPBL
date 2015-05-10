@@ -109,7 +109,7 @@
   var inviteUserToApplication = function (userEmail, activityId) {
     var deferred = Q.defer();
 
-    deferred.resolve();
+    deferred.resolve({participants: new Array(99)});
 
     return deferred.promise;
   };
