@@ -1,4 +1,4 @@
-/*global process, module*/
+/*global process, module, GLOBAL*/
 (function () {
   'use strict';
 
@@ -20,18 +20,20 @@
   /**
     Private Fields:
 
-      configurePublicPath     =>  Set the default public acessible path as 'app/public'
+      configurePublicPath       =>  Set the default public acessible path as 'app/public'
 
-      configureCookieParser   =>  Get all the cookies baby (͡°͜ʖ͡°)
+      configureCookieParser     =>  Get all the cookies baby (͡°͜ʖ͡°)
 
-      configureBodyParser     =>  Enable parsing html forms and URL encoded JSON
+      configureBodyParser       =>  Enable parsing html forms and URL encoded JSON
 
-      configureDatabase       =>  Gear UP the database mongoose communication, 
-                                  by default, 'mongodb://' is already set.
+      configureDatabase         =>  Gear UP the database mongoose communication, 
+                                    by default, 'mongodb://' is already set.
 
-      configureSessionSecret  =>  Validate the session secret, case the environment 
-                                  variable are undefined, uses one randomic generated
-                                  word as SECRET
+      configureSessionSecret    =>  Validate the session secret, case the environment 
+                                    variable are undefined, uses one randomic generated
+                                    word as SECRET
+
+      configureGlobalConstants  => Create global constants
   */
   var configurePublicPath = function (express, path) {
     globalApplication.use(express.static(path.resolve('app/public')));
@@ -55,6 +57,14 @@
     process.env.SECRET = process.env.SECRET || generateRandomWord();
   };
 
+  var configureGlobalConstants = function () {
+    GLOBAL.CONST_EMPTY_STRING = '';
+    GLOBAL.CONST_EMPTY_NUMBER = 0;
+    GLOBAL.CONST_EMPTY_LIST = [];
+    GLOBAL.CONST_EMPTY_OBJECT = {};
+    GLOBAL.CONST_NULL_OBJECT = null;
+  };
+
   // Initalize all the express server configurations.
   module.exports = function (express, app, path, mongoose, cookieParser, bodyParser) {
 
@@ -68,6 +78,8 @@
     configureBodyParser(bodyParser);
 
     configureDataBase(mongoose, databaseURI);
+
+    configureGlobalConstants();
 
     configureSessionSecret();
   };

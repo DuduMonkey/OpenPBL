@@ -1,4 +1,4 @@
-/*global require, module*/
+/*global require, module, GLOBAL*/
 (function () {
   'use strict';
 
@@ -15,11 +15,49 @@
   **/
   var newActivityResponseBag = function (activityData) {
     var responseBag = {};
-    
+
     responseBag.id = activityData._id;
     responseBag.message = Message.SUCCESS_CREATING_ACTIVITY;
 
     return responseBag;
+  };
+
+  /**
+    Transform a list of activities into an response bag
+  **/
+  var activityListResponseBag = function (activities) {
+    var _responseBag = {
+      activities: []
+    };
+
+    function getUserListSmallBag(userList) {
+      var _listBag = [];
+
+      userList.forEach(function (user) {
+        var userBag = {
+          name: user.name,
+          numberOfPosts: !!user.posts ? user.posts.length : GLOBAL.CONST_EMPTY_NUMBER
+        };
+        _listBag.push(userBag);
+      });
+
+      return _listBag;
+    }
+
+    activities.forEach(function (activity) {
+      var activityBag = {
+        id: activity._id,
+        name: activity.name,
+        summary: !!activity.story ? activity.story.description : GLOBAL.CONST_EMPTY_STRING,
+        status: activity.status,
+        created: activity.created,
+        participants: getUserListSmallBag(activity.participants)
+      };
+
+      _responseBag.activities.push(activityBag);
+    });
+
+    return _responseBag;
   };
 
   /** 
@@ -87,7 +125,25 @@
         });
       })
       .then(function (activities) {
-        deferred.resolve({activities: activities});
+        var responseBag = activityListResponseBag(activities);
+        deferred.resolve(responseBag);
+      })
+      .catch(function (error) {
+        deferred.reject(error);
+      });
+
+    return deferred.promise;
+  };
+
+  /**
+    Delete an user activity by id
+  **/
+  var deleteActivity = function (activityId) {
+    var deferred = Q.defer();
+
+    Activity.removeActivity(activityId)
+      .then(function () {
+        deferred.resolve();
       })
       .catch(function (error) {
         deferred.reject(error);
@@ -99,6 +155,7 @@
   // export the class
   module.exports = {
     createNewActivity: createNewActivity,
-    getTeacherActivities : getTeacherActivities
+    getTeacherActivities : getTeacherActivities,
+    deleteActivity: deleteActivity
   };
 }());
