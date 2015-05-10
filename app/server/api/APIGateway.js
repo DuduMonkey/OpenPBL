@@ -53,6 +53,10 @@
       .post(activity.post)
       .get(activity.list);
 
+    // [DELETE] Activity from user  
+    router.route('/activity/:id')
+      .delete(activity.delete);
+
     // [POST] Story data to save activity story
     router.route('/activity/:id/story')
       .post(story.post);

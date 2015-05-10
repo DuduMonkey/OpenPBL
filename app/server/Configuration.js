@@ -1,4 +1,4 @@
-/*global process, module*/
+/*global process, module, GLOBAL*/
 (function () {
   'use strict';
 
