@@ -21,7 +21,7 @@
         <li ng-if="isAuthenticated === false"><a href="">Conheça o PBL</a></li>
         <li ng-if="isAuthenticated === false"><a href="">Sobre o sistema</a></li>
         <li ng-if="isAuthenticated === false"><a href="">Ajuda</a></li>
-        <li ng-if="isAuthenticated === true"><p>Bem vindo, Fulaninho!</p></li>
+        <li ng-if="isAuthenticated === true"><p>Bem vindo, <span>Fulaninho</span>!</p></li>
         <li ng-if="isAuthenticated === true"><img src="assets/images/user-profile2.png"/></li>
         <li>
           <button type="button" class="btn btn-primary" ng-click="openLogin()" ng-if="isAuthenticated === false">Entrar</button>
