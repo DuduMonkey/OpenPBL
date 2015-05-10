@@ -18,7 +18,6 @@
     USER_PERSISTENCE_ERROR: declareNewError('Erro na persistencia dos dados de usuário'),
     USER_NOT_FIND: declareNewError('Email inválido'),
     USER_LIST_FIND_ERROR: declareNewError('Erro na busca da lista de usuários'),
-    USER_INSERTING_ERROR: declareNewError('Erro ao inserir novo usuário'),
     // Password
     PASSWORD_HASHING_ERROR: declareNewError('Erro no hash de senha'),
     PASSWORD_NOT_MATCH: declareNewError('A senha não confere'),
@@ -29,6 +28,8 @@
     ERROR_UPDATING_ACTIVITY: declareNewError('Erro ao atualizar a atividade'),
     ERROR_DELETE_ACTIVITY: declareNewError('Erro ao deletar a atividade'),
     INVALID_ACTIVITY_TO_DELETION: declareNewError('Atividade para exclusão inexistente'),
+    ERROR_ACTIVITY_USER_INSERT: declareNewError('O usuário já foi convidado'),
+    USER_INSERTING_ERROR: declareNewError('Erro ao inserir novo usuário'),
     // JSON Helper
     PARSE_TO_JSON_EXCEPTION: declareNewError('Falha ao fazer o parse para JSON'),
     //Exception for not implemented functions
