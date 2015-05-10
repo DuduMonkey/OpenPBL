@@ -177,7 +177,7 @@
           return userService.inviteUserToApplication(userEmail, activityId);
         }
         var updateQuery = {
-          $push: { participants: user._id }
+          $addToSet: { participants: user._id }
         };
         return Activity.updateActivity(activityId, updateQuery);
       })
