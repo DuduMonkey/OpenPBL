@@ -23,6 +23,7 @@
           $rootScope.$broadcast(appEvents.USER_LOGOUT);
         },
         setUser: function (user) {
+          user = JSON.stringify(user);
           storageService.set(globalValues.KEY_USER_DATA, user);
         },
         setToken: function (token) {
