@@ -23,11 +23,16 @@
 
       var deleteActivity = function (activityId) {
         var deferred = $q.defer()
-        , url = globalValues.API_URL + '/activity/' + activityId;
+        //, url = globalValues.API_URL + '/activity/' + activityId;
+        , url = 'http://private-bec97-openpbl.apiary-mock.com/api/activity/' + activityId;
 
         $http.delete(url)
-          .then(function (response) {
-            deferred.resolve(response.data);
+          .then(function () {
+            var response = {
+              message: 'Atividade removida com sucesso'
+            }
+
+            deferred.resolve(response);
           })
           .catch(function (error) {
             deferred.reject(error);
