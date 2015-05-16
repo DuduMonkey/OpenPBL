@@ -58,4 +58,17 @@
       });
   };
 
+  exports.removeUser = function (req, res) {
+    var activityId = req.params.activityId;
+    var userId = req.params.userId;
+
+    activityService.removeUser(activityId, userId)
+      .then(function (responseBag) {
+        res.status(200).send(responseBag);
+      })
+      .catch(function (error) {
+        res.status(500).send(error);
+      });
+  };
+
 }());
