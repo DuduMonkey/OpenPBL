@@ -129,8 +129,8 @@ Navbar
  .sidebar-footer div a:hover { background: #5a606d }
  .row.header { background: #fff }
  .widget { background: #8dc295 }
- ul.sidebar .sidebar-list a:hover, ul.sidebar .sidebar-list a:active { background: #628ead }
- ul.sidebar .sidebar-list a:focus { background: #272d3a }
+ ul.sidebar .sidebar-list a:hover { background: #628ead }
+ ul.sidebar .sidebar-list a:focus, ul.sidebar .sidebar-list a:active { background: #272d3a }
 
  #page-wrapper {
      position: relative;
@@ -625,13 +625,14 @@ td .fa {
 /*
 *  Activity page and Sidebar help
 */
+
 .sidebar-help {
   position: fixed;
   width: 285px;
   background: #D9DCD0;
   color: #41423e;
   bottom: 60px;
-  top: 170px;
+  top: 220px;
   overflow-y: auto;
   text-align: justify;
 }
@@ -642,7 +643,7 @@ td .fa {
   background: #D9DCD0;
   color: #41423e;
   height: 170px;
-  top: 0px;
+  top: 50px;
   padding: 10px;
 }
 
@@ -690,7 +691,7 @@ td .fa {
   left: 285px;
   right: 0;
   bottom: 0;
-  top: 0;
+  top: 50px;
   background: #D9DCD0;
   padding: 10px 5px 10px 12px;
 }
@@ -826,7 +827,7 @@ input:disabled + label {
   right: 5px;
   left: 297px;
   bottom: 80px;
-  top: 117px;
+  top: 167px;
   transition: all 2s;
 }
 
