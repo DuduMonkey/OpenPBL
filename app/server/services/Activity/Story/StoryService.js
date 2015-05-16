@@ -2,10 +2,10 @@
   'use strict';
 
   //Modules in use
-  var Story = require('../models/Story');
-  var Activity = require('../models/Activity');
-  var activityState = require('../models/constants/activity_state');
-  var Message = require('../shared/MessageResource');
+  var Story = require('../../../models/Story');
+  var Activity = require('../../../models/Activity');
+  var activityState = require('../../../models/constants/activity_state');
+  var Message = require('../../../shared/MessageResource');
   var Q = require('q');
 
   var persistedStoryResponseBag = function () {

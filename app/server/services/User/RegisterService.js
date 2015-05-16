@@ -3,10 +3,10 @@
   'use strict';
 
   // Modules in use
-  var User = require('../models/User');
+  var User = require('../../models/User');
+  var Exception = require('../../shared/Exceptions');
+  var Message = require('../../shared/MessageResource');
   var Q = require('q');
-  var Exception = require('../shared/Exceptions');
-  var Message = require('../shared/MessageResource');
 
   /**
     Validate if email from new user already exists on database
