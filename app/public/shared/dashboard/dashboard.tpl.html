@@ -6,7 +6,7 @@
       <p>Painel do Usuário<i class="fa fa-home"></i></p>
     </div>
     <div class="sidebar-title">
-      <span>Atividades</span><button class="btn btn-primary pull-right" ng-click="createNewActivity()">Criar nova</button>
+      <span>Atividades</span><button class="btn btn-primary pull-right" ng-click="createNewActivity()" pbl-permission="Professor">Criar nova</button>
     </div>
     <div class="sidebar-items">
       <ul class="sidebar">
@@ -47,8 +47,8 @@
       </div>
     </div>
     <div class="header-actions pull-right">
+      <button id="btn-delete" type="button" class="btn btn-danger btn-block" ng-click="openComfirmActivityDeleteModal()" pbl-permission="Professor"><i class="fa fa-trash"></i> Excluir</button>
       <button id="btn-open" type="button" class="btn btn-primary btn-block" ng-click="openActivity(currentActivity.id)"><i class="fa fa-graduation-cap"></i> Abrir</button>
-      <button id="btn-delete" type="button" class="btn btn-danger btn-block" ng-click="openComfirmActivityDeleteModal()"><i class="fa fa-trash"></i> Excluir</button>
     </div>
   </div>
   <!-- End Activity Header Row -->
@@ -123,7 +123,7 @@
             </div>
             <div class="panel panel-default">
               <div class="panel-heading">
-                <button type="button" class="btn btn-default navbar-btn navbar-right" ng-click="openNewParticipantModal()"><i class="fa fa-user-plus"></i>Adicionar</button>
+                <button type="button" class="btn btn-default navbar-btn navbar-right" ng-click="openNewParticipantModal()" pbl-permission="Professor"><i class="fa fa-user-plus"></i>Adicionar</button>
                 <h3 class="panel-title"><i class="fa fa-users"></i> Participantes</h3>
               </div>
               <div class="panel-body">
@@ -140,7 +140,7 @@
                       <td>{{participant.name}}</td>
                       <td><span class="badge">{{participant.numberOfPosts}}</span></td>
                       <td>
-                        <a href="javascript:void(0);" ng-click="removeParticipant(participant.id)">
+                        <a href="javascript:void(0);" ng-click="removeParticipant(participant.id)" pbl-permission="Professor">
                           <i class="fa fa-user-times"></i>
                         </a>
                       </td>

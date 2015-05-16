@@ -12,6 +12,15 @@
         getToken: function () {
           return storageService.get(globalValues.KEY_AUTHENTICATION_TOKEN);
         },
+        hasRole: function (role) {
+          var user = this.getUser();
+          
+          if (!user) {
+            return false;
+          }
+
+          return user.role === role;
+        },
         isAuthenticated: function () {
           var token = storageService.get(globalValues.KEY_AUTHENTICATION_TOKEN);
           return token !== null;
