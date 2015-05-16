@@ -3,10 +3,10 @@
   'use strict';
 
   // Modules in use
-  var User = require('../models/User');
-  var Exception = require('../shared/Exceptions');
-  var tokenProvider = require('../token/TokenProvider');
-  var userService = require('./UserService');
+  var User = require('../../models/User');
+  var Exception = require('../../shared/Exceptions');
+  var tokenProvider = require('../../token/TokenProvider');
+  var userService = require('../User/UserService');
   var Q = require('q');
 
   /**

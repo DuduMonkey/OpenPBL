@@ -3,7 +3,7 @@
   'use strict';
 
   // Modules in use
-  var authenticationService = require('../services/AuthenticationService');
+  var authenticationService = require('../services/Authentication/AuthenticationService');
 
   /**
     Define the post action for user authentication

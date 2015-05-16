@@ -3,7 +3,7 @@
   'use strict';
 
   // Modules in use
-  var activityService = require('../services/ActivityService');
+  var activityService = require('../services/Activity/ActivityService');
   var _TOKEN_HEADER = 'x-pbl-token';
 
   /**
