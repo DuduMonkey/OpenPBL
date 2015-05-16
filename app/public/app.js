@@ -27,7 +27,7 @@
           templateUrl:'sections/pbl/pbl.html'
         })
         .otherwise({
-          redirectTo: '/'
+          redirectTo: 'sections/home/home.html'
         });
     }]);
 
