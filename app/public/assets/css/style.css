@@ -594,7 +594,6 @@ td .fa {
 /*
 *  Activity page and Sidebar help
 */
-
 .sidebar-help {
   position: fixed;
   width: 285px;
@@ -692,6 +691,17 @@ td .fa {
   padding: 0px 10px;
 }
 
+.content-wrapper .panel-heading a>i {
+  color: #B75252;
+  font-size: 18px;
+}
+
+.content-wrapper .panel-heading a {
+  color: #B75252;
+  font-size: 12px;
+  text-decoration: none;
+}
+
 .panel-footer {
   position: fixed;
   bottom: 10px;
@@ -713,7 +723,7 @@ main {
 }
 
 input,
-section {
+main section {
   clear: both;
   display: none;
   transition: all 2s;
@@ -773,11 +783,11 @@ input:disabled + label {
 /* panel content per tab */
 
 .chalkboard {
-  font-family: 'McLaren', cursive;
+  font-family: 'Cabin Sketch', cursive;
   position: fixed;
   color: #c0caca;
-  font-size: 14px;
-  font-weight: 300;
+  font-size: 15px;
+  font-weight: 400;
   padding: 10px;
   background-color: #2F4F4F;
   overflow-y: auto;
