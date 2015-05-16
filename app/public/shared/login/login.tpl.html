@@ -37,7 +37,7 @@
             <div class="form-group">
               <span>Sou</span>
               <label class="radio-inline" ng-repeat="role in roles">
-                <input type="radio" name="userRole" id="{{'userRole' + $index}}" value="{{role.value}}">
+                <input type="radio" name="userRole" id="{{'userRole' + $index}}" value="{{role.value}}" ng-model="registerData.role">
                 {{role.name}}
               </label>
             </div>

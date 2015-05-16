@@ -10,5 +10,8 @@
     SUCCESS_CREATING_ACTIVITY: declareNewMessage('Atividade criada com sucesso'),
     // User
     SUCCESS_CREATING_USER: declareNewMessage('Usuário registrado com sucesso'),
+    SUCCESS_INSERTING_USER: declareNewMessage('Usuário inserido com sucesso'),
+    // Story
+    SUCCESS_SAVING_STORY: declareNewMessage('Problema salvo com sucesso'),
   };
 }());

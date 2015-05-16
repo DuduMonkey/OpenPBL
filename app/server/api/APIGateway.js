@@ -6,6 +6,7 @@
   var authentication = require('../rest/RESTAuthentication');
   var register = require('../rest/RESTRegister');
   var activity = require('../rest/RESTActivity');
+  var story = require('../rest/RESTStory');
   var roles = require('../rest/RESTRole');
 
   /**
@@ -51,5 +52,17 @@
     router.route('/activity')
       .post(activity.post)
       .get(activity.list);
+
+    // [DELETE] Activity from user  
+    router.route('/activity/:id')
+      .delete(activity.delete);
+
+    // [POST] Story data to save activity story
+    router.route('/activity/:id/story')
+      .post(story.post);
+
+    // [POST] User on activity
+    router.route('/activity/:id/participant')
+      .post(activity.insertUser);
   };
 }());

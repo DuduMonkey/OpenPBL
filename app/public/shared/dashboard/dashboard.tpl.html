@@ -6,7 +6,7 @@
       <p>Painel do Usuário<i class="fa fa-home"></i></p>
     </div>
     <div class="sidebar-title">
-      <span>Atividades</span><button class="btn btn-primary pull-right" ng-click="createnewActivity()">Criar nova</button>
+      <span>Atividades</span><button class="btn btn-primary pull-right" ng-click="createNewActivity()">Criar nova</button>
     </div>
     <div class="sidebar-items">
       <ul class="sidebar">
@@ -47,10 +47,8 @@
       </div>
     </div>
     <div class="header-actions pull-right">
-      <div>
-        <button id="btn-open" type="button" class="btn btn-primary btn-block" ng-click=""><i class="fa fa-graduation-cap"></i> Abrir</button>
-        <button id="btn-delete" type="button" class="btn btn-danger btn-block" ng-click=""><i class="fa fa-trash"></i> Excluir</button>
-      </div>
+      <button id="btn-open" type="button" class="btn btn-primary btn-block" ng-click="openActivity(currentActivity._id)"><i class="fa fa-graduation-cap"></i> Abrir</button>
+      <button id="btn-delete" type="button" class="btn btn-danger btn-block" ng-click="deleteActivity(currentActivity.id)"><i class="fa fa-trash"></i> Excluir</button>
     </div>
   </div>
   <!-- End Activity Header Row -->
@@ -141,7 +139,11 @@
                     <tr ng-repeat="participant in currentActivity.participants | orderBy:'-numberOfPosts'">
                       <td>{{participant.name}}</td>
                       <td><span class="badge">{{participant.numberOfPosts}}</span></td>
-                      <td><a id="del-user" href=""><i class="fa fa-user-times"></i></a></td>
+                      <td>
+                        <a href="javascript:void(0);" ng-click="removeParticipant(participant.id)">
+                          <i class="fa fa-user-times"></i>
+                        </a>
+                      </td>
                     </tr>
                   </tbody>
                 </table>

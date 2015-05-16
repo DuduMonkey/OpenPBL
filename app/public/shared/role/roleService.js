@@ -6,11 +6,11 @@
       return {
         getRoles: function () {
           var deferred = $q.defer()
-          , url = globalValues.API_URL + '/roles';
+          , url = globalValues.API_URL + '/role';
 
           $http.get(url)
             .then(function (response) {
-              deferred.resolve(response.data.roles);
+              deferred.resolve(response.data);
             })
             .catch(function (error) {
               deferred.reject(error);
