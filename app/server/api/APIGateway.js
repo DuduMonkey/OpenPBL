@@ -64,5 +64,9 @@
     // [POST] User on activity
     router.route('/activity/:id/participant')
       .post(activity.insertUser);
+
+    // [DELETE] User from activity
+    router.route('/activity/:activityId/participant/:userId')
+      .delete(activity.removeUser);
   };
 }());

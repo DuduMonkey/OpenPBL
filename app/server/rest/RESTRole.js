@@ -3,7 +3,7 @@
   'use strict';
 
   // Modules in use
-  var userRoleService = require('../services/UserRoleService');
+  var userRoleService = require('../services/User/UserRoleService');
 
   /**
     Send the role constant bundle

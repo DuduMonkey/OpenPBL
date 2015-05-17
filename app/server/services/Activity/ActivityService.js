@@ -3,13 +3,12 @@
   'use strict';
 
   //Modules in use
-  var Activity = require('../models/Activity');
-  var User = require('../models/User');
-  var Message = require('../shared/MessageResource');
-  var Exception = require('../shared/Exceptions');
-  var userService = require('./UserService');
+  var Activity = require('../../models/Activity');
+  var User = require('../../models/User');
+  var Message = require('../../shared/MessageResource');
+  var Exception = require('../../shared/Exceptions');
+  var userService = require('../User/UserService');
   var Q = require('q');
-
 
   /**
     Transforms the new activity data into an response bag 
@@ -173,17 +172,18 @@
         return User.getUserByEmail(userEmail);
       })  
       .then(function (user) {
-        if (user === GLOBAL.CONST_NULL_OBJECT) {
+        if (user !== null) {
+          var updateQuery = {
+            $addToSet: { participants: user._id }
+          };
+          return Activity.updateActivity(activityId, updateQuery);
+        } else {
           return userService.inviteUserToApplication(userEmail, activityId);
         }
-        var updateQuery = {
-          $addToSet: { participants: user._id }
-        };
-        return Activity.updateActivity(activityId, updateQuery);
       })
       .then(function (activity) {
         if (activity.participants.length > activitySizeBeforeUpdate) {
-          deferred.resolve(Message.SUCCESS_INSERTING_USER);
+          deferred.resolve({ message: Message.SUCCESS_INSERTING_USER });
         } else {
           deferred.reject(Exception.ERROR_ACTIVITY_USER_INSERT);
         }
@@ -195,11 +195,29 @@
     return deferred.promise;
   };
 
+  var removeUser = function (activityId, userId) {
+    var deferred = Q.defer();
+
+    var updateQuery = {
+      $pull: { participants: userId }
+    };
+
+    Activity.updateActivity(activityId, updateQuery)
+      .then(function () {
+        deferred.resolve({ message: Message.SUCCESS_REMOVING_USER });
+      })
+      .catch(function (error) {
+        deferred.reject(Exception.USER_DELETING_ERROR);
+      });
+    return deferred.promise;
+  };
+
   // export the class
   module.exports = {
     createNewActivity: createNewActivity,
     getTeacherActivities : getTeacherActivities,
     deleteActivity: deleteActivity,
     insertNewUser: insertNewUser,
+    removeUser: removeUser
   };
 }());

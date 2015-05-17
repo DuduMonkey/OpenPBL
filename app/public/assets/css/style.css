@@ -754,14 +754,14 @@ main {
   width: 100%;
 }
 
-input,
+.panel-body input,
 main section {
   clear: both;
   display: none;
   transition: all 2s;
 }
 
-label {
+.panel-body label {
   font-weight: bold;
   font-size: 14px;
   color: #d4e8f1;
@@ -775,19 +775,19 @@ label {
   margin-bottom: 0;
 }
 
-.fake {
+.panel-body label.fake {
   width: 14%;
   color: transparent;
 }
 
-label:not(.fake):hover {
+.panel-body label:not(.fake):hover {
   cursor: pointer;
   text-decoration: none;
   background-color: #4198c2;
   transition: all 200ms;
 }
 
-input:disabled + label:hover {
+.panel-body input:disabled + label:hover {
   cursor: default;
   background-color: #2C8DBC;
 }
@@ -802,14 +802,14 @@ input:disabled + label:hover {
   transition: all 2s;
 }
 
-input:checked + label {
+.panel-body input:checked + label {
   color: #fff;
   border-bottom-color: #F9D695;
   text-decoration: none;
   transition: all 200ms;
 }
 
-input:disabled + label {
+.panel-body input:disabled + label {
   color: #56a3c9;
 }
 /* panel content per tab */
@@ -833,7 +833,7 @@ input:disabled + label {
 
 .chalkboard h4 {
   padding: 0px 0px 15px 15px;
-  font-size: 20px;
+  font-size: 24px;
   color: #bcdf8a;
   opacity: 0.8;
 }

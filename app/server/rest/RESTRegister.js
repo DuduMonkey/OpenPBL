@@ -3,7 +3,7 @@
   'use strict';
 
   // Modules in use
-  var registerService = require('../services/RegisterService'); //Initialize and run
+  var registerService = require('../services/User/RegisterService'); //Initialize and run
 
   /**
     Define the post action for user registration

@@ -11,6 +11,7 @@
     // User
     SUCCESS_CREATING_USER: declareNewMessage('Usuário registrado com sucesso'),
     SUCCESS_INSERTING_USER: declareNewMessage('Usuário inserido com sucesso'),
+    SUCCESS_REMOVING_USER: declareNewMessage('Usuário removido com sucesso'),
     // Story
     SUCCESS_SAVING_STORY: declareNewMessage('Problema salvo com sucesso'),
   };

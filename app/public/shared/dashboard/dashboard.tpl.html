@@ -6,12 +6,12 @@
       <p>Painel do Usuário<i class="fa fa-home"></i></p>
     </div>
     <div class="sidebar-title">
-      <span>Atividades</span><button class="btn btn-primary pull-right" ng-click="createNewActivity()">Criar nova</button>
+      <span>Atividades</span><button class="btn btn-primary pull-right" ng-click="createNewActivity()" pbl-permission="Professor">Criar nova</button>
     </div>
     <div class="sidebar-items">
       <ul class="sidebar">
         <li class="sidebar-list" ng-repeat="activity in activities.active" ng-click="setCurrentActivity(activity)">
-          <a href="" ng-class="{activity.id === currentActivity.id}"><i class="fa fa-cube"></i>{{activity.name}}</a>
+          <a href="" ng-class="{'active': activity.id === currentActivity.id}"><i class="fa fa-cube"></i>{{activity.name}}</a>
         </li>
       </ul>
       <ul class="sidebar">
@@ -47,8 +47,8 @@
       </div>
     </div>
     <div class="header-actions pull-right">
-      <button id="btn-open" type="button" class="btn btn-primary btn-block" ng-click="openActivity(currentActivity._id)"><i class="fa fa-graduation-cap"></i> Abrir</button>
-      <button id="btn-delete" type="button" class="btn btn-danger btn-block" ng-click="deleteActivity(currentActivity.id)"><i class="fa fa-trash"></i> Excluir</button>
+      <button id="btn-delete" type="button" class="btn btn-danger btn-block" ng-click="openComfirmActivityDeleteModal()" pbl-permission="Professor"><i class="fa fa-trash"></i> Excluir</button>
+      <button id="btn-open" type="button" class="btn btn-primary btn-block" ng-click="openActivity(currentActivity.id)"><i class="fa fa-graduation-cap"></i> Abrir</button>
     </div>
   </div>
   <!-- End Activity Header Row -->
@@ -77,7 +77,7 @@
                 <div class="widget-icon pull-left">
                   <i class="fa fa-anchor"></i>
                 </div>
-                <div class="title"><h3>{{currentActivity.status}}</h3></div>
+                <div class="title"><h3>{{currentActivity.status | activityStatus}}</h3></div>
                 <div class="comment"><h5>Estado</h5></div>
               </div>
             </div>
@@ -88,7 +88,7 @@
                 <div class="widget-icon pull-left">
                   <i class="fa fa-line-chart"></i>
                 </div>
-                <div class="title"><h3>40%</h3></div>
+                <div class="title"><h3>{{currentActivity.status | activityProgress}}</h3></div>
                 <div class="comment"><h5>Progresso</h5></div>
               </div>
             </div>
@@ -123,7 +123,7 @@
             </div>
             <div class="panel panel-default">
               <div class="panel-heading">
-                <button type="button" class="btn btn-default navbar-btn navbar-right"><i class="fa fa-user-plus"></i>Adicionar</button>
+                <button type="button" class="btn btn-default navbar-btn navbar-right" ng-click="openNewParticipantModal()" pbl-permission="Professor"><i class="fa fa-user-plus"></i>Adicionar</button>
                 <h3 class="panel-title"><i class="fa fa-users"></i> Participantes</h3>
               </div>
               <div class="panel-body">
@@ -140,7 +140,7 @@
                       <td>{{participant.name}}</td>
                       <td><span class="badge">{{participant.numberOfPosts}}</span></td>
                       <td>
-                        <a href="javascript:void(0);" ng-click="removeParticipant(participant.id)">
+                        <a href="javascript:void(0);" ng-click="removeParticipant(participant.id)" pbl-permission="Professor">
                           <i class="fa fa-user-times"></i>
                         </a>
                       </td>
@@ -217,7 +217,7 @@
               <div class="input-group">
                 <input type="email" class="form-control" name="taskNewParticipant" placeholder="aluno@escola.com.br" required ng-model="newActivity.participant">
                 <span class="input-group-btn">
-                  <button type="button" class="btn btn-primary" ng-disabled="!newActivity.participant || taskNewParticipant.$invalid" ng-click="addNewParticipant(newActivity.participant)">Adicionar</button>
+                  <button type="button" class="btn btn-primary" ng-disabled="!newActivity.participant || taskNewParticipant.$invalid" ng-click="addNewParticipantToNewActivity(newActivity.participant)">Adicionar</button>
                 </span>
               </div><!-- /input-group -->
 
@@ -233,7 +233,7 @@
                   <tr ng-repeat="participant in newActivity.participants">
                     <td>{{participant.email}}</td>
                     <td>
-                      <button type="button" class="btn btn-danger" ng-click="removeParticipant($index)">&times; Remover</button>
+                      <button type="button" class="btn btn-danger" ng-click="removeNewParticipant($index)">&times; Remover</button>
                     </td>
                   </tr>
                 </tbody>
@@ -243,6 +243,61 @@
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
             <button type="button" class="btn btn-primary" ng-disabled="newActivityForm.$invalid" ng-click="saveActivity()">Salvar</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <!-- Modal: adicionar participante -->
+    <div class="modal fade background-static" id="addParicipantModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+            <img src="assets/images/logo.png" />
+            <div class="modal-title"><h4>Adicionar participante</h4></div>
+          </div>
+          <div class="modal-body">
+            <form class="form" name="addParicipantForm">
+
+              <!-- E-mail -->
+              <div class="form-group">
+                <label for="participantEmail">E-mail</label>
+                <input type="email" class="form-control" name="participantEmail" placeholder="E-mail" required ng-model="newParticipant.email">
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-primary" ng-disabled="addParicipantForm.$invalid" ng-click="addNewParticipant(newParticipant.email)">Adicionar</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <!-- Modal: deletar atividade -->
+    <div class="modal fade background-static" id="deleteActivityModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+            <img src="assets/images/logo.png" />
+            <div class="modal-title"><h4>Adicionar participante</h4></div>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="tex-center">
+                  <p>
+                    Tem certeza que deseja excluir esta atividade?
+                  </p>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Não</button>
+            <button type="button" class="btn btn-primary" ng-click="deleteActivity()">Sim</button>
           </div>
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->

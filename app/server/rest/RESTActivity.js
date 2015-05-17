@@ -3,7 +3,7 @@
   'use strict';
 
   // Modules in use
-  var activityService = require('../services/ActivityService');
+  var activityService = require('../services/Activity/ActivityService');
   var _TOKEN_HEADER = 'x-pbl-token';
 
   /**
@@ -55,6 +55,19 @@
       })
       .catch(function (error) {
         res.status(400).send(error);
+      });
+  };
+
+  exports.removeUser = function (req, res) {
+    var activityId = req.params.activityId;
+    var userId = req.params.userId;
+
+    activityService.removeUser(activityId, userId)
+      .then(function (responseBag) {
+        res.status(200).send(responseBag);
+      })
+      .catch(function (error) {
+        res.status(500).send(error);
       });
   };
 
