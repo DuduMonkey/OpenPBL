@@ -26,8 +26,14 @@
         .when('/pbl', {
           templateUrl:'sections/pbl/pbl.html'
         })
+        .when('/home', {
+          templateUrl:'sections/home/home.html'
+        })
+        .when('/', {
+          templateUrl:'sections/home/home.html'
+        })
         .otherwise({
-          redirectTo: 'sections/home/home.html'
+          redirectTo: 'sections/404/404.html'
         });
     }]);
 
