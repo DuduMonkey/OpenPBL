@@ -28,14 +28,15 @@
 
 html {
     min-height: 100%;
-    position: relative;
+    /*position: relative;*/
 }
 
 body {
     height: 100%;
     width: 100%;
     font-family: "Roboto", sans-serif, Arial, "Helvetica Neue", Helvetica;
-    font-weight: 400; 
+    font-weight: 400;
+    background:url(/assets/images/white_plaster.png) fixed; 
 }
 
 body > .container {
@@ -866,7 +867,7 @@ main section {
 *  home *
 */
 .home-wrapper {
- background:url(https://s3.amazonaws.com/uploads.hipchat.com/69139/486384/x3KDihWOYTdhDMp/white_plaster.png) fixed;
+ background:url(/assets/images/white_plaster.png) fixed;
 }
 
 .topnav {
@@ -885,7 +886,7 @@ main section {
   margin-top: 50px;
   text-align: center;
   color: #f8f8f8;
-  background: url(https://s3.amazonaws.com/uploads.hipchat.com/69139/486384/WN24MLUX1bULKJO/bg_image_w1900.jpg) no-repeat center center;
+  background: url(/assets/images/bg_w1900.jpg) no-repeat center center;
   background-size: cover;
 }
 
@@ -923,6 +924,10 @@ ul.intro-buttons > li {
   padding: 20px 20px 0px 20px;
 }
 
+div.signup-btn-out {
+  padding: 40px 30px 10px 30px;
+}
+
 .btn-intro {
   min-height: 60px;
   min-width: 210px;
@@ -933,8 +938,23 @@ ul.intro-buttons > li {
 
 .btn-intro:hover {
   color: #000;
-  background-color: #8dc295;
-  border-color: #8dc295;
+  background-color: #2CBCA3;
+  border-color: #2CBCA3;
+}
+
+.signup-btn-in {
+  min-height: 80px;
+  min-width: 210px;
+  padding: 30px;
+  color: #fff;
+  background-color:rgba(255, 255, 255, 0.2);
+  border: 1px outset rgba(255, 255, 255, 0.2);
+}
+
+.signup-btn-in:hover {
+  color: #eee;
+  background-color:rgba(255, 255, 255, 0.1);
+  border: 1px inset rgba(255, 255, 255, 0.1);
 }
 
 @media(max-width:767px) {
@@ -967,6 +987,7 @@ ul.intro-buttons > li {
 .feature-icons div div {
   padding: 30px 50px 15px 50px;
   text-align: center;
+  color: #454257;
 }
 
 .feature-icons div div svg {
