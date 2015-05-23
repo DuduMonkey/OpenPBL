@@ -76,6 +76,10 @@ Buttons
     border-color: #803939;
 }
 
+.btn-success {
+    background-color: #8dc295;
+}
+
 /**
 Navbar
 */
@@ -563,14 +567,19 @@ td .fa {
     color: #924141;
 }
 
+.badge {
+    background-color: #2C8DBC;
+}
+
 /* 
 * Modals 
 */
-.modal-header img {
-    max-width: 150px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+.modal-header {
+    border-radius: 5px 5px 0px 0px;
+}
+
+.modal-footer {
+    border-radius: 0px 0px 5px 5px;
 }
 
 .modal-header, .modal-footer {
@@ -579,19 +588,39 @@ td .fa {
 }
 
 .modal-title {
-    margin-top: 10px;
-    padding-top: 8px;
+    margin-top: -5px;
+    padding-top: 0px;
     padding-left: 20px;
     margin-bottom: -5px;
-    border-top: 1px solid #2d586e;
 }
 
 .modal-body {
     background: #F2F6F7;
+    padding: 30px;
 }
 
-.badge {
-    background-color: #2C8DBC;
+.modal-footer .btn+.btn {
+    min-width: 100px;
+}
+
+#login-modal {
+    width: 500px;
+    margin: 30px auto;
+}
+
+#login-modal .modal-header {
+    background: #16465e url("../images/logo-mod.png") no-repeat 50% 20%;
+}
+
+#login-modal .modal-title {
+    margin-top: 65px;
+    padding-top: 8px;
+    border-top: 1px solid #2d586e;
+}
+
+.modal-del {
+    color: #B75252;
+    text-decoration: none;
 }
 
 /*
