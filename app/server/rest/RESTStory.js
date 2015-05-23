@@ -3,7 +3,7 @@
   'use strict';
 
   // Modules in use
-  var storyService = require('../services/StoryService');
+  var storyService = require('../services/Activity/Story/StoryService');
 
   /**
     Define the post action for user authentication

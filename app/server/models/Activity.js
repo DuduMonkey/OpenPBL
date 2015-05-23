@@ -1,4 +1,4 @@
-/*global module, require*/
+/*global module, require, GLOBAL*/
 (function () {
   'use strict';
 
@@ -59,7 +59,7 @@
   ActivitySchema.statics.updateActivity = function (activityId, updatedAttrs) {
     var deferred = Q.defer();
     //, set = { $set: updatedAttrs };
-    
+
     this.findByIdAndUpdate(activityId, updatedAttrs, function (err, activity) {
       if (!!err) {
         deferred.reject(Exception.ERROR_UPDATING_ACTIVITY);
@@ -105,13 +105,13 @@
       query.select(queryAttr.select);
     }
 
-    if (!!queryAttr.where.length) {
+    if (!!queryAttr.where && !!queryAttr.where.length) {
       queryAttr.where.forEach(function (column, index) {
         query.where(column).equals(queryAttr.conditions[index]);
       });
     }
 
-    if (!!queryAttr.join.length) {
+    if (!!queryAttr.join && !!queryAttr.join.length) {
       queryAttr.join.forEach(function (documentAttr) {
         query.populate(documentAttr);
       });
@@ -122,6 +122,24 @@
         deferred.reject(Exception.ACTIVITY_LIST_FIND_ERROR);
       }
       deferred.resolve(activities);
+    });
+
+    return deferred.promise;
+  };
+
+  /**
+    Given the parameters remove an Activity document from database
+  **/
+  ActivitySchema.statics.removeActivity = function (activityId) {
+    var deferred = Q.defer();
+
+    this.findByIdAndRemove(activityId, function (err, activity) {
+      if (!!err) {
+        deferred.reject(Exception.ERROR_DELETE_ACTIVITY);
+      } else if (activity === GLOBAL.CONST_NULL_OBJECT) {
+        deferred.reject(Exception.INVALID_ACTIVITY_TO_DELETION);
+      }
+      deferred.resolve();
     });
 
     return deferred.promise;

@@ -53,8 +53,20 @@
       .post(activity.post)
       .get(activity.list);
 
+    // [DELETE] Activity from user  
+    router.route('/activity/:id')
+      .delete(activity.delete);
+
     // [POST] Story data to save activity story
     router.route('/activity/:id/story')
       .post(story.post);
+
+    // [POST] User on activity
+    router.route('/activity/:id/participant')
+      .post(activity.insertUser);
+
+    // [DELETE] User from activity
+    router.route('/activity/:activityId/participant/:userId')
+      .delete(activity.removeUser);
   };
 }());

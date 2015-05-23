@@ -12,6 +12,11 @@
           scope.init = function () {
             scope.isAuthenticated = authenticationService.isAuthenticated();
             scope.loadMenu();
+            scope.vm = {};
+
+            if (scope.isAuthenticated === true) {
+              scope.vm.user = authenticationService.getUser();
+            }
           };
 
           scope.loadMenu = function () {

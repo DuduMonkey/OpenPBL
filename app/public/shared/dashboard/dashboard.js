@@ -9,9 +9,27 @@
         templateUrl: '/shared/dashboard/dashboard.tpl.html',
         link: function (scope) {
 
-          scope.addNewParticipant = function (participant) {
+          scope.addNewParticipant = function (participantEmail) {
+            var activityId = scope.currentActivity.id;
+
+            activityService.addActivityParticipant(activityId, participantEmail)
+              .then(function (response) {
+                scope.newParticipant = {};
+
+                // Recarrega as atividades sem alterar a atividade
+                // selecionada
+                scope.getActivities(false);
+                notificationService.success(response.message);
+                scope.toggleModal('#addParicipantModal');
+              })
+              .catch(function (error) {
+                notificationService.error(error.message);
+              });
+          };
+
+          scope.addNewParticipantToNewActivity = function (participantEmail) {
             var newParticipant = {
-              email: participant
+              email: participantEmail
             };
 
             scope.newActivity.participants.push(newParticipant);
@@ -26,13 +44,16 @@
               participants: []
             };
 
-            scope.toggleModal();
+            scope.toggleModal('#newActivityModal');
           };
 
-          scope.deleteActivity = function (activityId) {
+          scope.deleteActivity = function () {
+            var activityId = scope.currentActivity.id;
+
             activityService.deleteActivity(activityId)
               .then(function (response) {
                 notificationService.success(response.message);
+                scope.toggleModal('#deleteActivityModal');
                 scope.init();
               })
               .catch(function (error) {
@@ -66,6 +87,20 @@
             $location.path(route);
           };
 
+          scope.openNewParticipantModal = function () {
+            scope.toggleModal('#addParicipantModal');
+          };
+
+          scope.openComfirmActivityDeleteModal = function () {
+            scope.toggleModal('#deleteActivityModal');
+          };
+
+          scope.removeNewParticipant = function (index) {
+            if (!!scope.newActivity && Array.isArray(scope.newActivity.participants)) {
+              scope.newActivity.participants.splice(index, 1);
+            }
+          };
+
           scope.removeParticipant = function (participantId) {
             var activityId = scope.currentActivity.id;
 
@@ -87,7 +122,7 @@
             activityService.saveActivity(scope.newActivity)
               .then(function (response) {
                 notificationService.success(response.message);
-                scope.toggleModal();
+                scope.toggleModal('#newActivityModal');
                 scope.getActivities();
               })
               .catch(function (error) {
@@ -99,8 +134,8 @@
             scope.currentActivity = activity;
           };
 
-          scope.toggleModal = function () {
-            angular.element('#newActivityModal').modal('toggle');
+          scope.toggleModal = function (modalName) {
+            angular.element(modalName).modal('toggle');
           };
 
           scope.init();

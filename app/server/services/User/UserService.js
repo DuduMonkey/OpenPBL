@@ -3,9 +3,9 @@
   'use strict';
 
   //Modules in use
-  var User = require('../models/User');
-  var Token = require('../token/Token');
-  var Exception = require('../shared/Exceptions');
+  var User = require('../../models/User');
+  var Token = require('../../token/Token');
+  var Exception = require('../../shared/Exceptions');
   var userRoleService = require('./UserRoleService');
   var Q = require('q');
 
@@ -103,11 +103,23 @@
     return deferred.promise;
   };
 
+  /**
+    Invite the unexistent user to OpenPBL
+  **/
+  var inviteUserToApplication = function (userEmail, activityId) {
+    var deferred = Q.defer();
+
+    deferred.resolve({participants: new Array(99)});
+
+    return deferred.promise;
+  };
+
   // export the class
   module.exports = {
     getSessionUser: getSessionUser,
     getUsersFromEmailList: getUsersFromEmailList,
     getAttributeFromUserList: getAttributeFromUserList,
-    getSessionUserResponseBag: getSessionUserResponseBag
+    getSessionUserResponseBag: getSessionUserResponseBag,
+    inviteUserToApplication: inviteUserToApplication
   };
 }());
