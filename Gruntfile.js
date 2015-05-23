@@ -124,10 +124,10 @@ module.exports = function(grunt) {
 
   grunt.registerTask('s', [
     'auto_install:dev', 
+    'jshint',
     'uglify:dev', 
     'cssmin', 
-    'express:dev',
-    'jshint'
+    'express:dev'
     ]);
 
   grunt.registerTask('heroku', [

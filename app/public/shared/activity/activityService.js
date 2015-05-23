@@ -30,7 +30,7 @@
           .then(function () {
             var response = {
               message: 'Atividade removida com sucesso'
-            }
+            };
 
             deferred.resolve(response);
           })
