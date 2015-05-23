@@ -9,44 +9,53 @@
   var userService = require('../../User/UserService');
   var Q = require('q');
 
+  //Specifications in use
+  var ActivitySpec = require('../Specification/ActivitySpec');
+
   /**
     Insert a (new)User on Activity
   **/
   var insertNewUser = function (activityId, userEmail) {
     var deferred = Q.defer();
 
-    var activitySizeBeforeUpdate = GLOBAL.CONST_EMPTY_NUMBER;
-    var queryActivityParticipants = {
-          select: '-_id participants',
-          where: ['_id'],
-          conditions: [activityId]
-    }
+    //Declare the container to selected user on database
+    var userToInsert = null;
 
-    Activity.queryInActivities(queryActivityParticipants)
-      .then(function (activities) {
-        activitySizeBeforeUpdate = activities[0].participants.length;
-        return User.getUserByEmail(userEmail);
-      })  
+    User.getUserByEmail(userEmail)
       .then(function (user) {
-        if (user !== null) {
-          var updateQuery = {
-            $addToSet: { participants: user._id }
-          };
-          return Activity.updateActivity(activityId, updateQuery);
+        if(ActivitySpec.UserIsntNullOrUndefined().isSatisfiedBy(user)){
+          userToInsert = user;
+          return Activity.queryInActivities({
+            select: '-_id participants',
+            where: ['_id'],
+            conditions: [activityId],
+            join: [
+              {
+                path: 'participants',
+                match: { _id: user._id } 
+              }
+            ]
+          });
+        }
+        deferred.reject(Exception.ERROR_ACTIVITY_USER_NOT_EXISTS);
+        console.log(user);
+      })
+      .then(function (activities) {
+        if (ActivitySpec.ActivityAlreadyHaveTheUser().isSatisfiedBy(activities[0])) {
+          deferred.reject(Exception.ERROR_ACTIVITY_USER_ALREADY_EXISTS);
         } else {
-          return userService.inviteUserToApplication(userEmail, activityId);
+          var queryInsertUser = {
+            $addToSet: { participants: userToInsert._id }
+          };
+          return Activity.updateActivity(activityId, queryInsertUser);
         }
       })
-      .then(function (activity) {
-        if (activity.participants.length > activitySizeBeforeUpdate) {
-          deferred.resolve({ message: Message.SUCCESS_INSERTING_USER });
-        } else {
-          deferred.reject(Exception.ERROR_ACTIVITY_USER_INSERT);
-        }
+      .then(function () {
+        deferred.resolve({ message: Message.SUCCESS_INSERTING_USER });
       })
       .catch(function () {
-        deferred.reject(Exception.USER_INSERTING_ERROR);
-      });
+        deferred.reject(Exception.ERROR_INSERTING_USER);
+      })
 
     return deferred.promise;
   };
