@@ -11,7 +11,7 @@
         terminal: ngIf.terminal,
         restrict: ngIf.restrict,
         link: function($scope, $element, $attr) {
-          var value = $attr['pblPermission']
+          var value = $attr.pblPermission
           , hasRole = authenticationService.hasRole(value);
 
           $attr.ngIf = function() {
