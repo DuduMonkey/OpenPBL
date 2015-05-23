@@ -153,7 +153,6 @@
     return deferred.promise;
   };
 
-
   // export the class
   module.exports = {
     createNewActivity: createNewActivity,

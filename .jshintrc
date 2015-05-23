@@ -4,6 +4,7 @@
 	"predef": ["node", "angular"],
 	"laxcomma": true,
 	"globals": {
+		"$": false,
 		"console": false,
 		"localStorage": false,
 		"module": false,
