@@ -34,6 +34,7 @@
 
       userList.forEach(function (user) {
         var userBag = {
+          id: user._id,
           name: user.name,
           numberOfPosts: !!user.posts ? user.posts.length : GLOBAL.CONST_EMPTY_NUMBER
         };
@@ -114,7 +115,7 @@
           join: [
             {
               path: 'participants',
-              select: '-_id name'
+              select: '_id name'
             },
             {
               path: 'story',
