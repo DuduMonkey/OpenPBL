@@ -164,7 +164,7 @@
           select: '-_id participants',
           where: ['_id'],
           conditions: [activityId]
-    }
+    };
 
     Activity.findAllActivities(queryActivityParticipants)
       .then(function (activities) {
@@ -206,7 +206,7 @@
       .then(function () {
         deferred.resolve({ message: Message.SUCCESS_REMOVING_USER });
       })
-      .catch(function (error) {
+      .catch(function () {
         deferred.reject(Exception.USER_DELETING_ERROR);
       });
     return deferred.promise;

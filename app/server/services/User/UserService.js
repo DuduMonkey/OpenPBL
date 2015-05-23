@@ -106,7 +106,7 @@
   /**
     Invite the unexistent user to OpenPBL
   **/
-  var inviteUserToApplication = function (userEmail, activityId) {
+  var inviteUserToApplication = function () {
     var deferred = Q.defer();
 
     deferred.resolve({participants: new Array(99)});
