@@ -198,7 +198,6 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
-            <img src="assets/images/logo.png" />
             <div class="modal-title"><h4>Nova atividade</h4></div>
           </div>
           <div class="modal-body">
@@ -206,8 +205,9 @@
 
               <!-- Nome -->
               <div class="form-group">
-                <label for="taskName">Nome</label>
+                <label for="taskName">Nome da atividade</label>
                 <input type="text" class="form-control" name="taskName" placeholder="Nome" required ng-model="newActivity.name">
+                <small>O nome da atividade deve ser simples e objetivo. Ex: <i>Teorema de pitágoras</i></small>
               </div>
             </form>
 
@@ -215,17 +215,18 @@
             <div class="form-group">
               <label for="taskSummary">Participantes</label>
               <div class="input-group">
-                <input type="email" class="form-control" name="taskNewParticipant" placeholder="aluno@escola.com.br" required ng-model="newActivity.participant">
+                <input type="email" class="form-control" name="taskNewParticipant" placeholder="aluno@exemplo.com.br" required ng-model="newActivity.participant">
                 <span class="input-group-btn">
                   <button type="button" class="btn btn-primary" ng-disabled="!newActivity.participant || taskNewParticipant.$invalid" ng-click="addNewParticipantToNewActivity(newActivity.participant)">Adicionar</button>
                 </span>
               </div><!-- /input-group -->
+              <small>Use este campo para convidar alunos para esta atividade. Você também pode convidá-los mais tarde, não se preocupe.</small> 
 
               <!-- Lista de participantes convidados -->
               <table class="table table-striped talbe-condensed" ng-if="newActivity.participants && newActivity.participants.length > 0">
                 <thead>
                   <tr>
-                    <th class="col-md-10">E-mail</th>
+                    <th class="col-md-10">e-mail</th>
                     <th class="col-md-2">Ações</th>
                   </tr>
                 </thead>
@@ -233,7 +234,7 @@
                   <tr ng-repeat="participant in newActivity.participants">
                     <td>{{participant.email}}</td>
                     <td>
-                      <button type="button" class="btn btn-danger" ng-click="removeNewParticipant($index)">&times; Remover</button>
+                      <button type="button" class=" btn btn-danger btn-xs" ng-click="removeNewParticipant($index)">&times; Remover</button>
                     </td>
                   </tr>
                 </tbody>
@@ -254,17 +255,17 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
-            <img src="assets/images/logo.png" />
             <div class="modal-title"><h4>Adicionar participante</h4></div>
           </div>
           <div class="modal-body">
             <form class="form" id="addParicipantForm" name="addParicipantForm" ng-submit="addNewParticipant(newParticipant.email)">
 
               <!-- E-mail -->
-              <div class="form-group">
-                <label for="participantEmail">E-mail</label>
-                <input type="email" class="form-control" name="participantEmail" placeholder="E-mail" required ng-model="newParticipant.email">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
+                <input type="email" class="form-control" name="participantEmail" placeholder="aluno@exemplo.com.br" required ng-model="newParticipant.email">
               </div>
+              <small>Use este campo para convidar um aluno para esta atividade.</small> 
             </form>
           </div>
           <div class="modal-footer">
@@ -281,23 +282,18 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
-            <img src="assets/images/logo.png" />
-            <div class="modal-title"><h4>Adicionar participante</h4></div>
+            <div class="modal-title"><h4>Excluir Atividade</h4></div>
           </div>
           <div class="modal-body">
-            <div class="row">
-              <div class="col-md-12">
-                <div class="tex-center">
-                  <p>
-                    Tem certeza que deseja excluir esta atividade?
-                  </p>
-                </div>
-              </div>
-            </form>
+            <div class="tex-center">
+              <p>
+                Tem certeza que deseja excluir esta atividade? Não é possivel recuperar os dados após esta operação.
+              </p>
+            </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Não</button>
-            <button type="button" class="btn btn-primary" ng-click="deleteActivity()">Sim</button>
+            <button type="button" class="btn btn-danger" ng-click="deleteActivity()">Sim</button>
           </div>
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->

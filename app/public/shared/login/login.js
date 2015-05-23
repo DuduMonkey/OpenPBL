@@ -32,12 +32,12 @@
               login: {
                 confirmAction: scope.login,
                 confirmButton: "Login",
-                title: "Login"
+                title: "Entrar"
               },
               register: {
                 confirmAction: scope.register,
-                confirmButton: "Registrar",
-                title: "Registre-se"
+                confirmButton: "Cadastrar",
+                title: "Cadastre-se"
               },
               mode: {
                 login: 'login',
