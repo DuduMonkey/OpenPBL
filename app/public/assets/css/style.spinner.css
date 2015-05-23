@@ -1,161 +1,53 @@
-#circularG{
-position:relative;
-width:128px;
-height:128px}
-
-.circularG{
-position:absolute;
-background-color:#000000;
-width:29px;
-height:29px;
--moz-border-radius:19px;
--moz-animation-name:bounce_circularG;
--moz-animation-duration:1.12s;
--moz-animation-iteration-count:infinite;
--moz-animation-direction:normal;
--webkit-border-radius:19px;
--webkit-animation-name:bounce_circularG;
--webkit-animation-duration:1.12s;
--webkit-animation-iteration-count:infinite;
--webkit-animation-direction:normal;
--ms-border-radius:19px;
--ms-animation-name:bounce_circularG;
--ms-animation-duration:1.12s;
--ms-animation-iteration-count:infinite;
--ms-animation-direction:normal;
--o-border-radius:19px;
--o-animation-name:bounce_circularG;
--o-animation-duration:1.12s;
--o-animation-iteration-count:infinite;
--o-animation-direction:normal;
-border-radius:19px;
-animation-name:bounce_circularG;
-animation-duration:1.12s;
-animation-iteration-count:infinite;
-animation-direction:normal;
+.spinner-wrap {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	z-index: 10000;
+	background-color: rgba(255,255,255,0.8);
+	display: flex;
+	align-items: center;
+	top: 0;
 }
 
-#circularG_1{
-left:0;
-top:50px;
--moz-animation-delay:0.42s;
--webkit-animation-delay:0.42s;
--ms-animation-delay:0.42s;
--o-animation-delay:0.42s;
-animation-delay:0.42s;
+.spinner {
+  margin: 6em auto;
+  font-size: 10px;
+  position: relative;
+  text-indent: -9999em;
+  border-top: 1.1em solid rgba(30, 98, 131, 0.3);
+  border-right: 1.1em solid rgba(30, 98, 131, 0.3);
+  border-bottom: 1.1em solid rgba(30, 98, 131, 0.3);
+  border-left: 1.1em solid #1e6283;
+  z-index: 10000000;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-animation: load8 1.1s infinite linear;
+  animation: load8 1.1s infinite linear;
 }
-
-#circularG_2{
-left:14px;
-top:14px;
--moz-animation-delay:0.56s;
--webkit-animation-delay:0.56s;
--ms-animation-delay:0.56s;
--o-animation-delay:0.56s;
-animation-delay:0.56s;
+.spinner,
+.spinner:after {
+  border-radius: 50%;
+  width: 10em;
+  height: 10em;
 }
-
-#circularG_3{
-top:0;
-left:50px;
--moz-animation-delay:0.7s;
--webkit-animation-delay:0.7s;
--ms-animation-delay:0.7s;
--o-animation-delay:0.7s;
-animation-delay:0.7s;
+@-webkit-keyframes load8 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
 }
-
-#circularG_4{
-right:14px;
-top:14px;
--moz-animation-delay:0.84s;
--webkit-animation-delay:0.84s;
--ms-animation-delay:0.84s;
--o-animation-delay:0.84s;
-animation-delay:0.84s;
-}
-
-#circularG_5{
-right:0;
-top:50px;
--moz-animation-delay:0.98s;
--webkit-animation-delay:0.98s;
--ms-animation-delay:0.98s;
--o-animation-delay:0.98s;
-animation-delay:0.98s;
-}
-
-#circularG_6{
-right:14px;
-bottom:14px;
--moz-animation-delay:1.12s;
--webkit-animation-delay:1.12s;
--ms-animation-delay:1.12s;
--o-animation-delay:1.12s;
-animation-delay:1.12s;
-}
-
-#circularG_7{
-left:50px;
-bottom:0;
--moz-animation-delay:1.26s;
--webkit-animation-delay:1.26s;
--ms-animation-delay:1.26s;
--o-animation-delay:1.26s;
-animation-delay:1.26s;
-}
-
-#circularG_8{
-left:14px;
-bottom:14px;
--moz-animation-delay:1.4s;
--webkit-animation-delay:1.4s;
--ms-animation-delay:1.4s;
--o-animation-delay:1.4s;
-animation-delay:1.4s;
-}
-
-@-moz-keyframes bounce_circularG{
-0%{
--moz-transform:scale(1)}
-
-100%{
--moz-transform:scale(.3)}
-
-}
-
-@-webkit-keyframes bounce_circularG{
-0%{
--webkit-transform:scale(1)}
-
-100%{
--webkit-transform:scale(.3)}
-
-}
-
-@-ms-keyframes bounce_circularG{
-0%{
--ms-transform:scale(1)}
-
-100%{
--ms-transform:scale(.3)}
-
-}
-
-@-o-keyframes bounce_circularG{
-0%{
--o-transform:scale(1)}
-
-100%{
--o-transform:scale(.3)}
-
-}
-
-@keyframes bounce_circularG{
-0%{
-transform:scale(1)}
-
-100%{
-transform:scale(.3)}
-
+@keyframes load8 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
 }
