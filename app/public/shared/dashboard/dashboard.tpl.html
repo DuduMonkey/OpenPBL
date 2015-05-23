@@ -11,12 +11,12 @@
     <div class="sidebar-items">
       <ul class="sidebar">
         <li class="sidebar-list" ng-repeat="activity in activities.active" ng-click="setCurrentActivity(activity)">
-          <a href="" ng-class="{'active': activity.id === currentActivity.id}"><i class="fa fa-cube pull-right"></i>{{activity.name}}</a>
+          <a href="" ng-class="{'active': activity.id === currentActivity.id}"><i class="fa fa-cube"></i>{{activity.name}}</a>
         </li>
       </ul>
       <ul class="sidebar">
         <li class="sidebar-list" ng-repeat="activity in activities.finished" ng-click="setCurrentActivity(activity)">
-          <a class="finished" href="" ng-class="{activity.id === currentActivity.id}"><img class="pull-right" src="assets/images/finished-tag.svg"/>{{activity.name}}</a>
+          <a class="finished" href="" ng-class="{activity.id === currentActivity.id}"><img src="assets/images/finished-tag.svg"/>{{activity.name}}</a>
         </li>
       </ul>
     </div>
