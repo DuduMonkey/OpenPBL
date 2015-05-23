@@ -4,9 +4,7 @@
 
   //Modules in use
   var Activity = require('../../models/Activity');
-  var User = require('../../models/User');
   var Message = require('../../shared/MessageResource');
-  var Exception = require('../../shared/Exceptions');
   var userService = require('../User/UserService');
   var Q = require('q');
 

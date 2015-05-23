@@ -6,7 +6,6 @@
   var User = require('../../../models/User');
   var Message = require('../../../shared/MessageResource');
   var Exception = require('../../../shared/Exceptions');
-  var userService = require('../../User/UserService');
   var Q = require('q');
 
   //Specifications in use
@@ -23,7 +22,7 @@
 
     User.getUserByEmail(userEmail)
       .then(function (user) {
-        if(ActivitySpec.UserIsntNullOrUndefined().isSatisfiedBy(user)){
+        if (ActivitySpec.UserIsntNullOrUndefined().isSatisfiedBy(user)) {
           userToInsert = user;
           return Activity.queryInActivities({
             select: '-_id participants',
@@ -32,7 +31,7 @@
             join: [
               {
                 path: 'participants',
-                match: { _id: user._id } 
+                match: { _id: user._id }
               }
             ]
           });
@@ -55,7 +54,7 @@
       })
       .catch(function () {
         deferred.reject(Exception.ERROR_INSERTING_USER);
-      })
+      });
 
     return deferred.promise;
   };
@@ -74,7 +73,7 @@
       .then(function () {
         deferred.resolve({ message: Message.SUCCESS_REMOVING_USER });
       })
-      .catch(function (error) {
+      .catch(function () {
         deferred.reject(Exception.USER_DELETING_ERROR);
       });
     return deferred.promise;
