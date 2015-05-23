@@ -4,6 +4,7 @@
 
   // Modules in use
   var activityService = require('../services/Activity/ActivityService');
+  var activityUserService = require('../services/Activity/User/ActivityUserService');
   var _TOKEN_HEADER = 'x-pbl-token';
 
   /**
@@ -49,7 +50,7 @@
   exports.insertUser = function (req, res) {
     var activityId = req.params.id;
 
-    activityService.insertNewUser(activityId, req.body.email)
+    activityUserService.insertNewUser(activityId, req.body.email)
       .then(function (responseBag) {
         res.status(200).send(responseBag);
       })
@@ -62,7 +63,7 @@
     var activityId = req.params.activityId;
     var userId = req.params.userId;
 
-    activityService.removeUser(activityId, userId)
+    activityUserService.removeUser(activityId, userId)
       .then(function (responseBag) {
         res.status(200).send(responseBag);
       })

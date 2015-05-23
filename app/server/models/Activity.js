@@ -97,7 +97,7 @@
       the result will be populated with all the participants and the creator
       without id, exclude the id from selected participants.
   **/
-  ActivitySchema.statics.findAllActivities = function (queryAttr) {
+  ActivitySchema.statics.queryInActivities = function (queryAttr) {
     var deferred = Q.defer()
     , query = this.find();
 
