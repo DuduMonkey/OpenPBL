@@ -6,7 +6,7 @@
         <h4 class="modal-title">{{modal[modalMode].title}}</h4>
       </div>
       <div class="modal-body">
-        <form name="loginForm">
+        <form id="loginForm" name="loginForm" ng-submit="modal[modalMode].confirmAction()">
 
           <!-- Login -->
           <div ng-if="modalMode === modal.mode.login">
@@ -58,7 +58,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-success" ng-disabled="loginForm.$invalid" ng-click="modal[modalMode].confirmAction()">{{modal[modalMode].confirmButton}}</button>
+        <button type="submit" form="loginForm" class="btn btn-success" ng-disabled="loginForm.$invalid">{{modal[modalMode].confirmButton}}</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
