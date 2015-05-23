@@ -1035,6 +1035,10 @@ div.signup-btn-out {
   min-height: 90%;
 }
 
+.content-section-a svg {
+    max-width: 100%;
+}
+
 .content-section-b {
   padding: 70px 0;
   background-color: transparent;
@@ -1059,6 +1063,10 @@ div.signup-btn-out {
   padding: 80px 0;
   background-color: #746F91;
   min-height: 90%;
+}
+
+.content-section-c svg {
+    max-width: 100%;
 }
 
 .section-heading {
