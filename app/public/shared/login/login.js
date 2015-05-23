@@ -22,8 +22,7 @@
                   $location.path('/dashboard');
                 })
                 .catch(function (error) {
-                  console.log(error);
-                  notificationService.error('Erro', error.message);
+                  notificationService.error('Erro', error.data.message);
                 });
             }
           };
