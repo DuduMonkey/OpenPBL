@@ -10,13 +10,17 @@
 </head>
 
 <body>
+	<pbl-spinner ng-if="requestInProgress"></pbl-spinner>
 	<pbl-page-header></pbl-page-header>
-
 	<pbl-login></pbl-login>
 
-	<ng-view role="main"></ng-view>
 	
-	<pbl-spinner ng-if="requestInProgress"></pbl-spinner>
+	<ng-view role="main">
+
+	</ng-view>
+	
+	<!--<pbl-spinner ></pbl-spinner>-->
+
 
 	<!-- Scripts -->
 	<script type="text/javascript" src="dist/js/bundle.min.js"></script>
