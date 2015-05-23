@@ -990,7 +990,7 @@ div.signup-btn-out {
   color: #454257;
 }
 
-.feature-icons div div svg {
+.feature-icons .container svg {
   width: 150px;
   height: 110px;
 }

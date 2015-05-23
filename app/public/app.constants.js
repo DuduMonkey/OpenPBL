@@ -4,6 +4,7 @@
   angular.module('openpbl')
     .constant('globalValues', {
       API_URL: '/api',
+      ASSET_SVG_BASE_PATH: '/assets/svg',
       APP_NAME: 'OpenPBL',
       APP_VERSION: '1.0.0',
       KEY_AUTHENTICATION_TOKEN: '$AUTH_TOKEN',
