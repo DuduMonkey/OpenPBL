@@ -2,7 +2,7 @@
   'use strict';
 
   angular.module('openpbl.directives')
-    .directive('pblDashboard', ['$location', 'activityService', 'notificationService', function ($location, activityService, notificationService) {
+    .directive('pblDashboard', ['$location', '$timeout', 'activityService', 'notificationService', function ($location, $timeout, activityService, notificationService) {
       return {
         retrict: 'E',
         replace: true,
@@ -123,7 +123,12 @@
               .then(function (response) {
                 notificationService.success(response.message);
                 scope.toggleModal('#newActivityModal');
-                scope.getActivities();
+                
+                var delayed = function () {
+                  scope.openActivity(response.id);
+                };
+
+                $timeout(delayed, 400);
               })
               .catch(function (error) {
                 notificationService.error(error);
