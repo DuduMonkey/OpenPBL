@@ -972,9 +972,9 @@ div.signup-btn-out {
 }
 
 .signup-btn-in {
-  min-height: 80px;
+  max-height: 70px;
   min-width: 210px;
-  padding: 30px;
+  padding: 25px;
   color: #fff;
   background-color:rgba(255, 255, 255, 0.2);
   border: 1px outset rgba(255, 255, 255, 0.2);
@@ -1013,7 +1013,7 @@ div.signup-btn-out {
   letter-spacing: 2px;
 }
 
-.feature-icons div div {
+#home-feature {
   padding: 30px 50px 15px 50px;
   text-align: center;
   color: #454257;
@@ -1030,7 +1030,7 @@ div.signup-btn-out {
 
 .content-section-a {
   color: #f8f8f8;
-  padding: 100px 0;
+  padding: 80px 0;
   background-color: #2C8DBC;
   min-height: 90%;
 }
@@ -1045,7 +1045,7 @@ div.signup-btn-out {
 .content-section-b svg {
     margin-left: auto;
     margin-right: auto;
-    max-width: 100%;
+    max-width: 80%;
     height: auto;
     padding: 30px 0;
 }
@@ -1056,7 +1056,7 @@ div.signup-btn-out {
 
 .content-section-c {
   color: #f8f8f8;
-  padding: 100px 0;
+  padding: 80px 0;
   background-color: #746F91;
   min-height: 90%;
 }
@@ -1070,12 +1070,6 @@ div.signup-btn-out {
   width: 200px;
   border-top: 3px solid #ccc;
 }
-
-/*.banner {
-  padding: 100px 0;
-  color: #f8f8f8;
-  background: url(https://s3.amazonaws.com/uploads.hipchat.com/69139/486384/DJ6fntkN6Hcgy7X/logo_large.png) no-repeat center center;
-}*/
 
 footer {
   text-align: right;
@@ -1111,4 +1105,14 @@ footer img {
 
 p.copyright {
   margin: 15px 0 0;
+}
+
+p.copyright .fa {
+    color: #1e6283;
+    font-size: 28px;
+    padding-left: 6px;
+}
+
+p.copyright .fa:hover {
+    color: #fff;
 }
