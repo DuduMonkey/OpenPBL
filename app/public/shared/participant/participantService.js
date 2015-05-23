@@ -5,8 +5,7 @@
     .factory('participantService', ['$http', '$q', 'globalValues', function ($http, $q, globalValues) {
       var addParticipant = function (activityId, participantEmail) {
         var deferred = $q.defer()
-        //, url = globalValues.API_URL + '/activity/' + activityId + '/participant';
-        , url = 'http://private-bec97-openpbl.apiary-mock.com/api/activity/' + activityId + '/participant'
+        , url = globalValues.API_URL + '/activity/' + activityId + '/participant'
         , data = {
           email: participantEmail
         };
@@ -24,8 +23,7 @@
 
       var deleteParticipant = function (activityId, participantId) {
         var deferred = $q.defer()
-        //, url = globalValues.API_URL + '/activity/' + activityId + '/participant/' + participantId;
-        , url = 'http://private-bec97-openpbl.apiary-mock.com/api/activity/' + activityId + '/participant/' + participantId;
+        , url = globalValues.API_URL + '/activity/' + activityId + '/participant/' + participantId;
 
         $http.delete(url)
           .then(function (response) {
