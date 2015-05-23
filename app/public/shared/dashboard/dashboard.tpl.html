@@ -201,7 +201,7 @@
             <div class="modal-title"><h4>Nova atividade</h4></div>
           </div>
           <div class="modal-body">
-            <form class="form" name="newActivityForm">
+            <form id="newActivityForm" class="form" name="newActivityForm" ng-submit="saveActivity()">
 
               <!-- Nome -->
               <div class="form-group">
@@ -243,7 +243,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-            <button type="button" class="btn btn-primary" ng-disabled="newActivityForm.$invalid" ng-click="saveActivity()">Salvar</button>
+            <button type="submit" form="newActivityForm" class="btn btn-primary" ng-disabled="newActivityForm.$invalid">Salvar</button>
           </div>
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
@@ -258,7 +258,7 @@
             <div class="modal-title"><h4>Adicionar participante</h4></div>
           </div>
           <div class="modal-body">
-            <form class="form" name="addParicipantForm">
+            <form class="form" id="addParicipantForm" name="addParicipantForm" ng-submit="addNewParticipant(newParticipant.email)">
 
               <!-- E-mail -->
               <div class="input-group">
@@ -270,7 +270,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-            <button type="button" class="btn btn-primary" ng-disabled="addParicipantForm.$invalid" ng-click="addNewParticipant(newParticipant.email)">Adicionar</button>
+            <button type="submit" form="addParicipantForm" class="btn btn-primary" ng-disabled="addParicipantForm.$invalid" >Adicionar</button>
           </div>
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
