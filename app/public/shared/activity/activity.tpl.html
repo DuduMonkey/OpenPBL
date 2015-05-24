@@ -1,4 +1,4 @@
-<!-- under construction! -->
+ <!-- under construction! -->
 <div class="page-wrapper">
   <div class="sidebar-help-top">
     <a href="#/dashboard"><i class="fa fa-long-arrow-left"></i> <i class="fa fa-home"></i></a>
@@ -116,11 +116,11 @@
   <div class="content-wrapper">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title"><i class="fa fa-cube"></i> Activity title</h3>
+        <h3 class="panel-title"><i class="fa fa-cube"></i> {{::vm.activity.name}}</h3>
         <h3 class="panel-title">|</h3>
-        <h3 class="panel-title"><i class="fa fa-anchor"></i> Resolução</h3>
+        <h3 class="panel-title"><i class="fa fa-anchor"></i> {{::vm.activity.status | activityStatus}}</h3>
         <h3 class="panel-title">|</h3>
-        <h3 class="panel-title"><i class="fa fa-users"></i> 42</h3>
+        <h3 class="panel-title"><i class="fa fa-users"></i> {{::vm.activity.numberOfParticipants}}</h3>
         <a class="pull-right" href=""><i class="fa fa-trash"></i> Excluir</a>
       </div>
       <div class="panel-body">
@@ -143,25 +143,25 @@
             <div class="container chalkboard">
               <div id="problem">
                 <h4>Problema<a href=""><span class="label label-success">editar</span></a></h4>
-                <p>Aliquam condimentum hendrerit nisi, nec vestibulum mi libero aliquam, volutpat nisl sed, consectetur nte. Donec aliquam semper felis, in placerat leo blandit in. Integer interdum elit. feugiat ut. Donec lobortis nisi neque, in egestas
-                  eros venenatis eu. Vestibulum nulla nisi, venenatis at pretium id, fermentum quis risus. Quisque porta suscipit neque eu placerat. Etiam scelerisque, qam in sodales iaculis, velit velit mattis nunc, quis dapibus massa elit nec enim.
-                  Vivamus quis libero aliquam, volutpat nisl sed, consectetur ante. Donec aliquam semper felis, in placerat leo blandit in. Integer interdum elit .Aliquam condimentum hendrerit nisi, nec vestibulum mi feugiat ut. Donec lobortis nisi neque,
-                  in egestas eros venenatis eu. Vestibulum nulla nisi, venenatis at pretium id, fermentum quis risus. Quisque porta suscipit neque eu placerat. Etiam scelerisque, quam in sodales iaculis, velit velit mattis nunc, quis dapibus massa elit
-                  nec enim. Vivamus quis libero aliquam, volutpat nisl sed, consectetur ante. Donec aliquam semper felis, in placerat leo blandit in. Integer interdum elit. Aliquam condimentum hendrerit nisi, nec vestibulum mi feugiat ut. Donec lobortis
-                  nisi neque, in egestas eros venenatis eu. Vestibulum nulla nisi, venenatis at pretium id, fermentum quis risus. Quisque porta suscipit neque eu placerat. Etiam scelerisque, quam in sodales iaculis, velit velit mattis nunc, quis dapibus
-                  massa elit nec enim. Vivamus quis libero aliquam, volutpat nisl sed, consectetur ante. Donec aliquam semper felis, in placerat leo blandit in. Integer interdum elit. Aliquam condimentum hendrerit nisi, nec vestibulum mi feugiat ut. Donec
-                  lobortis nisi neque, in egestas eros venenatis eu. Vestibulum nulla nisi, venenatis at pretium id, fermentum quis risus. Quisque porta suscipit neque eu placerat. Etiam scelerisque, quam in sodales iaculis, velit velit mattis nunc, quis
-                  dapibus massa elit nec enim. Vivamus quis</p>
+                <p>
+                  {{::vm.activity.story.description}}
+                </p>
               </div>
               <div id="resources">
                 <h4>Material de apoio<a href=""><span class="label label-success">editar</span></a></h4>
-                <p>Biografia do Tiririca</p>
-                <p>Livro - Como fazer amigos</p>
+                <ul>
+                  <li ng-repeat="material in vm.activity.story.helpfulMaterials">
+                        {{::material}}
+                   </li>
+                </ul>
               </div>
               <div id="links">
                 <h4>Links externos<a href=""><span class="label label-success">editar</span></a></h4>
-                <p>https://google.com</p>
-                <p>http://www.pazuzuistheking.com</p>
+                <ul>
+                  <li ng-repeat="link in vm.activity.story.externalLinks">
+                        <a ng-href="link">{{::link}}</a>
+                   </li>
+                </ul>
               </div>
             </div>
           </section>
