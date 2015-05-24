@@ -13,8 +13,6 @@
         link: function (scope) {
           var basePath = globalValues.ASSET_SVG_BASE_PATH;
           scope.filePath = basePath + '/' + scope.svgFileName + '.svg';
-
-          console.log('pblSvg', scope.filePath);
         }
       };
     }]);
