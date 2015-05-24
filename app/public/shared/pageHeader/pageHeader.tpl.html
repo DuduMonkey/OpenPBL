@@ -18,9 +18,9 @@
 
       <!-- Direita -->
       <ul class="nav navbar-nav navbar-right">
-        <li ng-if="isAuthenticated === false"><a href="">Conheça o PBL</a></li>
-        <li ng-if="isAuthenticated === false"><a href="">Sobre o sistema</a></li>
-        <li ng-if="isAuthenticated === false"><a href="">Ajuda</a></li>
+        <li ng-if="isAuthenticated === false"><a href="#/pbl">Conheça o PBL</a></li>
+        <li ng-if="isAuthenticated === false"><a href="#/about">Sobre o sistema</a></li>
+        <li ng-if="isAuthenticated === false"><a href="#/help">Ajuda</a></li>
         <li ng-if="isAuthenticated === true"><p>Bem vindo, <span>{{ vm.user.name }}</span>!</p></li>
         <li ng-if="isAuthenticated === true"><img src="assets/images/user-profile2.png"/></li>
         <li>

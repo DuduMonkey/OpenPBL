@@ -122,6 +122,26 @@ Navbar
     color: #2C8DBC;
 }
 
+/* 404 page */
+
+.content-section-404 {
+  color: #D9DCD0;
+  padding: 120px 0;
+  background-color: #313949;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+}
+
+.content-section-404 svg {
+    max-height: 600px;
+}
+
+.content-section-404 h2 {
+    font-size: 200px;
+    color: #746F91;
+}
+
 /*
  * Dashboard Content Wrapper & Sidebar
  */
@@ -382,7 +402,7 @@ ul.sidebar .sidebar-list .menu-icon {
 .row.header #btn-open i {
     font-size: 19px;
     color: #fff;
-    margin-right: 1px;
+    margin-left: 6px;
 }
 
 .row.header .header-actions #btn-delete {

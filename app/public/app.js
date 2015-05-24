@@ -33,7 +33,8 @@
           templateUrl:'sections/home/home.html'
         })
         .otherwise({
-          redirectTo: 'sections/404/404.html'
+          redirectTo: '/404',
+          templateUrl: 'sections/404/404.html'
         });
     }]);
 
