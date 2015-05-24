@@ -122,6 +122,26 @@ Navbar
     color: #2C8DBC;
 }
 
+/* 404 page */
+
+.content-section-404 {
+  color: #D9DCD0;
+  padding: 120px 0;
+  background-color: #313949;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+}
+
+.content-section-404 svg {
+    max-height: 600px;
+}
+
+.content-section-404 h2 {
+    font-size: 200px;
+    color: #746F91;
+}
+
 /*
  * Dashboard Content Wrapper & Sidebar
  */
@@ -340,6 +360,15 @@ ul.sidebar .sidebar-list .menu-icon {
     text-decoration: none;
 }
 
+#dash-sidebar-help {
+    width: 270px;
+    color: #c8d4db;
+    font-weight: 300;
+    text-align: center;
+    text-indent: 0;
+    padding: 40px 20px 0px 20px;
+}
+
 /* Activity header row */
 .row.header {
 	position: fixed;
@@ -360,27 +389,34 @@ ul.sidebar .sidebar-list .menu-icon {
     position: fixed;
     padding: 15px;
     right: 0;
-    min-width: 240px;
+    min-width: 130px;
     min-height: 72px;
 }
 
-.row.header .header-actions #btn-open {
-    width: 110px;
+.row.header #btn-open {
+    width: 170px;
     height: 42px;
-    margin-top: 0;
+    margin-top: 12px;
+    float: left;
 }
 
-.row.header .header-actions #btn-open i {
+.row.header #btn-open i {
     font-size: 19px;
     color: #fff;
-    margin-right: 1px;
+    margin-left: 6px;
 }
 
 .row.header .header-actions #btn-delete {
     width: 85px;
     height: 42px;
-    position: absolute;
-    right: 20px;
+    position: relative;
+    right: 0px;
+}
+
+@media(max-width:930px) {
+  .row.header .header-actions #btn-delete {
+    display: none;
+  }
 }
 
 .row.header .header-actions #btn-delete i {
@@ -395,8 +431,12 @@ ul.sidebar .sidebar-list .menu-icon {
     color: #555;
 }
 
-.row.header .meta .activity-details {
-    font-size: 14px;
+.row.header .meta #activity-title {
+    margin-left: 185px;
+    margin-right: 25px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .row.header .meta div {
@@ -553,6 +593,7 @@ td .badge {
 
 td .fa {
     margin-left: 15px;
+    color: #B75252;
 }
 
 .list-group {
