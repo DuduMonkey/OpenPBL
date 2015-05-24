@@ -64,6 +64,20 @@
     return _responseBag;
   };
 
+  /**
+    Transform an activity entity data into an response bag
+  **/
+  var activityBasicDataResponseBag = function (activity) {
+    var responseBag = {};
+
+    responseBag.id = activity._id;
+    responseBag.name = activity.name;
+    responseBag.status = activity.status;
+    responseBag.numberOfParticipants = activity.participants.length;
+
+    return responseBag;
+  };
+
   /** 
     Mount and persists the new Activity, 
     link the activity with the creator
