@@ -5,20 +5,30 @@
     .controller('ActivityController', ['$location', '$routeParams', '$scope', 'activityService', 'notificationService',
       function ($location, $routeParams, $scope, activityService, notificationService) {
 
+      var backToDashboard = function (reason) {
+        notificationService.error('Erro', reason);
+        $location.path('/dashboard');
+      };
+
     	$scope.init = function () {
-    		var activityId = $routeParams.id;
+    		var activityId
+        , path = $location.path().split('/');
+
+        if (path.length < 3) {
+          backToDashboard('ID da atividade inválido');
+        }
+
+        activityId = path[2];
 
         $scope.vm = {};
 
         if (angular.isDefined(activityId)) {
           activityService.getActivityById(activityId)
             .then(function (response) {
-              $scope.vm.activity = response.data;
-              console.log('activity', response.data);
+              $scope.vm.activity = response;
             })
             .catch(function (error) {
-              notificationService.error(error.message);
-              $location.path('/dashboard');
+              backToDashboard(error.messsage);
             });
         }
     	};
