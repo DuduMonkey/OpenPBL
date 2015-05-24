@@ -120,7 +120,7 @@
 
     query.exec(function (err, users) {
       if (err) { 
-        deferred.reject(Exception.USER_LIST_FIND_ERROR); 
+        deferred.reject(Exception.USER_LIST_ERROR); 
       }
       deferred.resolve(users);
     });

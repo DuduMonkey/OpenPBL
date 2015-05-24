@@ -44,7 +44,7 @@
 
     newStory.save(function (err, story) {
       if (!!err) {
-        deferred.reject(Exception.ERROR_INSERTING_STORY);
+        deferred.reject(Exception.ACTIVITY_INSERTING_STORY_ERROR);
       }
       deferred.resolve(story);
     });
