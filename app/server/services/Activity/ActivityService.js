@@ -6,7 +6,11 @@
   var Activity = require('../../models/Activity');
   var Message = require('../../shared/MessageResource');
   var userService = require('../User/UserService');
+  var Exception = require('../../shared/Exceptions');
   var Q = require('q');
+
+  //Specifications in use
+  var ActivitySpec = require('./Specification/ActivitySpec');
 
   /**
     Transforms the new activity data into an response bag 
@@ -152,10 +156,40 @@
     return deferred.promise;
   };
 
+  /**
+    Get basic data from an activity
+  **/
+  var getActivityBasicData = function (activityId) {
+    var deferred = Q.defer();
+
+    var queryActivityBasicData = {
+      select: '_id name participants status',
+      where: ['_id'],
+      conditions: [activityId],
+      join: []
+    };
+
+    Activity.queryInActivities(queryActivityBasicData)
+      .then(function (activities) {
+        if(ActivitySpec.HasFoundExactlyOneActivity().isSatisfiedBy(activities)){
+          var selectedActivity = activities[0];
+          var basicDataResponseBag = activityBasicDataResponseBag(selectedActivity);
+          deferred.resolve(basicDataResponseBag);
+        }
+        deferred.reject(Exception.ACTIVITY_GET_BASIC_DATA_ERROR);
+      })
+      .catch(function () {
+        deferred.reject(Exception.ACTIVITY_FIND_ACTIVITY_ERROR);
+      });
+
+    return deferred.promise;
+  };
+
   // export the class
   module.exports = {
     createNewActivity: createNewActivity,
     getTeacherActivities : getTeacherActivities,
     deleteActivity: deleteActivity,
+    getActivityBasicData: getActivityBasicData,
   };
 }());
