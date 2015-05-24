@@ -365,6 +365,7 @@ ul.sidebar .sidebar-list .menu-icon {
     color: #c8d4db;
     font-weight: 300;
     text-align: center;
+    text-indent: 0;
     padding: 40px 20px 0px 20px;
 }
 
@@ -592,6 +593,7 @@ td .badge {
 
 td .fa {
     margin-left: 15px;
+    color: #B75252;
 }
 
 .list-group {

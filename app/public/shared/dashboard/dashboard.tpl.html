@@ -10,8 +10,7 @@
     </div>
     <div class="sidebar-items">
       <div id="dash-sidebar-help" ng-hide="currentActivity">
-        <h4>Bem vindo!</h4>
-        <p>Este é seu painel do usuário. Aqui você pode visualisar e criar atividades novas.<br><br>Utilize o painel do usuário para gerenciar suas atividades, adicionar ou remover usuários, acompanhar seu andamento, entre outros.<br><br>Para editar ou abrir uma atividade, clique em <br><kbd><i class="fa fa-share"></i> Ir para a atividade </kbd><br><br>Que tal começar criando uma atividade nova?</p>
+        <h4>Bem vindo!</h4>Este é seu painel do usuário. Aqui você pode visualisar e criar atividades novas.<br><br>Utilize o painel do usuário para gerenciar suas atividades, adicionar ou remover usuários, acompanhar seu andamento, entre outros.<br><br>Para editar ou abrir uma atividade, clique em <br><kbd><i class="fa fa-share"></i> Ir para a atividade </kbd><br><br>Que tal começar criando uma atividade nova?
       </div>
       <ul class="sidebar">
         <li class="sidebar-list" ng-repeat="activity in activities.active" ng-click="setCurrentActivity(activity)">
