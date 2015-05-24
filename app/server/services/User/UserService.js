@@ -67,7 +67,7 @@
     };
 
     if (!userToken) {
-      deferred.reject(Exception.ERROR_ON_LOGIN_RESPONSE_GENERATION);
+      deferred.reject(Exception.LOGIN_CANT_CREATE_TOKEN);
     }
 
     getSessionUser(userToken)

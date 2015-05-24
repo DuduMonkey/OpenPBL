@@ -62,7 +62,7 @@
       } else if (!!data) {
         deferred.resolve(data.email);
       }
-      deferred.reject(Exception.INVALID_TOKEN);
+      deferred.reject(Exception.TOKEN_INVALID);
     });
 
     return deferred.promise;

@@ -33,7 +33,7 @@
     }
 
     if (!role) {
-      deferred.reject(Exception.ROLE_VALUE_NOT_ASSIGNED);
+      deferred.reject(Exception.ROLE_VALUE_NOT_EXISTS);
     }
 
     return deferred.promise;

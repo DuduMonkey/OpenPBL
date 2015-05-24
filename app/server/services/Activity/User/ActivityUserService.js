@@ -36,12 +36,12 @@
             ]
           });
         }
-        deferred.reject(Exception.ERROR_ACTIVITY_USER_NOT_EXISTS);
+        deferred.reject(Exception.ACTIVITY_USER_NOT_EXISTS);
         console.log(user);
       })
       .then(function (activities) {
         if (ActivitySpec.ActivityAlreadyHaveTheUser().isSatisfiedBy(activities[0])) {
-          deferred.reject(Exception.ERROR_ACTIVITY_USER_ALREADY_EXISTS);
+          deferred.reject(Exception.ACTIVITY_USER_ALREADY_EXISTS);
         } else {
           var queryInsertUser = {
             $addToSet: { participants: userToInsert._id }
@@ -53,7 +53,7 @@
         deferred.resolve({ message: Message.SUCCESS_INSERTING_USER });
       })
       .catch(function () {
-        deferred.reject(Exception.ERROR_INSERTING_USER);
+        deferred.reject(Exception.ACTIVITY_USER_INSERTING_ERROR);
       });
 
     return deferred.promise;

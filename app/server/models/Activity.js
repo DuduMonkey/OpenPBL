@@ -37,7 +37,7 @@
 
     newActivity.save(function (err, activity) {
       if (!!err) {
-        deferred.reject(Exception.ERROR_CREATING_NEW_ACTIVITY);
+        deferred.reject(Exception.ACTIVITY_CREATION_ERROR);
       }
       deferred.resolve(activity);
     });
@@ -62,7 +62,7 @@
 
     this.findByIdAndUpdate(activityId, updatedAttrs, function (err, activity) {
       if (!!err) {
-        deferred.reject(Exception.ERROR_UPDATING_ACTIVITY);
+        deferred.reject(Exception.ACTIVITY_UPDATING_ERROR);
       }
       deferred.resolve(activity);
     });
@@ -119,7 +119,7 @@
 
     query.exec(function (err, activities) {
       if (!!err) {
-        deferred.reject(Exception.ACTIVITY_LIST_FIND_ERROR);
+        deferred.reject(Exception.ACTIVITY_LIST_ERROR);
       }
       deferred.resolve(activities);
     });
@@ -135,9 +135,9 @@
 
     this.findByIdAndRemove(activityId, function (err, activity) {
       if (!!err) {
-        deferred.reject(Exception.ERROR_DELETE_ACTIVITY);
+        deferred.reject(Exception.ACTIVITY_DELETING_ERROR);
       } else if (activity === GLOBAL.CONST_NULL_OBJECT) {
-        deferred.reject(Exception.INVALID_ACTIVITY_TO_DELETION);
+        deferred.reject(Exception.ACTIVITY_INVALID_TO_DELETE);
       }
       deferred.resolve();
     });
