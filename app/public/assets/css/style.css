@@ -340,6 +340,14 @@ ul.sidebar .sidebar-list .menu-icon {
     text-decoration: none;
 }
 
+#dash-sidebar-help {
+    width: 270px;
+    color: #c8d4db;
+    font-weight: 300;
+    text-align: center;
+    padding: 40px 20px 0px 20px;
+}
+
 /* Activity header row */
 .row.header {
 	position: fixed;
@@ -360,17 +368,18 @@ ul.sidebar .sidebar-list .menu-icon {
     position: fixed;
     padding: 15px;
     right: 0;
-    min-width: 240px;
+    min-width: 130px;
     min-height: 72px;
 }
 
-.row.header .header-actions #btn-open {
-    width: 110px;
+.row.header #btn-open {
+    width: 170px;
     height: 42px;
-    margin-top: 0;
+    margin-top: 12px;
+    float: left;
 }
 
-.row.header .header-actions #btn-open i {
+.row.header #btn-open i {
     font-size: 19px;
     color: #fff;
     margin-right: 1px;
@@ -379,8 +388,14 @@ ul.sidebar .sidebar-list .menu-icon {
 .row.header .header-actions #btn-delete {
     width: 85px;
     height: 42px;
-    position: absolute;
-    right: 20px;
+    position: relative;
+    right: 0px;
+}
+
+@media(max-width:930px) {
+  .row.header .header-actions #btn-delete {
+    display: none;
+  }
 }
 
 .row.header .header-actions #btn-delete i {
@@ -395,8 +410,12 @@ ul.sidebar .sidebar-list .menu-icon {
     color: #555;
 }
 
-.row.header .meta .activity-details {
-    font-size: 14px;
+.row.header .meta #activity-title {
+    margin-left: 185px;
+    margin-right: 25px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .row.header .meta div {

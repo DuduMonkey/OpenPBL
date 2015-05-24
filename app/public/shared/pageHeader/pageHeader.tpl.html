@@ -24,7 +24,7 @@
         <li ng-if="isAuthenticated === true"><p>Bem vindo, <span>{{ vm.user.name }}</span>!</p></li>
         <li ng-if="isAuthenticated === true"><img src="assets/images/user-profile2.png"/></li>
         <li>
-          <button type="button" class="btn btn-primary" ng-click="openLogin()" ng-if="isAuthenticated === false">Entrar</button>
+          <button type="button" class="btn btn-primary" ng-click="openLogin(setModalMode(modal.mode.login))" ng-if="isAuthenticated === false">Entrar</button>
           <a href="" ng-click="logout()" ng-if="isAuthenticated === true">Sair</a>
         </li>
       </ul>
