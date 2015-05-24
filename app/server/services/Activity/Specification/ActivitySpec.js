@@ -29,4 +29,19 @@
       isSatisfiedBy: isSatisfiedBy
     };
   };
+
+  exports.HasFoundExactlyOneActivity = function () {
+    
+    var isSatisfiedBy = function (activities) {
+      if (activities.length === 1) {
+        return true;
+      }
+      return false;
+    };
+
+    return {
+      isSatisfiedBy: isSatisfiedBy
+    };
+  };
+
 }());
