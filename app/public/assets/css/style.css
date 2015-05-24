@@ -158,11 +158,11 @@ Navbar
  ul.sidebar .sidebar-list a:focus, ul.sidebar .sidebar-list a:active { background: #272d3a }
 
  #page-wrapper {
-     position: relative;
-     height: 100%;
- }
+   position: relative;
+   height: 100%;
+}
 
- #page-wrapper:after{
+#page-wrapper:after{
     position: fixed;
     content: "";
     top: 0;
@@ -416,7 +416,7 @@ ul.sidebar .sidebar-list .menu-icon {
 @media(max-width:930px) {
   .row.header .header-actions #btn-delete {
     display: none;
-  }
+}
 }
 
 .row.header .header-actions #btn-delete i {
@@ -724,7 +724,7 @@ td .fa {
   color: #41423e;
 }
 
-.svg-top {
+.sidebar-help-top svg {
   height: 140px;
   margin-left: 58px;
   margin-top: 10px;
@@ -910,11 +910,13 @@ main section {
 }
 
 .chalkboard h4 span {
-  position: relative;
-  margin-left: 15px;
-  color: #fff;
-  font-size: 11px;
-  bottom: 4px;
+    font-family: 'Roboto';
+    font-weight: 400;
+    position: relative;
+    margin-left: 15px;
+    color: #fff;
+    font-size: 11px;
+    bottom: 4px;
 }
 
 .chalkboard h4 a {
@@ -937,7 +939,7 @@ main section {
 *  home *
 */
 .home-wrapper {
- background:url(/assets/images/white_plaster.png) fixed;
+   background:url(/assets/images/white_plaster.png) fixed;
 }
 
 .topnav {
@@ -1030,21 +1032,21 @@ div.signup-btn-out {
 @media(max-width:767px) {
   .intro-message {
     padding-bottom: 8%;
-  }
-  .intro-message > h2 {
+}
+.intro-message > h2 {
     font-size: 2.8em;
-  }
-  ul.intro-buttons > li {
+}
+ul.intro-buttons > li {
     display: block;
     margin-bottom: 20px;
     padding: 0;
-  }
-  ul.intro-buttons > li:last-child {
+}
+ul.intro-buttons > li:last-child {
     margin-bottom: 0;
-  }
-  .intro-divider {
+}
+.intro-divider {
     width: 100%;
-  }
+}
 }
 
 .role-name {
@@ -1143,16 +1145,16 @@ footer img {
 @media(max-width:764px) {
   footer img {
     display: none;
-  }
+}
 }
 
 @media(max-width:991px) {
   footer img {
     padding-bottom: 30px;
-  }
+}
 }
 
-p.copyright {
+p.copyright, p.credit {
   margin: 15px 0 0;
 }
 
@@ -1162,6 +1164,7 @@ p.copyright .fa {
     padding-left: 6px;
 }
 
-p.copyright .fa:hover {
-    color: #fff;
+p.credit .fa {
+    color: #B75252;
+    font-size: 16px;
 }
