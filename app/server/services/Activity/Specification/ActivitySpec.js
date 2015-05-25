@@ -16,7 +16,7 @@
     };
   };
 
-  exports.ActivityAlreadyHaveTheUser = function () {
+  exports.ActivityHasThisUser = function () {
 
     var isSatisfiedBy = function (activity) {
       if (activity.participants.length !== 0) {

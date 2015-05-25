@@ -37,10 +37,9 @@
           });
         }
         deferred.reject(Exception.ACTIVITY_USER_NOT_EXISTS);
-        console.log(user);
       })
       .then(function (activities) {
-        if (ActivitySpec.ActivityAlreadyHaveTheUser().isSatisfiedBy(activities[0])) {
+        if (ActivitySpec.ActivityHasThisUser().isSatisfiedBy(activities[0])) {
           deferred.reject(Exception.ACTIVITY_USER_ALREADY_EXISTS);
         } else {
           var queryInsertUser = {
@@ -65,17 +64,37 @@
   var removeUser = function (activityId, userId) {
     var deferred = Q.defer();
 
-    var updateQuery = {
-      $pull: { participants: userId }
+    var querySelectUserInActivity = {
+      select: '-_id participants',
+      where: ['_id'],
+      conditions: [activityId],
+      join: [
+        {
+          path: 'participants',
+          match: { _id: userId }
+        }
+      ]
     };
 
-    Activity.updateActivity(activityId, updateQuery)
+    Activity.queryInActivities(querySelectUserInActivity)
+      .then(function (activities) {
+        var currentActivity = activities[0];
+        if (ActivitySpec.ActivityHasThisUser().isSatisfiedBy(currentActivity)) {
+          // update document activity and pull user from participants
+          var queryRemoveUserFrom = {
+            $pull: { participants: userId }
+          };
+          return Activity.updateActivity(activityId, queryRemoveUserFrom);
+        }
+        deferred.reject(Exception.ACTIVITY_USER_REMOVE_NOT_FIND);
+      })
       .then(function () {
         deferred.resolve({ message: Message.SUCCESS_REMOVING_USER });
       })
       .catch(function () {
-        deferred.reject(Exception.USER_DELETING_ERROR);
+        deferred.reject(Exception.ACTIVITY_USER_REMOVE_ERROR);
       });
+
     return deferred.promise;
   };
 

@@ -31,6 +31,7 @@
     ACTIVITY_USER_ALREADY_EXISTS: declareNewError('O usuário já foi convidado'),
     ACTIVITY_USER_NOT_EXISTS: declareNewError('Usuário não registrado'),
     ACTIVITY_USER_INSERTING_ERROR: declareNewError('Erro na inserção de usuário'),
+    ACTIVITY_USER_REMOVE_NOT_FIND: declareNewError('O usuário já foi removido da atividade'),
     ACTIVITY_USER_REMOVE_ERROR: declareNewError('Erro ao remover usuário'),
     ACTIVITY_GET_BASIC_DATA_ERROR: declareNewError('Não foram encontrados os dados básicos da atividade'),
     ACTIVITY_FIND_ACTIVITY_ERROR: declareNewError('Erro ao executar a busca da atividade na base de dados'),
