@@ -4,7 +4,6 @@
 
   // Modules in use
   var activityService = require('../services/Activity/ActivityService');
-  var activityUserService = require('../services/Activity/User/ActivityUserService');
   var _TOKEN_HEADER = 'x-pbl-token';
 
   exports.post = function (req, res) {
