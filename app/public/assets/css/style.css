@@ -28,7 +28,6 @@
 
 html {
     min-height: 100%;
-    /*position: relative;*/
 }
 
 body {
@@ -825,8 +824,7 @@ main {
   width: 100%;
 }
 
-.panel-body input,
-main section {
+.panel-body input {
   clear: both;
   display: none;
   transition: all 2s;
@@ -861,16 +859,6 @@ main section {
 .panel-body input:disabled + label:hover {
   cursor: default;
   background-color: #2C8DBC;
-}
-
-#tab1:checked ~ #content1,
-#tab2:checked ~ #content2,
-#tab3:checked ~ #content3,
-#tab4:checked ~ #content4,
-#tab5:checked ~ #content5,
-#tab6:checked ~ #content6 {
-  display: block;
-  transition: all 2s;
 }
 
 .panel-body input:checked + label {
@@ -933,6 +921,11 @@ main section {
   border-radius: 10px;
   padding: 10px;
   margin-bottom: 10px;
+}
+
+#btn-insert-post {
+    height: 40px;
+    margin: 5px 5px;
 }
 
 /*
@@ -1155,7 +1148,8 @@ footer img {
 }
 
 p.copyright, p.credit {
-  margin: 15px 0 0;
+  margin: 0px 0px 8px 0px;
+  color: #777;
 }
 
 p.copyright .fa {
