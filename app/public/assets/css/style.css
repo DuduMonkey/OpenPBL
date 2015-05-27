@@ -85,6 +85,11 @@ Buttons
     border-color: #1e8372;
 }
 
+.btn-success:disabled {
+    background-color: #6bd0be;
+    border-color: #56c9b5;
+}
+
 .btn-purple {
     background-color: #746F91;
     border-color: #686382;
@@ -93,6 +98,11 @@ Buttons
 .btn-purple:hover {
     background-color: #5c5874;
     border-color: #514d65;
+}
+
+.btn-purple:disabled {
+    background-color: #9d9ab2;
+    border-color: #8f8ba7;
 }
 
 /**
@@ -170,7 +180,7 @@ Navbar
  .row.header { background: #fff }
  .widget { background: #2CBCA3 }
  ul.sidebar .sidebar-list a:hover { background: #628ead }
- ul.sidebar .sidebar-list a:focus, ul.sidebar .sidebar-list a:active { background: #272d3a }
+ ul.sidebar .sidebar-list a:focus, ul.sidebar .sidebar-list a.active { background: #272d3a }
 
  #page-wrapper {
    position: relative;
