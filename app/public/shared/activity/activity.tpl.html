@@ -30,7 +30,7 @@
       <p ng-show="content == 'tab-resolution'">tab resolução tab resolução tab resolução tab resolução tab resolução tab resolução tab resolução tab resolução tab resolução tab resolução tab resolução tab resolução tab resolução</p>
       <p ng-show="content == 'tab-abstraction'">tab abstração tab abstração tab abstração tab abstração tab abstração tab abstração tab abstração tab abstração tab abstração tab abstração tab abstração tab abstração tab abstração</p>  
     </div>
-  </div> <!--end sidebar help -->
+  </div> <!-- /.sidebar help -->
 
   <!-- content wrapper -->
   <div class="content-wrapper">
@@ -60,7 +60,7 @@
           <input id="tab-abstraction" type="radio" name="tabs" ng-model="content" value="tab-abstraction">
           <label for="tab-abstraction">Abstração</label>
           <label class="fake">.</label> 
-          <!-- end tabs -->
+          <!-- /.tabs -->
 
           <!-- panel sections -->
           <!-- content-problem -->
@@ -128,7 +128,7 @@
               </div>
             </div>
           </section>
-          <!-- end panel sections -->
+          <!-- /.panel sections -->
         </main>
 
         <!-- panel footer -->
@@ -141,12 +141,34 @@
             </div>
             <div class="col-md-4 col-md-offset-1 col-sm-6">
               <button ng-hide="content == 'tab-abstraction'" id="btn-next-status" class="btn btn-success pull-right" type="submit">Avançar estado <i class="fa fa-arrow-circle-right"></i></button>
-              <button ng-show="content == 'tab-abstraction'" id="btn-next-status" class="btn btn-success pull-right" type="submit">Encerrar atividade <i class="fa fa-check-circle"></i></button>
+              <button ng-show="content == 'tab-abstraction'" id="btn-next-status" class="btn btn-success pull-right" type="submit" data-toggle="modal" data-target="#finishActivityModal">Encerrar atividade <i class="fa fa-check-circle"></i></button>
               <button ng-show="content == 'tab-abstraction'" id="btn-next-status" class="btn btn-primary btn-purple pull-right" type="submit"><i class="fa fa-arrow-circle-left"></i> Recomeçar atividade</button>
             </div>
           </div>
-        </div> <!-- end panel footer -->
+        </div> <!-- /.panel footer -->
       </div>
-    </div> <!-- end panel -->
-  </div> <!-- end content wrapper -->
-</div> <!-- end page wrapper -->
+    </div> <!-- /.panel -->
+  </div> <!-- /.content wrapper -->
+
+  <!-- Modal: encerrar atividade -->
+  <div class="modal fade background-static" id="finishActivityModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+          <div class="modal-title"><h4>Encerrar Atividade</h4></div>
+        </div>
+        <div class="modal-body">
+          <div class="tex-center">
+              <h5>Tem certeza que deseja encerrar esta atividade?</h5> 
+              <p>Depois de encerrada, a atividade não poderá ser reaberta, mas permanecerá disponível em seu painel de usuário para consulta.</p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Não</button>
+          <button type="button" class="btn btn-success" ng-click="deleteActivity()">Sim</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+</div> <!-- /.page wrapper -->

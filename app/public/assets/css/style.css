@@ -80,7 +80,7 @@ Buttons
     border-color: #27a992;
 }
 
-.btn-success:hover {
+.btn-success:hover, .btn-success:focus, .btn-success:active {
     background-color: #239682;
     border-color: #1e8372;
 }
@@ -95,7 +95,7 @@ Buttons
     border-color: #686382;
 }
 
-.btn-purple:hover {
+.btn-purple:hover, .btn-purple:focus, .btn-purple:active {
     background-color: #5c5874;
     border-color: #514d65;
 }
@@ -642,6 +642,7 @@ td .fa {
 */
 .modal-header {
     border-radius: 5px 5px 0px 0px;
+    min-height: 65px;
 }
 
 .modal-footer {
@@ -650,11 +651,13 @@ td .fa {
 
 .modal-header, .modal-footer {
     background: #16465e;
-    color: #D9DCD0;
+    color: #6191a8;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
 .modal-title {
-    margin-top: -5px;
+    margin-top: -2px;
     padding-top: 0px;
     padding-left: 20px;
     margin-bottom: -5px;
