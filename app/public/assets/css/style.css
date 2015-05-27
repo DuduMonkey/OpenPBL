@@ -76,7 +76,23 @@ Buttons
 }
 
 .btn-success {
-    background-color: #8dc295;
+    background-color: #2CBCA3;
+    border-color: #27a992;
+}
+
+.btn-success:hover {
+    background-color: #239682;
+    border-color: #1e8372;
+}
+
+.btn-purple {
+    background-color: #746F91;
+    border-color: #686382;
+}
+
+.btn-purple:hover {
+    background-color: #5c5874;
+    border-color: #514d65;
 }
 
 /**
@@ -152,7 +168,7 @@ Navbar
  .sidebar-footer { background: #454c5b }
  .sidebar-footer div a:hover { background: #5a606d }
  .row.header { background: #fff }
- .widget { background: #8dc295 }
+ .widget { background: #2CBCA3 }
  ul.sidebar .sidebar-list a:hover { background: #628ead }
  ul.sidebar .sidebar-list a:focus, ul.sidebar .sidebar-list a:active { background: #272d3a }
 
@@ -923,9 +939,19 @@ main {
   margin-bottom: 10px;
 }
 
-#btn-insert-post {
+#btn-insert-post, #btn-next-status {
     height: 40px;
     margin: 5px 5px;
+    display: inline-block;
+}
+
+#btn-insert-post {
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.panel-footer .fa {
+    font-size: 18px;
 }
 
 /*
