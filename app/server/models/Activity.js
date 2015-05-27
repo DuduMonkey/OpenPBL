@@ -119,7 +119,7 @@
 
     query.exec(function (err, activities) {
       if (!!err) {
-        deferred.reject(Exception.ACTIVITY_LIST_ERROR);
+        deferred.reject(Exception.ACTIVITY_QUERY_ERROR);
       }
       deferred.resolve(activities);
     });

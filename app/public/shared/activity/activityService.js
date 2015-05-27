@@ -90,7 +90,8 @@
 
       var getActivityById = function (activityId) {
         var deferred = $q.defer()
-        , url = globalValues.API_URL + '/activity/' + activityId;
+        //, url = globalValues.API_URL + '/activity/' + activityId;
+        , url = 'http://private-74203b-openpbl.apiary-mock.com/api' + '/activity/' + activityId;
 
         $http.get(url)
           .then(function (response) {
@@ -113,6 +114,53 @@
 
       var getActivityParticipants = function (activityId) {
         return participantService.getParticipants(activityId);
+      };
+
+      var getActivityStatusData = function (activityId, status) {
+        var deferred = $q.defer()
+        , statusPropertyName = getStatusPropertyName(status)
+        //, url = globalValues.API_URL + '/activity/' + activityId + '/' + statusPropertyName;
+        , url = 'http://private-74203b-openpbl.apiary-mock.com/api' + '/activity/' + activityId + '/' + statusPropertyName;
+
+        $http.get(url)
+          .then(function (response) {
+            deferred.resolve(response.data);
+          })
+          .catch(function (error) {
+            deferred.reject(error);
+          });
+
+        return deferred.promise;
+      };
+
+      var getStatusPropertyName = function (status) {
+        var activityStatus = globalValues.activity.status;
+
+        switch (status) {
+          case activityStatus.CREATING_STORY:
+            return 'story';
+
+          case activityStatus.GENERATING_FACTS:
+            return 'facts';
+
+          case activityStatus.IDENTIFYING_HIPOTESYS:
+            return 'hypothesis';
+
+          case activityStatus.RESEARCHING:
+            return 'researching';
+
+          case activityStatus.RESOLVING_PROBLEM:
+            return 'problem';
+
+          case activityStatus.ABSTRACTING:
+            return 'abstracting';
+
+          case activityStatus.FINISHED:
+            return 'finished';
+
+          default:
+            throw new Error('Status inválido');
+        }
       };
 
       var getActivityStories = function (activityId) {
@@ -149,6 +197,8 @@
         getActivityFacts: getActivityFacts, 
         getActivityHypotheses: getActivityHypotheses,
         getActivityParticipants: getActivityParticipants,
+        getActivityStatusData: getActivityStatusData,
+        getStatusPropertyName: getStatusPropertyName,
         getActivityStories: getActivityStories,
         saveActivity: saveActivity
       };

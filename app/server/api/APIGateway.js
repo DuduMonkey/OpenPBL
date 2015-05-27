@@ -6,6 +6,7 @@
   var authentication = require('../rest/RESTAuthentication');
   var register = require('../rest/RESTRegister');
   var activity = require('../rest/RESTActivity');
+  var activityUser = require('../rest/RESTActivityUser');
   var story = require('../rest/RESTStory');
   var roles = require('../rest/RESTRole');
 
@@ -55,6 +56,7 @@
 
     // [DELETE] Activity from user  
     router.route('/activity/:id')
+      .get(activity.getActivityData)
       .delete(activity.delete);
 
     // [POST] Story data to save activity story
@@ -63,10 +65,10 @@
 
     // [POST] User on activity
     router.route('/activity/:id/participant')
-      .post(activity.insertUser);
+      .post(activityUser.insertUser);
 
     // [DELETE] User from activity
     router.route('/activity/:activityId/participant/:userId')
-      .delete(activity.removeUser);
+      .delete(activityUser.removeUser);
   };
 }());
