@@ -105,6 +105,10 @@ Buttons
     border-color: #8f8ba7;
 }
 
+.label-purple {
+    background-color: #746F91;
+}
+
 /**
 Navbar
 */
@@ -643,6 +647,9 @@ td .fa {
 .modal-header {
     border-radius: 5px 5px 0px 0px;
     min-height: 65px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0px 1px 3px #0f3141;
 }
 
 .modal-footer {
@@ -652,8 +659,6 @@ td .fa {
 .modal-header, .modal-footer {
     background: #16465e;
     color: #6191a8;
-    text-transform: uppercase;
-    letter-spacing: 2px;
 }
 
 .modal-title {
@@ -791,6 +796,7 @@ td .fa {
   right: 0;
   bottom: 0;
   top: 50px;
+  min-width: 675px;
   background: #D9DCD0;
   padding: 10px 5px 10px 12px;
 }
@@ -843,9 +849,16 @@ td .fa {
   border-top: none;
   background: #fff;
   z-index: 10;
+  min-width: 658px;
   -webkit-box-shadow: 0px -5px 12px -5px rgba(0, 0, 0, 0.41);
   -moz-box-shadow: 0px -5px 12px -5px rgba(0, 0, 0, 0.41);
   box-shadow: 0px -5px 12px -5px rgba(0, 0, 0, 0.41);
+}
+
+.panel-footer .actions {
+    padding-right: 0px;
+    padding-left: 0px;
+    right: -5px;
 }
 
 main {
@@ -912,6 +925,7 @@ main {
   background-color: #2F4F4F;
   overflow-y: auto;
   width: auto;
+  min-width: 658px;
   right: 5px;
   left: 297px;
   bottom: 80px;
