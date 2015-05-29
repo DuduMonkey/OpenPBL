@@ -955,8 +955,8 @@ main {
 }
 
 #problem,
-#links,
-#resources,
+#facts,
+#hypothesis,
 #research,
 #resolution,
 #abstraction {
@@ -1029,7 +1029,7 @@ main {
     border-color: #DEE184;
 }
 
-.sticky.hipot {
+.sticky.hypot {
     background-color: #cbf0ff;
     border-color: #b6d8e5;
 }
