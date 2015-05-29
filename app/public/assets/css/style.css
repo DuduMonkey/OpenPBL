@@ -981,6 +981,64 @@ main {
     font-size: 18px;
 }
 
+/** posts **/
+
+.sticky {
+  -webkit-box-shadow: #DDD 0px 1px 2px;
+  position: relative;
+  color: #313949;
+  text-align: left;
+  padding: 1em;
+  -webkit-box-shadow: 0px 1px 3px rgba(0,0,0,0.25);
+  -moz-box-shadow: 0px 1px 3px rgba(0,0,0,0.25);
+  box-shadow: 0px 1px 3px rgba(0,0,0,0.25);
+}
+
+.post-it {
+  display: inline-table;
+  margin: 0.5em 0.5em; 
+  width: 18%;
+}
+
+@media(max-width:1450px) {
+    .post-it { width: 22.5%; }
+}
+
+@media(max-width:1180px) {
+    .post-it { width: 30%; }
+}
+
+@media(max-width:988px) {
+    .post-it { width: 47%; }
+}
+
+.sticky h5 {
+    font-size: 18px;
+    color: #313949;
+}
+
+.sticky small {
+    bottom: 5px;
+    position: relative;
+    font-size: 80%;
+    color: #777;
+}
+
+.sticky.fact {
+    background-color: #F4F39E;
+    border-color: #DEE184;
+}
+
+.sticky.hipot {
+    background-color: #cbf0ff;
+    border-color: #b6d8e5;
+}
+
+.sticky.resol {
+    background-color: #93d3c2;
+    border-color: #89b3a9;
+}
+
 /*
 *  home *
 */
