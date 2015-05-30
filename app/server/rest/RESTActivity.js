@@ -21,7 +21,7 @@
   exports.list = function (req, res) {
     var headerToken = req.headers[_TOKEN_HEADER];
 
-    activityService.getTeacherActivities(headerToken)
+    activityService.listActivities(headerToken)
       .then(function (responseBag) {
         res.status(200).send(responseBag);
       })

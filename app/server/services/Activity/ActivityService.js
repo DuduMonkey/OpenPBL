@@ -6,6 +6,7 @@
   var Activity = require('../../models/Activity');
   var Message = require('../../shared/MessageResource');
   var userService = require('../User/UserService');
+  var userActivitiesStrategy = require('./ActivityListStrategy');
   var Exception = require('../../shared/Exceptions');
   var Q = require('q');
 
@@ -118,29 +119,13 @@
   };
 
   /**
-    Get teacher Activities
+    Get user Activities
   **/
-  var getTeacherActivities = function (token) {
+  var listActivities = function (token) {
     var deferred = Q.defer();
-
     userService.getSessionUser(token)
       .then(function (sessionUser) {
-        //find all activities from user and populate participants
-        return Activity.queryInActivities({
-          select: '_id name story created participants status',
-          where: ['_creator'],
-          conditions: [sessionUser._id],
-          join: [
-            {
-              path: 'participants',
-              select: '_id name'
-            },
-            {
-              path: 'story',
-              select: '-_id description'
-            }
-          ]
-        });
+        return userActivitiesStrategy().getUserActivities(sessionUser);
       })
       .then(function (activities) {
         var responseBag = activityListResponseBag(activities);
@@ -185,7 +170,7 @@
 
     Activity.queryInActivities(queryActivityBasicData)
       .then(function (activities) {
-        if(ActivitySpec.HasFoundExactlyOneActivity().isSatisfiedBy(activities)){
+        if (ActivitySpec.HasFoundExactlyOneActivity().isSatisfiedBy(activities)) {
           var selectedActivity = activities[0];
           var basicDataResponseBag = activityBasicDataResponseBag(selectedActivity);
           deferred.resolve(basicDataResponseBag);
@@ -202,7 +187,7 @@
   // export the class
   module.exports = {
     createNewActivity: createNewActivity,
-    getTeacherActivities : getTeacherActivities,
+    listActivities: listActivities,
     deleteActivity: deleteActivity,
     getActivityBasicData: getActivityBasicData,
   };
