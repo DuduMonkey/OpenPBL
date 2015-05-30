@@ -24,17 +24,20 @@
     // Activity
     ACTIVITY_CREATION_ERROR: declareNewError('Erro na persistencia da nova atividade'),
     ACTIVITY_QUERY_ERROR: declareNewError('Erro ao buscar dados de atividades na base de dados'),
-    ACTIVITY_INSERTING_STORY_ERROR: declareNewError('Erro ao salvar o problema'),
     ACTIVITY_UPDATING_ERROR: declareNewError('Erro ao atualizar a atividade'),
     ACTIVITY_DELETING_ERROR: declareNewError('Erro ao deletar a atividade'),
     ACTIVITY_INVALID_TO_DELETE: declareNewError('Atividade para exclusão inexistente'),
+    ACTIVITY_GET_BASIC_DATA_ERROR: declareNewError('Não foram encontrados os dados básicos da atividade'),
+    ACTIVITY_FIND_ACTIVITY_ERROR: declareNewError('Erro ao executar a busca da atividade na base de dados'),
+    // Activity User
     ACTIVITY_USER_ALREADY_EXISTS: declareNewError('O usuário já foi convidado'),
     ACTIVITY_USER_NOT_EXISTS: declareNewError('Usuário não registrado'),
     ACTIVITY_USER_INSERTING_ERROR: declareNewError('Erro na inserção de usuário'),
     ACTIVITY_USER_REMOVE_NOT_FIND: declareNewError('O usuário já foi removido da atividade'),
     ACTIVITY_USER_REMOVE_ERROR: declareNewError('Erro ao remover usuário'),
-    ACTIVITY_GET_BASIC_DATA_ERROR: declareNewError('Não foram encontrados os dados básicos da atividade'),
-    ACTIVITY_FIND_ACTIVITY_ERROR: declareNewError('Erro ao executar a busca da atividade na base de dados'),
+    // Activity Story
+    ACTIVITY_STORY_INSERTING_ERROR: declareNewError('Erro ao salvar o problema da atividade'),
+    ACTIVITY_STORY_UPDATE_ERROR: declareNewError('Erro ao atualizar o problema da atividade'),
     // JSON Helper
     PARSE_TO_JSON_EXCEPTION: declareNewError('Falha ao fazer o parse para JSON'),
     //Exception for not implemented functions
