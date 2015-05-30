@@ -186,9 +186,9 @@
         <div class="panel-footer">
           <div class="row">
             <div class="col-lg-3 col-lg-offset-4 col-md-3 col-md-offset-2 col-sm-4 actions">
-              <button ng-show="content == 'tab-facts'" id="btn-insert-post" class="btn btn-primary btn-block" type="submit">Inserir fato <i class="fa fa-arrow-circle-up"></i></button>
-              <button ng-show="content == 'tab-hypothesis'" id="btn-insert-post" class="btn btn-primary btn-block" type="submit">Inserir hipótese <i class="fa fa-arrow-circle-up"></i></button>
-              <button ng-show="content == 'tab-resolution'" id="btn-insert-post" class="btn btn-primary btn-block" type="submit">Inserir resposta <i class="fa fa-arrow-circle-up"></i></button>
+              <button ng-show="content == 'tab-facts'" id="btn-insert-post" class="btn btn-primary btn-block" type="submit" data-toggle="modal" data-target="#enterPostModal">Inserir fato <i class="fa fa-arrow-circle-up"></i></button>
+              <button ng-show="content == 'tab-hypothesis'" id="btn-insert-post" class="btn btn-primary btn-block" type="submit" data-toggle="modal" data-target="#enterPostModal">Inserir hipótese <i class="fa fa-arrow-circle-up"></i></button>
+              <button ng-show="content == 'tab-resolution'" id="btn-insert-post" class="btn btn-primary btn-block" type="submit" data-toggle="modal" data-target="#enterPostModal">Inserir resposta <i class="fa fa-arrow-circle-up"></i></button>
             </div>
             <div class="col-lg-5 col-md-7 col-sm-8 actions">
               <button ng-hide="content == 'tab-abstraction'" id="btn-next-status" class="btn btn-success pull-right" type="submit" data-toggle="modal" data-target="#nextStatusModal">Avançar estado <i class="fa fa-arrow-circle-right"></i></button>
@@ -200,6 +200,27 @@
       </div>
     </div> <!-- /.panel -->
   </div> <!-- /.content wrapper -->
+
+  <!-- Modal: enter post -->
+  <div class="modal fade background-static" id="enterPostModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+          <div class="modal-title" ng-show="content == 'tab-facts'"><h4>Inserir Fato</h4></div>
+          <div class="modal-title" ng-show="content == 'tab-hypothesis'"><h4>Inserir Hipótese</h4></div>
+          <div class="modal-title" ng-show="content == 'tab-resolution'"><h4>Inserir Resposta</h4></div>
+        </div>
+        <div class="modal-body">
+          <textarea class="form-control" rows="3" placeholder="Descrição..." maxlength="300"></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-success" ng-click="">Inserir</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
 
   <!-- Modal: next status -->
   <div class="modal fade background-static" id="nextStatusModal">

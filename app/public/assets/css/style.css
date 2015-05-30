@@ -697,6 +697,10 @@ td .fa {
     text-decoration: none;
 }
 
+.modal textarea {
+    resize: vertical;
+}
+
 /*
 * SVGs
 */
@@ -955,8 +959,8 @@ main {
 }
 
 #problem,
-#facts,
-#hypothesis,
+#resources,
+#links,
 #research,
 #resolution,
 #abstraction {
