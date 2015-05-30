@@ -67,13 +67,13 @@
           <section id="content-problem" ng-show="content == 'tab-problem'">
             <div class="container chalkboard">
               <div id="problem">
-                <h4>Problema<a href="" ng-click="toggleModal('#storyDescriptionModal')"><span class="label label-success">editar</span></a></h4>
+                <h4>Problema<a href="" ng-click="toggleModal('#storyDescriptionModal')" pbl-permission="Professor"><span class="label label-success">editar</span></a></h4>
                 <p>
                   {{::vm.activity.story.description}}
                 </p>
               </div>
               <div id="resources">
-                <h4>Material de apoio<a href="" ng-click="toggleModal('#helpfulMaterialsModal')"><span class="label label-success">editar</span></a></h4>
+                <h4>Material de apoio<a href="" ng-click="toggleModal('#helpfulMaterialsModal')" pbl-permission="Professor"><span class="label label-success">editar</span></a></h4>
                 <ul>
                   <li ng-repeat="material in vm.activity.story.helpfulMaterials">
                    {{::material}}
@@ -81,7 +81,7 @@
                 </ul>
               </div>
               <div id="links">
-                <h4>Links externos<a href="" ng-click="toggleModal('#externalLinksModal')"><span class="label label-success">editar</span></a></h4>
+                <h4>Links externos<a href="" ng-click="toggleModal('#externalLinksModal')" pbl-permission="Professor"><span class="label label-success">editar</span></a></h4>
                 <ul>
                   <li ng-repeat="link in vm.activity.story.externalLinks">
                     <a ng-href="link">{{::link}}</a>

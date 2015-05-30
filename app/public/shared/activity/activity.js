@@ -92,10 +92,11 @@
           };
 
           scope.addItemToList = function (list, item) {
-            if (Array.isArray(list)) {
+            if (Array.isArray(list) && list.indexOf(item) === -1) {
               list.push(item);
-              item = null;
             }
+            
+            item = null;
           };
 
           scope.removeItemFromList = function (list, index) {
