@@ -13,17 +13,30 @@
         link: function (scope) {
           var init = function () {
             scope.vm = {};
-            loadActivityStatus(scope.activity)
+            loadActivityStatus(scope.activity, scope.activity.status)
               .then(function (response) {
                 scope.vm.activity = response;
-                scope.content = getContentTab(scope.vm.activity.status);
+                scope.content = getContentTabByStatus(scope.vm.activity.status);
               })
               .catch(function (error) {
                 notificationService.error('Erro', error);
               });
           };
 
-          var getContentTab = function (status) {
+          var getApiMethodByContent = function (content) {
+            switch (content) {
+              case 'tab-facts':
+                return 'addActivityFact';
+
+              case 'tab-hypothesis':
+                return 'addActivityHypothesis';
+
+              case 'tab-resolution':
+                return 'addActivityResolution';
+            }
+          };
+
+          var getContentTabByStatus = function (status) {
             var activityStatus = globalValues.activity.status;
 
             switch (status) {
@@ -50,12 +63,40 @@
             }
           };
 
-          var loadActivityStatus = function (activity) {
-            var deferred = $q.defer()
-            , statusName = activityService.getStatusPropertyName(activity.status);
+          var getStatusByContentTab = function (status) {
+            var activityStatus = globalValues.activity.status;
 
-            activityService.getActivityStatusData(activity.id, activity.status)
+            switch (status) {
+              case 'tab-problem':
+                return activityStatus.CREATING_STORY;
+
+              case 'tab-facts':
+                return activityStatus.GENERATING_FACTS;
+
+              case 'tab-hypothesis':
+                return activityStatus.IDENTIFYING_HIPOTESYS;
+
+              case 'tab-research':
+                return activityStatus.RESEARCHING;
+
+              case 'tab-resolution':
+                return activityStatus.RESOLVING_PROBLEM;
+
+              case 'tab-abstraction':
+                return activityStatus.ABSTRACTING;
+            }
+          };
+
+          var loadActivityStatus = function (activity, status) {
+            $log.debug('loadActivityStatus', activity, status);
+
+            var deferred = $q.defer()
+            , statusName = activityService.getStatusPropertyName(status);
+
+            activityService.getActivityStatusData(activity.id, status)
               .then(function (response) {
+                $log.debug('response', response);
+                
                 activity[statusName] = response;
                 deferred.resolve(activity);
               })
@@ -78,6 +119,7 @@
 
             activityService[apiMethod](activityId, item)
               .then(function (response) {
+                $log.debug(response);
                 notificationService.success(response.message);
 
                 // Verifica se ação foi disparda por modal,
@@ -87,6 +129,7 @@
                 }
               })
               .catch(function (error) {
+                $log.error(error);
                 notificationService.error(error.message);
               });
           };
@@ -117,10 +160,41 @@
             saveActivityItem(activityId, apiMethod, story, from);
           };
 
+          scope.addPost = function (post, from) {
+            var activityId = scope.vm.activity.id
+            , apiMethod = getApiMethodByContent(scope.content);
+
+            saveActivityItem(activityId, apiMethod, post, from);
+          };
+
           scope.toggleModal = function (modalName) {
             $log.debug('toggleModal', modalName);
             angular.element(modalName).modal('toggle');
           };
+
+          scope.$watch('content', function () {
+            var currentTab = getContentTabByStatus(scope.vm.activity.status)
+            , status;
+
+            if (scope.content === currentTab) {
+              return;
+            }
+
+            $log.debug('$watch content', scope.content);
+
+            status = getStatusByContentTab(scope.content);
+
+            $log.debug('$watch content status', status);
+
+            loadActivityStatus(scope.vm.activity, status)
+              .then(function (response) {
+                $log.debug('response', response);
+                scope.vm.activity = response;
+              })
+              .catch(function (error) {
+                $log.error('error', error);
+              });
+          });
 
           scope.$watch('activity', function () {
             if (angular.isDefined(scope.activity)) {
