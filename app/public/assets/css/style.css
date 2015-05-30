@@ -1289,6 +1289,14 @@ p.credit .fa {
   text-align: left;
 }
 
+.content-section-default svg {
+  max-width: 100%;
+}
+
+.content-section-default .lead {
+  font-size: 16px;
+}
+
 .content-section-default.head {
   padding: 90px 0 30px 0;
   background-color: #adb0a6;
