@@ -67,13 +67,13 @@
           <section id="content-problem" ng-show="content == 'tab-problem'">
             <div class="container chalkboard">
               <div id="problem">
-                <h4>Problema<a href=""><span class="label label-success">editar</span></a></h4>
+                <h4>Problema<a href="" ng-click="toggleModal('#storyDescriptionModal')" pbl-permission="Professor"><span class="label label-success">editar</span></a></h4>
                 <p>
                   {{::vm.activity.story.description}}
                 </p>
               </div>
               <div id="resources">
-                <h4>Material de apoio<a href=""><span class="label label-success">editar</span></a></h4>
+                <h4>Material de apoio<a href="" ng-click="toggleModal('#helpfulMaterialsModal')" pbl-permission="Professor"><span class="label label-success">editar</span></a></h4>
                 <ul>
                   <li ng-repeat="material in vm.activity.story.helpfulMaterials">
                    {{::material}}
@@ -81,7 +81,7 @@
                 </ul>
               </div>
               <div id="links">
-                <h4>Links externos<a href=""><span class="label label-success">editar</span></a></h4>
+                <h4>Links externos<a href="" ng-click="toggleModal('#externalLinksModal')" pbl-permission="Professor"><span class="label label-success">editar</span></a></h4>
                 <ul>
                   <li ng-repeat="link in vm.activity.story.externalLinks">
                     <a ng-href="link">{{::link}}</a>
@@ -200,6 +200,120 @@
       </div>
     </div> <!-- /.panel -->
   </div> <!-- /.content wrapper -->
+
+  <!-- Modal: editar descrição -->
+  <div class="modal fade background-static" id="storyDescriptionModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+          <div class="modal-title"><h4>Editar Problema</h4></div>
+        </div>
+        <div class="modal-body">
+          <textarea class="form-control" rows="5" ng-model="vm.activity.story.description" placeholder="Descrição..." maxlength="500"></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-success" ng-click="saveStory('#storyDescriptionModal')">Salvar</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <!-- Modal: editar material de apoio -->
+  <div class="modal fade background-static" id="helpfulMaterialsModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+          <div class="modal-title"><h4>Editar Materiais de Apoio</h4></div>
+        </div>
+        <div class="modal-body">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Google" ng-model="newMaterial"/>
+            <span class="input-group-btn">
+      <button type="button" class="btn btn-primary" ng-disabled="!newMaterial" ng-click="addItemToList(vm.activity.story.helpfulMaterials, newMaterial)">
+        Adicionar</button>
+            </span>
+          </div><!-- /input-group -->
+          <table class="table">
+            <thead>
+              <tr>
+                <th class="col-md-10">
+                  Material
+                </th>
+                <th class="col-md-2">
+                  Excluir
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="material in vm.activity.story.helpfulMaterials track by $index">
+                <td>
+                  <span>{{::material}}</span>
+                <td>
+                <td>
+                  <button type="button" class="btn btn-danger btn-xs" ng-click="removeItemFromList(vm.activity.story.helpfulMaterials, $index)">&times;</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-success" ng-click="saveStory('#externalLinksModal')">Salvar</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+
+  <!-- Modal: editar links externos -->
+  <div class="modal fade background-static" id="externalLinksModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+          <div class="modal-title"><h4>Editar Links externos</h4></div>
+        </div>
+        <div class="modal-body">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="www.google.com.br" ng-model="newLink"/>
+            <span class="input-group-btn">
+      <button type="button" class="btn btn-primary" ng-disabled="!newLink" ng-click="addItemToList(vm.activity.story.externalLinks, newLink)">
+        Adicionar</button>
+            </span>
+          </div><!-- /input-group -->
+          <table class="table">
+            <thead>
+              <tr>
+                <th class="col-md-10">
+                  Link
+                </th>
+                <th class="col-md-2">
+                  Excluir
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="link in vm.activity.story.externalLinks track by $index">
+                <td>
+                  <a href="{{link}}">{{::link}}</a>
+                <td>
+                <td>
+                  <button type="button" class="btn btn-danger btn-xs" ng-click="removeItemFromList(vm.activity.story.externalLinks, $index)">&times;</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-success" ng-click="saveStory('#externalLinksModal')">Salvar</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
 
   <!-- Modal: enter post -->
   <div class="modal fade background-static" id="enterPostModal">
