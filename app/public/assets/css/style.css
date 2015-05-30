@@ -28,7 +28,6 @@
 
 html {
     min-height: 100%;
-    /*position: relative;*/
 }
 
 body {
@@ -77,7 +76,37 @@ Buttons
 }
 
 .btn-success {
-    background-color: #8dc295;
+    background-color: #2CBCA3;
+    border-color: #27a992;
+}
+
+.btn-success:hover, .btn-success:focus, .btn-success:active {
+    background-color: #239682;
+    border-color: #1e8372;
+}
+
+.btn-success:disabled {
+    background-color: #6bd0be;
+    border-color: #56c9b5;
+}
+
+.btn-purple {
+    background-color: #746F91;
+    border-color: #686382;
+}
+
+.btn-purple:hover, .btn-purple:focus, .btn-purple:active {
+    background-color: #5c5874;
+    border-color: #514d65;
+}
+
+.btn-purple:disabled {
+    background-color: #9d9ab2;
+    border-color: #8f8ba7;
+}
+
+.label-purple {
+    background-color: #746F91;
 }
 
 /**
@@ -153,16 +182,16 @@ Navbar
  .sidebar-footer { background: #454c5b }
  .sidebar-footer div a:hover { background: #5a606d }
  .row.header { background: #fff }
- .widget { background: #8dc295 }
+ .widget { background: #2CBCA3 }
  ul.sidebar .sidebar-list a:hover { background: #628ead }
- ul.sidebar .sidebar-list a:focus, ul.sidebar .sidebar-list a:active { background: #272d3a }
+ ul.sidebar .sidebar-list a:focus, ul.sidebar .sidebar-list a.active { background: #272d3a }
 
  #page-wrapper {
-     position: relative;
-     height: 100%;
- }
+   position: relative;
+   height: 100%;
+}
 
- #page-wrapper:after{
+#page-wrapper:after{
     position: fixed;
     content: "";
     top: 0;
@@ -416,7 +445,7 @@ ul.sidebar .sidebar-list .menu-icon {
 @media(max-width:930px) {
   .row.header .header-actions #btn-delete {
     display: none;
-  }
+}
 }
 
 .row.header .header-actions #btn-delete i {
@@ -617,6 +646,10 @@ td .fa {
 */
 .modal-header {
     border-radius: 5px 5px 0px 0px;
+    min-height: 65px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0px 1px 3px #0f3141;
 }
 
 .modal-footer {
@@ -625,11 +658,11 @@ td .fa {
 
 .modal-header, .modal-footer {
     background: #16465e;
-    color: #D9DCD0;
+    color: #6191a8;
 }
 
 .modal-title {
-    margin-top: -5px;
+    margin-top: -2px;
     padding-top: 0px;
     padding-left: 20px;
     margin-bottom: -5px;
@@ -662,6 +695,10 @@ td .fa {
 .modal-del {
     color: #B75252;
     text-decoration: none;
+}
+
+.modal textarea {
+    resize: vertical;
 }
 
 /*
@@ -724,7 +761,7 @@ td .fa {
   color: #41423e;
 }
 
-.svg-top {
+.sidebar-help-top svg {
   height: 140px;
   margin-left: 58px;
   margin-top: 10px;
@@ -763,6 +800,7 @@ td .fa {
   right: 0;
   bottom: 0;
   top: 50px;
+  min-width: 675px;
   background: #D9DCD0;
   padding: 10px 5px 10px 12px;
 }
@@ -815,9 +853,16 @@ td .fa {
   border-top: none;
   background: #fff;
   z-index: 10;
+  min-width: 658px;
   -webkit-box-shadow: 0px -5px 12px -5px rgba(0, 0, 0, 0.41);
   -moz-box-shadow: 0px -5px 12px -5px rgba(0, 0, 0, 0.41);
   box-shadow: 0px -5px 12px -5px rgba(0, 0, 0, 0.41);
+}
+
+.panel-footer .actions {
+    padding-right: 0px;
+    padding-left: 0px;
+    right: -5px;
 }
 
 main {
@@ -825,8 +870,7 @@ main {
   width: 100%;
 }
 
-.panel-body input,
-main section {
+.panel-body input {
   clear: both;
   display: none;
   transition: all 2s;
@@ -863,16 +907,6 @@ main section {
   background-color: #2C8DBC;
 }
 
-#tab1:checked ~ #content1,
-#tab2:checked ~ #content2,
-#tab3:checked ~ #content3,
-#tab4:checked ~ #content4,
-#tab5:checked ~ #content5,
-#tab6:checked ~ #content6 {
-  display: block;
-  transition: all 2s;
-}
-
 .panel-body input:checked + label {
   color: #fff;
   border-bottom-color: #F9D695;
@@ -895,6 +929,7 @@ main section {
   background-color: #2F4F4F;
   overflow-y: auto;
   width: auto;
+  min-width: 658px;
   right: 5px;
   left: 297px;
   bottom: 80px;
@@ -910,11 +945,13 @@ main section {
 }
 
 .chalkboard h4 span {
-  position: relative;
-  margin-left: 15px;
-  color: #fff;
-  font-size: 11px;
-  bottom: 4px;
+    font-family: 'Roboto';
+    font-weight: 400;
+    position: relative;
+    margin-left: 15px;
+    color: #fff;
+    font-size: 11px;
+    bottom: 4px;
 }
 
 .chalkboard h4 a {
@@ -922,8 +959,8 @@ main section {
 }
 
 #problem,
-#links,
 #resources,
+#links,
 #research,
 #resolution,
 #abstraction {
@@ -933,11 +970,84 @@ main section {
   margin-bottom: 10px;
 }
 
+#btn-insert-post, #btn-next-status {
+    height: 40px;
+    margin: 5px 5px;
+    display: inline-block;
+}
+
+#btn-insert-post {
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.panel-footer .fa {
+    font-size: 18px;
+}
+
+/** posts **/
+
+.sticky {
+  -webkit-box-shadow: #DDD 0px 1px 2px;
+  position: relative;
+  color: #313949;
+  text-align: left;
+  padding: 1em;
+  -webkit-box-shadow: 0px 1px 3px rgba(0,0,0,0.25);
+  -moz-box-shadow: 0px 1px 3px rgba(0,0,0,0.25);
+  box-shadow: 0px 1px 3px rgba(0,0,0,0.25);
+}
+
+.post-it {
+  display: inline-table;
+  margin: 0.5em 0.5em; 
+  width: 18%;
+}
+
+@media(max-width:1450px) {
+    .post-it { width: 22.5%; }
+}
+
+@media(max-width:1180px) {
+    .post-it { width: 30%; }
+}
+
+@media(max-width:988px) {
+    .post-it { width: 47%; }
+}
+
+.sticky h5 {
+    font-size: 18px;
+    color: #313949;
+}
+
+.sticky small {
+    bottom: 5px;
+    position: relative;
+    font-size: 80%;
+    color: #777;
+}
+
+.sticky.fact {
+    background-color: #F4F39E;
+    border-color: #DEE184;
+}
+
+.sticky.hypot {
+    background-color: #cbf0ff;
+    border-color: #b6d8e5;
+}
+
+.sticky.resol {
+    background-color: #93d3c2;
+    border-color: #89b3a9;
+}
+
 /*
 *  home *
 */
 .home-wrapper {
- background:url(/assets/images/white_plaster.png) fixed;
+   background:url(/assets/images/white_plaster.png) fixed;
 }
 
 .topnav {
@@ -1030,21 +1140,21 @@ div.signup-btn-out {
 @media(max-width:767px) {
   .intro-message {
     padding-bottom: 8%;
-  }
-  .intro-message > h2 {
+}
+.intro-message > h2 {
     font-size: 2.8em;
-  }
-  ul.intro-buttons > li {
+}
+ul.intro-buttons > li {
     display: block;
     margin-bottom: 20px;
     padding: 0;
-  }
-  ul.intro-buttons > li:last-child {
+}
+ul.intro-buttons > li:last-child {
     margin-bottom: 0;
-  }
-  .intro-divider {
+}
+.intro-divider {
     width: 100%;
-  }
+}
 }
 
 .role-name {
@@ -1143,17 +1253,18 @@ footer img {
 @media(max-width:764px) {
   footer img {
     display: none;
-  }
+}
 }
 
 @media(max-width:991px) {
   footer img {
     padding-bottom: 30px;
-  }
+}
 }
 
-p.copyright {
-  margin: 15px 0 0;
+p.copyright, p.credit {
+  margin: 0px 0px 8px 0px;
+  color: #777;
 }
 
 p.copyright .fa {
@@ -1162,6 +1273,7 @@ p.copyright .fa {
     padding-left: 6px;
 }
 
-p.copyright .fa:hover {
-    color: #fff;
+p.credit .fa {
+    color: #B75252;
+    font-size: 16px;
 }
