@@ -13,7 +13,7 @@
         return hypothesisService.addHypothesis(activityId, hypothesis);
       };
 
-      var addActivityStory = function (activityId, story) {
+      var saveActivityStory = function (activityId, story) {
         return storyService.addStory(activityId, story);
       };
 
@@ -186,7 +186,7 @@
         addActivityFact: addActivityFact,
         addActivityHypothesis: addActivityHypothesis,
         addActivityParticipant: addActivityParticipant,
-        addActivityStory: addActivityStory,
+        saveActivityStory: saveActivityStory,
         deleteActivity: deleteActivity,
         deleteActivityFact: deleteActivityFact,
         deleteActivityHypothesis: deleteActivityHypothesis,

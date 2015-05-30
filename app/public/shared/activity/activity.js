@@ -2,8 +2,8 @@
   'use strict';
 
   angular.module('openpbl.directives')
-    .directive('pblActivity', ['$q', 'activityService', 'globalValues', 'notificationService', 
-      function ($q, activityService, globalValues, notificationService) {
+    .directive('pblActivity', ['$log', '$q', 'activityService', 'globalValues', 'notificationService', 
+      function ($log, $q, activityService, globalValues, notificationService) {
       return {
         retrict: 'E',
         templateUrl: '/shared/activity/activity.tpl.html',
@@ -64,6 +64,61 @@
               });
 
             return deferred.promise;
+          };
+
+          /**
+           * Salva um item da atividade
+           */
+          var saveActivityItem = function (activityId, apiMethod, item, fromModal) {
+            $log.debug('saveActivityItem', activityId, apiMethod, item, fromModal);
+
+            if (angular.isUndefined(activityService[apiMethod])) {
+              return;
+            }
+
+            activityService[apiMethod](activityId, item)
+              .then(function (response) {
+                notificationService.success(response.message);
+
+                // Verifica se ação foi disparda por modal,
+                // se sim, fecha ela
+                if (angular.isDefined(fromModal)) {
+                  scope.toggleModal(fromModal);
+                }
+              })
+              .catch(function (error) {
+                notificationService.error(error.message);
+              });
+          };
+
+          scope.addItemToList = function (list, item) {
+            if (Array.isArray(list)) {
+              list.push(item);
+              item = null;
+            }
+          };
+
+          scope.removeItemFromList = function (list, index) {
+            if (Array.isArray(list)) {
+              list = list.splice(index, 1);  
+            }
+          };
+
+          /**
+           * Salva o problema
+           */
+          scope.saveStory = function (from) {
+            $log.debug('saveStory', from);
+            var activityId = scope.vm.activity.id
+            , apiMethod = 'saveActivityStory'
+            , story = scope.vm.activity.story;
+
+            saveActivityItem(activityId, apiMethod, story, from);
+          };
+
+          scope.toggleModal = function (modalName) {
+            $log.debug('toggleModal', modalName);
+            angular.element(modalName).modal('toggle');
           };
 
           scope.$watch('activity', function () {
