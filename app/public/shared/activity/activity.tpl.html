@@ -25,7 +25,7 @@
     <div id="sb-help-content">
       <p ng-show="content == 'tab-problem'">tab problema tab problema tab problema tab problema tab problema tab problema tab problema tab problema tab problema tab problema tab problema tab problema tab problema tab problema</p>
       <p ng-show="content == 'tab-facts'">tab fatos tab fatos tab fatos tab fatos tab fatos tab fatos tab fatos tab fatos tab fatos tab fatos tab fatos tab fatos tab fatos tab fatos tab fatos tab fatos tab fatos tab fatos tab fatos</p>
-      <p ng-show="content == 'tab-hipotesys'">tab hipóteses tab hipóteses tab hipóteses tab hipóteses tab hipóteses tab hipóteses tab hipóteses tab hipóteses tab hipóteses tab hipóteses tab hipóteses tab hipóteses tab hipóteses</p>
+      <p ng-show="content == 'tab-hypothesis'">tab hipóteses tab hipóteses tab hipóteses tab hipóteses tab hipóteses tab hipóteses tab hipóteses tab hipóteses tab hipóteses tab hipóteses tab hipóteses tab hipóteses tab hipóteses</p>
       <p ng-show="content == 'tab-research'">tab pesquisa tab pesquisa tab pesquisa tab pesquisa tab pesquisa tab pesquisa tab pesquisa tab pesquisa tab pesquisa tab pesquisa tab pesquisa tab pesquisa tab pesquisa tab pesquisa</p>
       <p ng-show="content == 'tab-resolution'">tab resolução tab resolução tab resolução tab resolução tab resolução tab resolução tab resolução tab resolução tab resolução tab resolução tab resolução tab resolução tab resolução</p>
       <p ng-show="content == 'tab-abstraction'">tab abstração tab abstração tab abstração tab abstração tab abstração tab abstração tab abstração tab abstração tab abstração tab abstração tab abstração tab abstração tab abstração</p>  
@@ -51,8 +51,8 @@
           <label for="tab-problem">Problema</label>
           <input id="tab-facts" type="radio" name="tabs" ng-model="content" value="tab-facts">
           <label for="tab-facts">Fatos</label>
-          <input id="tab-hipotesys" type="radio" name="tabs" ng-model="content" value="tab-hipotesys">
-          <label for="tab-hipotesys">Hipóteses</label>
+          <input id="tab-hypothesis" type="radio" name="tabs" ng-model="content" value="tab-hypothesis">
+          <label for="tab-hypothesis">Hipóteses</label>
           <input id="tab-research" type="radio" name="tabs" ng-model="content" value="tab-research">
           <label for="tab-research">Pesquisa</label>
           <input id="tab-resolution" type="radio" name="tabs" ng-model="content" value="tab-resolution">
@@ -93,13 +93,47 @@
           <!-- content-facts -->
           <section id="content-facts" ng-show="content == 'tab-facts'">
             <div class="container chalkboard">
-
+              <!-- posts -->
+              <div class="post-it">
+                <div class="sticky fact">
+                  <button type="button" class="close" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                  <h5><strong>Joãozinho</strong></h5>
+                  <p>Muuuuuuuuito bom esse fato hein, deusulivre!</p>
+                  <p><small class="pull-right">09/12/82</small></p>
+                </div>
+              </div>
+              <div class="post-it">
+                <div class="sticky fact">
+                  <button type="button" class="close" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                  <h5><strong>Joãozinho</strong></h5>
+                  <p>Muuuuuuuuito bom esse fato hein, deusulivre! Muuuuuuuuito bom esse fato hein, deusulivre! Muuuuuuuuito bom esse fato hein, deusulivre!</p>
+                  <p><small class="pull-right">09/12/82</small></p>
+                </div>
+              </div>
+              <!-- /.posts -->
             </div>
           </section>
-          <!-- content-hipotesys -->
-          <section id="content-hipotesys" ng-show="content == 'tab-hipotesys'">
+          <!-- content-hypothesis -->
+          <section id="content-hypothesis" ng-show="content == 'tab-hypothesis'">
             <div class="container chalkboard">
-
+              <!-- posts -->
+              <div class="post-it">
+                <div class="sticky hypot">
+                  <button type="button" class="close" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                  <h5><strong>Joãozinho</strong></h5>
+                  <p>Muuuuuuuuito boa essa hipótese hein, deusulivre! Muuuuuuuuito boa essa hipótese hein, deusulivre!</p>
+                  <p><small class="pull-right">09/12/82</small></p>
+                </div>
+              </div>
+              <div class="post-it">
+                <div class="sticky hypot">
+                  <button type="button" class="close" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                  <h5><strong>Joãozinho</strong></h5>
+                  <p>Muuuuuuuuito boa essa hipótese hein, deusulivre!</p>
+                  <p><small class="pull-right">09/12/82</small></p>
+                </div>
+              </div>
+              <!-- /.posts -->
             </div>
           </section>
           <!-- content-research -->
@@ -115,7 +149,24 @@
           <!-- content-resolution -->
           <section id="content-resolution" ng-show="content == 'tab-resolution'">
             <div class="container chalkboard">
-
+              <!-- posts -->
+              <div class="post-it">
+                <div class="sticky resol">
+                  <button type="button" class="close" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                  <h5><strong>Joãozinho</strong></h5>
+                  <p>Muuuuuuuuito boa essa resposta hein, deusulivre! Muuuuuuuuito boa essa resposta hein, deusulivre!</p>
+                  <p><small class="pull-right">09/12/82</small></p>
+                </div>
+              </div>
+              <div class="post-it">
+                <div class="sticky resol">
+                  <button type="button" class="close" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                  <h5><strong>Joãozinho</strong></h5>
+                  <p>Muuuuuuuuito boa essa resposta hein, deusulivre!</p>
+                  <p><small class="pull-right">09/12/82</small></p>
+                </div>
+              </div>
+              <!-- /.posts -->
             </div>
           </section>
           <!-- content-abtraction -->
@@ -134,15 +185,15 @@
         <!-- panel footer -->
         <div class="panel-footer">
           <div class="row">
-            <div class="col-md-2 col-md-offset-5 col-sm-3 col-sm-offset-3">
-              <button ng-show="content == 'tab-facts'" id="btn-insert-post" class="btn btn-primary btn-block" type="submit">Inserir fato <i class="fa fa-arrow-circle-up"></i></button>
-              <button ng-show="content == 'tab-hipotesys'" id="btn-insert-post" class="btn btn-primary btn-block" type="submit">Inserir hipótese <i class="fa fa-arrow-circle-up"></i></button>
-              <button ng-show="content == 'tab-resolution'" id="btn-insert-post" class="btn btn-primary btn-block" type="submit">Inserir resposta <i class="fa fa-arrow-circle-up"></i></button>
+            <div class="col-lg-3 col-lg-offset-4 col-md-3 col-md-offset-2 col-sm-4 actions">
+              <button ng-show="content == 'tab-facts'" id="btn-insert-post" class="btn btn-primary btn-block" type="submit" data-toggle="modal" data-target="#enterPostModal">Inserir fato <i class="fa fa-arrow-circle-up"></i></button>
+              <button ng-show="content == 'tab-hypothesis'" id="btn-insert-post" class="btn btn-primary btn-block" type="submit" data-toggle="modal" data-target="#enterPostModal">Inserir hipótese <i class="fa fa-arrow-circle-up"></i></button>
+              <button ng-show="content == 'tab-resolution'" id="btn-insert-post" class="btn btn-primary btn-block" type="submit" data-toggle="modal" data-target="#enterPostModal">Inserir resposta <i class="fa fa-arrow-circle-up"></i></button>
             </div>
-            <div class="col-md-4 col-md-offset-1 col-sm-6">
-              <button ng-hide="content == 'tab-abstraction'" id="btn-next-status" class="btn btn-success pull-right" type="submit">Avançar estado <i class="fa fa-arrow-circle-right"></i></button>
+            <div class="col-lg-5 col-md-7 col-sm-8 actions">
+              <button ng-hide="content == 'tab-abstraction'" id="btn-next-status" class="btn btn-success pull-right" type="submit" data-toggle="modal" data-target="#nextStatusModal">Avançar estado <i class="fa fa-arrow-circle-right"></i></button>
               <button ng-show="content == 'tab-abstraction'" id="btn-next-status" class="btn btn-success pull-right" type="submit" data-toggle="modal" data-target="#finishActivityModal">Encerrar atividade <i class="fa fa-check-circle"></i></button>
-              <button ng-show="content == 'tab-abstraction'" id="btn-next-status" class="btn btn-primary btn-purple pull-right" type="submit"><i class="fa fa-arrow-circle-left"></i> Recomeçar atividade</button>
+              <button ng-show="content == 'tab-abstraction'" id="btn-next-status" class="btn btn-primary btn-purple pull-right" type="submit" data-toggle="modal" data-target="#restartActivityModal"><i class="fa fa-arrow-circle-left"></i> Recomeçar atividade</button>
             </div>
           </div>
         </div> <!-- /.panel footer -->
@@ -150,7 +201,74 @@
     </div> <!-- /.panel -->
   </div> <!-- /.content wrapper -->
 
-  <!-- Modal: encerrar atividade -->
+  <!-- Modal: enter post -->
+  <div class="modal fade background-static" id="enterPostModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+          <div class="modal-title" ng-show="content == 'tab-facts'"><h4>Inserir Fato</h4></div>
+          <div class="modal-title" ng-show="content == 'tab-hypothesis'"><h4>Inserir Hipótese</h4></div>
+          <div class="modal-title" ng-show="content == 'tab-resolution'"><h4>Inserir Resposta</h4></div>
+        </div>
+        <div class="modal-body">
+          <textarea class="form-control" rows="3" placeholder="Descrição..." maxlength="300"></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-success" ng-click="">Inserir</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <!-- Modal: next status -->
+  <div class="modal fade background-static" id="nextStatusModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+          <div class="modal-title"><h4>Avançar Estado</h4></div>
+        </div>
+        <div class="modal-body">
+          <div class="tex-center">
+              <p><strong>Tem certeza que deseja iniciar o próximo estado da atividade?</strong></p> 
+              <p>Ao iniciar o próximo estado, o estado atual não poderá mais ser alterado, mas continuará disponível para consulta.</p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Não</button>
+          <button type="button" class="btn btn-success" ng-click="">Sim</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <!-- Modal: restart activity -->
+  <div class="modal fade background-static" id="restartActivityModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+          <div class="modal-title"><h4>Recomeçar Atividade</h4></div>
+        </div>
+        <div class="modal-body">
+          <div class="tex-center">
+              <p><strong>Escolha o estado a partir do qual você deseja recomeçar a atividade:</strong></p> 
+              <p><i class="fa fa-info-circle"></i> Ao clicar no botão <span class="label label-primary">Recomeçar Fatos</span> , a atividade será re-iniciada a partir do levantamento de fatos.</p>
+              <p><i class="fa fa-info-circle"></i> Ao clicar no botão <span class="label label-primary">Recomeçar Hipóteses</span> , a atividade será re-iniciada a partir do levantamento de hipóteses.</p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary" ng-click="">Recomeçar Fatos</button>
+          <button type="button" class="btn btn-primary" ng-click="">Recomeçar Hipóteses</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <!-- Modal: finish activity -->
   <div class="modal fade background-static" id="finishActivityModal">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -160,13 +278,13 @@
         </div>
         <div class="modal-body">
           <div class="tex-center">
-              <h5>Tem certeza que deseja encerrar esta atividade?</h5> 
-              <p>Depois de encerrada, a atividade não poderá ser reaberta, mas permanecerá disponível em seu painel de usuário para consulta.</p>
+              <p><strong>Tem certeza que deseja encerrar esta atividade?</strong></p>
+              <p>Após encerrada, a atividade não poderá ser re-iniciada, mas permanecerá disponível em seu painel de usuário para consulta. Caso a atividade ainda não tenha sido resolvida e você queira recomeçá-la, cancele e clique em <span class="label label-purple">Recomeçar atividade</span></p>
           </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Não</button>
-          <button type="button" class="btn btn-success" ng-click="deleteActivity()">Sim</button>
+          <button type="button" class="btn btn-success" ng-click="">Sim</button>
         </div>
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

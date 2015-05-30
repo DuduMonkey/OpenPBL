@@ -105,6 +105,10 @@ Buttons
     border-color: #8f8ba7;
 }
 
+.label-purple {
+    background-color: #746F91;
+}
+
 /**
 Navbar
 */
@@ -643,6 +647,9 @@ td .fa {
 .modal-header {
     border-radius: 5px 5px 0px 0px;
     min-height: 65px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0px 1px 3px #0f3141;
 }
 
 .modal-footer {
@@ -652,8 +659,6 @@ td .fa {
 .modal-header, .modal-footer {
     background: #16465e;
     color: #6191a8;
-    text-transform: uppercase;
-    letter-spacing: 2px;
 }
 
 .modal-title {
@@ -690,6 +695,10 @@ td .fa {
 .modal-del {
     color: #B75252;
     text-decoration: none;
+}
+
+.modal textarea {
+    resize: vertical;
 }
 
 /*
@@ -791,6 +800,7 @@ td .fa {
   right: 0;
   bottom: 0;
   top: 50px;
+  min-width: 675px;
   background: #D9DCD0;
   padding: 10px 5px 10px 12px;
 }
@@ -843,9 +853,16 @@ td .fa {
   border-top: none;
   background: #fff;
   z-index: 10;
+  min-width: 658px;
   -webkit-box-shadow: 0px -5px 12px -5px rgba(0, 0, 0, 0.41);
   -moz-box-shadow: 0px -5px 12px -5px rgba(0, 0, 0, 0.41);
   box-shadow: 0px -5px 12px -5px rgba(0, 0, 0, 0.41);
+}
+
+.panel-footer .actions {
+    padding-right: 0px;
+    padding-left: 0px;
+    right: -5px;
 }
 
 main {
@@ -912,6 +929,7 @@ main {
   background-color: #2F4F4F;
   overflow-y: auto;
   width: auto;
+  min-width: 658px;
   right: 5px;
   left: 297px;
   bottom: 80px;
@@ -941,8 +959,8 @@ main {
 }
 
 #problem,
-#links,
 #resources,
+#links,
 #research,
 #resolution,
 #abstraction {
@@ -965,6 +983,64 @@ main {
 
 .panel-footer .fa {
     font-size: 18px;
+}
+
+/** posts **/
+
+.sticky {
+  -webkit-box-shadow: #DDD 0px 1px 2px;
+  position: relative;
+  color: #313949;
+  text-align: left;
+  padding: 1em;
+  -webkit-box-shadow: 0px 1px 3px rgba(0,0,0,0.25);
+  -moz-box-shadow: 0px 1px 3px rgba(0,0,0,0.25);
+  box-shadow: 0px 1px 3px rgba(0,0,0,0.25);
+}
+
+.post-it {
+  display: inline-table;
+  margin: 0.5em 0.5em; 
+  width: 18%;
+}
+
+@media(max-width:1450px) {
+    .post-it { width: 22.5%; }
+}
+
+@media(max-width:1180px) {
+    .post-it { width: 30%; }
+}
+
+@media(max-width:988px) {
+    .post-it { width: 47%; }
+}
+
+.sticky h5 {
+    font-size: 18px;
+    color: #313949;
+}
+
+.sticky small {
+    bottom: 5px;
+    position: relative;
+    font-size: 80%;
+    color: #777;
+}
+
+.sticky.fact {
+    background-color: #F4F39E;
+    border-color: #DEE184;
+}
+
+.sticky.hypot {
+    background-color: #cbf0ff;
+    border-color: #b6d8e5;
+}
+
+.sticky.resol {
+    background-color: #93d3c2;
+    border-color: #89b3a9;
 }
 
 /*
