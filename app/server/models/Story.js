@@ -52,5 +52,29 @@
     return deferred.promise;
   };
 
+  /**
+    Update an story document by Id
+
+    updatedAttrs => attributes to be update
+
+    updatedAttrs format:
+    {
+      
+    }
+  **/
+  StorySchema.statics.updateStory = function (storyId, updatedAttrs) {
+    var deferred = Q.defer();
+    //, set = { $set: updatedAttrs };
+
+    this.findByIdAndUpdate(storyId, updatedAttrs, function (err, story) {
+      if (!!err) {
+        deferred.reject(Exception.ACTIVITY_UPDATING_ERROR);
+      }
+      deferred.resolve(story);
+    });
+
+    return deferred.promise;
+  };
+
   module.exports = mongoose.model('Story', StorySchema);
 }());
