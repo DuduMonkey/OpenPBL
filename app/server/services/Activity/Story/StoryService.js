@@ -89,7 +89,7 @@
       .then(function (activities) {
         var selectedActivity = activities[0];
         if (ActivitySpec.ActivityHasStory().isSatisfiedBy(selectedActivity)) {
-          return updateActivityStory(activityId, storyViewData, selectedActivity.story._id);
+          return updateActivityStory(storyViewData, selectedActivity.story._id);
         }
         return saveActivityStory(activityId, storyViewData);
       })
