@@ -8,26 +8,39 @@
   var Message = require('../../../shared/MessageResource');
   var Q = require('q');
 
-  var persistedStoryResponseBag = function () {
-    var responseBag = {};
+  //Specifications in use
+  var ActivitySpec = require('../Specification/ActivitySpec');
 
-    responseBag.message = Message.SUCCESS_SAVING_STORY;
+  var updateActivityStory = function (activityId, storyViewData, storyId) {
+    var deferred = Q.defer();
 
-    return responseBag;
-  };
+    var queryUpdateStory = {
+      $set: { 
+        description: storyViewData.description,
+        helpfulMaterials: storyViewData.helpfulMaterials,
+      }
+    };
 
-  /**
-    Set an activity story and update the activity status
-  **/
-  var insertActivityStory = function (activityId, storyData) {
+    Story.updateStory(storyId, queryUpdateStory)
+      .then(function (story) {
+        deferred.resolve(story);
+      })
+      .catch(function (error) {
+        deferred.reject(error);
+      });
+
+    return deferred.promise;
+  }
+
+  var saveActivityStory = function (activityId, storyViewData) {
     var deferred = Q.defer();
 
     //new Story data
-    var story = {
+    var storyData = {
       activityId: activityId,
-      description: storyData.description,
-      helpfulMaterials: storyData.helpfulMaterials,
-      externalLinks: storyData.externalLinks
+      description: storyViewData.description,
+      helpfulMaterials: storyViewData.helpfulMaterials,
+      externalLinks: storyViewData.externalLinks
     };
 
     Story.saveNewStory(story)
@@ -35,8 +48,7 @@
         return Activity.updateActivity(
           activityId,
           {
-            story: newStory._id,
-            status: activityState.GENERATING_FACTS
+            story: newStory._id 
           }
         );
       })
@@ -47,6 +59,41 @@
       .catch(function (error) {
         deferred.reject(error);
       });
+
+    return deferred.promise;
+  }
+
+    /**
+    Set an activity story and update the activity status
+  **/
+  var insertActivityStory = function (activityId, storyViewData) {
+    var deferred = Q.defer();
+
+    Activity.queryInActivities({
+            select: '-_id story',
+            where: ['_id'],
+            conditions: [activityId],
+            join: [
+              {
+                path: 'story',
+                select: '_id'
+              }
+            ]
+      })
+      .then(function (activities) {
+        var selectedActivity = activities[0];
+        if (ActivitySpec.ActivityHasStory().isSatisfiedBy(selectedActivity)) {
+          return updateActivityStory(activityId, storyViewData, selectedActivity.story._id);
+        }
+        console.log('nao tem problema');
+      })
+      .then(function (story) {
+        console.log(story);
+        deferred.resolve({ message: Message.SUCCESS_SAVING_STORY });
+      })
+      .catch(function (error) {
+        deferred.reject(error);
+      })
 
     return deferred.promise;
   };
