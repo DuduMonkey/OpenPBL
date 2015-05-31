@@ -1279,7 +1279,7 @@ p.credit .fa {
 }
 
 /*
-** about **
+** static pages **
 */
 
 .content-section-default {
@@ -1297,6 +1297,10 @@ p.credit .fa {
   text-align: center;
   color: #746F91;
   background-color: #fff;
+}
+
+.content-section-default.pbl-intro {
+  text-align: justify;
 }
 
 .content-section-default li p {
@@ -1353,4 +1357,8 @@ p.credit .fa {
 
 #authors-svg {
   margin-top: 50px;
+}
+
+#pbl-intro-svg {
+  margin-top: 90px;
 }
