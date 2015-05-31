@@ -4,45 +4,29 @@
   //Modules in use
   var Story = require('../../../models/Story');
   var Activity = require('../../../models/Activity');
-  var activityState = require('../../../models/constants/activity_state');
   var Message = require('../../../shared/MessageResource');
   var Q = require('q');
 
-  var persistedStoryResponseBag = function () {
-    var responseBag = {};
-
-    responseBag.message = Message.SUCCESS_SAVING_STORY;
-
-    return responseBag;
-  };
+  //Specifications in use
+  var ActivitySpec = require('../Specification/ActivitySpec');
 
   /**
-    Set an activity story and update the activity status
+    Update an activity story based on story data received and story uid
   **/
-  var insertActivityStory = function (activityId, storyData) {
+  var updateActivityStory = function (storyViewData, storyId) {
     var deferred = Q.defer();
 
-    //new Story data
-    var story = {
-      activityId: activityId,
-      description: storyData.description,
-      helpfulMaterials: storyData.helpfulMaterials,
-      externalLinks: storyData.externalLinks
+    var queryUpdateStory = {
+      $set: {
+        description: storyViewData.description,
+        helpfulMaterials: storyViewData.helpfulMaterials,
+        externalLinks: storyViewData.externalLinks
+      }
     };
 
-    Story.saveNewStory(story)
-      .then(function (newStory) {
-        return Activity.updateActivity(
-          activityId,
-          {
-            story: newStory._id,
-            status: activityState.GENERATING_FACTS
-          }
-        );
-      })
+    Story.updateStory(storyId, queryUpdateStory)
       .then(function () {
-        var responseBag = persistedStoryResponseBag();
-        deferred.resolve(responseBag);
+        deferred.resolve();
       })
       .catch(function (error) {
         deferred.reject(error);
@@ -51,7 +35,111 @@
     return deferred.promise;
   };
 
+  /**
+    Save an activity story on activity received
+  **/
+  var saveActivityStory = function (activityId, storyViewData) {
+    var deferred = Q.defer();
+
+    var storyData = {
+      activityId: activityId,
+      description: storyViewData.description,
+      helpfulMaterials: storyViewData.helpfulMaterials,
+      externalLinks: storyViewData.externalLinks
+    };
+
+    Story.saveNewStory(storyData)
+      .then(function (newStory) {
+        return Activity.updateActivity(
+          activityId,
+          {
+            story: newStory._id
+          }
+        );
+      })
+      .then(function () {
+        deferred.resolve();
+      })
+      .catch(function (error) {
+        deferred.reject(error);
+      });
+
+    return deferred.promise;
+  };
+
+  /**
+    Insert activity story using strategy to find if is update or insert
+  **/
+  var insertActivityStory = function (activityId, storyViewData) {
+    var deferred = Q.defer();
+
+    var queryFindActivity = {
+      select: '-_id story',
+      where: ['_id'],
+      conditions: [activityId],
+      join: [
+        {
+          path: 'story',
+          select: '_id'
+        }
+      ]
+    };
+
+    Activity.queryInActivities(queryFindActivity)
+      .then(function (activities) {
+        var selectedActivity = activities[0];
+        if (ActivitySpec.ActivityHasStory().isSatisfiedBy(selectedActivity)) {
+          return updateActivityStory(storyViewData, selectedActivity.story._id);
+        }
+        return saveActivityStory(activityId, storyViewData);
+      })
+      .then(function () {
+        deferred.resolve({ message: Message.SUCCESS_SAVING_STORY });
+      })
+      .catch(function (error) {
+        deferred.reject(error);
+      });
+
+    return deferred.promise;
+  };
+
+  /**
+    Get the activity Story
+  **/
+  var getActivityStory = function (activityId) {
+    var deferred = Q.defer();
+
+    var querySelectActivityStory = {
+      select: '-_id story',
+      where: ['_id'],
+      conditions: [activityId],
+      join: [
+        {
+          path: 'story',
+          select: '-_id description helpfulMaterials externalLinks'
+        }
+      ]
+    };
+
+    Activity.queryInActivities(querySelectActivityStory)
+      .then(function (activities) {
+        console.log(activities);
+        var selectedActivity = activities[0];
+        if (ActivitySpec.ActivityHasStory().isSatisfiedBy(selectedActivity)){
+          deferred.resolve(selectedActivity.story);
+        } else {
+          deferred.resolve(Activity.getDefaultStoryPlaceHolder());
+        }
+      })
+      .catch(function (error) {
+        deferred.reject(error);
+      })
+
+    return deferred.promise;
+  };
+
   module.exports = {
-    insertActivityStory: insertActivityStory
+    insertActivityStory: insertActivityStory,
+    getActivityStory: getActivityStory
   };
 }());

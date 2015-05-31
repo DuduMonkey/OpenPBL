@@ -44,7 +44,33 @@
 
     newStory.save(function (err, story) {
       if (!!err) {
-        deferred.reject(Exception.ACTIVITY_INSERTING_STORY_ERROR);
+        deferred.reject(Exception.ACTIVITY_STORY_INSERTING_ERROR);
+      }
+      deferred.resolve(story);
+    });
+
+    return deferred.promise;
+  };
+
+  /**
+    Update an story document by Id
+
+    updatedAttrs => attributes to be update
+
+    updatedAttrs format: (i.e: using $set attribute form mongoDB)
+    {  
+      $set: { 
+            description: 'Description',
+            helpfulMaterials: 'Helpful no?',
+      }
+    }
+  **/
+  StorySchema.statics.updateStory = function (storyId, updatedAttrs) {
+    var deferred = Q.defer();
+
+    this.findByIdAndUpdate(storyId, updatedAttrs, function (err, story) {
+      if (!!err) {
+        deferred.reject(Exception.ACTIVITY_STORY_UPDATE_ERROR);
       }
       deferred.resolve(story);
     });

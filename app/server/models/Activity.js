@@ -53,7 +53,7 @@
     updatedAttrs format:
     i.e:
     {
-      
+      $pull: { participants: userId }
     }
   **/
   ActivitySchema.statics.updateActivity = function (activityId, updatedAttrs) {
@@ -143,6 +143,19 @@
     });
 
     return deferred.promise;
+  };
+
+  /**
+    Get the default placeholder for activities without defined story
+  **/
+  ActivitySchema.statics.getDefaultStoryPlaceHolder = function () {
+    var defaultStoryPlaceHolder = {
+      description: "Clique no botão editar acima para definir um problema.",
+      helpfulMaterials: "Clique no botão editar acima para inserir os materiais de apoio.",
+      externalLinks: "Clique no botão editar acima para inserir os links externos que irão ajudar na resolução da atividade."
+    };
+
+    return defaultStoryPlaceHolder;
   };
 
   module.exports = mongoose.model('Activity', ActivitySchema);
