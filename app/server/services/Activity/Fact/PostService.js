@@ -4,6 +4,7 @@
   var userService = require('../../User/UserService');
   var factService = require('./FactService');
   var hypothesisService = require('./HypothesisService');
+  var resolutionService = require('./ResolutionService');
   var Exception = require('../../../shared/Exceptions');
   var TYPE = require('../../../models/constants/post_type');
   var Q = require('q');
@@ -26,8 +27,7 @@
         case TYPE.HYPOTHESIS:
           return hypothesisService.createNewHypothesis(postData);
         case TYPE.RESOLUTION:
-          deferred.reject(Exception.FEATURE_NOT_IMPLEMENTED_EXCEPTION);
-          break;
+          return resolutionService.createNewResolution(postData);
         default:
           deferred.reject(Exception.ACTIVITY_POST_CREATING_ERROR);
           break;
