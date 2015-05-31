@@ -29,6 +29,9 @@
     ACTIVITY_INVALID_TO_DELETE: declareNewError('Atividade para exclusão inexistente'),
     ACTIVITY_GET_BASIC_DATA_ERROR: declareNewError('Não foram encontrados os dados básicos da atividade'),
     ACTIVITY_FIND_ACTIVITY_ERROR: declareNewError('Erro ao executar a busca da atividade na base de dados'),
+    // Status
+    ACTIVITY_STATUS_UPDATING_ERROR: declareNewError('Erro ao atualizar o status da atividade'),
+    ACTIVITY_STATUS_IS_FINISHED: declareNewError('A atividade já foi encerrada'),
     // Activity User
     ACTIVITY_USER_ALREADY_EXISTS: declareNewError('O usuário já foi convidado'),
     ACTIVITY_USER_NOT_EXISTS: declareNewError('Usuário não registrado'),
