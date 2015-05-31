@@ -94,7 +94,7 @@
           <section id="content-facts" ng-show="content == 'tab-facts'">
             <div class="container chalkboard">
               <!-- posts -->
-              <div class="post-it" ng-repeat="fact in vm.activity.facts">
+              <div class="post-it" ng-repeat="fact in vm.activity.fact">
                 <div class="sticky fact">
                   <button type="button" class="close" aria-label="Fechar" pbl-permission="Professor" ng-click="deletePost(fact.id)"><span aria-hidden="true">&times;</span></button>
                   <h5><strong>{{::fact.creator}}</strong></h5>
@@ -134,7 +134,7 @@
           <section id="content-resolution" ng-show="content == 'tab-resolution'">
             <div class="container chalkboard">
               <!-- posts -->
-              <div class="post-it" ng-repeat="resolution in vm.activity.resolutions">
+              <div class="post-it" ng-repeat="resolution in vm.activity.resolution">
                 <div class="sticky resol">
                   <button type="button" class="close" aria-label="Fechar" pbl-permission="Professor" ng-click="deletePost(resolution.id)"><span aria-hidden="true">&times;</span></button>
                   <h5><strong>{{::resolution.creator}}</strong></h5>
@@ -167,7 +167,7 @@
               <button ng-show="content == 'tab-resolution'" id="btn-insert-post" class="btn btn-primary btn-block" type="submit" data-toggle="modal" data-target="#enterPostModal">Inserir resposta <i class="fa fa-arrow-circle-up"></i></button>
             </div>
             <div class="col-lg-5 col-md-7 col-sm-8 actions">
-              <button ng-hide="content == 'tab-abstraction'" id="btn-next-status" class="btn btn-success pull-right" type="submit" data-toggle="modal" data-target="#nextStatusModal">Avançar estado <i class="fa fa-arrow-circle-right"></i></button>
+              <button ng-hide="content == 'tab-abstraction'" id="btn-next-status" class="btn btn-success pull-right" type="button" ng-click="nextStatus()" >Avançar estado <i class="fa fa-arrow-circle-right"></i></button>
               <button ng-show="content == 'tab-abstraction'" id="btn-next-status" class="btn btn-success pull-right" type="submit" data-toggle="modal" data-target="#finishActivityModal">Encerrar atividade <i class="fa fa-check-circle"></i></button>
               <button ng-show="content == 'tab-abstraction'" id="btn-next-status" class="btn btn-primary btn-purple pull-right" type="submit" data-toggle="modal" data-target="#restartActivityModal"><i class="fa fa-arrow-circle-left"></i> Recomeçar atividade</button>
             </div>
@@ -328,7 +328,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Não</button>
-          <button type="button" class="btn btn-success" ng-click="">Sim</button>
+          <button type="button" class="btn btn-success" data-dismiss="modal" id="confirmNextStatus">Sim</button>
         </div>
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

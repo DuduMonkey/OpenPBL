@@ -6,7 +6,7 @@
       var addResolution = function (activityId, resolution) {
         var deferred = $q.defer()
         //, url = globalValues.API_URL + '/activity/' + activityId + '/resolutions'
-        , url = 'http://private-74203b-openpbl.apiary-mock.com/api' + '/activity/' + activityId + '/resolutions'
+        , url = 'http://private-74203b-openpbl.apiary-mock.com/api' + '/activity/' + activityId + '/resolution'
         , data = {
           resolution: resolution
         };
@@ -25,7 +25,7 @@
       var deleteResolution = function (activityId, resolutionId) {
         var deferred = $q.defer()
         //, url = globalValues.API_URL + '/activity/' + activityId + '/resolutions/' + resolutionId;
-        , url = 'http://private-74203b-openpbl.apiary-mock.com/api' + '/activity/' + activityId + '/resolutions/' + resolutionId;
+        , url = 'http://private-74203b-openpbl.apiary-mock.com/api' + '/activity/' + activityId + '/resolution/' + resolutionId;
 
         $http.delete(url)
           .then(function (response) {
@@ -41,7 +41,7 @@
       var getResolutions = function (activityId) {
         var deferred = $q.defer()
         //, url = globalValues.API_URL + '/activity/' + activityId + '/facts';
-        , url = 'http://private-74203b-openpbl.apiary-mock.com/api' + '/activity/' + activityId + '/resolutions';
+        , url = 'http://private-74203b-openpbl.apiary-mock.com/api' + '/activity/' + activityId + '/resolution';
 
         $http.get(url, { cache: false })
           .then(function (response) {
