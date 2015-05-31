@@ -173,6 +173,10 @@
           };
 
           scope.$watch('content', function () {
+            if (angular.isUndefined(scope.vm)) {
+              return;
+            }
+            
             var currentTab = getContentTabByStatus(scope.vm.activity.status)
             , status;
 
