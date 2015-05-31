@@ -1299,6 +1299,10 @@ p.credit .fa {
   background-color: #fff;
 }
 
+.content-section-default li p {
+  margin: 5px 0;
+}
+
 .content-section-default .lead {
   font-size: 16px;
 }
