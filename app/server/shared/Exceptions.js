@@ -45,6 +45,7 @@
     ACTIVITY_POST_INSERT_ERROR: declareNewError('Erro na persistencia do post'),
     ACTIVITY_POST_DELETE_ERROR: declareNewError('Erro ao deletar o post'),
     ACTIVITY_POST_INVALID_TO_DELETE: declareNewError('Post para exclusão não encontrado'),
+    ACTIVITY_POST_QUERY_ERROR: declareNewError('Erro ao buscar da postagem na base de dados'),
     // JSON Helper
     PARSE_TO_JSON_EXCEPTION: declareNewError('Falha ao fazer o parse para JSON'),
     //Exception for not implemented functions

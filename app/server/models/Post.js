@@ -67,7 +67,57 @@
     return deferred.promise;
   };
 
-  
+  /**
+    Find all posts by comparisson between an passed column and an condition
+      whereColumn      =>  column to compare on where condition
+      where Condition  =>  a single value (equals condition) or a list (In condition)
+      Query Configuration need to be like the object below:
+      i.e:
+      {
+        select: ['_id content _creator date'],
+        where: ['_activity', 'type'],
+        conditions: [ActivityId], [1]],
+        join: [
+                {
+                  path: '_creator',
+                  select: '-_id name '
+                }
+              ]
+      }
+
+      the query result will select _id, content, _creator and date from all instances 
+      where _activity is equals ActivityId and type is in [1], 
+      the result will be populated with the creator name without id
+  **/
+  PostSchema.statics.queryInActivities = function (queryAttr) {
+    var deferred = Q.defer()
+    , query = this.find();
+
+    if (!!queryAttr.select) {
+      query.select(queryAttr.select);
+    }
+
+    if (!!queryAttr.where && !!queryAttr.where.length) {
+      queryAttr.where.forEach(function (column, index) {
+        query.where(column).equals(queryAttr.conditions[index]);
+      });
+    }
+
+    if (!!queryAttr.join && !!queryAttr.join.length) {
+      queryAttr.join.forEach(function (documentAttr) {
+        query.populate(documentAttr);
+      });
+    }
+
+    query.exec(function (err, posts) {
+      if (!!err) {
+        deferred.reject(Exception.ACTIVITY_QUERY_ERROR);
+      }
+      deferred.resolve(posts);
+    });
+
+    return deferred.promise;
+  };
 
   module.exports = mongoose.model('Post', PostSchema);
 }());
