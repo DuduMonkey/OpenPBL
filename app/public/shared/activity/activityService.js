@@ -2,8 +2,8 @@
   'use strict';
 
   angular.module('openpbl.services')
-    .factory('activityService', ['$http', '$q', 'factService', 'globalValues', 'hypothesisService', 'participantService', 'storyService',
-      function ($http, $q, factService, globalValues, hypothesisService, participantService, storyService) {
+    .factory('activityService', ['$http', '$q', 'factService', 'globalValues', 'hypothesisService', 'participantService', 'resolutionService', 'storyService',
+      function ($http, $q, factService, globalValues, hypothesisService, participantService, resolutionService, storyService) {
 
       var addActivityFact = function (activityId, fact) {
         return factService.addFact(activityId, fact);
@@ -11,6 +11,10 @@
 
       var addActivityHypothesis = function (activityId, hypothesis) {
         return hypothesisService.addHypothesis(activityId, hypothesis);
+      };
+
+      var addActivityResolution = function (activityId, resolution) {
+        return resolutionService.addResolution(activityId, resolution);
       };
 
       var saveActivityStory = function (activityId, story) {
@@ -52,6 +56,10 @@
         return participantService.deleteParticipant(activityId, participantId);
       };
 
+      var deleteActivityResolution = function (activityId, resolutionId) {
+        return resolutionService.addResolution(activityId, resolutionId);
+      };
+
       var deleteActivityStory = function (activityId, storyId) {
         return storyService.deleteStory(activityId, storyId);
       };
@@ -90,8 +98,7 @@
 
       var getActivityById = function (activityId) {
         var deferred = $q.defer()
-        //, url = globalValues.API_URL + '/activity/' + activityId;
-        , url = 'http://private-74203b-openpbl.apiary-mock.com/api' + '/activity/' + activityId;
+        , url = globalValues.API_URL + '/activity/' + activityId;
 
         $http.get(url)
           .then(function (response) {
@@ -117,6 +124,8 @@
       };
 
       var getActivityStatusData = function (activityId, status) {
+        console.log('getActivityStatusData', activityId, status);
+        
         var deferred = $q.defer()
         , statusPropertyName = getStatusPropertyName(status)
         //, url = globalValues.API_URL + '/activity/' + activityId + '/' + statusPropertyName;
@@ -150,7 +159,7 @@
             return 'researching';
 
           case activityStatus.RESOLVING_PROBLEM:
-            return 'problem';
+            return 'resolutions';
 
           case activityStatus.ABSTRACTING:
             return 'abstracting';
@@ -186,11 +195,13 @@
         addActivityFact: addActivityFact,
         addActivityHypothesis: addActivityHypothesis,
         addActivityParticipant: addActivityParticipant,
+        addActivityResolution: addActivityResolution,
         saveActivityStory: saveActivityStory,
         deleteActivity: deleteActivity,
         deleteActivityFact: deleteActivityFact,
         deleteActivityHypothesis: deleteActivityHypothesis,
         deleteActivityPartipant: deleteActivityPartipant,
+        deleteActivityResolution: deleteActivityResolution,
         deleteActivityStory: deleteActivityStory,
         getActivities: getActivities,
         getActivityById: getActivityById,

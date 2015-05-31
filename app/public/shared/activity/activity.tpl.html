@@ -47,7 +47,7 @@
         <main>
           <!-- tabs -->
           <label class="fake">.</label>
-          <input id="tab-problem" type="radio" name="tabs" ng-model="content" value="tab-problem" checked>
+          <input id="tab-problem" type="radio" name="tabs" ng-model="content" value="tab-problem">
           <label for="tab-problem">Problema</label>
           <input id="tab-facts" type="radio" name="tabs" ng-model="content" value="tab-facts">
           <label for="tab-facts">Fatos</label>
@@ -94,20 +94,12 @@
           <section id="content-facts" ng-show="content == 'tab-facts'">
             <div class="container chalkboard">
               <!-- posts -->
-              <div class="post-it">
+              <div class="post-it" ng-repeat="fact in vm.activity.facts">
                 <div class="sticky fact">
-                  <button type="button" class="close" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
-                  <h5><strong>Joãozinho</strong></h5>
-                  <p>Muuuuuuuuito bom esse fato hein, deusulivre!</p>
-                  <p><small class="pull-right">09/12/82</small></p>
-                </div>
-              </div>
-              <div class="post-it">
-                <div class="sticky fact">
-                  <button type="button" class="close" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
-                  <h5><strong>Joãozinho</strong></h5>
-                  <p>Muuuuuuuuito bom esse fato hein, deusulivre! Muuuuuuuuito bom esse fato hein, deusulivre! Muuuuuuuuito bom esse fato hein, deusulivre!</p>
-                  <p><small class="pull-right">09/12/82</small></p>
+                  <button type="button" class="close" aria-label="Fechar" pbl-permission="Professor"><span aria-hidden="true">&times;</span></button>
+                  <h5><strong>{{::fact.creator}}</strong></h5>
+                  <p>{{::fact.description}}</p>
+                  <p><small class="pull-right">{{::fact.date | date}}</small></p>
                 </div>
               </div>
               <!-- /.posts -->
@@ -117,20 +109,12 @@
           <section id="content-hypothesis" ng-show="content == 'tab-hypothesis'">
             <div class="container chalkboard">
               <!-- posts -->
-              <div class="post-it">
+              <div class="post-it" ng-repeat="hypothesis in vm.activity.hypothesis">
                 <div class="sticky hypot">
-                  <button type="button" class="close" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
-                  <h5><strong>Joãozinho</strong></h5>
-                  <p>Muuuuuuuuito boa essa hipótese hein, deusulivre! Muuuuuuuuito boa essa hipótese hein, deusulivre!</p>
-                  <p><small class="pull-right">09/12/82</small></p>
-                </div>
-              </div>
-              <div class="post-it">
-                <div class="sticky hypot">
-                  <button type="button" class="close" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
-                  <h5><strong>Joãozinho</strong></h5>
-                  <p>Muuuuuuuuito boa essa hipótese hein, deusulivre!</p>
-                  <p><small class="pull-right">09/12/82</small></p>
+                  <button type="button" class="close" aria-label="Fechar" pbl-permission="Professor"><span aria-hidden="true">&times;</span></button>
+                  <h5><strong>{{::hypothesis.creator}}</strong></h5>
+                  <p>{{::hypothesis.description}}</p>
+                  <p><small class="pull-right">{{::hypothesis.date | date}}</small></p>
                 </div>
               </div>
               <!-- /.posts -->
@@ -150,20 +134,12 @@
           <section id="content-resolution" ng-show="content == 'tab-resolution'">
             <div class="container chalkboard">
               <!-- posts -->
-              <div class="post-it">
+              <div class="post-it" ng-repeat="resolution in vm.activity.resolutions">
                 <div class="sticky resol">
-                  <button type="button" class="close" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
-                  <h5><strong>Joãozinho</strong></h5>
-                  <p>Muuuuuuuuito boa essa resposta hein, deusulivre! Muuuuuuuuito boa essa resposta hein, deusulivre!</p>
-                  <p><small class="pull-right">09/12/82</small></p>
-                </div>
-              </div>
-              <div class="post-it">
-                <div class="sticky resol">
-                  <button type="button" class="close" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
-                  <h5><strong>Joãozinho</strong></h5>
-                  <p>Muuuuuuuuito boa essa resposta hein, deusulivre!</p>
-                  <p><small class="pull-right">09/12/82</small></p>
+                  <button type="button" class="close" aria-label="Fechar" pbl-permission="Professor"><span aria-hidden="true">&times;</span></button>
+                  <h5><strong>{{::resolution.creator}}</strong></h5>
+                  <p>{{::resolution.description}}</p>
+                  <p><small class="pull-right">{{::resolution.date | date}}</small></p>
                 </div>
               </div>
               <!-- /.posts -->
@@ -326,11 +302,11 @@
           <div class="modal-title" ng-show="content == 'tab-resolution'"><h4>Inserir Resposta</h4></div>
         </div>
         <div class="modal-body">
-          <textarea class="form-control" rows="3" placeholder="Descrição..." maxlength="300"></textarea>
+          <textarea class="form-control" rows="3" placeholder="Descrição..." maxlength="300" ng-model="postContent"></textarea>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-          <button type="button" class="btn btn-success" ng-click="">Inserir</button>
+          <button type="button" class="btn btn-success" ng-click="addPost(postContent, '#enterPostModal')">Inserir</button>
         </div>
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
