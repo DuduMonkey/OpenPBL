@@ -49,7 +49,7 @@
       };
 
       var deleteActivityHypothesis = function (activityId, hypothesisId) {
-        return hypothesisService.deleteHypothesis(hypothesisId);
+        return hypothesisService.deleteHypothesis(activityId, hypothesisId);
       };
 
       var deleteActivityPartipant = function (activityId, participantId) {
@@ -57,7 +57,7 @@
       };
 
       var deleteActivityResolution = function (activityId, resolutionId) {
-        return resolutionService.addResolution(activityId, resolutionId);
+        return resolutionService.deleteResolution(activityId, resolutionId);
       };
 
       var deleteActivityStory = function (activityId, storyId) {
@@ -124,8 +124,6 @@
       };
 
       var getActivityStatusData = function (activityId, status) {
-        console.log('getActivityStatusData', activityId, status);
-        
         var deferred = $q.defer()
         , statusPropertyName = getStatusPropertyName(status)
         //, url = globalValues.API_URL + '/activity/' + activityId + '/' + statusPropertyName;
@@ -150,7 +148,7 @@
             return 'story';
 
           case activityStatus.GENERATING_FACTS:
-            return 'facts';
+            return 'fact';
 
           case activityStatus.IDENTIFYING_HIPOTESYS:
             return 'hypothesis';
@@ -159,7 +157,7 @@
             return 'researching';
 
           case activityStatus.RESOLVING_PROBLEM:
-            return 'resolutions';
+            return 'resolution';
 
           case activityStatus.ABSTRACTING:
             return 'abstracting';
@@ -174,6 +172,25 @@
 
       var getActivityStories = function (activityId) {
         return storyService.deleteStories(activityId);
+      };
+
+      var nextStatus = function (activityId, status) {
+        var deferred = $q.defer()
+        //, url = globalValues.API_URL + '/activity/' + activityId + '/status'
+        , url = 'http://private-74203b-openpbl.apiary-mock.com/api' + '/activity/' + activityId + '/status'
+        , data = {
+          status: status
+        };
+
+        $http.put(url, data)
+          .then(function (response) {
+            deferred.resolve(response.data);
+          })
+          .catch(function (error) {
+            deferred.reject(error);
+          });
+
+        return deferred.promise;
       };
 
       var saveActivity = function (activity) {
@@ -211,6 +228,7 @@
         getActivityStatusData: getActivityStatusData,
         getStatusPropertyName: getStatusPropertyName,
         getActivityStories: getActivityStories,
+        nextStatus: nextStatus,
         saveActivity: saveActivity
       };
     }]);
