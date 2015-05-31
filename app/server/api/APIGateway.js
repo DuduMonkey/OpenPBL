@@ -10,6 +10,7 @@
   var story = require('../rest/RESTStory');
   var fact = require('../rest/RESTFact');
   var hypothesis = require('../rest/RESTHypothesis');
+  var resolution = require('../rest/RESTResolution');
   var roles = require('../rest/RESTRole');
 
   /**
@@ -85,5 +86,9 @@
     // [POST] Hypothesis in activity
     router.route('/activity/:id/hypothesis')
       .post(hypothesis.post);
+
+    // [POST]
+    router.route('/activity/:id/resolution')
+      .post(resolution.post);
   };
 }());

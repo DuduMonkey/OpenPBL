@@ -17,6 +17,7 @@
     SUCCESS_SAVING_STORY: declareNewMessage('Problema salvo com sucesso'),
     // Posts
     SUCCESS_INSERTING_FACT: declareNewMessage('Fato inserido com sucesso'),
-    SUCCESS_INSERTING_HYPOTHESIS: declareNewMessage('Hipótese inserido com sucesso'),
+    SUCCESS_INSERTING_HYPOTHESIS: declareNewMessage('Hipótese inserida com sucesso'),
+    SUCCESS_INSERTING_RESOLUTION: declareNewMessage('Resolução inserida com sucesso'),
   };
 }());
