@@ -47,7 +47,8 @@
         <div class="clearfix"></div>
         <h3 class="section-heading">Sobre o Projeto</h3>
         <p class="lead">O OpenPBL foi desenvolvido como trabalho de conlusão de curso para obtenção do grau de bacharel em Sistemas de Informação na Pontifícia Universidade Católica do Rio Grande do Sul - <a href="http://www.pucrs.br" target="_blank">PUCRS</a>, em 2015.</p>
-        <p class="lead">O objetivo do sistema é servir de ferramenta de apoio a professores que desejam fazer uso do <em>Problem-based Learning</em> (PBL) em atividades escolares, com o auxílio de ferramentas computacionais. </p>
+        <p class="lead">O objetivo do sistema é servir de ferramenta de apoio a professores que desejam fazer uso do <em>Problem-based Learning</em> (PBL) em atividades escolares, com o auxílio de ferramentas computacionais. Com o propósito de desenvolver uma ferramenta atrativa, leve e intuitiva, foram utilizadas tecnologias modernas, que proporcianam uma experiência de usuário de alta qualidade. Além disto, a arquitetura do OpenPBL foi estruturada de forma altamente escalável, para que a continuidade do projeto e futuros estudos com base na ferramenta sejam possíveis.</p> 
+        <p class="lead">OpenPBL é um projeto livre, acesse o <a href="https://github.com/DuduMonkey/OpenPBL" target="_blank">código fonte </a>.</p>
       </div>
       <div class="back-to-top pull-right">
       	<a href="" pbl-scroll-to="#top">Voltar ao topo <i class="fa fa-arrow-circle-up"></i></a>
@@ -63,15 +64,21 @@
 
   <div class="container">
     <div class="row">
-      <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
+      <div class="col-lg-6 col-sm-push-6  col-sm-6">
         <hr class="section-heading-spacer">
         <div class="clearfix"></div>
         <h3 class="section-heading">Autores</h3>
-        <p class="lead">Fugiat ground round consectetur pork loin, dolore shank incididunt excepteur alcatra ut duis.</p>
+        <p class="lead">OpenPBL foi arquitetado, projetado e desenvolvido por Eduardo Arnold e Jeison Spaniol, sob orientação da professora <a href="http://buscatextual.cnpq.br/buscatextual/visualizacv.do?id=K4761417Z2" target="_blank">Márcia Cristina Moraes</a>.</p>
         <p class="lead">Ham sint quis proident incididunt minim landjaeger in turducken chuck tongue. Occaecat dolore t-bone pork chop excepteur meatball jerky tail incididunt beef. Pancetta officia ball tip elit ut in voluptate, ut frankfurter meatball esse.</p>
       </div>
-      <div class="col-lg-5 col-sm-pull-5  col-sm-5">
-        <pbl-svg class="img-responsive" name="about.authors"></pbl-svg>
+      <div class="col-lg-4 col-sm-pull-5 col-sm-5" id="authors-svg">
+  	    <pbl-svg class="img-responsive" name="about.authors"></pbl-svg>
+        <div id="authors-detail">
+	      	<p class="lead"><strong>Jeison Spaniol</strong><br><a href="mailto:jeisonspaniol@gmail.com"><em>Contato</em></a></p>
+	    	</div>
+	    	<div id="authors-detail">
+	      	<p class="lead"><strong>Eduardo Arnold</strong><br><a href="mailto:eduardo.arnold@outlook.com"><em>Contato</em></a></p>
+	    	</div>
       </div>
     </div>
     <div class="back-to-top">
@@ -91,8 +98,24 @@
         <hr class="section-heading-spacer">
         <div class="clearfix"></div>
         <h3 class="section-heading">Tecnologias Empregadas</h3>
-        <p class="lead">Fugiat ground round consectetur pork loin, dolore shank incididunt excepteur alcatra ut duis.</p>
-        <p class="lead">Ham sint quis proident incididunt minim landjaeger in turducken chuck tongue. Occaecat dolore t-bone pork chop excepteur meatball jerky tail incididunt beef. Pancetta officia ball tip elit ut in voluptate, ut frankfurter meatball esse.</p>
+        <p class="lead">O OpenPBL foi construído em <a href="https://nodejs.org/" target="_blank">Node.js®</a>, um ambiente multi-plataforma livre para a construção de aplicações web. Aplicações em Node.js são escritas em <em>JavaScript</em> e orientadas a eventos, e oferecem condições ideais para a construção de sistemas leves, eficientes e altamente escaláveis.</p>
+        <p class="lead">O <em>front-end</em> foi construído utilizando o <em>framework</em> <a href="https://angularjs.org/" target="_blank">Angular.js</a>, atualmente mantido pela <em>Google</em>. Angular.js adapta e extende o HTML tradicional para entregar conteúdo dinâmico através de <abbr data-toggle="tooltip" data-placement="top" title="Data-binding é o nome dado ao processo que estabelece uma conexão entre a interface de uma aplicação e a lógica de negócio"><em>data-binding</em></abbr> de duplo sentido, o que permite a sincronização automática de <abbr data-toggle="tooltip" data-placement="top" title="Componente que recebe e entrega os dados para a view"><em>models</em></abbr> e <abbr data-toggle="tooltip" data-placement="top" title="Componente que requisita informações da model e as apresenta para o usuário"><em>views</em></abbr>. Como resultado, o <em>framework</em> reduz a necessidade de manipulação da <abbr data-toggle="tooltip" data-placement="top" title="Document Object Model é uma convenção que representa e interage com objetos em HTML, XHTML e XML"><em>DOM</em></abbr> com o objetivo de melhorar a testabilidade e performance, além de facilitar o desacoplamento do cliente e servidor. Isto facilita o desenvolvimento paralelo, método fortemente utilizado durante a concepção do OpenPBL, através de uma API construída no <a href="https://apiary.io/" target="_blank">Apiary</a>.</p>
+        <p class="lead">A API construída para o desenvolvimento do OpenPBL pode ser acessada <a href="http://docs.openpbl.apiary.io/" target="_blank">aqui</a>.</p>
+        <p class="lead"><strong>Outras tecnologias utilizadas pelo sistema são destacadas abaixo:</strong></p>
+        <ul>
+        	<li>
+        		<p class="lead"><a href="" target="_blank">1</a> - bla bla lbabaabl lablb lablalb</p>
+        	</li>
+        	<li>
+        		<p class="lead">1</p>
+        	</li>
+        	<li>
+        		<p class="lead">1</p>
+        	</li>
+        	<li>
+        		<p class="lead">1</p>
+        	</li>
+        </ul>
       </div>
       <div class="back-to-top pull-right">
       	<a href="" pbl-scroll-to="#top">Voltar ao topo <i class="fa fa-arrow-circle-up"></i></a>
@@ -164,12 +187,14 @@
   </div>
   <!-- /.container -->
 </div>
-<div class="content-section-default">
+<div class="content-section-default thanks">
 
   <div class="container">
     <div class="row">
       <div class="col-lg-12 col-sm-12">
         <div class="clearfix"></div>
+        	<h4>Agradecimento</h4>
+        	<p class="lead">Por acreditar que a realização deste projeto seria possível, agradecemos à orientação de Márcia Moraes.</p>
       </div>
     </div>
   </div>
@@ -211,3 +236,9 @@
     </div>
   </div>
 </footer>
+
+<script type="text/javascript">
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+</script>

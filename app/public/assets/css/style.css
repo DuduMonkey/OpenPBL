@@ -1293,6 +1293,12 @@ p.credit .fa {
   max-width: 100%;
 }
 
+.content-section-default.thanks {
+  text-align: center;
+  color: #746F91;
+  background-color: #fff;
+}
+
 .content-section-default .lead {
   font-size: 16px;
 }
@@ -1322,4 +1328,25 @@ p.credit .fa {
   text-transform: uppercase;
   font-size: 1em;
   letter-spacing: 2px;
+}
+
+@media(max-width:1200px) {
+  .table-of-content li {
+    display: block;
+    text-align: left;
+  }
+  li.table-of-content-divider {
+    display: none;
+  }
+}
+
+#authors-detail {
+  display: inline-block;
+  text-align: center;
+  width: 49%;
+  max-width: 195px;
+}
+
+#authors-svg {
+  margin-top: 50px;
 }
