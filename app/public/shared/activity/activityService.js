@@ -159,7 +159,7 @@
             return 'researching';
 
           case activityStatus.RESOLVING_PROBLEM:
-            return 'problem';
+            return 'resolutions';
 
           case activityStatus.ABSTRACTING:
             return 'abstracting';

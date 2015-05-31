@@ -109,20 +109,12 @@
           <section id="content-hypothesis" ng-show="content == 'tab-hypothesis'">
             <div class="container chalkboard">
               <!-- posts -->
-              <div class="post-it">
+              <div class="post-it" ng-repeat="hypothesis in vm.activity.hypothesis">
                 <div class="sticky hypot">
-                  <button type="button" class="close" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
-                  <h5><strong>Joãozinho</strong></h5>
-                  <p>Muuuuuuuuito boa essa hipótese hein, deusulivre! Muuuuuuuuito boa essa hipótese hein, deusulivre!</p>
-                  <p><small class="pull-right">09/12/82</small></p>
-                </div>
-              </div>
-              <div class="post-it">
-                <div class="sticky hypot">
-                  <button type="button" class="close" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
-                  <h5><strong>Joãozinho</strong></h5>
-                  <p>Muuuuuuuuito boa essa hipótese hein, deusulivre!</p>
-                  <p><small class="pull-right">09/12/82</small></p>
+                  <button type="button" class="close" aria-label="Fechar" pbl-permission="Professor"><span aria-hidden="true">&times;</span></button>
+                  <h5><strong>{{::hypothesis.creator}}</strong></h5>
+                  <p>{{::hypothesis.description}}</p>
+                  <p><small class="pull-right">{{::hypothesis.date | date}}</small></p>
                 </div>
               </div>
               <!-- /.posts -->
@@ -142,20 +134,12 @@
           <section id="content-resolution" ng-show="content == 'tab-resolution'">
             <div class="container chalkboard">
               <!-- posts -->
-              <div class="post-it">
+              <div class="post-it" ng-repeat="resolution in vm.activity.resolutions">
                 <div class="sticky resol">
-                  <button type="button" class="close" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
-                  <h5><strong>Joãozinho</strong></h5>
-                  <p>Muuuuuuuuito boa essa resposta hein, deusulivre! Muuuuuuuuito boa essa resposta hein, deusulivre!</p>
-                  <p><small class="pull-right">09/12/82</small></p>
-                </div>
-              </div>
-              <div class="post-it">
-                <div class="sticky resol">
-                  <button type="button" class="close" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
-                  <h5><strong>Joãozinho</strong></h5>
-                  <p>Muuuuuuuuito boa essa resposta hein, deusulivre!</p>
-                  <p><small class="pull-right">09/12/82</small></p>
+                  <button type="button" class="close" aria-label="Fechar" pbl-permission="Professor"><span aria-hidden="true">&times;</span></button>
+                  <h5><strong>{{::resolution.creator}}</strong></h5>
+                  <p>{{::resolution.description}}</p>
+                  <p><small class="pull-right">{{::resolution.date | date}}</small></p>
                 </div>
               </div>
               <!-- /.posts -->
