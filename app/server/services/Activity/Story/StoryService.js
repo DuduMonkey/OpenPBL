@@ -123,7 +123,6 @@
 
     Activity.queryInActivities(querySelectActivityStory)
       .then(function (activities) {
-        console.log(activities);
         var selectedActivity = activities[0];
         if (ActivitySpec.ActivityHasStory().isSatisfiedBy(selectedActivity)){
           deferred.resolve(selectedActivity.story);
