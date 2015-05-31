@@ -62,6 +62,7 @@
 
     // [POST] Story data to save activity story
     router.route('/activity/:id/story')
+      .get(story.get)
       .post(story.post);
 
     // [POST] User on activity
