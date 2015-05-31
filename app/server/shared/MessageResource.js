@@ -14,5 +14,7 @@
     SUCCESS_REMOVING_USER: declareNewMessage('Usuário removido com sucesso'),
     // Story
     SUCCESS_SAVING_STORY: declareNewMessage('Problema salvo com sucesso'),
+    // Fact
+    SUCCESS_INSERTING_FACT: declareNewMessage('Fato inserido com sucesso'),
   };
 }());

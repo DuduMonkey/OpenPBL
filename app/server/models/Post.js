@@ -4,7 +4,6 @@
 
   // Modules in use
   var Exception = require('../shared/Exceptions');
-  var TYPE = require('./constants/activity_status');
   var mongoose = require('mongoose');
   var Schema = mongoose.Schema;
   var Q = require('q');
