@@ -2,22 +2,26 @@
 (function () {
   'use strict';
 
-  /**
-    Constant list
-    1 = The post is an Fact
-    2 = The post is an Hipotesys
-    3 = The post is an Disablet Knowledge
-    4 = The post is an New Knowledge
-  */
-  var __FACT = 1;
-  var __HIPOTESYS = 2;
-  var __DISABLED_KNOWLEDGE = 3;
-  var __NEW_KNOWLEDGE = 4;
+  var POST_TYPE = {};
 
-  module.exports = {
-    FACT : __FACT,
-    HIPOTESYS : __HIPOTESYS,
-    DISABLED_KNOWLEDGE : __DISABLED_KNOWLEDGE,
-    NEW_KNOWLEDGE : __NEW_KNOWLEDGE
+  var defineStatusProperty = function (Key, Value) {
+      Object.defineProperty(POST_TYPE, Key, {
+          value: Value,
+          writable: false,
+          enumerable: true,
+          configurable: false
+      });
   };
+
+  /**
+    Enumerable post type
+    1 = The post is an fact
+    2 = The post is an hipotesys
+    3 = The post is an resolution
+  */
+  defineStatusProperty('FACT',1);
+  defineStatusProperty('HIPOTESYS',2);
+  defineStatusProperty('RESOLUTION',3);
+
+  module.exports = POST_TYPE;
 }());
