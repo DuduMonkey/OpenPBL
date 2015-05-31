@@ -22,7 +22,7 @@
         switch (postType) {
         case TYPE.FACT:
           return factService.createNewFact(postData);
-        case TYPE.HYPOTESIS:
+        case TYPE.HYPOTHESIS:
           deferred.reject(Exception.FEATURE_NOT_IMPLEMENTED_EXCEPTION);
           break;
         case TYPE.RESOLUTION:
