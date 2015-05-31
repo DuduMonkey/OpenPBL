@@ -6,9 +6,12 @@
       var addHypothesis = function (activityId, hypothesis) {
         var deferred = $q.defer()
         //, url = globalValues.API_URL + '/activity/' + activityId + '/hypothesis';
-        , url = 'http://private-74203b-openpbl.apiary-mock.com/api' + '/activity/' + activityId + '/hypothesis';
+        , url = 'http://private-74203b-openpbl.apiary-mock.com/api' + '/activity/' + activityId + '/hypothesis'
+        , data = {
+          hypothesis: hypothesis
+        };
 
-        $http.post(url, hypothesis)
+        $http.post(url, data)
           .then(function (response) {
             deferred.resolve(response.data);
           })

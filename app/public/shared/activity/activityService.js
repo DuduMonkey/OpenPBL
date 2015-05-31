@@ -49,7 +49,7 @@
       };
 
       var deleteActivityHypothesis = function (activityId, hypothesisId) {
-        return hypothesisService.deleteHypothesis(hypothesisId);
+        return hypothesisService.deleteHypothesis(activityId, hypothesisId);
       };
 
       var deleteActivityPartipant = function (activityId, participantId) {
@@ -57,7 +57,7 @@
       };
 
       var deleteActivityResolution = function (activityId, resolutionId) {
-        return resolutionService.addResolution(activityId, resolutionId);
+        return resolutionService.deleteResolution(activityId, resolutionId);
       };
 
       var deleteActivityStory = function (activityId, storyId) {

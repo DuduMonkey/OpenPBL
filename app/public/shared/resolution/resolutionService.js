@@ -8,7 +8,6 @@
         //, url = globalValues.API_URL + '/activity/' + activityId + '/resolutions'
         , url = 'http://private-74203b-openpbl.apiary-mock.com/api' + '/activity/' + activityId + '/resolutions'
         , data = {
-          activityId: activityId,
           resolution: resolution
         };
 

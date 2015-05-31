@@ -6,9 +6,12 @@
       var addFact = function (activityId, fact) {
         var deferred = $q.defer()
         //, url = globalValues.API_URL + '/activity/' + activityId + '/facts';
-        , url = 'http://private-74203b-openpbl.apiary-mock.com/api' + '/activity/' + activityId + '/facts';
+        , url = 'http://private-74203b-openpbl.apiary-mock.com/api' + '/activity/' + activityId + '/facts'
+        , data = {
+          fact: fact
+        };
 
-        $http.post(url, fact)
+        $http.post(url, data)
           .then(function (response) {
             deferred.resolve(response.data);
           })
