@@ -88,15 +88,15 @@
           };
 
           var loadActivityStatus = function (activity, status) {
-            $log.debug('loadActivityStatus', activity, status);
-
             var deferred = $q.defer()
             , statusName = activityService.getStatusPropertyName(status);
 
             activityService.getActivityStatusData(activity.id, status)
               .then(function (response) {
-                $log.debug('response', response);
-                
+                if (angular.isDefined(response[statusName])) {
+                  response = response[statusName];
+                }
+
                 activity[statusName] = response;
                 deferred.resolve(activity);
               })
@@ -144,7 +144,7 @@
 
           scope.removeItemFromList = function (list, index) {
             if (Array.isArray(list)) {
-              list = list.splice(index, 1);  
+              list = list.splice(index, 1);
             }
           };
 
@@ -180,15 +180,10 @@
               return;
             }
 
-            $log.debug('$watch content', scope.content);
-
             status = getStatusByContentTab(scope.content);
-
-            $log.debug('$watch content status', status);
 
             loadActivityStatus(scope.vm.activity, status)
               .then(function (response) {
-                $log.debug('response', response);
                 scope.vm.activity = response;
               })
               .catch(function (error) {
