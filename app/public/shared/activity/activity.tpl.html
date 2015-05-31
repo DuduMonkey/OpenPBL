@@ -379,4 +379,26 @@
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
   </div><!-- /.modal -->
+
+  <div class="modal fade background-static" id="confirmDeletePostModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+          <div class="modal-title"><h4>Confirmação</h4></div>
+        </div>
+        <div class="modal-body">
+          Você tem certeza que deseja excluir 
+          <span ng-show="content == 'tab-facts'">este fato</span>
+          <span ng-show="content == 'tab-hypothesis'">esta hipótese</span>
+          <span ng-show="content == 'tab-resolution'">esta resposta</span>
+          ?
+        </div>
+        <div class="modal-footer">
+          <button type="button" data-dismiss="modal" class="btn">Não</button>
+          <button type="button" data-dismiss="modal" class="btn btn-success" id="confirmDeletePost">Sim</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div> <!-- /.page wrapper -->

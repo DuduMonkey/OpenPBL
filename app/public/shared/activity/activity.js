@@ -190,9 +190,14 @@
 
           scope.deletePost = function (postId, from) {
             var activityId = scope.vm.activity.id
-            , apiMethod = getApiDeleteMethodByContent(scope.content);
+            , apiMethod = getApiDeleteMethodByContent(scope.content)
+            , confirmModal = angular.element('#confirmDeletePostModal');
 
-            saveActivityItem(activityId, apiMethod, postId, from);
+            confirmModal
+              .modal('toggle')
+              .one('click', '#confirmDeletePost', function () {
+                saveActivityItem(activityId, apiMethod, postId, from);
+              });
           };
 
           scope.toggleModal = function (modalName) {
