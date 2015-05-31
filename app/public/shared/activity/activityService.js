@@ -124,8 +124,6 @@
       };
 
       var getActivityStatusData = function (activityId, status) {
-        console.log('getActivityStatusData', activityId, status);
-        
         var deferred = $q.defer()
         , statusPropertyName = getStatusPropertyName(status)
         //, url = globalValues.API_URL + '/activity/' + activityId + '/' + statusPropertyName;

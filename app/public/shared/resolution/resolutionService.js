@@ -5,7 +5,7 @@
     .factory('resolutionService', ['$http', '$q', 'globalValues', function ($http, $q, globalValues) {
       var addResolution = function (activityId, resolution) {
         var deferred = $q.defer()
-        , url = globalValues.API_URL + '/activity/' + activityId + '/resolution'
+        , url = globalValues.API_URL + '/activity/' + activityId + '/resolutions'
         , data = {
           activityId: activityId,
           resolution: resolution
@@ -24,7 +24,7 @@
 
       var deleteResolution = function (activityId, resolutionId) {
         var deferred = $q.defer()
-        , url = globalValues.API_URL + '/activity/' + activityId + '/resolution/' + resolutionId;
+        , url = globalValues.API_URL + '/activity/' + activityId + '/resolutions/' + resolutionId;
 
         $http.delete(url)
           .then(function (response) {

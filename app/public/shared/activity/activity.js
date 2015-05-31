@@ -23,7 +23,7 @@
               });
           };
 
-          var getApiMethodByContent = function (content) {
+          var getApiAddMethodByContent = function (content) {
             switch (content) {
               case 'tab-facts':
                 return 'addActivityFact';
@@ -33,6 +33,19 @@
 
               case 'tab-resolution':
                 return 'addActivityResolution';
+            }
+          };
+
+          var getApiDeleteMethodByContent = function (content) {
+            switch (content) {
+              case 'tab-facts':
+                return 'deleteActivityFact';
+
+              case 'tab-hypothesis':
+                return 'deleteActivityHypothesis';
+
+              case 'tab-resolution':
+                return 'deleteActivityResolution';
             }
           };
 
@@ -111,7 +124,7 @@
            * Salva um item da atividade
            */
           var saveActivityItem = function (activityId, apiMethod, item, fromModal) {
-            $log.debug('saveActivityItem', activityId, apiMethod, item, fromModal);
+            var status;
 
             if (angular.isUndefined(activityService[apiMethod])) {
               return;
@@ -119,7 +132,6 @@
 
             activityService[apiMethod](activityId, item)
               .then(function (response) {
-                $log.debug(response);
                 notificationService.success(response.message);
 
                 // Verifica se ação foi disparda por modal,
@@ -127,6 +139,14 @@
                 if (angular.isDefined(fromModal)) {
                   scope.toggleModal(fromModal);
                 }
+
+                status = getStatusByContentTab(scope.content);
+
+                // Recarrega a ativade
+                loadActivityStatus(scope.vm.activity, status)
+                  .then(function (response) {
+                    scope.vm.activity = response;
+                  });
               })
               .catch(function (error) {
                 $log.error(error);
@@ -162,9 +182,17 @@
 
           scope.addPost = function (post, from) {
             var activityId = scope.vm.activity.id
-            , apiMethod = getApiMethodByContent(scope.content);
+            , apiMethod = getApiAddMethodByContent(scope.content);
 
             saveActivityItem(activityId, apiMethod, post, from);
+            scope.postContent = null;
+          };
+
+          scope.deletePost = function (postId) {
+            var activityId = scope.vm.activity.id
+            , apiMethod = getApiDeleteMethodByContent(scope.content);
+
+            saveActivityItem(activityId, apiMethod, postId, from);
           };
 
           scope.toggleModal = function (modalName) {
