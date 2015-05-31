@@ -25,7 +25,6 @@
           return factService.createNewFact(postData);
         case TYPE.HYPOTHESIS:
           return hypothesisService.createNewHypothesis(postData);
-          break;
         case TYPE.RESOLUTION:
           deferred.reject(Exception.FEATURE_NOT_IMPLEMENTED_EXCEPTION);
           break;
