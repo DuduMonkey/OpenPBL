@@ -49,7 +49,7 @@
       };
 
       var deleteActivityHypothesis = function (activityId, hypothesisId) {
-        return hypothesisService.deleteHypothesis(hypothesisId);
+        return hypothesisService.deleteHypothesis(activityId, hypothesisId);
       };
 
       var deleteActivityPartipant = function (activityId, participantId) {
@@ -57,7 +57,7 @@
       };
 
       var deleteActivityResolution = function (activityId, resolutionId) {
-        return resolutionService.addResolution(activityId, resolutionId);
+        return resolutionService.deleteResolution(activityId, resolutionId);
       };
 
       var deleteActivityStory = function (activityId, storyId) {
@@ -124,8 +124,6 @@
       };
 
       var getActivityStatusData = function (activityId, status) {
-        console.log('getActivityStatusData', activityId, status);
-        
         var deferred = $q.defer()
         , statusPropertyName = getStatusPropertyName(status)
         //, url = globalValues.API_URL + '/activity/' + activityId + '/' + statusPropertyName;

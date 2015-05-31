@@ -96,9 +96,9 @@
               <!-- posts -->
               <div class="post-it" ng-repeat="fact in vm.activity.facts">
                 <div class="sticky fact">
-                  <button type="button" class="close" aria-label="Fechar" pbl-permission="Professor"><span aria-hidden="true">&times;</span></button>
+                  <button type="button" class="close" aria-label="Fechar" pbl-permission="Professor" ng-click="deletePost(fact.id)"><span aria-hidden="true">&times;</span></button>
                   <h5><strong>{{::fact.creator}}</strong></h5>
-                  <p>{{::fact.description}}</p>
+                  <p>{{::fact.content}}</p>
                   <p><small class="pull-right">{{::fact.date | date}}</small></p>
                 </div>
               </div>
@@ -111,9 +111,9 @@
               <!-- posts -->
               <div class="post-it" ng-repeat="hypothesis in vm.activity.hypothesis">
                 <div class="sticky hypot">
-                  <button type="button" class="close" aria-label="Fechar" pbl-permission="Professor"><span aria-hidden="true">&times;</span></button>
+                  <button type="button" class="close" aria-label="Fechar" pbl-permission="Professor" ng-click="deletePost(hypothesis.id)"><span aria-hidden="true">&times;</span></button>
                   <h5><strong>{{::hypothesis.creator}}</strong></h5>
-                  <p>{{::hypothesis.description}}</p>
+                  <p>{{::hypothesis.content}}</p>
                   <p><small class="pull-right">{{::hypothesis.date | date}}</small></p>
                 </div>
               </div>
@@ -136,9 +136,9 @@
               <!-- posts -->
               <div class="post-it" ng-repeat="resolution in vm.activity.resolutions">
                 <div class="sticky resol">
-                  <button type="button" class="close" aria-label="Fechar" pbl-permission="Professor"><span aria-hidden="true">&times;</span></button>
+                  <button type="button" class="close" aria-label="Fechar" pbl-permission="Professor" ng-click="deletePost(resolution.id)"><span aria-hidden="true">&times;</span></button>
                   <h5><strong>{{::resolution.creator}}</strong></h5>
-                  <p>{{::resolution.description}}</p>
+                  <p>{{::resolution.content}}</p>
                   <p><small class="pull-right">{{::resolution.date | date}}</small></p>
                 </div>
               </div>
@@ -379,4 +379,26 @@
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
   </div><!-- /.modal -->
+
+  <div class="modal fade background-static" id="confirmDeletePostModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+          <div class="modal-title"><h4>Confirmação</h4></div>
+        </div>
+        <div class="modal-body">
+          Você tem certeza que deseja excluir 
+          <span ng-show="content == 'tab-facts'">este fato</span>
+          <span ng-show="content == 'tab-hypothesis'">esta hipótese</span>
+          <span ng-show="content == 'tab-resolution'">esta resposta</span>
+          ?
+        </div>
+        <div class="modal-footer">
+          <button type="button" data-dismiss="modal" class="btn">Não</button>
+          <button type="button" data-dismiss="modal" class="btn btn-success" id="confirmDeletePost">Sim</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div> <!-- /.page wrapper -->

@@ -133,7 +133,7 @@
       })
       .catch(function (error) {
         deferred.reject(error);
-      })
+      });
 
     return deferred.promise;
   };
