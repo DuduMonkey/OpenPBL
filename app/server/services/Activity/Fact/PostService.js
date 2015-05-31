@@ -3,6 +3,7 @@
 
   var userService = require('../../User/UserService');
   var factService = require('./FactService');
+  var hypothesisService = require('./HypothesisService');
   var Exception = require('../../../shared/Exceptions');
   var TYPE = require('../../../models/constants/post_type');
   var Q = require('q');
@@ -22,9 +23,8 @@
         switch (postType) {
         case TYPE.FACT:
           return factService.createNewFact(postData);
-        case TYPE.HYPOTESIS:
-          deferred.reject(Exception.FEATURE_NOT_IMPLEMENTED_EXCEPTION);
-          break;
+        case TYPE.HYPOTHESIS:
+          return hypothesisService.createNewHypothesis(postData);
         case TYPE.RESOLUTION:
           deferred.reject(Exception.FEATURE_NOT_IMPLEMENTED_EXCEPTION);
           break;
