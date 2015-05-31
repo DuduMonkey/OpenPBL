@@ -9,6 +9,7 @@
   var activityUser = require('../rest/RESTActivityUser');
   var story = require('../rest/RESTStory');
   var fact = require('../rest/RESTFact');
+  var hypothesis = require('../rest/RESTHypothesis');
   var roles = require('../rest/RESTRole');
 
   /**
@@ -80,5 +81,9 @@
     // [POST] Fact in activity
     router.route('/activity/:id/fact')
       .post(fact.post);
+
+    // [POST] Hypothesis in activity
+    router.route('/activity/:id/hypothesis')
+      .post(hypothesis.post);
   };
 }());
