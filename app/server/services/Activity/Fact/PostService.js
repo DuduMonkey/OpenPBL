@@ -4,10 +4,11 @@
   var Message = require('../../../shared/MessageResource');
   var Post = require('../../../models/Post');
   var userService = require('../../User/UserService');
+  var factService = require('./FactService');
   var TYPE = require('../../../models/constants/post_type');
   var Q = require('q');
 
-  var createNewPost = function (token, activityId, postViewData, postType) {
+  var insertNewPost = function (token, activityId, postViewData, postType) {
     var deferred = Q.defer();
 
     userService.getSessionUser(token)
@@ -18,29 +19,30 @@
           userId: user._id,
           content: postViewData.content
         };
-        console.log(Post.postNew());
+
         switch (postType) {
         case TYPE.FACT:
-          return Post.postNew().fact(postData);
-        case TYPE.HIPOTESYS:
-          return Post.postNew().hipotesys(postData);
+          return factService.createNewFact(postData);
+        case TYPE.HYPOTESIS:
         case TYPE.RESOLUTION:
-          return Post.postNew().resolution(postData);
+        default:
+          deferred.reject(Exception.ACTIVITY_POST_CREATING_ERROR);
+          break;  
         }
+
       })
-      .then(function (post) {
-        deferred.resolve({ message: 'Inserido com sucesso' });
+      .then(function (response) {
+        deferred.resolve(response);
       })
       .catch(function (error) {
         deferred.reject(error);
       })
 
-
     return deferred.promise;
   };
   
   module.exports = {
-    createNewPost: createNewPost
+    insertNewPost: insertNewPost
   };
 
 }());
