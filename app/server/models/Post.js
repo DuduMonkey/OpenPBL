@@ -4,6 +4,7 @@
 
   // Modules in use
   var Exception = require('../shared/Exceptions');
+  var TYPE = require('./constants/activity_status');
   var mongoose = require('mongoose');
   var Schema = mongoose.Schema;
   var Q = require('q');
@@ -21,7 +22,7 @@
     _activity: { type: String, ref: 'User' },
     _creator: { type: String, ref: 'User' },
     content: { type: String, required: true},
-    type: { Type: Number, min: 1, max: 1 },
+    type: { type: Number, min: 1, max: 3, required: true },
     date: {type: Date, default: Date.now }
   });
 
@@ -89,7 +90,7 @@
       where _activity is equals ActivityId and type is in [1], 
       the result will be populated with the creator name without id
   **/
-  PostSchema.statics.queryInActivities = function (queryAttr) {
+  PostSchema.statics.queryInPosts = function (queryAttr) {
     var deferred = Q.defer()
     , query = this.find();
 
@@ -111,7 +112,7 @@
 
     query.exec(function (err, posts) {
       if (!!err) {
-        deferred.reject(Exception.ACTIVITY_QUERY_ERROR);
+        deferred.reject(Exception.ACTIVITY_POST_QUERY_ERROR);
       }
       deferred.resolve(posts);
     });
