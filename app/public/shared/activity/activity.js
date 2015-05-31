@@ -172,7 +172,6 @@
            * Salva o problema
            */
           scope.saveStory = function (from) {
-            $log.debug('saveStory', from);
             var activityId = scope.vm.activity.id
             , apiMethod = 'saveActivityStory'
             , story = scope.vm.activity.story;
@@ -200,8 +199,34 @@
               });
           };
 
+          scope.nextStatus = function () {
+            var activityId = scope.vm.activityId
+            , currentStatus = scope.vm.activity.status
+            , confirmModal = angular.element('#nextStatusModal');
+
+            // Callback de confirmação
+            var callback = function () {
+              activityService.nextStatus(activityId, currentStatus)
+                .then(function (response) {
+                  notificationService.success(response.message);
+
+                  // Atualiza status da atividade
+                  scope.activity.status = response.status;
+                  init();
+                })
+                .catch(function (error) {
+                  notificationService.error(error.message);
+                });
+            };
+
+            confirmModal
+              .modal('toggle')
+              .one('click', '#confirmNextStatus', function () {
+                callback();
+              });
+          };
+
           scope.toggleModal = function (modalName) {
-            $log.debug('toggleModal', modalName);
             angular.element(modalName).modal('toggle');
           };
 

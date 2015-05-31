@@ -6,7 +6,7 @@
       var addFact = function (activityId, fact) {
         var deferred = $q.defer()
         //, url = globalValues.API_URL + '/activity/' + activityId + '/facts';
-        , url = 'http://private-74203b-openpbl.apiary-mock.com/api' + '/activity/' + activityId + '/facts'
+        , url = 'http://private-74203b-openpbl.apiary-mock.com/api' + '/activity/' + activityId + '/fact'
         , data = {
           fact: fact
         };
@@ -25,7 +25,7 @@
       var deleteFact = function (activityId, factId) {
         var deferred = $q.defer()
         //, url = globalValues.API_URL + '/activity/' + activityId + '/facts/' + factId;
-        , url = 'http://private-74203b-openpbl.apiary-mock.com/api' + '/activity/' + activityId + '/facts/' + factId;
+        , url = 'http://private-74203b-openpbl.apiary-mock.com/api' + '/activity/' + activityId + '/fact/' + factId;
 
         $http.delete(url)
           .then(function (response) {
@@ -41,7 +41,7 @@
       var getFacts = function (activityId) {
         var deferred = $q.defer()
         //, url = globalValues.API_URL + '/activity/' + activityId + '/facts';
-        , url = 'http://private-74203b-openpbl.apiary-mock.com/api' + '/activity/' + activityId + '/facts';
+        , url = 'http://private-74203b-openpbl.apiary-mock.com/api' + '/activity/' + activityId + '/fact';
 
         $http.get(url, { cache: false })
           .then(function (response) {

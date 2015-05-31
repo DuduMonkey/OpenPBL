@@ -148,7 +148,7 @@
             return 'story';
 
           case activityStatus.GENERATING_FACTS:
-            return 'facts';
+            return 'fact';
 
           case activityStatus.IDENTIFYING_HIPOTESYS:
             return 'hypothesis';
@@ -157,7 +157,7 @@
             return 'researching';
 
           case activityStatus.RESOLVING_PROBLEM:
-            return 'resolutions';
+            return 'resolution';
 
           case activityStatus.ABSTRACTING:
             return 'abstracting';
@@ -172,6 +172,25 @@
 
       var getActivityStories = function (activityId) {
         return storyService.deleteStories(activityId);
+      };
+
+      var nextStatus = function (activityId, status) {
+        var deferred = $q.defer()
+        //, url = globalValues.API_URL + '/activity/' + activityId + '/status'
+        , url = 'http://private-74203b-openpbl.apiary-mock.com/api' + '/activity/' + activityId + '/status'
+        , data = {
+          status: status
+        };
+
+        $http.put(url, data)
+          .then(function (response) {
+            deferred.resolve(response.data);
+          })
+          .catch(function (error) {
+            deferred.reject(error);
+          });
+
+        return deferred.promise;
       };
 
       var saveActivity = function (activity) {
@@ -209,6 +228,7 @@
         getActivityStatusData: getActivityStatusData,
         getStatusPropertyName: getStatusPropertyName,
         getActivityStories: getActivityStories,
+        nextStatus: nextStatus,
         saveActivity: saveActivity
       };
     }]);
