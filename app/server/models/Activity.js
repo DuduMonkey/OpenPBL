@@ -53,7 +53,7 @@
     updatedAttrs format:
     i.e:
     {
-      
+      $pull: { participants: userId }
     }
   **/
   ActivitySchema.statics.updateActivity = function (activityId, updatedAttrs) {

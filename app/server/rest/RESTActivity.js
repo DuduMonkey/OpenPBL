@@ -4,6 +4,7 @@
 
   // Modules in use
   var activityService = require('../services/Activity/ActivityService');
+  var activityStatusService = require('../services/Activity/ActivityStatusService');
   var _TOKEN_HEADER = 'x-pbl-token';
 
   exports.post = function (req, res) {
@@ -46,6 +47,18 @@
     var activityId = req.params.id;
 
     activityService.getActivityBasicData(activityId)
+      .then(function (responseBag) {
+        res.status(200).send(responseBag);
+      })
+      .catch(function (error) {
+        res.status(400).send(error);
+      });
+  };
+
+  exports.updateActivityStatus = function (req, res) {
+    var activityId = req.params.id;
+
+    activityStatusService.updateActivityStatus(activityId, req.body)
       .then(function (responseBag) {
         res.status(200).send(responseBag);
       })
