@@ -1,4 +1,4 @@
-/*global module, require*/
+/*global module, require, GLOBAL*/
 (function () {
   'use strict';
 
@@ -40,8 +40,8 @@
     });
 
     newPost.save(function (err, data) {
-      if (err) { 
-        deferred.reject(Exception.ACTIVITY_POST_INSERT_ERROR); 
+      if (err) {
+        deferred.reject(Exception.ACTIVITY_POST_INSERT_ERROR);
       }
       deferred.resolve(data);
     });
