@@ -124,7 +124,7 @@
     Activity.queryInActivities(querySelectActivityStory)
       .then(function (activities) {
         var selectedActivity = activities[0];
-        if (ActivitySpec.ActivityHasStory().isSatisfiedBy(selectedActivity)){
+        if (ActivitySpec.ActivityHasStory().isSatisfiedBy(selectedActivity)) {
           deferred.resolve(selectedActivity.story);
         } else {
           deferred.resolve(Activity.getDefaultStoryPlaceHolder());

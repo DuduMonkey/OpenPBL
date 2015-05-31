@@ -8,6 +8,7 @@
   module.exports = {
     // Activity
     SUCCESS_CREATING_ACTIVITY: declareNewMessage('Atividade criada com sucesso'),
+    SUCCESS_UPDATING_ACTIVITY: declareNewMessage('Atividade atualizada com sucesso'),
     // User
     SUCCESS_CREATING_USER: declareNewMessage('Usuário cadastrado com sucesso'),
     SUCCESS_INSERTING_USER: declareNewMessage('Usuário inserido com sucesso'),

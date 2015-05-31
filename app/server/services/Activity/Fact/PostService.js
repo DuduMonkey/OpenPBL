@@ -30,7 +30,7 @@
           break;
         default:
           deferred.reject(Exception.ACTIVITY_POST_CREATING_ERROR);
-          break;  
+          break;
         }
 
       })
@@ -43,7 +43,7 @@
 
     return deferred.promise;
   };
-  
+
   module.exports = {
     insertNewPost: insertNewPost
   };
