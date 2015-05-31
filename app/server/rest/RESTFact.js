@@ -14,7 +14,7 @@
     var headerToken = req.headers[_TOKEN_HEADER];
     var activityId = req.params.id;
 
-    postService.createNewPost(headerToken, activityId, req.body, TYPE.FACT)
+    postService.insertNewPost(headerToken, activityId, req.body, TYPE.FACT)
       .then(function (responseBag) {
         res.status(200).send(responseBag);
       })
