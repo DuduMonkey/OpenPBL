@@ -8,6 +8,7 @@
   var activity = require('../rest/RESTActivity');
   var activityUser = require('../rest/RESTActivityUser');
   var story = require('../rest/RESTStory');
+  var fact = require('../rest/RESTFact');
   var roles = require('../rest/RESTRole');
 
   /**
@@ -54,12 +55,15 @@
       .post(activity.post)
       .get(activity.list);
 
+    // [GET] Activity basic data from user  
+    // [PUT] Update activity from user  
     // [DELETE] Activity from user  
     router.route('/activity/:id')
       .get(activity.getActivityData)
       .put(activity.updateActivityStatus)
       .delete(activity.delete);
 
+    // [GET] Story data from activity
     // [POST] Story data to save activity story
     router.route('/activity/:id/story')
       .get(story.get)
@@ -72,5 +76,9 @@
     // [DELETE] User from activity
     router.route('/activity/:activityId/participant/:userId')
       .delete(activityUser.removeUser);
+
+    // [POST] Fact in activity
+    router.route('/activity/:id/fact')
+      .post(fact.post);
   };
 }());
