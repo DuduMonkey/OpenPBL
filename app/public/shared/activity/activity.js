@@ -188,7 +188,7 @@
             scope.postContent = null;
           };
 
-          scope.deletePost = function (postId) {
+          scope.deletePost = function (postId, from) {
             var activityId = scope.vm.activity.id
             , apiMethod = getApiDeleteMethodByContent(scope.content);
 
