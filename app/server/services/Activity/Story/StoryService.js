@@ -103,7 +103,43 @@
     return deferred.promise;
   };
 
+  /**
+    Get the activity Story
+  **/
+  var getActivityStory = function (activityId) {
+    var deferred = Q.defer();
+
+    var querySelectActivityStory = {
+      select: '-_id story',
+      where: ['_id'],
+      conditions: [activityId],
+      join: [
+        {
+          path: 'story',
+          select: '-_id description helpfulMaterials externalLinks'
+        }
+      ]
+    };
+
+    Activity.queryInActivities(querySelectActivityStory)
+      .then(function (activities) {
+        console.log(activities);
+        var selectedActivity = activities[0];
+        if (ActivitySpec.ActivityHasStory().isSatisfiedBy(selectedActivity)){
+          deferred.resolve(selectedActivity.story);
+        } else {
+          deferred.resolve(Activity.getDefaultStoryPlaceHolder());
+        }
+      })
+      .catch(function (error) {
+        deferred.reject(error);
+      })
+
+    return deferred.promise;
+  };
+
   module.exports = {
-    insertActivityStory: insertActivityStory
+    insertActivityStory: insertActivityStory,
+    getActivityStory: getActivityStory
   };
 }());

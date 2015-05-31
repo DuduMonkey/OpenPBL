@@ -6,6 +6,9 @@
   var Exception = require('../../shared/Exceptions');
   var Q = require('q');
 
+  /**
+    Update Activity Status to the next status
+  **/
   var updateActivityStatus = function (activityId, currentStatus) {
     var deferred = Q.defer();
 
@@ -20,8 +23,7 @@
     };
 
     Activity.updateActivity(activityId, queryUpdateStatus)
-      .then(function (activity) {
-        console.log(activity);
+      .then(function () {
         deferred.resolve({ message: 'Atividade atualizada com sucesso' });
       })
       .catch(function () {
