@@ -57,6 +57,7 @@
     // [DELETE] Activity from user  
     router.route('/activity/:id')
       .get(activity.getActivityData)
+      .put(activity.updateActivityStatus)
       .delete(activity.delete);
 
     // [POST] Story data to save activity story
