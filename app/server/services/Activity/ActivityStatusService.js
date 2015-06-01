@@ -4,6 +4,7 @@
   var STATUS = require('../../models/constants/activity_status');
   var Activity = require('../../models/Activity');
   var Exception = require('../../shared/Exceptions');
+  var Message = require('../../shared/MessageResource');
   var Q = require('q');
 
   /**
@@ -24,7 +25,7 @@
 
     Activity.updateActivity(activityId, queryUpdateStatus)
       .then(function () {
-        deferred.resolve({ message: 'Atividade atualizada com sucesso' });
+        deferred.resolve({ message: Message.SUCCESS_UPDATING_ACTIVITY });
       })
       .catch(function () {
         deferred.reject(Exception.ACTIVITY_STATUS_UPDATING_ERROR);

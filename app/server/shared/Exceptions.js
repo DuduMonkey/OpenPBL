@@ -43,6 +43,7 @@
     ACTIVITY_STORY_UPDATE_ERROR: declareNewError('Erro ao atualizar o problema da atividade'),
     // Posts
     ACTIVITY_POST_INSERT_ERROR: declareNewError('Erro na persistencia do post'),
+    ACTIVITY_POST_CREATING_ERROR: declareNewError('Erro na definição da postagem no serviço'),
     ACTIVITY_POST_DELETE_ERROR: declareNewError('Erro ao deletar o post'),
     ACTIVITY_POST_INVALID_TO_DELETE: declareNewError('Post para exclusão não encontrado'),
     ACTIVITY_POST_QUERY_ERROR: declareNewError('Erro ao buscar da postagem na base de dados'),

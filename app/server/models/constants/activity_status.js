@@ -17,7 +17,7 @@
     Enumerable activity status
     1 = Creating story for the activity
     2 = Generation facts for the activity story
-    3 = Identifying hipotesys for the activity story
+    3 = Identifying hypothesis for the activity story
     4 = Researching knowledge on disabled knowledge
     5 = Solving the problem defined on story
     6 = Abstracting the results of problem solving
@@ -25,7 +25,7 @@
   */
   defineStatusProperty('CREATING_STORY',1);
   defineStatusProperty('GENERATING_FACTS',2);
-  defineStatusProperty('IDENTIFYING_HIPOTESYS',3);
+  defineStatusProperty('IDENTIFYING_HYPOTHESIS',3);
   defineStatusProperty('RESEARCHING',4);
   defineStatusProperty('RESOLVING_PROBLEM',5);
   defineStatusProperty('ABSTRACTING',6);
