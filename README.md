@@ -1,6 +1,7 @@
 # OpenPBL
 
 [![Build Status](https://travis-ci.org/DuduMonkey/OpenPBL.svg?branch=master)](https://travis-ci.org/DuduMonkey/OpenPBL)
+[![Build Status](https://drone.io/github.com/DuduMonkey/OpenPBL/status.png)](https://drone.io/github.com/DuduMonkey/OpenPBL/latest)
 
 OpenPBL Educational Tool
 
