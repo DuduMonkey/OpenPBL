@@ -28,7 +28,7 @@ $ bower install
 
 ### Configurar a conexão com o Mongodb
 
-Instância local
+Instância local, por default a conexão é a local.
 ```sh
 $ export CONN_STRING=localhost:<port>
 ```
@@ -59,4 +59,11 @@ grunt metrics:win
 
 ```sh
 $ grunt metrics:darwin
+```
+
+## Lint
+
+Para validar o lint do código:
+```sh
+grunt jshint
 ```
