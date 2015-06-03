@@ -1057,7 +1057,7 @@ main {
 }
 
 .lead {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 300;
 }
 
@@ -1228,6 +1228,14 @@ div.signup-btn-out {
   float: left;
   width: 200px;
   border-top: 3px solid #ccc;
+}
+
+.pbl-more {
+  color: #fff;
+}
+
+.pbl-more:hover {
+  color: #ccc;
 }
 
 footer {
