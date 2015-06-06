@@ -423,11 +423,10 @@ ul.sidebar .sidebar-list .menu-icon {
 }
 
 .row.header #btn-open {
-  margin-right: 110px;
+  margin-right: 8px;
   width: 170px;
   height: 42px;
   margin-top: 12px;
-  float: left;
 }
 
 .row.header #btn-open i {
@@ -436,14 +435,13 @@ ul.sidebar .sidebar-list .menu-icon {
   margin-left: 6px;
 }
 
-.row.header .header-actions #btn-delete {
+.row.header #btn-delete {
   width: 85px;
   height: 42px;
-  position: relative;
-  right: 0px;
+  margin-top: 12px;
 }
 
-.row.header .header-actions #btn-delete i {
+.row.header #btn-delete i {
   font-size: 19px;
   color: #fff;
   margin-right: 1px;
@@ -456,7 +454,7 @@ ul.sidebar .sidebar-list .menu-icon {
 }
 
 .row.header .meta #activity-title {
-  margin-right: 300px;
+  margin-right: 280px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
