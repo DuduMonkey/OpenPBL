@@ -13,7 +13,7 @@
 
       <!-- Esquerda -->
       <ul class="nav navbar-nav">
-
+        <li ng-if="isAuthenticated === true"><a href="#/dashboard">Painel do usuário</a></li>
       </ul>
 
       <!-- Direita -->
@@ -21,7 +21,7 @@
         <li ng-if="isAuthenticated === false"><a href="#/pbl">Conheça o PBL</a></li>
         <li ng-if="isAuthenticated === false"><a href="#/about">Sobre o sistema</a></li>
         <li ng-if="isAuthenticated === false"><a href="#/help">Ajuda</a></li>
-        <li ng-if="isAuthenticated === true"><p>Bem vindo, <span>{{ vm.user.name }}</span>!</p></li>
+        <li ng-if="isAuthenticated === true"><p>Olá, <span>{{ vm.user.name }}</span>!</p></li>
         <li ng-if="isAuthenticated === true"><img src="assets/images/user-profile2.png"/></li>
         <li>
           <button type="button" class="btn btn-primary" ng-click="openLogin(setModalMode(modal.mode.login))" ng-if="isAuthenticated === false">Entrar</button>

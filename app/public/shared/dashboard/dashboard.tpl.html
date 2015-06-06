@@ -9,8 +9,11 @@
       <span>Atividades</span><button class="btn btn-primary pull-right" ng-click="createNewActivity()" pbl-permission="Professor">Criar nova</button>
     </div>
     <div class="sidebar-items">
-      <div id="dash-sidebar-help" ng-hide="currentActivity">
-        <h4>Bem vindo!</h4>Este é seu painel do usuário. Aqui você pode visualisar e criar atividades novas.<br><br>Utilize o painel do usuário para gerenciar suas atividades, adicionar ou remover usuários, acompanhar seu andamento, entre outros.<br><br>Para editar ou abrir uma atividade, clique em <br><kbd><i class="fa fa-share"></i> Ir para a atividade </kbd><br><br>Que tal começar criando uma atividade nova?
+      <div id="dash-sidebar-help" ng-hide="currentActivity" pbl-permission="Professor">
+        <h4>Bem vindo!</h4>Este é seu painel do usuário. Aqui você pode visualisar e criar atividades novas.<br><br>Utilize o painel do usuário para gerenciar suas atividades, adicionar ou remover usuários, acompanhar seu andamento, entre outros.<br><br>Para editar ou abrir uma atividade, clique em <br><kbd>Ir para a atividade <i class="fa fa-share"></i></kbd><br><br>Que tal começar criando uma atividade nova?
+      </div>
+      <div id="dash-sidebar-help" ng-hide="currentActivity" pbl-permission="Aluno">
+        <h4>Bem vindo!</h4>Este é seu painel do usuário. Aqui você pode visualisar as atividades que você tem acesso.<br><br>Utilize o painel do usuário para saber detalhes sobre suas atividades, acompanhar seu andamento, entre outros.<br><br>Parece que no momento você não tem acesso a nenhuma atividade, peça para seu professor convidá-lo!
       </div>
       <ul class="sidebar">
         <li class="sidebar-list" ng-repeat="activity in activities.active" ng-click="setCurrentActivity(activity)">
@@ -42,8 +45,8 @@
     <div class="col-xs-12">
       <div class="meta">
         <div class="page">
-          <button id="btn-open" type="button" class="btn btn-primary btn-block" ng-click="openActivity(currentActivity.id)">Ir para a atividade <i class="fa fa-share"></i></button>
-          <h3 id="activity-title">{{currentActivity.name}}</h3>
+          <button id="btn-open" type="button" class="btn btn-primary btn-block pull-right" ng-click="openActivity(currentActivity.id)">Ir para a atividade <i class="fa fa-share"></i></button>
+          <h3 id="activity-title"><i class="fa fa-cube"></i> {{currentActivity.name}}</h3>
         </div>
       </div>
     </div>
@@ -179,7 +182,7 @@
 
       <!-- Dashboard No Content -->
       <div ng-hide="currentActivity">
-        <div class="row">
+        <div class="row" pbl-permission="Professor">
           <img id="svg-dash-arrow" src="assets/images/arrow.svg"/>
         </div>
         <div class="row">
