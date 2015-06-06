@@ -133,15 +133,15 @@
                     <tr>
                       <th>Nome</th>
                       <th class="col-md-1 col-xs-1 table-txt-middle">Participações</th>
-                      <th class="col-md-1 col-xs-1 table-txt-middle">Excluir</th>
+                      <th class="col-md-1 col-xs-1 table-txt-middle" pbl-permission="Professor">Excluir</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr ng-repeat="participant in currentActivity.participants | orderBy:'-numberOfPosts'">
                       <td>{{participant.name}}</td>
                       <td><span class="badge">{{participant.numberOfPosts}}</span></td>
-                      <td>
-                        <a href="javascript:void(0);" ng-click="removeParticipant(participant.id)" pbl-permission="Professor">
+                      <td pbl-permission="Professor">
+                        <a href="javascript:void(0);" ng-click="removeParticipant(participant.id)">
                           <i class="fa fa-user-times"></i>
                         </a>
                       </td>

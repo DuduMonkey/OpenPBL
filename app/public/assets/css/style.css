@@ -693,6 +693,10 @@ td .fa {
   resize: vertical;
 }
 
+.modal .table {
+  margin-top: 20px;
+}
+
 /*
 * SVGs
 */
