@@ -36,7 +36,7 @@
       });
   };
 
-  exports.list = function (req, res){
+  exports.list = function (req, res) {
     var activityId = req.params.id;
 
     postHandler.usingServiceOfType(TYPE.FACT).listPostsFrom(activityId)
