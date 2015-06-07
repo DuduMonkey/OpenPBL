@@ -10,7 +10,7 @@
   <div class="sidebar-help-bottom">
     <div class="btn-group btn-group-justified" role="group" aria-label="...">
       <div class="btn-group" role="group">
-        <button type="button" class="btn btn-default help"><i class="fa fa-question-circle"></i> Ajuda</button>
+        <button type="button" class="btn btn-default help" onclick="location.href='#/help'"><i class="fa fa-question-circle"></i> Ajuda</button>
       </div>
       <div class="btn-group" role="group">
         <button type="button" class="btn btn-default help"><i class="fa fa-external-link"></i> Exemplos</button>
@@ -20,7 +20,7 @@
   <!-- sidebar help -->
   <div class="sidebar-help">
     <div id="sb-help-title">
-      <h4>Dicas!</h4>
+      <h4>Dicas</h4>
     </div>
     <div id="sb-help-content">
       <p ng-show="content == 'tab-problem'">tab problema tab problema tab problema tab problema tab problema tab problema tab problema tab problema tab problema tab problema tab problema tab problema tab problema tab problema</p>
@@ -84,7 +84,7 @@
                 <h4>Links externos<a href="" ng-click="toggleModal('#externalLinksModal')" pbl-permission="Professor"><span class="label label-success">editar</span></a></h4>
                 <ul>
                   <li ng-repeat="link in vm.activity.story.externalLinks">
-                    <a ng-href="link">{{::link}}</a>
+                    <a ng-href="http://{{link}}" target="_blank">{{::link}}</a>
                   </li>
                 </ul>
               </div>
@@ -124,9 +124,12 @@
           <section id="content-research" ng-show="content == 'tab-research'">
             <div class="container chalkboard">
               <div id="research">
-                <h4>Material para pesquisa<a href=""><span class="label label-success">editar</span></a></h4>
-                <p>Biografia do Tiririca</p>
-                <p>Livro - Como fazer amigos</p>
+                <h4>Conteúdo para pesquisa<a href="" ng-click="toggleModal('#researchMaterialModal')" pbl-permission="Professor"><span class="label label-success">editar</span></a></h4>
+                <ul>
+                  <li>
+                    Exemplo
+                  </li>
+                </ul>
               </div>
             </div>
           </section>
@@ -149,9 +152,8 @@
           <section id="content-abstraction" ng-show="content == 'tab-abstraction'">
             <div class="container chalkboard">
               <div id="abstraction">
-                <h4>Abstração<a href=""><span class="label label-success">editar</span></a></h4>
-                <p>Biografia do Tiririca</p>
-                <p>Livro - Como fazer amigos</p>
+                <h4>Abstração<a href="" ng-click="toggleModal('#abstractionModal')" pbl-permission="Professor"><span class="label label-success">editar</span></a></h4>
+                <p>Exemplo</p>
               </div>
             </div>
           </section>
@@ -166,7 +168,7 @@
               <button ng-show="content == 'tab-hypothesis'" id="btn-insert-post" class="btn btn-primary btn-block" type="submit" data-toggle="modal" data-target="#enterPostModal">Inserir hipótese <i class="fa fa-arrow-circle-up"></i></button>
               <button ng-show="content == 'tab-resolution'" id="btn-insert-post" class="btn btn-primary btn-block" type="submit" data-toggle="modal" data-target="#enterPostModal">Inserir resposta <i class="fa fa-arrow-circle-up"></i></button>
             </div>
-            <div class="col-lg-5 col-md-7 col-sm-8 actions">
+            <div class="col-lg-5 col-md-7 col-sm-8 actions" pbl-permission="Professor">
               <button ng-hide="content == 'tab-abstraction'" id="btn-next-status" class="btn btn-success pull-right" type="button" ng-click="nextStatus()" >Avançar estado <i class="fa fa-arrow-circle-right"></i></button>
               <button ng-show="content == 'tab-abstraction'" id="btn-next-status" class="btn btn-success pull-right" type="submit" data-toggle="modal" data-target="#finishActivityModal">Encerrar atividade <i class="fa fa-check-circle"></i></button>
               <button ng-show="content == 'tab-abstraction'" id="btn-next-status" class="btn btn-primary btn-purple pull-right" type="submit" data-toggle="modal" data-target="#restartActivityModal"><i class="fa fa-arrow-circle-left"></i> Recomeçar atividade</button>
@@ -179,14 +181,14 @@
 
   <!-- Modal: editar descrição -->
   <div class="modal fade background-static" id="storyDescriptionModal">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
           <div class="modal-title"><h4>Editar Problema</h4></div>
         </div>
         <div class="modal-body">
-          <textarea class="form-control" rows="5" ng-model="vm.activity.story.description" placeholder="Descrição..." maxlength="500"></textarea>
+          <textarea class="form-control" rows="15" ng-model="vm.activity.story.description" placeholder="Descrição..." maxlength="1000"></textarea>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
@@ -202,7 +204,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
-          <div class="modal-title"><h4>Editar Materiais de Apoio</h4></div>
+          <div class="modal-title"><h4>Editar Material de Apoio</h4></div>
         </div>
         <div class="modal-body">
           <div class="input-group">
@@ -215,21 +217,17 @@
           <table class="table">
             <thead>
               <tr>
-                <th class="col-md-10">
-                  Material
-                </th>
-                <th class="col-md-2">
-                  Excluir
-                </th>
+                <th class="col-md-10">Material</th>
+                <th class="col-md-2">Excluir</th>
               </tr>
             </thead>
             <tbody>
               <tr ng-repeat="material in vm.activity.story.helpfulMaterials track by $index">
                 <td>
                   <span>{{::material}}</span>
+                </td>
                 <td>
-                <td>
-                  <button type="button" class="btn btn-danger btn-xs" ng-click="removeItemFromList(vm.activity.story.helpfulMaterials, $index)">&times;</button>
+                  <button type="button" class="btn btn-danger btn-xs pull-right" ng-click="removeItemFromList(vm.activity.story.helpfulMaterials, $index)">&times;</button>
                 </td>
               </tr>
             </tbody>
@@ -243,14 +241,13 @@
     </div><!-- /.modal-dialog -->
   </div><!-- /.modal -->
 
-
   <!-- Modal: editar links externos -->
   <div class="modal fade background-static" id="externalLinksModal">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
-          <div class="modal-title"><h4>Editar Links externos</h4></div>
+          <div class="modal-title"><h4>Editar Links Externos</h4></div>
         </div>
         <div class="modal-body">
           <div class="input-group">
@@ -263,21 +260,17 @@
           <table class="table">
             <thead>
               <tr>
-                <th class="col-md-10">
-                  Link
-                </th>
-                <th class="col-md-2">
-                  Excluir
-                </th>
+                <th class="col-md-10">Link</th>
+                <th class="col-md-2">Excluir</th>
               </tr>
             </thead>
             <tbody>
               <tr ng-repeat="link in vm.activity.story.externalLinks track by $index">
                 <td>
-                  <a href="{{link}}">{{::link}}</a>
+                  <a href="http://{{link}}" target="_blank">{{::link}}</a>
+                </td>
                 <td>
-                <td>
-                  <button type="button" class="btn btn-danger btn-xs" ng-click="removeItemFromList(vm.activity.story.externalLinks, $index)">&times;</button>
+                  <button type="button" class="btn btn-danger btn-xs pull-right" ng-click="removeItemFromList(vm.activity.story.externalLinks, $index)">&times;</button>
                 </td>
               </tr>
             </tbody>
@@ -286,6 +279,68 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
           <button type="button" class="btn btn-success" ng-click="saveStory('#externalLinksModal')">Salvar</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <!-- Modal: editar conteúdo para pesquisa -->
+  <div class="modal fade background-static" id="researchMaterialModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+          <div class="modal-title"><h4>Editar Conteúdo para Persquisa</h4></div>
+        </div>
+        <div class="modal-body">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Insira um conteúdo" ng-model="newMaterial"/>
+            <span class="input-group-btn">
+      <button type="button" class="btn btn-primary" ng-disabled="" ng-click="">
+        Adicionar</button>
+            </span>
+          </div><!-- /input-group -->
+          <table class="table">
+            <thead>
+              <tr>
+                <th class="col-md-10">Conteúdo</th>
+                <th class="col-md-2">Excluir</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="">
+                <td>
+                  <span>{{}}</span>
+                </td>
+                <td>
+                  <button type="button" class="btn btn-danger btn-xs pull-right" ng-click="">&times;</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-success" ng-click="">Salvar</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <!-- Modal: editar abstração -->
+  <div class="modal fade background-static" id="abstractionModal">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+          <div class="modal-title"><h4>Editar Abstração</h4></div>
+        </div>
+        <div class="modal-body">
+          <textarea class="form-control" rows="15" ng-model="" placeholder="Descrição..." maxlength="1000"></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-success" ng-click="">Salvar</button>
         </div>
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
