@@ -42,6 +42,7 @@
     ACTIVITY_STORY_INSERTING_ERROR: declareNewError('Erro ao salvar o problema da atividade'),
     ACTIVITY_STORY_UPDATE_ERROR: declareNewError('Erro ao atualizar o problema da atividade'),
     // Posts
+    ACTIVITY_POST_SERVICE_ERROR: declareNewError('Erro na geração do serviço de posts'),
     ACTIVITY_POST_INSERT_ERROR: declareNewError('Erro na persistencia do post'),
     ACTIVITY_POST_CREATING_ERROR: declareNewError('Erro na definição da postagem no serviço'),
     ACTIVITY_POST_DELETE_ERROR: declareNewError('Erro ao deletar o post'),
