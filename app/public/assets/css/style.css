@@ -1381,3 +1381,29 @@ p.credit .fa {
 #pbl-flow-svg svg {
   max-width: 100%;
 }
+
+p.pbl-copyright {
+  text-align: right;
+  color: #777;
+}
+
+#features-table {
+  margin: 60px 40px;
+}
+
+#features-table tr:last-child td {
+  border-bottom: 1px solid #bbb;
+}
+
+#features-table td {
+  border-color: #bbb;
+  padding-left: 10px;
+}
+
+#features-table td:first-child {
+  font-weight: 500;
+}
+
+#features-table th {
+  border: none;
+}
