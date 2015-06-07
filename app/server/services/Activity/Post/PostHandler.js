@@ -64,8 +64,8 @@
         return serviceInstance.deletePostOnDatabase(postId);
       }
 
-      return deferred.resolve(response);
-    }
+      return deferred.promise;
+    };
 
     return {
       insertNewPost: insertNewPost,
