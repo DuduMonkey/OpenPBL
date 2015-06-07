@@ -16,8 +16,23 @@
     return deferred.promise;
   };
 
+  var deletePostData = function (postId) {
+    var deferred = Q.defer();
+
+    Post.removePost(postId)
+      .then(function () {
+        deferred.resolve("removido");
+      })
+      .catch(function (error) {
+        deferred.reject(error);
+      });
+
+    return deferred.promise;
+  };
+
   module.exports = {
-    insertPostData: insertPostData
+    insertPostData: insertPostData,
+    deletePostData: deletePostData
   };
 
 }());

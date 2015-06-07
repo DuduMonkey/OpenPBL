@@ -24,4 +24,18 @@
       });
   };
 
+  exports.delete = function (req, res) {
+    var activityId = req.params.activityId;
+    var postId = req.params.id;
+
+    postHandler.usingServiceOfType(TYPE.FACT).deletePost(postId)
+      .then(function (responseBag) {
+        res.status(200).send(responseBag);
+      })
+      .catch(function (error) {
+        res.status(400).send(error);
+      });
+
+  };
+
 }());

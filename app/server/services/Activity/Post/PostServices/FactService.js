@@ -22,6 +22,20 @@
       return deferred.promise;
     };
 
+    this.deletePostOnDatabase = function (postId) {
+      var deferred = Q.defer();
+
+      GenericPostService.deletePostData(postId)
+        .then(function (resolt) {
+          deferred.resolve(resolt);
+        })
+        .catch(function (error) {
+          deferred.reject(error);
+        });
+
+      return deferred.promise;
+    };
+
   };
 
 
