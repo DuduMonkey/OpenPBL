@@ -6,7 +6,7 @@
   var postHandler = require('../services/Activity/Post/PostHandler');
   var TYPE = require('../models/constants/post_type');
   var _TOKEN_HEADER = 'x-pbl-token';
-  
+
   /**
     Define the post action for user authentication
     Return HTTP status 200 and the session token on valid authentication

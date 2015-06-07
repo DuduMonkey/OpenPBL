@@ -2,9 +2,9 @@
   'use strict';
 
   var userService = require('../../User/UserService');
-  var factService = require('./PostServices/FactService');
-  var hypothesisService = require('./PostServices/HypothesisService');
-  var resolutionService = require('./PostServices/ResolutionService');
+  var FactService = require('./PostServices/FactService');
+  var HypothesisService = require('./PostServices/HypothesisService');
+  var ResolutionService = require('./PostServices/ResolutionService');
   var Exception = require('../../../shared/Exceptions');
   var TYPE = require('../../../models/constants/post_type');
   var Q = require('q');
@@ -12,16 +12,15 @@
   var getInstanceOf = function (serviceType) {
     switch (serviceType) {
     case TYPE.FACT:
-      return new factService();
+      return new FactService();
     case TYPE.HYPOTHESIS:
-      return new hypothesisService();
+      return new HypothesisService();
     case TYPE.RESOLUTION:
-      return new resolutionService();
+      return new ResolutionService();
     default:
-      deferred.reject(Exception.ACTIVITY_POST_CREATING_ERROR);
-      break;
-    }    
-  };  
+      return null;
+    }
+  };
 
   var usingServiceOfType = function (serviceType) {
 
@@ -29,6 +28,10 @@
 
     var insertNewPost = function (token, activityId, postViewData) {
       var deferred = Q.defer();
+
+      if (serviceInstance === null) {
+        deferred.reject(Exception.ACTIVITY_POST_CREATING_ERROR);
+      }
 
       userService.getSessionUser(token)
         .then(function (user) {
@@ -50,7 +53,7 @@
         });
 
       return deferred.promise;
-    };    
+    };
 
     return {
       insertNewPost: insertNewPost
@@ -60,6 +63,6 @@
 
   module.exports = {
     usingServiceOfType: usingServiceOfType
-  }
+  };
 
 }());

@@ -2,7 +2,6 @@
   'use strict';
 
   var Post = require('../../../../models/Post');
-  var Message = require('../../../../shared/MessageResource');
   var Q = require('q');
 
   var insertPostData = function (postData) {
