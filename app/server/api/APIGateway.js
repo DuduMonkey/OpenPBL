@@ -89,16 +89,20 @@
     router.route('/activity/:activityId/fact/:id')
       .delete(fact.delete);
 
+    // [GET] Hypothesis from activity  
     // [POST] Hypothesis in activity
     router.route('/activity/:id/hypothesis')
+      .get(hypothesis.list)
       .post(hypothesis.post);
 
     // [DELETE] An Hypothesis from activity
     router.route('/activity/:activityId/hypothesis/:id')
       .delete(hypothesis.delete);
 
+    // [GET] Resolutions from activity  
     // [POST] Resolution in activity
     router.route('/activity/:id/resolution')
+      .get(resolution.list)
       .post(resolution.post);
 
     // [DELETE] An Resolution from activity
