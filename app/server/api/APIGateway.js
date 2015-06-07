@@ -79,8 +79,10 @@
     router.route('/activity/:activityId/participant/:userId')
       .delete(activityUser.removeUser);
 
+    // [GET] Facts from activity  
     // [POST] Fact in activity
     router.route('/activity/:id/fact')
+      .get(fact.list)
       .post(fact.post);
 
     // [DELETE] An Fact from activity
