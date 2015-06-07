@@ -91,8 +91,16 @@
     router.route('/activity/:id/hypothesis')
       .post(hypothesis.post);
 
-    // [POST]
+    // [DELETE] An Hypothesis from activity
+    router.route('/activity/:activityId/hypothesis/:id')
+      .delete(hypothesis.delete);
+
+    // [POST] Resolution in activity
     router.route('/activity/:id/resolution')
       .post(resolution.post);
+
+    // [DELETE] An Resolution from activity
+    router.route('/activity/:activityId/resolution/:id')
+      .delete(resolution.delete);
   };
 }());
