@@ -55,8 +55,21 @@
       return deferred.promise;
     };
 
+    var deletePost = function (postId) {
+      var deferred = Q.defer();
+
+      if (serviceInstance === null) {
+        deferred.reject(Exception.ACTIVITY_POST_CREATING_ERROR);
+      } else {
+        return serviceInstance.deletePostOnDatabase(postId);
+      }
+
+      return deferred.promise;
+    };
+
     return {
-      insertNewPost: insertNewPost
+      insertNewPost: insertNewPost,
+      deletePost: deletePost
     };
 
   };
