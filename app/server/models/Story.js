@@ -16,7 +16,7 @@
       externalLinks: String [] of helpful Urls
   */
   var StorySchema = new Schema({
-    _activity: { type: String, ref: 'User' },
+    _activity: { type: String, ref: 'Activity' },
     description: { type: String, required: true},
     helpfulMaterials: [{ type: String, required: true }],
     externalLinks: [{type: String, required: true }]

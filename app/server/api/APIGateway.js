@@ -79,16 +79,34 @@
     router.route('/activity/:activityId/participant/:userId')
       .delete(activityUser.removeUser);
 
+    // [GET] Facts from activity  
     // [POST] Fact in activity
     router.route('/activity/:id/fact')
+      .get(fact.list)
       .post(fact.post);
 
+    // [DELETE] An Fact from activity
+    router.route('/activity/:activityId/fact/:id')
+      .delete(fact.delete);
+
+    // [GET] Hypothesis from activity  
     // [POST] Hypothesis in activity
     router.route('/activity/:id/hypothesis')
+      .get(hypothesis.list)
       .post(hypothesis.post);
 
-    // [POST]
+    // [DELETE] An Hypothesis from activity
+    router.route('/activity/:activityId/hypothesis/:id')
+      .delete(hypothesis.delete);
+
+    // [GET] Resolutions from activity  
+    // [POST] Resolution in activity
     router.route('/activity/:id/resolution')
+      .get(resolution.list)
       .post(resolution.post);
+
+    // [DELETE] An Resolution from activity
+    router.route('/activity/:activityId/resolution/:id')
+      .delete(resolution.delete);
   };
 }());

@@ -18,7 +18,7 @@
       Password: String required
   */
   var PostSchema = new Schema({
-    _activity: { type: String, ref: 'User' },
+    _activity: { type: String, ref: 'Activity' },
     _creator: { type: String, ref: 'User' },
     content: { type: String, required: true},
     type: { type: Number, min: 1, max: 3, required: true },
