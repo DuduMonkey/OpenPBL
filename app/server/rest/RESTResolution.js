@@ -35,4 +35,16 @@
         res.status(400).send(error);
       });
   };
+
+  exports.list = function (req, res) {
+    var activityId = req.params.id;
+
+    postHandler.usingServiceOfType(TYPE.RESOLUTION).listPostsFrom(activityId)
+      .then(function (responseBag) {
+        res.status(200).send(responseBag);
+      })
+      .catch(function (error) {
+        res.status(400).send(error);
+      });
+  };
 }());

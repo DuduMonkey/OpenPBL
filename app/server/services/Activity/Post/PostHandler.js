@@ -30,7 +30,7 @@
       var deferred = Q.defer();
 
       if (serviceInstance === null) {
-        deferred.reject(Exception.ACTIVITY_POST_CREATING_ERROR);
+        deferred.reject(Exception.ACTIVITY_POST_SERVICE_ERROR);
       }
 
       userService.getSessionUser(token)
@@ -59,7 +59,7 @@
       var deferred = Q.defer();
 
       if (serviceInstance === null) {
-        deferred.reject(Exception.ACTIVITY_POST_CREATING_ERROR);
+        deferred.reject(Exception.ACTIVITY_POST_SERVICE_ERROR);
       } else {
         return serviceInstance.deletePostOnDatabase(postId);
       }
@@ -67,9 +67,21 @@
       return deferred.promise;
     };
 
+    var listPostsFrom = function (activityId) {
+      var deferred = Q.defer();
+      if (serviceInstance === null) {
+        deferred.reject(Exception.ACTIVITY_POST_SERVICE_ERROR);
+      } else {
+        return serviceInstance.listPostsFromActivity(activityId);
+      }
+
+      return deferred.promise;
+    };
+
     return {
       insertNewPost: insertNewPost,
-      deletePost: deletePost
+      deletePost: deletePost,
+      listPostsFrom: listPostsFrom
     };
 
   };
