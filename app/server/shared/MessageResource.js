@@ -19,5 +19,6 @@
     SUCCESS_INSERTING_FACT: declareNewMessage('Fato inserido com sucesso'),
     SUCCESS_INSERTING_HYPOTHESIS: declareNewMessage('Hipótese inserida com sucesso'),
     SUCCESS_INSERTING_RESOLUTION: declareNewMessage('Resolução inserida com sucesso'),
+    SUCCESS_REMOVING_POST: declareNewMessage('Postagem removida com cucesso'),
   };
 }());
