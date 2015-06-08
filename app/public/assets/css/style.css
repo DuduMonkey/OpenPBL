@@ -1407,3 +1407,14 @@ p.pbl-copyright {
 #features-table th {
   border: none;
 }
+
+#help-img {
+  margin: 12px 0;
+  -webkit-box-shadow: 0px 0px 19px -3px rgba(0, 0, 0, 0.61);
+  -moz-box-shadow: 0px 0px 19px -3px rgba(0, 0, 0, 0.61);
+  box-shadow: 0px 0px 19px -3px rgba(0, 0, 0, 0.61);
+}
+
+#help-img-center {
+  margin: 40px auto;
+}
