@@ -1415,6 +1415,12 @@ p.pbl-copyright {
   box-shadow: 0px 0px 19px -3px rgba(0, 0, 0, 0.61);
 }
 
+@media(min-width:992px) {
+  #help-img {
+    margin-top: 60px;
+  }
+}
+
 #help-img-center {
   margin: 40px auto;
 }
