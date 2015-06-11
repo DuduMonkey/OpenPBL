@@ -1,155 +1,140 @@
 <a id="top"></a>
 <div class="content-section-default head">
 
-<!--   <div class="container">
+  <div class="container">
     <div class="row">
       <div class="col-lg-12 col-sm-12">
 	      <ul class="list-inline table-of-content">
 	        <li>
-	          <a href="" pbl-scroll-to="#project">Sobre o Projeto</a>
+	          <a href="" pbl-scroll-to="#system">Funcionamento do Sistema</a>
 	        </li>
 	        <li class="table-of-content-divider">|</li>
 	        <li>
-	          <a href="" pbl-scroll-to="#authors">Autores</a>
+	          <a href="" pbl-scroll-to="#pbl-cycle">Ciclo do PBL</a>
 	        </li>
 	        <li class="table-of-content-divider">|</li>
 	        <li>
-	          <a href="" pbl-scroll-to="#technology">Tecnologia Empregada</a>
-	        </li>
-	        <li class="table-of-content-divider">|</li>
-	        <li>
-	          <a href="" pbl-scroll-to="#tools">Ferramentas de Apoio</a>
-	        </li>
-	        <li class="table-of-content-divider">|</li>
-	        <li>
-	          <a href="" pbl-scroll-to="#inspiration">Inspiração</a>
-	        </li>
-	        <li class="table-of-content-divider">|</li>
-	        <li>
-	          <a href="" pbl-scroll-to="#copyrights">Créditos</a>
+	          <a href="" pbl-scroll-to="#ext-links">Leitura externa</a>
 	        </li>
 	      </ul>
       </div>
     </div>
-  </div> -->
+  </div>
   <!-- /.container -->
 </div>
 
 <!-- Page Content -->
-<a id="project"></a>
+<a id="system"></a>
 <div class="content-section-default">
 
-<!--   <div class="container">
+  <div class="container">
     <div class="row">
       <div class="col-lg-12 col-sm-12">
         <hr class="section-heading-spacer">
         <div class="clearfix"></div>
-        <h3 class="section-heading">Sobre o Projeto</h3>
-        <p class="lead">Fugiat ground round consectetur pork loin, dolore shank incididunt excepteur alcatra ut duis.</p>
-        <p class="lead">Ham sint quis proident incididunt minim landjaeger in turducken chuck tongue. Occaecat dolore t-bone pork chop excepteur meatball jerky tail incididunt beef. Pancetta officia ball tip elit ut in voluptate, ut frankfurter meatball esse.</p>
+        <h2 class="section-heading">Funcionamento do Sistema</h2>
+        <div class="row">
+	        <div class="col-md-7 col-sm-12">
+	        	<h3>Cadastro e Login</h3>
+	        	<p class="lead">Professores e alunos podem se cadastrar no OpenPBL a partir de qualquer tela do sistema, dado que o usuário não tenha previamente efetuado login. Cada usuário é único e seu cadastro é validado através do endereço de email, o que torna impossível o cadastro de uma nova conta caso o email já tenha sido cadastrado em algum momento.</p>
+	        	<p class="lead">Todos os campos devem ser obrigatoriamente preenchidos durante o cadastro, e é importante selecionar a opção correta de acordo com o seu papel (professor ou aluno). <strong>Note que professores têm a habilidade de gerenciar e controlar atividades PBL, enquanto que alunos têm níveis de permissão limitados, podendo unicamente interagir com atividades às quais são convidados por um professor</strong>.</p>
+	        	<p class="lead">Durante a criação de uma atividade, professores só podem convidar alunos já cadastrados no sistema, o envio de convites via email ainda não é suportado. <strong>Professores devem pedir aos alunos que cadastrem-se previamente no sistema antes de convidá-los para participar de uma atividade</strong>.</p>
+	        	<p class="lead">É possível efetuar login através do botão <span class="label label-primary">Entrar</span> , caso o usuário já possua cadastro. Para encerrar sua sessão, use o link <span class="label label-primary">Sair</span> em qualquer uma das telas.</p>
+	        </div>
+	        <div class="col-md-5 col-sm-12">
+	        	<img id="help-img" class="img-responsive" src="assets/images/signup.jpg" />
+	        </div>
+	      </div>
+	      <div class="row">
+	        <div class="col-lg-12 col-sm-12">
+	        	<h3>Gerenciamento de Atividades</h3>
+	        	<p class="lead">Ao efetuar login ou novo cadastro no OpenPBL, o usuário é direcionado para seu <strong>painel do usuário</strong> (figura exibida abaixo). Através desta tela, professores podem gerenciar suas atividades (criar novas, excluir, convidar e remover alunos) e visualisar informações pertinentes a uma atividade selecionada. <strong>Alunos podem visualisar as mesmas informações no painel do usuário, mas não têm permissão para gerenciar atividades</strong>.</p>
+	        	<img id="help-img-center" class="img-responsive" src="assets/images/help-dashboard.png" />
+	        	<p class="lead">O menu lateral na esquerda da tela exibe uma lista com as atividades do usuário, é possível selecionar a atividade que se deseja visualisar ou gerenciar, fazendo com que o painel principal apresente as informações pertinentes àquela atividade. Também é possível criar novas atividades a partir deste menu, clicando no botão <span class="label label-primary">Criar nova</span> . Para excluir uma atividade, utilize o botão <span class="label label-danger">Excluir</span> no canto superior direito da tela.</p>
+	        	<p class="lead">Ao selecionar uma atividade, a tela exibe quatro <em>gadgets</em> em verde que mostram o seu <strong>número de participantes</strong>, o seu <strong>estado</strong> atual, o seu <strong>progresso</strong> (percentual de conclusão) e sua <strong>data de criação</strong>. São exibidos também na tela o <strong>título da atividade</strong> e três painéis com o <strong>resumo do problema</strong>, as <strong>participações recentes</strong> e a lista dos <strong>participantes</strong> da atividade por ordem de participação, bem como o botão <span class="label label-primary">Ir para a atividade</span> .</p>
+	        	<p class="lead"><strong>Existem duas maneiras de convidar alunos para participar em uma atividade</strong>:<br>(1) Ao criar uma nova atividade, além de escolher o nome da mesma, o professor pode convidar múltiplos alunos inserindo os seus endereços de e-mail individualmente no campo <strong>Participantes</strong> e clicando no botão <span class="label label-primary">Adicionar</span> . A tela exibe uma lista com cada um dos alunos adicionados, disponibilizando também uma opção para remover alunos individualmente.<br>(2) Em uma atividade já criada, o professor pode convidar alunos individualmente através do botão <span class="label label-default">Adicionar</span> , a partir da tabela <strong>Participantes</strong> no painel principal. Também é possível remover participantes através desta tabela.</p>
+	        </div>
+	      </div>
+	      <div class="row">
+	        <div class="col-lg-12 col-sm-12">
+	        	<h3>Trabalhando em uma Atividade</h3>
+	        	<p class="lead">As atividades de PBL são definidas e aplicadas em aula a partir da <strong>tela de atividade</strong> (figura exibida abaixo). É através desta tela do sistema que o professor planeja e conduz a tarefa, definindo o problema e guiando os alunos participantes de acordo com o ciclo do PBL. É possível acessar a tela de uma atividade específica selecionando-a no painel do usuário e clicando no botão <span class="label label-primary">Ir para a atividade</span> . Além disto, ao criar uma nova atividade a partir do painel do usuário, o sistema automaticamente redireciona o professor para esta tela, permitindo que o planejamento seja iniciado.</p>
+	        	<img id="help-img-center" class="img-responsive" src="assets/images/help-activity.png" />
+	        	<p class="lead">No cabeçalho do painel principal são exibidos o título da atividade, o seu estado atual e o número de participantes. O painel foi projetado nos moldes do ciclo do PBL, e todas as ações disponíveis fazem com que ele seja respeitado pelos usuários. <strong>O ciclo do PBL é representado através de seis abas na parte superior do painel, que espelham os estados que compõem uma atividade de PBL</strong> (Problema, Fatos, Hipóteses, Pesquisa, Resolução e Abstração). <strong>Quando uma atividade encontra-se em um determinado estado, os estados seguintes são desabilitados e não podem ser acessados pelos usuários até o momento em que o professor decide dar início àquele estado da atividade</strong>, clicando no botão <span class="label label-success">Avançar estado</span> . Ao avançar para o estado seguinte, os <strong>estados anteriores da atividade permanecem acessíveis para consulta, mas não podem ser alterados</strong>. Isto restringe a execução da atividade conforme o ciclo do PBL, não permitindo que alterações influenciem o rumo proposto inicialmente.</p>
+	        	<p class="lead">Atividades iniciam no estado "Problema" e podem avançar até o estado "Abstração", momento em que professor e alunos refletem sobre o que foi produzido, e decidem se o ciclo deverá ser reiniciado ou encerrado. Caso não se tenha chegado a uma conclusão satisfatória, o professor pode reiniciar o ciclo a partir de dois estados, "Fatos" ou "Hipóteses", clicando em <span class="label label-primary">Recomeçar atividade</span> . Ao reiniciar o ciclo, o estado da atividade retorna ao estado escolhido e este é reaberto à edição, para que os participantes possam trabalhar nos pontos em que precisam aprimorar e dar continuidade ao exercício a partir daquele estágio. Para encerrar uma atividade, o professor deve utilizar o botão <span class="label label-success">Encerrar atividade</span> . <strong>Atividades encerradas não podem ser reiniciadas, mas permanecem disponíveis para consulta e podem ser acessadas através do painel do usuário</strong>.</p>
+	        	<p class="lead">O problema da atividade pode ser editado pelo professor através do botão <span class="label label-success">editar</span> no interior do painel. Outras seções do estado "Problema", chamadas "Material de apoio" e "Links externos", podem ser editadas da mesma forma através dos seus próprios botões de edição, bem como as seções "Conteúdo para pesquisa" e "Abstração", que fazem parte dos estados "Pesquisa" e "Abstração", respectivamente. Os estados "Fatos", "Hipóteses" e "Resolução" permitem a interação dos alunos na atividade, que podem inserir <em>posts</em> conforme cada um dos estados. <strong>Ao passo que alunos podem enviar suas contribuições, somente o professor pode excluir um <em>post</em> adicionado, através dos botões em forma de "X" exibidos no corpo dos mesmos</strong>.</p>
+	        	<p class="lead">Além do painel principal, a tela de atividade conta com uma seção de ajuda na lateral esquerda que oferece dicas de acordo com o estado selecionado pelo usuário. Estas dicas têm o propósito de auxiliar o usuário na compreensão dos recursos disponíveis e de prover um guia mínimo de boas práticas pertinentes àquele estado específico do PBL. Ainda, as dicas são contextualizadas de acordo com o usuário, professor ou aluno, dado que a interação com o sistema e o PBL acontecem de maneiras diferentes.</p>
+	        </div>
+	      </div>
       </div>
       <div class="back-to-top pull-right">
       	<a href="" pbl-scroll-to="#top">Voltar ao topo <i class="fa fa-arrow-circle-up"></i></a>
       </div>
     </div>
-  </div> -->
+  </div>
   <!-- /.container -->
 </div>
-<a id="authors"></a>
+
+<a id="pbl-cycle"></a>
 <div class="content-section-default">
 
-<!--   <div class="container">
+  <div class="container">
     <div class="row">
       <div class="col-lg-12 col-sm-12">
         <hr class="section-heading-spacer">
         <div class="clearfix"></div>
-        <h3 class="section-heading">Autores</h3>
-        <p class="lead">Fugiat ground round consectetur pork loin, dolore shank incididunt excepteur alcatra ut duis.</p>
-        <p class="lead">Ham sint quis proident incididunt minim landjaeger in turducken chuck tongue. Occaecat dolore t-bone pork chop excepteur meatball jerky tail incididunt beef. Pancetta officia ball tip elit ut in voluptate, ut frankfurter meatball esse.</p>
+        <h3 class="section-heading">Ciclo do PBL</h3>
+        <pbl-svg id="pbl-flow-svg" class="img-responsive" name="pbl.flow-plain"></pbl-svg>
+        <h4>Definindo o Problema</h4>
+        <p class="lead">Fugiat ground round consectetur pork loin, dolore shank incididunt excepteur alcatra ut duis. Ham sint quis proident incididunt minim landjaeger in turducken chuck tongue. Occaecat dolore t-bone pork chop excepteur meatball jerky tail incididunt beef. Pancetta officia ball tip elit ut in voluptate, ut frankfurter meatball esse</p>
+        <h4>Identificando Fatos</h4>
+        <p class="lead">Fugiat ground round consectetur pork loin, dolore shank incididunt excepteur alcatra ut duis. Ham sint quis proident incididunt minim landjaeger in turducken chuck tongue. Occaecat dolore t-bone pork chop excepteur meatball jerky tail incididunt beef. Pancetta officia ball tip elit ut in voluptate, ut frankfurter meatball esse</p>
+        <h4>Gerando Hipóteses</h4>
+        <p class="lead">Fugiat ground round consectetur pork loin, dolore shank incididunt excepteur alcatra ut duis. Ham sint quis proident incididunt minim landjaeger in turducken chuck tongue. Occaecat dolore t-bone pork chop excepteur meatball jerky tail incididunt beef. Pancetta officia ball tip elit ut in voluptate, ut frankfurter meatball esse</p>
+        <h4>Pesquisando Conhecimentos</h4>
+        <p class="lead">Fugiat ground round consectetur pork loin, dolore shank incididunt excepteur alcatra ut duis. Ham sint quis proident incididunt minim landjaeger in turducken chuck tongue. Occaecat dolore t-bone pork chop excepteur meatball jerky tail incididunt beef. Pancetta officia ball tip elit ut in voluptate, ut frankfurter meatball esse</p>
+        <h4>Aplicando Novos Conhecimentos</h4>
+        <p class="lead">Fugiat ground round consectetur pork loin, dolore shank incididunt excepteur alcatra ut duis. Ham sint quis proident incididunt minim landjaeger in turducken chuck tongue. Occaecat dolore t-bone pork chop excepteur meatball jerky tail incididunt beef. Pancetta officia ball tip elit ut in voluptate, ut frankfurter meatball esse</p>
+        <h4>Refletindo Sobre a Atividade</h4>
+        <p class="lead">Fugiat ground round consectetur pork loin, dolore shank incididunt excepteur alcatra ut duis. Ham sint quis proident incididunt minim landjaeger in turducken chuck tongue. Occaecat dolore t-bone pork chop excepteur meatball jerky tail incididunt beef. Pancetta officia ball tip elit ut in voluptate, ut frankfurter meatball esse</p>
       </div>
       <div class="back-to-top pull-right">
       	<a href="" pbl-scroll-to="#top">Voltar ao topo <i class="fa fa-arrow-circle-up"></i></a>
       </div>
     </div>
-  </div> -->
+  </div>
   <!-- /.container -->
 </div>
-<a id="technology"></a>
-<div class="content-section-default">
 
-<!--   <div class="container">
+<a id="ext-links"></a>
+<div class="content-section-default pbl-page">
+
+  <div class="container">
     <div class="row">
       <div class="col-lg-12 col-sm-12">
         <hr class="section-heading-spacer">
         <div class="clearfix"></div>
-        <h3 class="section-heading">Tecnologia Empregada</h3>
-        <p class="lead">Fugiat ground round consectetur pork loin, dolore shank incididunt excepteur alcatra ut duis.</p>
-        <p class="lead">Ham sint quis proident incididunt minim landjaeger in turducken chuck tongue. Occaecat dolore t-bone pork chop excepteur meatball jerky tail incididunt beef. Pancetta officia ball tip elit ut in voluptate, ut frankfurter meatball esse.</p>
+        <h3 class="section-heading">Leitura externa</h3>
+        <ul>
+        	<li>
+        		<p class="lead"><a href="https://www2.cead.ufv.br/abp/" target="_blank">ABP</a> - Ambiente Online sobre a Aprendizagem Baseada em Problemas da Universidade Federal de Viçosa. Contém material abrangente sobre a metodologia, e inclui <strong>instruções para o planejamento adequado de um Problema de PBL</strong>.</p>
+        	</li>
+        	<li>
+        		<p class="lead"><a href="https://www2.cead.ufv.br/abp/wp-content/uploads/docs/paginas/7-Exemplo-de-problemas.pdf" target="_blank">Atividades PBL</a> - Exemplos de problemas aplicados em conteúdos da Ciência dos Alimentos - Universidade Federal de Viçosa.</p>
+        	</li>
+        	<li>
+        		<p class="lead"><a href="http://www.edutopia.org/" target="_blank">Edutopia</a> (em inglês) - Portal educacional e comunidade online que tem o propósito de fomentar a utilização de metodologias educacionais que estimulam e inspirem os estudantes, uma iniciativa da George Lucas Educational Foundation.</p> 
+        	</li>
+        </ul>
       </div>
       <div class="back-to-top pull-right">
       	<a href="" pbl-scroll-to="#top">Voltar ao topo <i class="fa fa-arrow-circle-up"></i></a>
       </div>
     </div>
-  </div> -->
+  </div>
   <!-- /.container -->
 </div>
-<a id="tools"></a>
-<div class="content-section-default">
 
-<!--   <div class="container">
-    <div class="row">
-      <div class="col-lg-12 col-sm-12">
-        <hr class="section-heading-spacer">
-        <div class="clearfix"></div>
-        <h3 class="section-heading">Ferramentas de Apoio</h3>
-        <p class="lead">Fugiat ground round consectetur pork loin, dolore shank incididunt excepteur alcatra ut duis.</p>
-        <p class="lead">Ham sint quis proident incididunt minim landjaeger in turducken chuck tongue. Occaecat dolore t-bone pork chop excepteur meatball jerky tail incididunt beef. Pancetta officia ball tip elit ut in voluptate, ut frankfurter meatball esse.</p>
-      </div>
-      <div class="back-to-top pull-right">
-      	<a href="" pbl-scroll-to="#top">Voltar ao topo <i class="fa fa-arrow-circle-up"></i></a>
-      </div>
-    </div>
-  </div> -->
-  <!-- /.container -->
-</div>
-<a id="inspiration"></a>
-<div class="content-section-default">
-
-<!--   <div class="container">
-    <div class="row">
-      <div class="col-lg-12 col-sm-12">
-        <hr class="section-heading-spacer">
-        <div class="clearfix"></div>
-        <h3 class="section-heading">Inspiração</h3>
-        <p class="lead">Fugiat ground round consectetur pork loin, dolore shank incididunt excepteur alcatra ut duis.</p>
-        <p class="lead">Ham sint quis proident incididunt minim landjaeger in turducken chuck tongue. Occaecat dolore t-bone pork chop excepteur meatball jerky tail incididunt beef. Pancetta officia ball tip elit ut in voluptate, ut frankfurter meatball esse.</p>
-      </div>
-      <div class="back-to-top pull-right">
-      	<a href="" pbl-scroll-to="#top">Voltar ao topo <i class="fa fa-arrow-circle-up"></i></a>
-      </div>
-    </div>
-  </div> -->
-  <!-- /.container -->
-</div>
-<a id="copyrights"></a>
-<div class="content-section-default">
-
-<!--   <div class="container">
-    <div class="row">
-      <div class="col-lg-12 col-sm-12">
-        <hr class="section-heading-spacer">
-        <div class="clearfix"></div>
-        <h3 class="section-heading">Créditos</h3>
-        <p class="lead">Fugiat ground round consectetur pork loin, dolore shank incididunt excepteur alcatra ut duis.</p>
-        <p class="lead">Ham sint quis proident incididunt minim landjaeger in turducken chuck tongue. Occaecat dolore t-bone pork chop excepteur meatball jerky tail incididunt beef. Pancetta officia ball tip elit ut in voluptate, ut frankfurter meatball esse.</p>
-      </div>
-      <div class="back-to-top pull-right">
-      	<a href="" pbl-scroll-to="#top">Voltar ao topo <i class="fa fa-arrow-circle-up"></i></a>
-      </div>
-    </div>
-  </div> -->
-  <!-- /.container -->
-</div>
 <div class="content-section-default">
 
   <div class="container">
