@@ -19,7 +19,7 @@
   module.exports = function (app, path, router) {
 
     // Initialize the middleware proxy oversee
-    require('./APIProxy')(router);
+    require('./RouteInterceptor')(router);
 
     // Prefix every route api with API
     // Remember, all prefixed routes needs authentication
