@@ -154,7 +154,7 @@
             return 'hypothesis';
 
           case activityStatus.RESEARCHING:
-            return 'researching';
+            return 'research';
 
           case activityStatus.RESOLVING_PROBLEM:
             return 'resolution';

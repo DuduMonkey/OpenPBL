@@ -111,6 +111,7 @@
                 }
 
                 activity[statusName] = response;
+                console.log(activity[statusName]);
                 deferred.resolve(activity);
               })
               .catch(function (error) {
@@ -175,6 +176,17 @@
             var activityId = scope.vm.activity.id
             , apiMethod = 'saveActivityStory'
             , story = scope.vm.activity.story;
+
+            saveActivityItem(activityId, apiMethod, story, from);
+          };
+
+          /**
+           * Salva pesquisa
+           */
+          scope.saveReasearch = function (from) {
+            var activityId = scope.vm.activity.id
+            , apiMethod = 'saveActivityResearch'
+            , story = scope.vm.activity.research;
 
             saveActivityItem(activityId, apiMethod, story, from);
           };
