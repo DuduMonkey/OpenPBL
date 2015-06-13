@@ -4,6 +4,7 @@
 
   // Modules in use
   var TokenValidator = require('../token/TokenValidator');
+  var ValidatePathSpecification = require('./Specification/ValidPathNotRequireAuthenticationSpec');
 
   //Token location on header (You can send as X-Pbl-Token)
   var __TOKEN_HEADER = 'x-pbl-token';
@@ -54,11 +55,31 @@
     var url = req.url;
     var baseUrl = req.baseUrl;
 
-    if (pathNeedsAuthentication(url, baseUrl)) {
-      var headerToken = req.headers[__TOKEN_HEADER];
-      validateToken(headerToken, next, res);
+    var paths = {
+      needsAuthentication: [
+        '/activity',
+        '/'
+      ],
+      freeFromAuthentication: [
+        '/role',
+        '/signup',
+        '/login'
+      ],
+      baseUrls: [
+        '/api'
+      ]
+    };
+
+    var ValidPathNotRequireAuthenticationSpec = new ValidatePathSpecification(url, baseUrl);
+    if (ValidPathNotRequireAuthenticationSpec.isSatisfiedBy(paths)) {
+        next();
     } else {
-      next();
+      if (!!ValidPathNotRequireAuthenticationSpec.FaultReason) {
+        res.status(404).send('Invalid Request');
+      } else {
+        var headerToken = req.headers[__TOKEN_HEADER];
+        validateToken(headerToken, next, res);
+      }
     }
   };
 
