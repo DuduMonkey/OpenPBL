@@ -24,8 +24,12 @@
     };
 
     Activity.updateActivity(activityId, queryUpdateStatus)
-      .then(function () {
-        deferred.resolve({ message: Message.SUCCESS_UPDATING_ACTIVITY });
+      .then(function (activity) {
+        var responseBag = {
+          message: Message.SUCCESS_UPDATING_ACTIVITY,
+          status: activity.status
+        };
+        deferred.resolve(responseBag);
       })
       .catch(function () {
         deferred.reject(Exception.ACTIVITY_STATUS_UPDATING_ERROR);
