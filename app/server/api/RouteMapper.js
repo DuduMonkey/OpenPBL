@@ -28,6 +28,7 @@
   defineStatusProperty('hypothesis', '/activity/:activityId/hypothesis/:id');
   defineStatusProperty('resolutions', '/activity/:id/resolution');
   defineStatusProperty('resolution', '/activity/:activityId/resolution/:id');
+  defineStatusProperty('research', '/activity/:id/research');
 
   module.exports = Routes;
 }());
