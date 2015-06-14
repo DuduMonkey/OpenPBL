@@ -12,6 +12,7 @@
   var hypothesis = require('../rest/RESTHypothesis');
   var resolution = require('../rest/RESTResolution');
   var roles = require('../rest/RESTRole');
+  var research = require('../rest/RESTResearch');
 
   // Route mapper
   var _r = require('./RouteMapper');
@@ -111,5 +112,11 @@
     // [DELETE] An Resolution from activity
     router.route(_r.resolution)
       .delete(resolution.delete);
+
+    // [GET] Activity Research list
+    // [POST] Activity Research list
+    router.route(_r.research)
+      .get(research.get)
+      .post(research.post);
   };
 }());
