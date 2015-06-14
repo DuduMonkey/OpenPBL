@@ -22,13 +22,83 @@
     <div id="sb-help-title">
       <h4>Dicas</h4>
     </div>
-    <div id="sb-help-content">
-      <p ng-show="content == 'tab-problem'">tab problema tab problema tab problema tab problema tab problema tab problema tab problema tab problema tab problema tab problema tab problema tab problema tab problema tab problema</p>
-      <p ng-show="content == 'tab-facts'">tab fatos tab fatos tab fatos tab fatos tab fatos tab fatos tab fatos tab fatos tab fatos tab fatos tab fatos tab fatos tab fatos tab fatos tab fatos tab fatos tab fatos tab fatos tab fatos</p>
-      <p ng-show="content == 'tab-hypothesis'">tab hipóteses tab hipóteses tab hipóteses tab hipóteses tab hipóteses tab hipóteses tab hipóteses tab hipóteses tab hipóteses tab hipóteses tab hipóteses tab hipóteses tab hipóteses</p>
-      <p ng-show="content == 'tab-research'">tab pesquisa tab pesquisa tab pesquisa tab pesquisa tab pesquisa tab pesquisa tab pesquisa tab pesquisa tab pesquisa tab pesquisa tab pesquisa tab pesquisa tab pesquisa tab pesquisa</p>
-      <p ng-show="content == 'tab-resolution'">tab resolução tab resolução tab resolução tab resolução tab resolução tab resolução tab resolução tab resolução tab resolução tab resolução tab resolução tab resolução tab resolução</p>
-      <p ng-show="content == 'tab-abstraction'">tab abstração tab abstração tab abstração tab abstração tab abstração tab abstração tab abstração tab abstração tab abstração tab abstração tab abstração tab abstração tab abstração</p>  
+    <!-- professor -->
+    <div id="sb-help-content" pbl-permission="Professor">
+
+      <div ng-show="content == 'tab-problem'">
+        <p><i class="fa fa-question-circle"></i> O problema da atividade, o Material de Apoio e os Links Externos podem ser editados através do botão <span class="label label-success">editar</span> no interior do painel.</p>
+        <p><i class="fa fa-info-circle"></i> Problemas eficientes devem ser provocativos, desafiadores, de conclusão aberta, direcionados para o centro de uma disciplina ou tópico. Podem originar de dilemas do mundo real que os estudantes julgarem interessantes e devem ser planejados de acordo com os objetivos específicos a serem alcançados.</p>
+        <p><i class="fa fa-info-circle"></i> Utilize o campo Material de Apoio para listar tópicos que devem ser levados em consideração para o entendimento do problema.<br>O campo Links Externos pode ser utilizado para listar outros conteúdos também relevantes ao entendimento do problema, que estejam disponíveis através de links.</p>
+        <p><i class="fa fa-question-circle"></i> Você pode convidar alunos para esta atividade retornando ao painel do usuário.</p>
+      </div>
+      <div ng-show="content == 'tab-facts'">
+        <p><i class="fa fa-question-circle"></i> Para inserir um fato, use o botão <span class="label label-primary">Inserir fato</span></p>
+        <p><i class="fa fa-question-circle"></i> Para excluir um fato, use o "X" no canto superior direito do mesmo.</p>
+        <p><i class="fa fa-info-circle"></i> Através da leitura e análise do problema proposto, alunos trabalham neste estágio em pequenos grupos de forma ativa e colaborativa para discutir e levantar fatos conhecidos sobre o cenário apresentado. É possível ainda que estes fatos sejam obtidos ao questionar o professor para buscar informações adicionais sobre o problema, ou através de experimentos e pesquisa.<br>Os fatos listados neste estágio auxiliam os alunos na visualização do problema de forma objetiva. A qualquer momento durante o ciclo, alunos podem utilizá-los para refletir sobre os dados obtidos até aquele ponto e gerar perguntas que os conduzirão na pesquisa de conteúdo.</p>
+        <p><i class="fa fa-info-circle"></i> Somente o professor pode excluir fatos.</p>
+      </div>
+      <div ng-show="content == 'tab-hypothesis'">
+        <p><i class="fa fa-question-circle"></i> Para inserir uma hipótese, use o botão <span class="label label-primary">Inserir hipótese</span></p>
+        <p><i class="fa fa-question-circle"></i> Para excluir uma hipótese, use o "X" no canto superior direito da mesma.</p>
+        <p><i class="fa fa-info-circle"></i> Durante este estágio, os alunos geram hipóteses sobre a resolução do problema e sobre os mecanismos ou estratégias que podem utilizar para compreendê-lo melhor. Auxiliados pelo professor, é com base nestas hipóteses que os alunos identificam os conhecimentos que precisam aprender para resolver o problema.<br>Esta fase do ciclo promove a negociação de idéias - estimule os estudantes a apresentarem suas idéias e estratégias para seu grupo e defendê-las. Isto estimula a articulação do estado atual de compreensão dos alunos, ajudando na construção do conhecimento e preparando os alunos para o aprendizado.</p>
+        <p><i class="fa fa-info-circle"></i> Somente o professor pode excluir hipóteses.</p>
+      </div>
+      <div ng-show="content == 'tab-research'">
+        <p><i class="fa fa-question-circle"></i> O conteúdo para pesquisa pode ser editado através do botão <span class="label label-success">editar</span> no interior do painel.<br>Adicione todos os tópicos que devem ser pesquisados pelos alunos, incluindo também os conhecimentos que os próprios alunos julgam importantes para a resolução do problema.</p>
+        <p><i class="fa fa-info-circle"></i> A aprendizagem auto-dirigida tem início neste estágio. Cada membro do grupo se envolve no estudo auto-dirigido para pesquisar e encontrar a informação necessária, usando uma variedade de recursos e fontes de informação disponíveis, viabilizando aprendizagem exploratória. Eles então se reúnem novamente em grupos para compartilhar o que aprenderam e avaliar as hipóteses levantadas previamente, preparando as respostas que serão inseridas no próximo estágio.</p>
+      </div>
+      <div ng-show="content == 'tab-resolution'">
+        <p><i class="fa fa-question-circle"></i> Para inserir uma resposta, use o botão <span class="label label-primary">Inserir resposta</span></p>
+        <p><i class="fa fa-question-circle"></i> Para excluir uma resposta, use o "X" no canto superior direito da mesma.</p>
+        <p><i class="fa fa-info-circle"></i> Depois de concluírem a exploração necessária e o estudo, os alunos devem organizar suas as ideias e conceitos por meio de discussão, exercitar a habilidade de pensamento crítico e aplicar o que aprenderam.<br>Neste estágio, estudantes devem apresentar à classe suas propostas para a resolução final da situação que deu início ao processo de aprendizagem, inserindo respostas com as conclusões que obtiveram. Como os problemas são abertos à interpretação, é importante salientar a possibilidade de mais de uma resposta correta.</p>
+        <p><i class="fa fa-info-circle"></i> Somente o professor pode excluir respostas.</p>
+      </div>
+      <div ng-show="content == 'tab-abstraction'">
+        <p><i class="fa fa-question-circle"></i> A descrição da abstração pode ser editada através do botão <span class="label label-success">editar</span> no interior do painel.</p>
+        <p><i class="fa fa-info-circle"></i> Depois de terem contribuído com a resolução do problema, os participantes refletem sobre a atividade e avaliam a si mesmos quanto ao que aprenderam e como aprenderam, com o intuito de desenvolver habilidades em autoavaliação. Esta reflexão sobre a relação entre a resolução do problema e o processo de aprendizagem é essencial no PBL, necessária para a construção da habilidade de compreensão e raciocínio dos estudantes.</p>
+        <p><i class="fa fa-info-circle"></i> Utilize este painel para descrever os resultados da atividade até o momento, e se houve alguma dificuldade ou falha durante o processo. O ciclo é dimensionado de maneira que se possa reiniciá-lo caso não se tenha chegado a uma conclusão satisfatória nesta fase, podendo utilizar várias iterações para completar a atividade.</p>
+        <p><i class="fa fa-question-circle"></i> Para encerrar a atividade, use o botão <span class="label label-success">Encerrar atividade</span></p>
+        <p><i class="fa fa-question-circle"></i> Para recomeçar a atividade, use o botão <span class="label label-purple">Recomeçar atividade</span></p>
+      </div>
+
+      <p ng-hide="content == 'tab-abstraction'"><i class="fa fa-question-circle"></i> Para dar início ao próximo estado da atividade, use o botão <span class="label label-success">Avançar estado</span><br><i class="fa fa-exclamation-triangle"></i> Lembre-se que ao avançar para o estado seguinte, <strong>este estado permanecerá acessível para consulta, mas não poderá ser alterado novamente</strong>.</p>  
+    </div>
+    <!-- aluno -->
+    <div id="sb-help-content" pbl-permission="Aluno">
+      
+      <div ng-show="content == 'tab-problem'">
+        <p><i class="fa fa-question-circle"></i> O problema da atividade, o Material de Apoio e os Links Externos podem ser editados através do botão <span class="label label-success">editar</span> no interior do painel.</p>
+        <p><i class="fa fa-info-circle"></i> Problemas eficientes devem ser provocativos, desafiadores, de conclusão aberta, direcionados para o centro de uma disciplina ou tópico. Podem originar de dilemas do mundo real que os estudantes julgarem interessantes e devem ser planejados de acordo com os objetivos específicos a serem alcançados. O problema deve conduzir o estudo, apreender um tema, direcionar os estudantes ao domínio do conteúdo e de habilidades que os capacite a responder à pergunta-problema; não ser resolvido ou respondido facilmente;  manter o projeto de ensino como um conjunto; inspirar educadores e educandos e criar oportunidade de se aprofundar em um assunto complexo.</p>
+        <p><i class="fa fa-question-circle"></i> Você pode convidar alunos para esta atividade retornando ao painel do usuário.</p>
+      </div>
+      <div ng-show="content == 'tab-facts'">
+        <p><i class="fa fa-question-circle"></i> Para inserir um fato, use o botão <span class="label label-primary">Inserir fato</span></p>
+        <p><i class="fa fa-question-circle"></i> Para excluir um fato, use o "X" no canto superior direito do mesmo.</p>
+        <p><i class="fa fa-info-circle"></i> Através da leitura e análise do problema proposto, alunos trabalham neste estágio em pequenos grupos de forma ativa e colaborativa para discutir e levantar fatos conhecidos sobre o cenário apresentado. É possível ainda que estes fatos sejam obtidos ao questionar o professor para buscar informações adicionais sobre o problema, ou através de experimentos e pesquisa.<br>Os fatos listados neste estágio auxiliam os alunos na visualização do problema de forma objetiva. A qualquer momento durante o ciclo, alunos podem utilizá-los para refletir sobre os dados obtidos até aquele ponto e gerar perguntas que os conduzirão na pesquisa de conteúdo.</p>
+      </div>
+      <div ng-show="content == 'tab-hypothesis'">
+        <p><i class="fa fa-question-circle"></i> Para inserir uma hipótese, use o botão <span class="label label-primary">Inserir hipótese</span></p>
+        <p><i class="fa fa-question-circle"></i> Para excluir uma hipótese, use o "X" no canto superior direito da mesma.</p>
+        <p><i class="fa fa-info-circle"></i> Durante este estágio, os alunos geram hipóteses sobre a resolução do problema e sobre os mecanismos ou estratégias que podem utilizar para compreendê-lo melhor. Auxiliados pelo professor, é com base nestas hipóteses que os alunos identificam os conhecimentos que precisam aprender para resolver o problema.<br>Esta fase do ciclo promove a negociação de idéias - estimule os estudantes a apresentarem suas idéias e estratégias para seu grupo e defendê-las. Isto estimula a articulação do estado atual de compreensão dos alunos, ajudando na construção do conhecimento e preparando os alunos para o aprendizado.</p>
+      </div>
+      <div ng-show="content == 'tab-research'">
+        <p><i class="fa fa-question-circle"></i> O conteúdo para pesquisa pode ser editado através do botão <span class="label label-success">editar</span> no interior do painel.<br>Adicione todos os tópicos que devem ser pesquisados pelos alunos, incluindo também os conhecimentos que os próprios alunos julgam importantes para a resolução do problema.</p>
+        <p><i class="fa fa-info-circle"></i> A aprendizagem auto-dirigida tem início neste estágio. Cada membro do grupo se envolve no estudo auto-dirigido para pesquisar e encontrar a informação necessária, usando uma variedade de recursos e fontes de informação disponíveis, viabilizando aprendizagem exploratória. Eles então se reúnem novamente em grupos para compartilhar o que aprenderam e avaliar as hipóteses levantadas previamente, preparando as respostas que serão inseridas no próximo estágio.</p>
+      </div>
+      <div ng-show="content == 'tab-resolution'">
+        <p><i class="fa fa-question-circle"></i> Para inserir uma resposta, use o botão <span class="label label-primary">Inserir resposta</span></p>
+        <p><i class="fa fa-question-circle"></i> Para excluir uma resposta, use o "X" no canto superior direito da mesma.</p>
+        <p><i class="fa fa-info-circle"></i> Depois de concluírem a exploração necessária e o estudo, os alunos devem organizar suas as ideias e conceitos por meio de discussão, exercitar a habilidade de pensamento crítico e aplicar o que aprenderam.<br>Neste estágio, estudantes devem apresentar à classe suas propostas para a resolução final da situação que deu início ao processo de aprendizagem, inserindo respostas com as conclusões que obtiveram. Como os problemas são abertos à interpretação, é importante salientar a possibilidade de mais de uma resposta correta.</p>
+      </div>
+      <div ng-show="content == 'tab-abstraction'">
+        <p><i class="fa fa-question-circle"></i> A descrição da abstração pode ser editada através do botão <span class="label label-success">editar</span> no interior do painel.</p>
+        <p><i class="fa fa-info-circle"></i> Depois de terem contribuído com a resolução do problema, os participantes refletem sobre a atividade e avaliam a si mesmos quanto ao que aprenderam e como aprenderam, com o intuito de desenvolver habilidades em autoavaliação. Esta reflexão sobre a relação entre a resolução do problema e o processo de aprendizagem é essencial no PBL, necessária para a construção da habilidade de compreensão e raciocínio dos estudantes.</p>
+        <p><i class="fa fa-info-circle"></i> Utilize este painel para descrever os resultados da atividade até o momento, e se houve alguma dificuldade ou falha durante o processo. O ciclo é dimensionado de maneira que se possa reiniciá-lo caso não se tenha chegado a uma conclusão satisfatória nesta fase, podendo utilizar várias iterações para completar a atividade.</p>
+        <p><i class="fa fa-question-circle"></i> Para encerrar a atividade, use o botão <span class="label label-success">Encerrar atividade</span></p>
+        <p><i class="fa fa-question-circle"></i> Para recomeçar a atividade, use o botão <span class="label label-purple">Recomeçar atividade</span></p>
+      </div>
+
+      <p ng-hide="content == 'tab-abstraction'"><i class="fa fa-question-circle"></i> Para dar início ao próximo estado da atividade, use o botão <span class="label label-success">Avançar estado</span><br><i class="fa fa-exclamation-triangle"></i> Lembre-se que ao avançar para o estado seguinte, <strong>este estado permanecerá acessível para consulta, mas não poderá ser alterado novamente</strong>.</p> 
     </div>
   </div> <!-- /.sidebar help -->
 

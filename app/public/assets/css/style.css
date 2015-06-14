@@ -739,6 +739,7 @@ td .fa {
   top: 220px;
   overflow-y: auto;
   text-align: justify;
+  font-weight: 300;
 }
 
 .sidebar-help-top {
