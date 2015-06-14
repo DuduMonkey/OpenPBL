@@ -14,7 +14,8 @@
     story: { type: String, ref: 'Story', required: false },
     status: {type: Number, min: 1, max: 7, default: 1 },
     created: {type: Date, default: Date.now },
-    participants: [{ type: String, ref: 'User'}]
+    participants: [{ type: String, ref: 'User'}],
+    posts: [{type: String, ref: 'Post'}]
   });
 
   /**

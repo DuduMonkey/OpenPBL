@@ -3,6 +3,7 @@
 
   var Post = require('../../../../models/Post');
   var Message = require('../../../../shared/MessageResource');
+  var Activity = require('../../../../models/Activity');
   var Q = require('q');
 
   function PostBaseService() {
@@ -12,6 +13,12 @@
     var deferred = Q.defer();
 
     Post.saveNewPost(postData)
+      .then(function (post) {
+        var queryInsertPost = {
+          $addToSet: { posts: post._id }
+        };
+        return Activity.updateActivity(post._activity, queryInsertPost);
+      })
       .then(function () {
         deferred.resolve(successResponse);
       })
