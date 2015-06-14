@@ -2,8 +2,8 @@
   'use strict';
 
   angular.module('openpbl.directives')
-    .directive('pblActivity', ['$log', '$q', 'activityService', 'globalValues', 'notificationService', 
-      function ($log, $q, activityService, globalValues, notificationService) {
+    .directive('pblActivity', ['$log', '$q', '$location', 'activityService', 'globalValues', 'notificationService', 
+      function ($log, $q, $location, activityService, globalValues, notificationService) {
       return {
         retrict: 'E',
         templateUrl: '/shared/activity/activity.tpl.html',
@@ -72,7 +72,7 @@
                 return 'tab-abstraction';
 
               case activityStatus.FINISHED:
-                break;
+                return 'tab-abstraction';
             }
           };
 
@@ -233,6 +233,32 @@
             confirmModal
               .modal('toggle')
               .one('click', '#confirmNextStatus', function () {
+                callback();
+              });
+          };
+
+          scope.finishActivity = function () {
+            var activityId = scope.vm.activity.id
+            , currentStatus = scope.vm.activity.status
+            , confirmModal = angular.element('#finishActivityModal');
+
+            var callback = function () {
+              activityService.nextStatus(activityId, currentStatus)
+                .then(function (response) {
+                  notificationService.success(response.message);
+
+                  // Atualiza status da atividade
+                  scope.activity.status = response.status;
+                  $location.path('/dashboard');
+                })
+                .catch(function (error) {
+                  notificationService.error(error.message);
+                });
+            };
+
+            confirmModal
+              .modal('toggle')
+              .one('click', '#confirmFinishActivity', function () {
                 callback();
               });
           };
