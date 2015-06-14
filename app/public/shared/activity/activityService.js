@@ -126,8 +126,7 @@
       var getActivityStatusData = function (activityId, status) {
         var deferred = $q.defer()
         , statusPropertyName = getStatusPropertyName(status)
-        //, url = globalValues.API_URL + '/activity/' + activityId + '/' + statusPropertyName;
-        , url = 'http://private-74203b-openpbl.apiary-mock.com/api' + '/activity/' + activityId + '/' + statusPropertyName;
+        , url = globalValues.API_URL + '/activity/' + activityId + '/' + statusPropertyName;
 
         $http.get(url)
           .then(function (response) {
@@ -176,8 +175,7 @@
 
       var nextStatus = function (activityId, status) {
         var deferred = $q.defer()
-        //, url = globalValues.API_URL + '/activity/' + activityId + '/status'
-        , url = 'http://private-74203b-openpbl.apiary-mock.com/api' + '/activity/' + activityId + '/status'
+        , url = globalValues.API_URL + '/activity/' + activityId
         , data = {
           status: status
         };

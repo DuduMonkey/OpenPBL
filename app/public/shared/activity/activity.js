@@ -211,7 +211,7 @@
           };
 
           scope.nextStatus = function () {
-            var activityId = scope.vm.activityId
+            var activityId = scope.vm.activity.id
             , currentStatus = scope.vm.activity.status
             , confirmModal = angular.element('#nextStatusModal');
 

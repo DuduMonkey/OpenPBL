@@ -38,7 +38,6 @@
     Activity.queryInActivities(querySelectActivityResearch)
       .then(function (activities) {
         var selectedActivity = activities[0];
-        console.log(selectedActivity);
         deferred.resolve({ abstraction: selectedActivity.abstraction });
       })
       .catch(function (error) {
