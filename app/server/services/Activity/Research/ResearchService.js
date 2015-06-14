@@ -38,7 +38,6 @@
     Activity.queryInActivities(querySelectActivityResearch)
       .then(function (activities) {
         var selectedActivity = activities[0];
-        console.log(selectedActivity);
         deferred.resolve({ research: selectedActivity.research });
       })
       .catch(function (error) {
