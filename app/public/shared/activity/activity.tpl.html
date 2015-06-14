@@ -114,15 +114,15 @@
           <label class="fake">.</label>
           <input id="tab-problem" type="radio" name="tabs" ng-model="content" value="tab-problem">
           <label for="tab-problem">Problema</label>
-          <input id="tab-facts" type="radio" name="tabs" ng-model="content" value="tab-facts">
+          <input id="tab-facts" type="radio" name="tabs" ng-model="content" value="tab-facts" ng-disabled="vm.activity.status < 2">
           <label for="tab-facts">Fatos</label>
-          <input id="tab-hypothesis" type="radio" name="tabs" ng-model="content" value="tab-hypothesis">
+          <input id="tab-hypothesis" type="radio" name="tabs" ng-model="content" value="tab-hypothesis" ng-disabled="vm.activity.status < 3">
           <label for="tab-hypothesis">Hipóteses</label>
-          <input id="tab-research" type="radio" name="tabs" ng-model="content" value="tab-research">
+          <input id="tab-research" type="radio" name="tabs" ng-model="content" value="tab-research" ng-disabled="vm.activity.status < 4">
           <label for="tab-research">Pesquisa</label>
-          <input id="tab-resolution" type="radio" name="tabs" ng-model="content" value="tab-resolution">
+          <input id="tab-resolution" type="radio" name="tabs" ng-model="content" value="tab-resolution" ng-disabled="vm.activity.status < 5">
           <label for="tab-resolution">Resolução</label>
-          <input id="tab-abstraction" type="radio" name="tabs" ng-model="content" value="tab-abstraction">
+          <input id="tab-abstraction" type="radio" name="tabs" ng-model="content" value="tab-abstraction" ng-disabled="vm.activity.status < 6">
           <label for="tab-abstraction">Abstração</label>
           <label class="fake">.</label> 
           <!-- /.tabs -->
@@ -132,13 +132,13 @@
           <section id="content-problem" ng-show="content == 'tab-problem'">
             <div class="container chalkboard">
               <div id="problem">
-                <h4>Problema<a href="" ng-click="toggleModal('#storyDescriptionModal')" pbl-permission="Professor"><span class="label label-success">editar</span></a></h4>
+                <h4>Problema<a href="" ng-click="toggleModal('#storyDescriptionModal')" pbl-permission="Professor" ng-hide="vm.activity.status > 1"><span class="label label-success">editar</span></a></h4>
                 <p>
                   {{::vm.activity.story.description}}
                 </p>
               </div>
               <div id="resources">
-                <h4>Material de apoio<a href="" ng-click="toggleModal('#helpfulMaterialsModal')" pbl-permission="Professor"><span class="label label-success">editar</span></a></h4>
+                <h4>Material de apoio<a href="" ng-click="toggleModal('#helpfulMaterialsModal')" pbl-permission="Professor" ng-hide="vm.activity.status > 1"><span class="label label-success">editar</span></a></h4>
                 <ul>
                   <li ng-repeat="material in vm.activity.story.helpfulMaterials">
                    {{::material}}
@@ -146,7 +146,7 @@
                 </ul>
               </div>
               <div id="links">
-                <h4>Links externos<a href="" ng-click="toggleModal('#externalLinksModal')" pbl-permission="Professor"><span class="label label-success">editar</span></a></h4>
+                <h4>Links externos<a href="" ng-click="toggleModal('#externalLinksModal')" pbl-permission="Professor" ng-hide="vm.activity.status > 1"><span class="label label-success">editar</span></a></h4>
                 <ul>
                   <li ng-repeat="link in vm.activity.story.externalLinks">
                     <a ng-href="http://{{link}}" target="_blank">{{::link}}</a>
@@ -161,7 +161,7 @@
               <!-- posts -->
               <div class="post-it" ng-repeat="fact in vm.activity.fact">
                 <div class="sticky fact">
-                  <button type="button" class="close" aria-label="Fechar" pbl-permission="Professor" ng-click="deletePost(fact.id)"><span aria-hidden="true">&times;</span></button>
+                  <button type="button" class="close" aria-label="Fechar" pbl-permission="Professor" ng-click="deletePost(fact.id)" ng-hide="vm.activity.status > 2"><span aria-hidden="true">&times;</span></button>
                   <h5><strong>{{::fact.creator}}</strong></h5>
                   <p>{{::fact.content}}</p>
                   <p><small class="pull-right">{{::fact.date | date}}</small></p>
@@ -176,7 +176,7 @@
               <!-- posts -->
               <div class="post-it" ng-repeat="hypothesis in vm.activity.hypothesis">
                 <div class="sticky hypot">
-                  <button type="button" class="close" aria-label="Fechar" pbl-permission="Professor" ng-click="deletePost(hypothesis.id)"><span aria-hidden="true">&times;</span></button>
+                  <button type="button" class="close" aria-label="Fechar" pbl-permission="Professor" ng-click="deletePost(hypothesis.id)" ng-hide="vm.activity.status > 3"><span aria-hidden="true">&times;</span></button>
                   <h5><strong>{{::hypothesis.creator}}</strong></h5>
                   <p>{{::hypothesis.content}}</p>
                   <p><small class="pull-right">{{::hypothesis.date | date}}</small></p>
@@ -189,7 +189,7 @@
           <section id="content-research" ng-show="content == 'tab-research'">
             <div class="container chalkboard">
               <div id="research">
-                <h4>Conteúdo para pesquisa<a href="" ng-click="toggleModal('#researchMaterialModal')" pbl-permission="Professor"><span class="label label-success">editar</span></a></h4>
+                <h4>Conteúdo para pesquisa<a href="" ng-click="toggleModal('#researchMaterialModal')" pbl-permission="Professor" ng-hide="vm.activity.status > 4"><span class="label label-success">editar</span></a></h4>
                 <ul>
                   <li ng-repeat="item in vm.activity.research">
                     {{item}}
@@ -204,7 +204,7 @@
               <!-- posts -->
               <div class="post-it" ng-repeat="resolution in vm.activity.resolution">
                 <div class="sticky resol">
-                  <button type="button" class="close" aria-label="Fechar" pbl-permission="Professor" ng-click="deletePost(resolution.id)"><span aria-hidden="true">&times;</span></button>
+                  <button type="button" class="close" aria-label="Fechar" pbl-permission="Professor" ng-click="deletePost(resolution.id)" ng-hide="vm.activity.status > 5"><span aria-hidden="true">&times;</span></button>
                   <h5><strong>{{::resolution.creator}}</strong></h5>
                   <p>{{::resolution.content}}</p>
                   <p><small class="pull-right">{{::resolution.date | date}}</small></p>
