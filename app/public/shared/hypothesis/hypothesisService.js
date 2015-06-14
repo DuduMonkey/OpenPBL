@@ -2,11 +2,10 @@
   'use strict';
 
   angular.module('openpbl.services')
-    .factory('hypothesisService', ['$http', '$q', function ($http, $q) {
+    .factory('hypothesisService', ['$http', '$q', 'globalValues', function ($http, $q, globalValues) {
       var addHypothesis = function (activityId, hypothesis) {
         var deferred = $q.defer()
-        //, url = globalValues.API_URL + '/activity/' + activityId + '/hypothesis';
-        , url = 'http://private-74203b-openpbl.apiary-mock.com/api' + '/activity/' + activityId + '/hypothesis'
+        , url = globalValues.API_URL + '/activity/' + activityId + '/hypothesis'
         , data = {
           hypothesis: hypothesis
         };
@@ -24,8 +23,7 @@
 
       var deleteHypothesis = function (activityId, hypothesisId) {
         var deferred = $q.defer()
-        //, url = globalValues.API_URL + '/activity/' + activityId + '/hypothesis/' + hypothesisId;
-        , url = 'http://private-74203b-openpbl.apiary-mock.com/api' + '/activity/' + activityId + '/hypothesis/' + hypothesisId;
+        , url = globalValues.API_URL + '/activity/' + activityId + '/hypothesis/' + hypothesisId;
 
         $http.delete(url)
           .then(function (response) {
@@ -40,8 +38,7 @@
 
       var getHypotheses = function (activityId) {
         var deferred = $q.defer()
-        //, url = globalValues.API_URL + '/activity/' + activityId + '/hypothesis';
-        , url = 'http://private-74203b-openpbl.apiary-mock.com/api' + '/activity/' + activityId + '/hypothesis';
+        , url = globalValues.API_URL + '/activity/' + activityId + '/hypothesis';
 
         $http.get(url, { cache: false })
           .then(function (response) {

@@ -127,7 +127,6 @@
         var deferred = $q.defer()
         , statusPropertyName = getStatusPropertyName(status)
         , url = globalValues.API_URL + '/activity/' + activityId + '/' + statusPropertyName;
-        //, url = 'http://private-74203b-openpbl.apiary-mock.com/api' + '/activity/' + activityId + '/' + statusPropertyName;
 
         $http.get(url)
           .then(function (response) {
