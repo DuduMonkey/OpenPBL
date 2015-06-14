@@ -153,7 +153,7 @@
             <div class="container chalkboard">
               <div id="abstraction">
                 <h4>Abstração<a href="" ng-click="toggleModal('#abstractionModal')" pbl-permission="Professor"><span class="label label-success">editar</span></a></h4>
-                <p>Exemplo</p>
+                <p>{{::vm.activity.abstraction}}</p>
               </div>
             </div>
           </section>
@@ -336,11 +336,11 @@
           <div class="modal-title"><h4>Editar Abstração</h4></div>
         </div>
         <div class="modal-body">
-          <textarea class="form-control" rows="15" placeholder="Descrição..." maxlength="1000"></textarea>
+          <textarea class="form-control" rows="15" ng-model="vm.activity.abstraction" placeholder="Descrição..." maxlength="1000"></textarea>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-          <button type="button" class="btn btn-success" ng-click="">Salvar</button>
+          <button type="button" class="btn btn-success" ng-click="saveStory('#abstractionModal')">Salvar</button>
         </div>
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

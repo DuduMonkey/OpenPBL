@@ -111,7 +111,6 @@
                 }
 
                 activity[statusName] = response;
-                console.log(activity[statusName]);
                 deferred.resolve(activity);
               })
               .catch(function (error) {
