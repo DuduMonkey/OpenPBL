@@ -191,8 +191,8 @@
               <div id="research">
                 <h4>Conteúdo para pesquisa<a href="" ng-click="toggleModal('#researchMaterialModal')" pbl-permission="Professor"><span class="label label-success">editar</span></a></h4>
                 <ul>
-                  <li>
-                    Exemplo
+                  <li ng-repeat="item in vm.activity.research">
+                    {{item}}
                   </li>
                 </ul>
               </div>
@@ -218,7 +218,7 @@
             <div class="container chalkboard">
               <div id="abstraction">
                 <h4>Abstração<a href="" ng-click="toggleModal('#abstractionModal')" pbl-permission="Professor"><span class="label label-success">editar</span></a></h4>
-                <p>Exemplo</p>
+                <p>{{::vm.activity.abstraction}}</p>
               </div>
             </div>
           </section>
@@ -361,7 +361,7 @@
           <div class="input-group">
             <input type="text" class="form-control" placeholder="Insira um conteúdo" ng-model="newMaterial"/>
             <span class="input-group-btn">
-      <button type="button" class="btn btn-primary" ng-disabled="" ng-click="">
+      <button type="button" class="btn btn-primary" ng-disabled="!newMaterial" ng-click="addItemToList(vm.activity.research, newMaterial)">
         Adicionar</button>
             </span>
           </div><!-- /input-group -->
@@ -373,12 +373,12 @@
               </tr>
             </thead>
             <tbody>
-              <tr ng-repeat="">
+              <tr ng-repeat="material in vm.activity.research track by $index">
                 <td>
-                  <span>{{}}</span>
+                  <span>{{::material}}</span>
                 </td>
                 <td>
-                  <button type="button" class="btn btn-danger btn-xs pull-right" ng-click="">&times;</button>
+                  <button type="button" class="btn btn-danger btn-xs pull-right" ng-click="removeItemFromList(vm.activity.research, $index)">&times;</button>
                 </td>
               </tr>
             </tbody>
@@ -386,7 +386,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-          <button type="button" class="btn btn-success" ng-click="">Salvar</button>
+          <button type="button" class="btn btn-success" ng-click="saveStory('#researchMaterialModal')">Salvar</button>
         </div>
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
@@ -401,11 +401,11 @@
           <div class="modal-title"><h4>Editar Abstração</h4></div>
         </div>
         <div class="modal-body">
-          <textarea class="form-control" rows="15" ng-model="" placeholder="Descrição..." maxlength="1000"></textarea>
+          <textarea class="form-control" rows="15" ng-model="vm.activity.abstraction" placeholder="Descrição..." maxlength="1000"></textarea>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-          <button type="button" class="btn btn-success" ng-click="">Salvar</button>
+          <button type="button" class="btn btn-success" ng-click="saveStory('#abstractionModal')">Salvar</button>
         </div>
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

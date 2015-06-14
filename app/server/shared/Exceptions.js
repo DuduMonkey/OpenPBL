@@ -48,6 +48,10 @@
     ACTIVITY_POST_DELETE_ERROR: declareNewError('Erro ao deletar o post'),
     ACTIVITY_POST_INVALID_TO_DELETE: declareNewError('Post para exclusão não encontrado'),
     ACTIVITY_POST_QUERY_ERROR: declareNewError('Erro ao buscar da postagem na base de dados'),
+    // Research
+    ACTIVITY_RESEARCH_ERROR: declareNewError('Erro ao inserir os dados de pesquisa na atividade'),
+    // Abstraction
+    ACTIVITY_ABSTRACTION_ERROR: declareNewError('Erro ao inserir os dados de abstração na atividade'),
     // JSON Helper
     PARSE_TO_JSON_EXCEPTION: declareNewError('Falha ao fazer o parse para JSON'),
     //Exception for not implemented functions

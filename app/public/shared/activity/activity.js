@@ -179,6 +179,17 @@
             saveActivityItem(activityId, apiMethod, story, from);
           };
 
+          /**
+           * Salva pesquisa
+           */
+          scope.saveReasearch = function (from) {
+            var activityId = scope.vm.activity.id
+            , apiMethod = 'saveActivityResearch'
+            , story = scope.vm.activity.research;
+
+            saveActivityItem(activityId, apiMethod, story, from);
+          };
+
           scope.addPost = function (post, from) {
             var activityId = scope.vm.activity.id
             , apiMethod = getApiAddMethodByContent(scope.content);

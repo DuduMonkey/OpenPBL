@@ -12,9 +12,12 @@
     _creator: { type: String, ref: 'User' },
     name: { type: String, required: true },
     story: { type: String, ref: 'Story', required: false },
-    status: {type: Number, min: 1, max: 7, default: 1 },
-    created: {type: Date, default: Date.now },
-    participants: [{ type: String, ref: 'User'}]
+    status: { type: Number, min: 1, max: 7, default: 1 },
+    created: { type: Date, default: Date.now },
+    participants: [{ type: String, ref: 'User'}],
+    posts: [{type: String, ref: 'Post'}],
+    research: [{ type: String, required: false}],
+    abstraction: { type: String, required: false }
   });
 
   /**
@@ -150,9 +153,9 @@
   **/
   ActivitySchema.statics.getDefaultStoryPlaceHolder = function () {
     var defaultStoryPlaceHolder = {
-      description: "Clique no botão editar acima para definir um problema.",
-      helpfulMaterials: "Clique no botão editar acima para inserir os materiais de apoio.",
-      externalLinks: "Clique no botão editar acima para inserir os links externos que irão ajudar na resolução da atividade."
+      description: 'Clique no botão editar acima para definir um problema.',
+      helpfulMaterials: 'Clique no botão editar acima para inserir os materiais de apoio.',
+      externalLinks: 'Clique no botão editar acima para inserir os links externos que irão ajudar na resolução da atividade.'
     };
 
     return defaultStoryPlaceHolder;
