@@ -72,7 +72,7 @@
                 return 'tab-abstraction';
 
               case activityStatus.FINISHED:
-                break;
+                return 'tab-abstraction';
             }
           };
 
