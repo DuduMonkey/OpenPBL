@@ -15,7 +15,7 @@
 
       //Activities select name, story, created, participants, status where _creator = user._id
       Activity.queryInActivities({
-        select: '_id name story created participants status',
+        select: '_id name story created participants status posts',
         where: ['_creator'],
         conditions: [userId],
         join: [
@@ -26,6 +26,10 @@
           {
             path: 'story',
             select: '-_id description'
+          },
+          {
+            path: 'posts',
+            select: '-_id _creator content type date'
           }
         ]
       })
@@ -47,7 +51,7 @@
 
       //Activities select name, story, created, participants, status where participants contains user._id
       Activity.queryInActivities({
-        select: '_id name story created participants status',
+        select: '_id name story created participants status posts',
         where: ['participants'],
         conditions: [userId],
         join: [
@@ -58,6 +62,10 @@
           {
             path: 'story',
             select: '-_id description'
+          },
+          {
+            path: 'posts',
+            select: '-_id _creator content type date'
           }
         ]
       })
