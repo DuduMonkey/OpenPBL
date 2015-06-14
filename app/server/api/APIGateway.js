@@ -2,7 +2,7 @@
 (function () {
   'use strict';
 
-  // Services in use
+  // Import all the service facades
   var authentication = require('../rest/RESTAuthentication');
   var register = require('../rest/RESTRegister');
   var activity = require('../rest/RESTActivity');
@@ -13,13 +13,16 @@
   var resolution = require('../rest/RESTResolution');
   var roles = require('../rest/RESTRole');
 
+  // Route mapper
+  var _r = require('./RouteMapper');
+
   /**
     Global router
   */
   module.exports = function (app, path, router) {
 
     // Initialize the middleware proxy oversee
-    require('./APIProxy')(router);
+    require('./RouteInterceptor')(router);
 
     // Prefix every route api with API
     // Remember, all prefixed routes needs authentication
@@ -40,73 +43,73 @@
     /*jslint unparam: false*/
 
     // [GET] the role list
-    router.route('/role')
+    router.route(_r.role)
       .get(roles.get);
 
-    // [POST] New user data to create user
-    router.route('/signup')
+    // [POST] Register new user on server
+    router.route(_r.signup)
       .post(register.post);
 
     // [POST] User data to login on application
-    router.route('/login')
+    router.route(_r.login)
       .post(authentication.post);
 
     // [POST] Activity data to create new activity
     // [GET] List of activities
-    router.route('/activity')
+    router.route(_r.activities)
       .post(activity.post)
       .get(activity.list);
 
     // [GET] Activity basic data from user  
     // [PUT] Update activity from user  
     // [DELETE] Activity from user  
-    router.route('/activity/:id')
+    router.route(_r.activity)
       .get(activity.getActivityData)
       .put(activity.updateActivityStatus)
       .delete(activity.delete);
 
     // [GET] Story data from activity
     // [POST] Story data to save activity story
-    router.route('/activity/:id/story')
+    router.route(_r.stories)
       .get(story.get)
       .post(story.post);
 
     // [POST] User on activity
-    router.route('/activity/:id/participant')
+    router.route(_r.participants)
       .post(activityUser.insertUser);
 
     // [DELETE] User from activity
-    router.route('/activity/:activityId/participant/:userId')
+    router.route(_r.participant)
       .delete(activityUser.removeUser);
 
     // [GET] Facts from activity  
     // [POST] Fact in activity
-    router.route('/activity/:id/fact')
+    router.route(_r.facts)
       .get(fact.list)
       .post(fact.post);
 
     // [DELETE] An Fact from activity
-    router.route('/activity/:activityId/fact/:id')
+    router.route(_r.fact)
       .delete(fact.delete);
 
     // [GET] Hypothesis from activity  
     // [POST] Hypothesis in activity
-    router.route('/activity/:id/hypothesis')
+    router.route(_r.hypotheses)
       .get(hypothesis.list)
       .post(hypothesis.post);
 
     // [DELETE] An Hypothesis from activity
-    router.route('/activity/:activityId/hypothesis/:id')
+    router.route(_r.hypothesis)
       .delete(hypothesis.delete);
 
     // [GET] Resolutions from activity  
     // [POST] Resolution in activity
-    router.route('/activity/:id/resolution')
+    router.route(_r.resolutions)
       .get(resolution.list)
       .post(resolution.post);
 
     // [DELETE] An Resolution from activity
-    router.route('/activity/:activityId/resolution/:id')
+    router.route(_r.resolution)
       .delete(resolution.delete);
   };
 }());

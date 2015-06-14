@@ -4,33 +4,27 @@
 
   // Modules in use
   var TokenValidator = require('../token/TokenValidator');
+  var ValidatePathSpecification = require('./Specification/ValidPathNotRequireAuthenticationSpec');
+  var _r = require('./RouteMapper');
+
+  // Mapping the valid routes
+  var paths = {
+    needsAuthentication: [
+      _r.activities,
+      _r.default_rote
+    ],
+    freeFromAuthentication: [
+      _r.role,
+      _r.signup,
+      _r.login
+    ],
+    baseUrls: [
+      _r.api
+    ]
+  };
 
   //Token location on header (You can send as X-Pbl-Token)
   var __TOKEN_HEADER = 'x-pbl-token';
-
-  /**
-    Validate if the requested path needs authentication
-    Requested path is free from authentication case:
-        Base url are doesnt have exists (/api)
-        Url are listed as free from authentication
-    Otherwise, it needs authentication
-  */
-  var pathNeedsAuthentication = function (url, baseUrl) {
-    var freeFromAuthenticationPaths = [
-      '/signup',
-      '/login',
-      '/role',
-    ];
-
-    if (!baseUrl) {
-      return false;
-    }
-    var freeFromAuthentication = (freeFromAuthenticationPaths.indexOf(url) > -1);
-    if (freeFromAuthentication) {
-      return false;
-    }
-    return true;
-  };
 
   /**
     Validate the token candidate, if the token are invalid
@@ -54,11 +48,17 @@
     var url = req.url;
     var baseUrl = req.baseUrl;
 
-    if (pathNeedsAuthentication(url, baseUrl)) {
-      var headerToken = req.headers[__TOKEN_HEADER];
-      validateToken(headerToken, next, res);
-    } else {
+    var ValidPathNotRequireAuthentication = new ValidatePathSpecification(url, baseUrl);
+
+    if (ValidPathNotRequireAuthentication.isSatisfiedBy(paths)) {
       next();
+    } else {
+      if (!!ValidPathNotRequireAuthentication.FaultReason) {
+        res.status(404).send('Invalid Request');
+      } else {
+        var headerToken = req.headers[__TOKEN_HEADER];
+        validateToken(headerToken, next, res);
+      }
     }
   };
 
