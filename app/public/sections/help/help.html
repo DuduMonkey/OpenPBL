@@ -61,8 +61,8 @@
 	        	<p class="lead">As atividades de PBL são definidas e aplicadas em aula a partir da <strong>tela de atividade</strong> (figura exibida abaixo). É através desta tela do sistema que o professor planeja e conduz a tarefa, definindo o problema e guiando os alunos participantes de acordo com o ciclo do PBL. É possível acessar a tela de uma atividade específica selecionando-a no painel do usuário e clicando no botão <span class="label label-primary">Ir para a atividade</span> . Além disto, ao criar uma nova atividade a partir do painel do usuário, o sistema automaticamente redireciona o professor para esta tela, permitindo que o planejamento seja iniciado.</p>
 	        	<img id="help-img-center" class="img-responsive" src="assets/images/help-activity.png" />
 	        	<p class="lead">No cabeçalho do painel principal são exibidos o título da atividade, o seu estado atual e o número de participantes. O painel foi projetado nos moldes do ciclo do PBL, e todas as ações disponíveis fazem com que ele seja respeitado pelos usuários. <strong>O ciclo do PBL é representado através de seis abas na parte superior do painel, que espelham os estados que compõem uma atividade de PBL</strong> (Problema, Fatos, Hipóteses, Pesquisa, Resolução e Abstração). <strong>Quando uma atividade encontra-se em um determinado estado, os estados seguintes são desabilitados e não podem ser acessados pelos usuários até o momento em que o professor decide dar início àquele estado da atividade</strong>, clicando no botão <span class="label label-success">Avançar estado</span> . Ao avançar para o estado seguinte, os <strong>estados anteriores da atividade permanecem acessíveis para consulta, mas não podem ser alterados</strong>. Isto restringe a execução da atividade conforme o ciclo do PBL, não permitindo que alterações influenciem o rumo proposto inicialmente.</p>
-	        	<p class="lead">Atividades iniciam no estado "Problema" e podem avançar até o estado "Abstração", momento em que professor e alunos refletem sobre o que foi produzido, e decidem se o ciclo deverá ser reiniciado ou encerrado. Caso não se tenha chegado a uma conclusão satisfatória, o professor pode reiniciar o ciclo a partir de dois estados, "Fatos" ou "Hipóteses", clicando em <span class="label label-primary">Recomeçar atividade</span> . Ao reiniciar o ciclo, o estado da atividade retorna ao estado escolhido e este é reaberto à edição, para que os participantes possam trabalhar nos pontos em que precisam aprimorar e dar continuidade ao exercício a partir daquele estágio. Para encerrar uma atividade, o professor deve utilizar o botão <span class="label label-success">Encerrar atividade</span> . <strong>Atividades encerradas não podem ser reiniciadas, mas permanecem disponíveis para consulta e podem ser acessadas através do painel do usuário</strong>.</p>
-	        	<p class="lead">O problema da atividade pode ser editado pelo professor através do botão <span class="label label-success">editar</span> no interior do painel. Outras seções do estado "Problema", chamadas "Material de apoio" e "Links externos", podem ser editadas da mesma forma através dos seus próprios botões de edição, bem como as seções "Conteúdo para pesquisa" e "Abstração", que fazem parte dos estados "Pesquisa" e "Abstração", respectivamente. Os estados "Fatos", "Hipóteses" e "Resolução" permitem a interação dos alunos na atividade, que podem inserir <em>posts</em> conforme cada um dos estados. <strong>Ao passo que alunos podem enviar suas contribuições, somente o professor pode excluir um <em>post</em> adicionado, através dos botões em forma de "X" exibidos no corpo dos mesmos</strong>.</p>
+	        	<p class="lead">Atividades iniciam no estado "Problema" e podem avançar até o estado "Abstração", momento em que professor e alunos refletem sobre o que foi produzido, e decidem se o ciclo deverá ser reiniciado ou encerrado. Caso não se tenha chegado a uma conclusão satisfatória, o professor pode reiniciar o ciclo a partir de dois estados, "Fatos" ou "Hipóteses", clicando em <span class="label label-purple">Recomeçar atividade</span> . Ao reiniciar o ciclo, o estado da atividade retorna ao estado escolhido e este é reaberto à edição, para que os participantes possam trabalhar nos pontos em que precisam aprimorar e dar continuidade ao exercício a partir daquele estágio. Para encerrar uma atividade, o professor deve utilizar o botão <span class="label label-success">Encerrar atividade</span> . <strong>Atividades encerradas não podem ser reiniciadas, mas permanecem disponíveis para consulta e podem ser acessadas através do painel do usuário</strong>.</p>
+	        	<p class="lead">O problema da atividade pode ser editado pelo professor através do botão <span class="label label-success">editar</span> no interior do painel. Outras seções do estado "Problema", chamadas "Material de apoio" e "Links externos", podem ser editadas da mesma forma através dos seus próprios botões de edição, bem como as seções "Conteúdo para pesquisa" e "Abstração", que fazem parte dos estados "Pesquisa" e "Abstração", respectivamente. Os estados "Fatos", "Hipóteses" e "Resolução" permitem a interação dos alunos na atividade, que podem inserir <em>posts</em> conforme cada um dos estados. <strong>Ao passo que alunos podem enviar suas contribuições, somente o professor pode excluir um <em>post</em> adicionado</strong>, através dos botões em forma de "X" exibidos no corpo dos mesmos.</p>
 	        	<p class="lead">Além do painel principal, a tela de atividade conta com uma seção de ajuda na lateral esquerda que oferece dicas de acordo com o estado selecionado pelo usuário. Estas dicas têm o propósito de auxiliar o usuário na compreensão dos recursos disponíveis e de prover um guia mínimo de boas práticas pertinentes àquele estado específico do PBL. Ainda, as dicas são contextualizadas de acordo com o usuário, professor ou aluno, dado que a interação com o sistema e o PBL acontecem de maneiras diferentes.</p>
 	        </div>
 	      </div>
@@ -83,25 +83,41 @@
       <div class="col-lg-12 col-sm-12">
         <hr class="section-heading-spacer">
         <div class="clearfix"></div>
-        <h3 class="section-heading">Ciclo do PBL</h3>
-        <pbl-svg id="pbl-flow-svg" class="img-responsive" name="pbl.flow-plain"></pbl-svg>
-        <h4>Definindo o Problema</h4>
-        <p class="lead">Fugiat ground round consectetur pork loin, dolore shank incididunt excepteur alcatra ut duis. Ham sint quis proident incididunt minim landjaeger in turducken chuck tongue. Occaecat dolore t-bone pork chop excepteur meatball jerky tail incididunt beef. Pancetta officia ball tip elit ut in voluptate, ut frankfurter meatball esse</p>
-        <h4>Identificando Fatos</h4>
-        <p class="lead">Fugiat ground round consectetur pork loin, dolore shank incididunt excepteur alcatra ut duis. Ham sint quis proident incididunt minim landjaeger in turducken chuck tongue. Occaecat dolore t-bone pork chop excepteur meatball jerky tail incididunt beef. Pancetta officia ball tip elit ut in voluptate, ut frankfurter meatball esse</p>
-        <h4>Gerando Hipóteses</h4>
-        <p class="lead">Fugiat ground round consectetur pork loin, dolore shank incididunt excepteur alcatra ut duis. Ham sint quis proident incididunt minim landjaeger in turducken chuck tongue. Occaecat dolore t-bone pork chop excepteur meatball jerky tail incididunt beef. Pancetta officia ball tip elit ut in voluptate, ut frankfurter meatball esse</p>
-        <h4>Pesquisando Conhecimentos</h4>
-        <p class="lead">Fugiat ground round consectetur pork loin, dolore shank incididunt excepteur alcatra ut duis. Ham sint quis proident incididunt minim landjaeger in turducken chuck tongue. Occaecat dolore t-bone pork chop excepteur meatball jerky tail incididunt beef. Pancetta officia ball tip elit ut in voluptate, ut frankfurter meatball esse</p>
-        <h4>Aplicando Novos Conhecimentos</h4>
-        <p class="lead">Fugiat ground round consectetur pork loin, dolore shank incididunt excepteur alcatra ut duis. Ham sint quis proident incididunt minim landjaeger in turducken chuck tongue. Occaecat dolore t-bone pork chop excepteur meatball jerky tail incididunt beef. Pancetta officia ball tip elit ut in voluptate, ut frankfurter meatball esse</p>
-        <h4>Refletindo Sobre a Atividade</h4>
-        <p class="lead">Fugiat ground round consectetur pork loin, dolore shank incididunt excepteur alcatra ut duis. Ham sint quis proident incididunt minim landjaeger in turducken chuck tongue. Occaecat dolore t-bone pork chop excepteur meatball jerky tail incididunt beef. Pancetta officia ball tip elit ut in voluptate, ut frankfurter meatball esse</p>
-      </div>
+        <h2 class="section-heading">Ciclo do PBL</h2>
+        <div class="row">
+	        <div class="col-lg-12 col-sm-12">
+		        <p class="lead">O PBL funciona através da aprendizagem por meio da experimentação, investigação, e resolução de problemas complexos e autênticos. Estudantes trabalham colaborativamente em pequenos grupos para resolver um problema proposto, e o professor guia a atividade com base no <strong>ciclo do PBL</strong>. Neste ciclo, o professor elabora um problema a ser resolvido e o apresenta aos estudantes. Estes então analizam o problema e levantam um conjunto de fatos conhecidos sobre o mesmo, o que os ajuda a entender o cenário proposto. À medida que os alunos entendem melhor o problema, eles geram hipóteses com possíveis soluções. Uma parte importante do ciclo do PBL é identificar os conhecimentos que precisam ser explorados em relação ao problema. São estes conhecimentos que os alunos pesquisam durante o estudo auto-dirigido. Uma vez que este conteúdo é pesquisado e explorado, os estudantes aplicam os novos conhecimentos adquiridos para tentar resolver o problema, avaliando as hipóteses previamente estipuladas. Ao completar o ciclo, os estudantes refletem sobre o que aprenderam, podendo reiniciar o ciclo caso o problema ainda não tenha sido resolvido de forma satisfatória.</p>
+		        <pbl-svg id="pbl-flow-svg" class="img-responsive" name="pbl.flow-plain"></pbl-svg>
+		        
+		        <h3>Definindo o Problema</h3>
+		        <p class="lead">Problemas devem ser criados a partir de simulações de assuntos complexos em torno de conteúdos relevantes. Isto não significa ignorar alguns conteúdos do programa de ensino. Ao contrário; significa projetar cuidadosamente situações-problema para direcionar ao conteúdo a ser aprofundado e que é requerido pelo programa de ensino. Problemas eficientes devem ser provocativos, desafiadores, de conclusão aberta, direcionados para o centro de uma disciplina ou tópico. Podem originar de dilemas do mundo real que os estudantes julgarem interessantes e devem ser planejados pelo professor de acordo com os objetivos específicos a serem alcançados.</p>
+		        <p class="lead">Em resumo, o problema deve conduzir o estudo, apreender um tema, direcionar os estudantes ao domínio do conteúdo e de habilidades que os capacite a responder à pergunta-problema; não ser resolvido ou respondido facilmente;  manter o projeto de ensino como um conjunto; inspirar educadores e educandos e criar oportunidade de se aprofundar em um assunto complexo.</p>
+		        <p class="lead">É importante que professores recorram também à material externo no que diz respeito ao planejamento adequado de atividades PBL. Ao passo que o OpenPBL foi construído como ferramenta de apoio à construção e aplicação de tais atividades com o auxílio de ferramentas computacionais, pode-se encontrar vasta literatura externa para que o PBL seja utilizado da forma mais eficiente possível. Como fonte inicial, recomendamos o <a href="https://www2.cead.ufv.br/abp/?page_id=26" target="_blank">ABP</a> - Ambiente Online sobre a Aprendizagem Baseada em Problemas da Universidade Federal de Viçosa.</p>
+		        
+		        <h3>Identificando Fatos</h3>
+		        <p class="lead">A participação dos alunos na atividade de PBL tem início no momento em que a definição do problema é concluído. Através da leitura e análise do problema proposto, alunos trabalham em pequenos grupos de forma ativa e colaborativa para discutir e levantar fatos conhecidos sobre o cenário apresentado. É possível ainda que estes fatos sejam obtidos ao questionar o professor para buscar informações adicionais sobre o problema, ou através de experimentos e pesquisa.</p>
+		        <p class="lead">Os fatos listados neste estágio auxiliam os alunos na visualização do problema de forma objetiva. A qualquer momento durante o ciclo, alunos podem utilizá-los para refletir sobre os dados obtidos até aquele ponto e gerar perguntas que os conduzirão na pesquisa de conteúdo.</p>
+		        
+		        <h3>Gerando Hipóteses</h3>
+		        <p class="lead">Durante este estágio, os alunos geram hipóteses sobre a resolução do problema e sobre os mecanismos ou estratégias que podem utilizar para compreendê-lo melhor. Auxiliados pelo professor, é com base nestas hipóteses que os alunos identificam os conhecimentos que precisam aprender para resolver o problema.</p>
+		        <p class="lead">Esta fase do ciclo promove a negociação de idéias - estudantes apresentam idéias e estratégias para seu grupo e as defendem. Isto estimula a articulação do estado atual de compreensão dos alunos, ajudando na construção do conhecimento e preparando os alunos para o aprendizado.</p>
+		        
+		        <h3>Pesquisando Conhecimentos</h3>
+		        <p class="lead">A aprendizagem auto-dirigida tem início neste estágio. Após ter trabalhado com o problema tanto quanto possível, identificado e listado os conceitos ou conteúdos que precisam aprender, cada membro do grupo se envolve no estudo auto-dirigido para pesquisar e encontrar a informação necessária, usando uma variedade de recursos e fontes de informação disponíveis, viabilizando aprendizagem exploratória. Eles então se reúnem novamente em grupos para compartilhar o que aprenderam e avaliar as hipóteses levantadas previamente.</p>
+		        
+		        <h3>Aplicando Novos Conhecimentos</h3>
+		        <p class="lead">Depois de concluírem a exploração necessária e o estudo, os alunos organizam as ideias e conceitos por meio de discussão, exercitam a habilidade de pensamento crítico e aplicam o que aprenderam. Neste estágio, estudantes apresentam à classe suas propostas para a resolução final da situação que deu início ao processo de aprendizagem. Como os problemas são abertos à interpretação, é importante salientar a possibilidade de mais de uma resposta correta.</p>
+		        
+		        <h3>Refletindo Sobre a Atividade</h3>
+		        <p class="lead">Depois de terem contribuído com a resolução do problema, os participantes refletem sobre a atividade e avaliam a si mesmos quanto ao que aprenderam e como aprenderam, com o intuito de desenvolver habilidades em autoavaliação. Esta reflexão sobre a relação entre a resolução do problema e o processo de aprendizagem é essencial no PBL, necessária para a construção da habilidade de compreensão e raciocínio dos estudantes.</p>
+						<p class="lead">É comum que os participantes reflitam sobre o que está sendo realizado ao longo de vários estágios do ciclo do PBL, podendo utilizar e reavaliar a informação produzida nas fases anteriores. O ciclo é dimensionado de maneira que os estudantes possam reiniciá-lo caso não se tenha chegado a uma conclusão satisfatória nesta fase, podendo utilizar várias iterações para completar a atividade.</p>
+      		</div>
+    		</div>
+    	</div>
       <div class="back-to-top pull-right">
       	<a href="" pbl-scroll-to="#top">Voltar ao topo <i class="fa fa-arrow-circle-up"></i></a>
       </div>
-    </div>
+  	</div>
   </div>
   <!-- /.container -->
 </div>
@@ -114,13 +130,16 @@
       <div class="col-lg-12 col-sm-12">
         <hr class="section-heading-spacer">
         <div class="clearfix"></div>
-        <h3 class="section-heading">Leitura externa</h3>
+        <h2 class="section-heading">Leitura externa</h2>
         <ul>
         	<li>
         		<p class="lead"><a href="https://www2.cead.ufv.br/abp/" target="_blank">ABP</a> - Ambiente Online sobre a Aprendizagem Baseada em Problemas da Universidade Federal de Viçosa. Contém material abrangente sobre a metodologia, e inclui <strong>instruções para o planejamento adequado de um Problema de PBL</strong>.</p>
         	</li>
         	<li>
         		<p class="lead"><a href="https://www2.cead.ufv.br/abp/wp-content/uploads/docs/paginas/7-Exemplo-de-problemas.pdf" target="_blank">Atividades PBL</a> - Exemplos de problemas aplicados em conteúdos da Ciência dos Alimentos - Universidade Federal de Viçosa.</p>
+        	</li>
+        	<li>
+        		<p class="lead"><a href="http://www.udel.edu/inst/index.html" target="_blank">PBL@UD</a> (em inglês) - Portal com informações sobre o PBL na Universidade de Delaware (EUA).</p>
         	</li>
         	<li>
         		<p class="lead"><a href="http://www.edutopia.org/" target="_blank">Edutopia</a> (em inglês) - Portal educacional e comunidade online que tem o propósito de fomentar a utilização de metodologias educacionais que estimulam e inspirem os estudantes, uma iniciativa da George Lucas Educational Foundation.</p> 
@@ -141,6 +160,19 @@
     <div class="row">
       <div class="col-lg-12 col-sm-12">
         <div class="clearfix"></div>
+      </div>
+    </div>
+  </div>
+  <!-- /.container -->
+</div>
+
+<div class="content-section-default">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 col-sm-12">
+        <div class="clearfix"></div>
+        <p class="pbl-copyright"><small>O conteúdo sobre planejamento de atividades PBL desta página foi composto a partir do material disponível no<br><a href="https://www2.cead.ufv.br/abp/" target="_blank">Ambiente Online sobre a Aprendizagem Baseada em Problemas da Universidade Federal de Viçosa</a><br> e da obra dos seguintes autores:<br><strong>Fontes:</strong> Gallagher, S. A.<br>Barrows, H. S.<br>Hmelo-Silver, C. E.<br>Larmer, J.<br>Gijselaers, W. H.<br></small></p>
       </div>
     </div>
   </div>
