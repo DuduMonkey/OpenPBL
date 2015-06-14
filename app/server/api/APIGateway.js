@@ -13,6 +13,7 @@
   var resolution = require('../rest/RESTResolution');
   var roles = require('../rest/RESTRole');
   var research = require('../rest/RESTResearch');
+  var abstraction = require('../rest/RESTAbstraction');
 
   // Route mapper
   var _r = require('./RouteMapper');
@@ -117,6 +118,12 @@
     // [POST] Activity Research list
     router.route(_r.research)
       .get(research.get)
-      .post(research.post);
+      .post(research.post);    
+
+    // [GET] Activity Abstraction detail
+    // [POST] Activity Abstraction detail
+    router.route(_r.abstraction)
+      .get(abstraction.get)
+      .post(abstraction.post);
   };
 }());

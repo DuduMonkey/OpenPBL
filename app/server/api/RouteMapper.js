@@ -29,6 +29,7 @@
   defineStatusProperty('resolutions', '/activity/:id/resolution');
   defineStatusProperty('resolution', '/activity/:activityId/resolution/:id');
   defineStatusProperty('research', '/activity/:id/research');
+  defineStatusProperty('abstraction', '/activity/:id/abstraction');
 
   module.exports = Routes;
 }());
