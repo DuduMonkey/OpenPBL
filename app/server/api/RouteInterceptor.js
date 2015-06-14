@@ -5,6 +5,23 @@
   // Modules in use
   var TokenValidator = require('../token/TokenValidator');
   var ValidatePathSpecification = require('./Specification/ValidPathNotRequireAuthenticationSpec');
+  var _r = require('./RouteMapper');
+
+  // Mapping the valid routes
+  var paths = {
+    needsAuthentication: [
+      _r.activities,
+      _r.default_rote
+    ],
+    freeFromAuthentication: [
+      _r.role,
+      _r.signup,
+      _r.login
+    ],
+    baseUrls: [
+      _r.api
+    ]
+  };
 
   //Token location on header (You can send as X-Pbl-Token)
   var __TOKEN_HEADER = 'x-pbl-token';
@@ -30,21 +47,6 @@
   var routeMiddleware = function (req, res, next) {
     var url = req.url;
     var baseUrl = req.baseUrl;
-
-    var paths = {
-      needsAuthentication: [
-        '/activity',
-        '/'
-      ],
-      freeFromAuthentication: [
-        '/role',
-        '/signup',
-        '/login'
-      ],
-      baseUrls: [
-        '/api'
-      ]
-    };
 
     var ValidPathNotRequireAuthentication = new ValidatePathSpecification(url, baseUrl);
 
