@@ -29,40 +29,34 @@
   /**
     Transform a list of activities into an response bag
   **/
-  var activityListResponseBag = function (activities) {
-    var _responseBag = {
-      activities: []
+  var activityListResponseBag = function (activity) {
+    var getUserSmallBag = function (user) {
+      return {
+        id: user._id,
+        name: user.name,
+        numberOfPosts: !!user.posts ? user.posts.length : GLOBAL.CONST_EMPTY_NUMBER
+      };
     };
 
-    function getUserListSmallBag(userList) {
-      var _listBag = [];
-
-      userList.forEach(function (user) {
-        var userBag = {
-          id: user._id,
-          name: user.name,
-          numberOfPosts: !!user.posts ? user.posts.length : GLOBAL.CONST_EMPTY_NUMBER
-        };
-        _listBag.push(userBag);
-      });
-
-      return _listBag;
-    }
-
-    activities.forEach(function (activity) {
-      var activityBag = {
-        id: activity._id,
-        name: activity.name,
-        summary: !!activity.story ? activity.story.description : GLOBAL.CONST_EMPTY_STRING,
-        status: activity.status,
-        created: activity.created,
-        participants: getUserListSmallBag(activity.participants)
+    var getPostSmallBag = function (post) {
+      return {
+        created: post.date,
+        type: post.type,
+        content: post.content
       };
+    };
 
-      _responseBag.activities.push(activityBag);
-    });
+    var responseBag = {
+      id: activity._id,
+      name: activity.name,
+      summary: !!activity.story ? activity.story.description : GLOBAL.CONST_EMPTY_STRING,
+      status: activity.status,
+      created: activity.created,
+      participants: activity.participants.map(getUserSmallBag),
+      posts: activity.posts.map(getPostSmallBag)
+    };
 
-    return _responseBag;
+    return responseBag;
   };
 
   /**
@@ -128,8 +122,8 @@
         return userActivitiesStrategy().getUserActivities(sessionUser);
       })
       .then(function (activities) {
-        var responseBag = activityListResponseBag(activities);
-        deferred.resolve(responseBag);
+        var responseBag = activities.map(activityListResponseBag);
+        deferred.resolve({ activities: responseBag });
       })
       .catch(function (error) {
         deferred.reject(error);
