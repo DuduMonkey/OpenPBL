@@ -238,9 +238,9 @@
             <div class="col-lg-5 col-md-7 col-sm-8 actions" pbl-permission="Professor">
               <button ng-hide="content == 'tab-abstraction'" id="btn-next-status" class="btn btn-success pull-right" type="button" ng-click="nextStatus()" ng-if="canShowStatus(content, 'eq')">Avançar estado <i class="fa fa-arrow-circle-right"></i></button>
 
-              <button ng-show="content == 'tab-abstraction'" id="btn-next-status" class="btn btn-success pull-right" type="submit" ng-click="finishActivity()">Encerrar atividade <i class="fa fa-check-circle"></i></button>
+              <button ng-show="content == 'tab-abstraction'" id="btn-next-status" class="btn btn-success pull-right" type="submit" ng-click="finishActivity()" ng-if="canShowStatus(content, 'eq')">Encerrar atividade <i class="fa fa-check-circle"></i></button>
 
-              <button ng-show="content == 'tab-abstraction'" id="btn-next-status" class="btn btn-primary btn-purple pull-right" type="submit" ng-click="toggleModal('#restartActivityModal')"><i class="fa fa-arrow-circle-left"></i> Recomeçar atividade</button>
+              <button ng-show="content == 'tab-abstraction'" id="btn-next-status" class="btn btn-primary btn-purple pull-right" type="submit" ng-click="toggleModal('#restartActivityModal')" ng-if="canShowStatus(content, 'eq')"><i class="fa fa-arrow-circle-left"></i> Recomeçar atividade</button>
             </div>
           </div>
         </div> <!-- /.panel footer -->
