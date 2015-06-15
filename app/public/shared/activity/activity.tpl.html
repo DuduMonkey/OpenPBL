@@ -240,7 +240,7 @@
 
               <button ng-show="content == 'tab-abstraction'" id="btn-next-status" class="btn btn-success pull-right" type="submit" ng-click="finishActivity()">Encerrar atividade <i class="fa fa-check-circle"></i></button>
 
-              <button ng-show="content == 'tab-abstraction'" id="btn-next-status" class="btn btn-primary btn-purple pull-right" type="submit" data-toggle="modal"             , confirmModal = angular.element('#nextStatusModal');="#restartActivityModal"><i class="fa fa-arrow-circle-left"></i> Recomeçar atividade</button>
+              <button ng-show="content == 'tab-abstraction'" id="btn-next-status" class="btn btn-primary btn-purple pull-right" type="submit" ng-click="toggleModal('#restartActivityModal')"><i class="fa fa-arrow-circle-left"></i> Recomeçar atividade</button>
             </div>
           </div>
         </div> <!-- /.panel footer -->
@@ -475,8 +475,8 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-          <button type="button" class="btn btn-primary" ng-click="">Recomeçar Fatos</button>
-          <button type="button" class="btn btn-primary" ng-click="">Recomeçar Hipóteses</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="setStatusFacts()">Recomeçar Fatos</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="setStatusHypothesis()">Recomeçar Hipóteses</button>
         </div>
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

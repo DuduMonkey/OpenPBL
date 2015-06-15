@@ -264,6 +264,38 @@
               });
           };
 
+          scope.setStatusFacts = function () {
+            var activityId = scope.vm.activity.id;
+
+            activityService.nextStatus(activityId, 1)
+              .then(function (response) {
+                notificationService.success(response.message);
+
+                // Atualiza status da atividade
+                scope.activity.status = response.status;
+                init();
+              })
+              .catch(function (error) {
+                notificationService.error(error.message);
+              });
+          };
+
+          scope.setStatusHypothesis = function () {
+            var activityId = scope.vm.activity.id;
+
+            activityService.nextStatus(activityId, 2)
+              .then(function (response) {
+                notificationService.success(response.message);
+
+                // Atualiza status da atividade
+                scope.activity.status = response.status;
+                init();
+              })
+              .catch(function (error) {
+                notificationService.error(error.message);
+              });
+          };
+
           scope.finishActivity = function () {
             var activityId = scope.vm.activity.id
             , currentStatus = scope.vm.activity.status
