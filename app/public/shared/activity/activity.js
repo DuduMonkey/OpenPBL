@@ -217,6 +217,17 @@
             saveActivityItem(activityId, apiMethod, story, from);
           };
 
+          /**
+            * Salva abstração
+            */
+          scope.saveAbstraction = function (from) {
+            var activityId = scope.vm.activity.id
+            , apiMethod = 'saveActivityAbstraction'
+            , story = scope.vm.activity.abstraction;
+
+            saveActivityItem(activityId, apiMethod, story, from);
+          };
+
           scope.addPost = function (post, from) {
             var activityId = scope.vm.activity.id
             , apiMethod = getApiAddMethodByContent(scope.content);
