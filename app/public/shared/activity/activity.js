@@ -209,7 +209,7 @@
           /**
            * Salva pesquisa
            */
-          scope.saveReasearch = function (from) {
+          scope.saveResearch = function (from) {
             var activityId = scope.vm.activity.id
             , apiMethod = 'saveActivityResearch'
             , story = scope.vm.activity.research;
