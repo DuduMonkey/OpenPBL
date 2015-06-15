@@ -22,7 +22,7 @@
       </ul>
       <ul class="sidebar">
         <li class="sidebar-list" ng-repeat="activity in activities.finished" ng-click="setCurrentActivity(activity)">
-          <a class="finished" href="" ng-class="{activity.id === currentActivity.id}"><img src="assets/images/finished-tag.svg"/>{{activity.name}}</a>
+          <a class="finished" href="" ng-class="{'active': activity.id === currentActivity.id}"><img src="assets/images/finished-tag.svg"/>{{activity.name}}</a>
         </li>
       </ul>
     </div>
