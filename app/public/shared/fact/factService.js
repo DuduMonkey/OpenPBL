@@ -5,9 +5,9 @@
     .factory('factService', ['$http', '$log', '$q', 'globalValues', function ($http, $log, $q, globalValues) {
       var addFact = function (activityId, fact) {
         var deferred = $q.defer()
-        , url = globalValues.API_URL + '/activity/' + activityId + '/facts'
+        , url = globalValues.API_URL + '/activity/' + activityId + '/fact'
         , data = {
-          fact: fact
+          content: fact
         };
 
         $http.post(url, data)
@@ -23,7 +23,7 @@
 
       var deleteFact = function (activityId, factId) {
         var deferred = $q.defer()
-        , url = globalValues.API_URL + '/activity/' + activityId + '/facts/' + factId;
+        , url = globalValues.API_URL + '/activity/' + activityId + '/fact/' + factId;
 
         $http.delete(url)
           .then(function (response) {
@@ -38,7 +38,7 @@
 
       var getFacts = function (activityId) {
         var deferred = $q.defer()
-        , url = globalValues.API_URL + '/activity/' + activityId + '/facts';
+        , url = globalValues.API_URL + '/activity/' + activityId + '/fact';
 
         $http.get(url, { cache: false })
           .then(function (response) {

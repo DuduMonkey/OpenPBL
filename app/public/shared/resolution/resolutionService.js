@@ -5,9 +5,9 @@
     .factory('resolutionService', ['$http', '$q', 'globalValues', function ($http, $q, globalValues) {
       var addResolution = function (activityId, resolution) {
         var deferred = $q.defer()
-        , url = globalValues.API_URL + '/activity/' + activityId + '/resolutions'
+        , url = globalValues.API_URL + '/activity/' + activityId + '/resolution'
         , data = {
-          resolution: resolution
+          content: resolution
         };
 
         $http.post(url, data)
@@ -23,7 +23,7 @@
 
       var deleteResolution = function (activityId, resolutionId) {
         var deferred = $q.defer()
-        , url = globalValues.API_URL + '/activity/' + activityId + '/resolutions/' + resolutionId;
+        , url = globalValues.API_URL + '/activity/' + activityId + '/resolution/' + resolutionId;
 
         $http.delete(url)
           .then(function (response) {
@@ -38,7 +38,7 @@
 
       var getResolutions = function (activityId) {
         var deferred = $q.defer()
-        , url = globalValues.API_URL + '/activity/' + activityId + '/facts';
+        , url = globalValues.API_URL + '/activity/' + activityId + '/resolution';
 
         $http.get(url, { cache: false })
           .then(function (response) {
