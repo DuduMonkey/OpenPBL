@@ -17,7 +17,7 @@
     participants: [{ type: String, ref: 'User'}],
     posts: [{type: String, ref: 'Post'}],
     research: [{ type: String, required: false}],
-    abstraction: { type: String, required: false }
+    abstraction: { type: String, required: false, default: null }
   });
 
   /**
