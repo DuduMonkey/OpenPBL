@@ -153,9 +153,9 @@
   **/
   ActivitySchema.statics.getDefaultStoryPlaceHolder = function () {
     var defaultStoryPlaceHolder = {
-      description: 'Clique no botão editar acima para definir um problema.',
-      helpfulMaterials: 'Clique no botão editar acima para inserir os materiais de apoio.',
-      externalLinks: 'Clique no botão editar acima para inserir os links externos que irão ajudar na resolução da atividade.'
+      description: null,
+      helpfulMaterials: null,
+      externalLinks: null
     };
 
     return defaultStoryPlaceHolder;
