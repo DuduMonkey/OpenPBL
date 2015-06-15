@@ -162,6 +162,33 @@
             item = null;
           };
 
+          scope.canShowStatus = function (tabName, comparator) {
+            if (!scope.vm || !scope.vm.activity) return false;
+
+            var tabStatus = getStatusByContentTab(tabName)
+            , status = scope.vm.activity.status;
+
+            switch (comparator) {
+              case 'eq':
+                return tabStatus === status;
+
+              case 'get':
+                return tabStatus >= status;
+
+              case 'let':
+                return tabStatus <= status;
+
+              case 'gt':
+                return tabStatus > status;
+
+              case 'lt':
+                return tabStatus < status;
+
+              default:
+                return tabStatus === status;
+            }
+          };
+
           scope.removeItemFromList = function (list, index) {
             if (Array.isArray(list)) {
               list = list.splice(index, 1);
