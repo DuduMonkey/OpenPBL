@@ -102,11 +102,11 @@
     <!-- panel -->
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title"><i class="fa fa-cube"></i> {{::vm.activity.name}}</h3>
+        <h3 class="panel-title"><i class="fa fa-cube"></i> {{vm.activity.name}}</h3>
         <h3 class="panel-title">|</h3>
-        <h3 class="panel-title"><i class="fa fa-anchor"></i> {{::vm.activity.status | activityStatus}}</h3>
+        <h3 class="panel-title"><i class="fa fa-anchor"></i> {{vm.activity.status | activityStatus}}</h3>
         <h3 class="panel-title">|</h3>
-        <h3 class="panel-title"><i class="fa fa-users"></i> {{::vm.activity.numberOfParticipants}}</h3>
+        <h3 class="panel-title"><i class="fa fa-users"></i> {{vm.activity.numberOfParticipants}}</h3>
       </div>
       <div class="panel-body">
         <main>
@@ -134,7 +134,7 @@
               <div id="problem">
                 <h4>Problema<a href="" ng-click="toggleModal('#storyDescriptionModal')" pbl-permission="Professor" ng-show="canShowStatus('tab-problem', 'eq')"><span class="label label-success">editar</span></a></h4>
                 <p>
-                  {{::vm.activity.story.description}}
+                  {{vm.activity.story.description}}
                 </p>
               </div>
               <div id="resources">
@@ -304,7 +304,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-          <button type="button" class="btn btn-success" ng-click="saveStory('#externalLinksModal')">Salvar</button>
+          <button type="button" class="btn btn-success" ng-click="saveStory('#helpfulMaterialsModal')">Salvar</button>
         </div>
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

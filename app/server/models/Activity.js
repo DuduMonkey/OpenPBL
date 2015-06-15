@@ -154,8 +154,8 @@
   ActivitySchema.statics.getDefaultStoryPlaceHolder = function () {
     var defaultStoryPlaceHolder = {
       description: null,
-      helpfulMaterials: null,
-      externalLinks: null
+      helpfulMaterials: GLOBAL.CONST_EMPTY_LIST,
+      externalLinks: GLOBAL.CONST_EMPTY_LIST
     };
 
     return defaultStoryPlaceHolder;

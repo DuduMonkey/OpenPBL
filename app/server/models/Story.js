@@ -1,4 +1,4 @@
-/*global module, require*/
+/*global module, require, GLOBAL*/
 (function () {
   'use strict';
 
@@ -38,8 +38,8 @@
     var newStory = new this({
       _activity: storyData.activityId,
       description: storyData.description,
-      helpfulMaterials: storyData.helpfulMaterials,
-      externalLinks: storyData.externalLinks
+      helpfulMaterials: storyData.helpfulMaterials || GLOBAL.CONST_EMPTY_LIST,
+      externalLinks: storyData.externalLinks || GLOBAL.CONST_EMPTY_LIST
     });
 
     newStory.save(function (err, story) {
