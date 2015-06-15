@@ -7,7 +7,7 @@
         var deferred = $q.defer()
         , url = globalValues.API_URL + '/activity/' + activityId + '/hypothesis'
         , data = {
-          hypothesis: hypothesis
+          content: hypothesis
         };
 
         $http.post(url, data)
