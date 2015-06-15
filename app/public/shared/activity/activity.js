@@ -319,7 +319,11 @@
 
                   // Atualiza status da atividade
                   scope.activity.status = response.status;
-                  $location.path('/dashboard');
+                  /*global setTimeout:false */
+                  setTimeout(function(){ 
+                    $location.path('/dashboard');
+                  }, 1000);
+                  /*global setTimeout:true */
                 })
                 .catch(function (error) {
                   notificationService.error(error.message);
