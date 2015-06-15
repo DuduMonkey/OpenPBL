@@ -114,15 +114,15 @@
           <label class="fake">.</label>
           <input id="tab-problem" type="radio" name="tabs" ng-model="content" value="tab-problem">
           <label for="tab-problem">Problema</label>
-          <input id="tab-facts" type="radio" name="tabs" ng-model="content" value="tab-facts">
+          <input id="tab-facts" type="radio" name="tabs" ng-model="content" value="tab-facts" ng-disabled="!canShowStatus('tab-facts', 'let')">
           <label for="tab-facts">Fatos</label>
-          <input id="tab-hypothesis" type="radio" name="tabs" ng-model="content" value="tab-hypothesis">
+          <input id="tab-hypothesis" type="radio" name="tabs" ng-model="content" value="tab-hypothesis" ng-disabled="!canShowStatus('tab-hypothesis', 'let')">
           <label for="tab-hypothesis">Hipóteses</label>
-          <input id="tab-research" type="radio" name="tabs" ng-model="content" value="tab-research">
+          <input id="tab-research" type="radio" name="tabs" ng-model="content" value="tab-research" ng-disabled="!canShowStatus('tab-research', 'let')">
           <label for="tab-research">Pesquisa</label>
-          <input id="tab-resolution" type="radio" name="tabs" ng-model="content" value="tab-resolution">
+          <input id="tab-resolution" type="radio" name="tabs" ng-model="content" value="tab-resolution" ng-disabled="!canShowStatus('tab-resolution', 'let')">
           <label for="tab-resolution">Resolução</label>
-          <input id="tab-abstraction" type="radio" name="tabs" ng-model="content" value="tab-abstraction">
+          <input id="tab-abstraction" type="radio" name="tabs" ng-model="content" value="tab-abstraction" ng-disabled="!canShowStatus('tab-abstraction', 'let')">
           <label for="tab-abstraction">Abstração</label>
           <label class="fake">.</label> 
           <!-- /.tabs -->
@@ -132,23 +132,23 @@
           <section id="content-problem" ng-show="content == 'tab-problem'">
             <div class="container chalkboard">
               <div id="problem">
-                <h4>Problema<a href="" ng-click="toggleModal('#storyDescriptionModal')" pbl-permission="Professor"><span class="label label-success">editar</span></a></h4>
+                <h4>Problema<a href="" ng-click="toggleModal('#storyDescriptionModal')" pbl-permission="Professor" ng-show="canShowStatus('tab-problem', 'eq')"><span class="label label-success">editar</span></a></h4>
                 <p>
                   {{::vm.activity.story.description}}
                 </p>
               </div>
               <div id="resources">
-                <h4>Material de apoio<a href="" ng-click="toggleModal('#helpfulMaterialsModal')" pbl-permission="Professor"><span class="label label-success">editar</span></a></h4>
+                <h4>Material de apoio<a href="" ng-click="toggleModal('#helpfulMaterialsModal')" pbl-permission="Professor" ng-show=" canShowStatus('tab-problem', 'eq')"><span class="label label-success">editar</span></a></h4>
                 <ul>
-                  <li ng-repeat="material in vm.activity.story.helpfulMaterials">
+                  <li ng-repeat="material in vm.activity.story.helpfulMaterials track by $index">
                    {{::material}}
                   </li>
                 </ul>
               </div>
               <div id="links">
-                <h4>Links externos<a href="" ng-click="toggleModal('#externalLinksModal')" pbl-permission="Professor"><span class="label label-success">editar</span></a></h4>
+                <h4>Links externos<a href="" ng-click="toggleModal('#externalLinksModal')" pbl-permission="Professor" ng-show="canShowStatus('tab-problem', 'eq')"><span class="label label-success">editar</span></a></h4>
                 <ul>
-                  <li ng-repeat="link in vm.activity.story.externalLinks">
+                  <li ng-repeat="link in vm.activity.story.externalLinks track by $index">
                     <a ng-href="http://{{link}}" target="_blank">{{::link}}</a>
                   </li>
                 </ul>
@@ -161,7 +161,7 @@
               <!-- posts -->
               <div class="post-it" ng-repeat="fact in vm.activity.fact">
                 <div class="sticky fact">
-                  <button type="button" class="close" aria-label="Fechar" pbl-permission="Professor" ng-click="deletePost(fact.id)"><span aria-hidden="true">&times;</span></button>
+                  <button type="button" class="close" aria-label="Fechar" pbl-permission="Professor" ng-click="deletePost(fact.id)" ng-show="canShowStatus('tab-facts', 'eq')"><span aria-hidden="true">&times;</span></button>
                   <h5><strong>{{::fact.creator}}</strong></h5>
                   <p>{{::fact.content}}</p>
                   <p><small class="pull-right">{{::fact.date | date}}</small></p>
@@ -176,7 +176,7 @@
               <!-- posts -->
               <div class="post-it" ng-repeat="hypothesis in vm.activity.hypothesis">
                 <div class="sticky hypot">
-                  <button type="button" class="close" aria-label="Fechar" pbl-permission="Professor" ng-click="deletePost(hypothesis.id)"><span aria-hidden="true">&times;</span></button>
+                  <button type="button" class="close" aria-label="Fechar" pbl-permission="Professor" ng-click="deletePost(hypothesis.id)" ng-show="canShowStatus('tab-hypothesis', 'eq')"><span aria-hidden="true">&times;</span></button>
                   <h5><strong>{{::hypothesis.creator}}</strong></h5>
                   <p>{{::hypothesis.content}}</p>
                   <p><small class="pull-right">{{::hypothesis.date | date}}</small></p>
@@ -189,7 +189,7 @@
           <section id="content-research" ng-show="content == 'tab-research'">
             <div class="container chalkboard">
               <div id="research">
-                <h4>Conteúdo para pesquisa<a href="" ng-click="toggleModal('#researchMaterialModal')" pbl-permission="Professor"><span class="label label-success">editar</span></a></h4>
+                <h4>Conteúdo para pesquisa<a href="" ng-click="toggleModal('#researchMaterialModal')" pbl-permission="Professor" ng-show="canShowStatus('tab-research', 'eq')"><span class="label label-success">editar</span></a></h4>
                 <ul>
                   <li ng-repeat="item in vm.activity.research">
                     {{item}}
@@ -204,7 +204,7 @@
               <!-- posts -->
               <div class="post-it" ng-repeat="resolution in vm.activity.resolution">
                 <div class="sticky resol">
-                  <button type="button" class="close" aria-label="Fechar" pbl-permission="Professor" ng-click="deletePost(resolution.id)"><span aria-hidden="true">&times;</span></button>
+                  <button type="button" class="close" aria-label="Fechar" pbl-permission="Professor" ng-click="deletePost(resolution.id)" ng-show="canShowStatus('tab-resolution', 'eq')"><span aria-hidden="true">&times;</span></button>
                   <h5><strong>{{::resolution.creator}}</strong></h5>
                   <p>{{::resolution.content}}</p>
                   <p><small class="pull-right">{{::resolution.date | date}}</small></p>
@@ -229,13 +229,17 @@
         <div class="panel-footer">
           <div class="row">
             <div class="col-lg-3 col-lg-offset-4 col-md-3 col-md-offset-2 col-sm-4 actions">
-              <button ng-show="content == 'tab-facts'" id="btn-insert-post" class="btn btn-primary btn-block" type="submit" data-toggle="modal" data-target="#enterPostModal">Inserir fato <i class="fa fa-arrow-circle-up"></i></button>
-              <button ng-show="content == 'tab-hypothesis'" id="btn-insert-post" class="btn btn-primary btn-block" type="submit" data-toggle="modal" data-target="#enterPostModal">Inserir hipótese <i class="fa fa-arrow-circle-up"></i></button>
-              <button ng-show="content == 'tab-resolution'" id="btn-insert-post" class="btn btn-primary btn-block" type="submit" data-toggle="modal" data-target="#enterPostModal">Inserir resposta <i class="fa fa-arrow-circle-up"></i></button>
+              <button ng-show="content == 'tab-facts'" id="btn-insert-post" class="btn btn-primary btn-block" type="submit" data-toggle="modal" data-target="#enterPostModal" ng-if="canShowStatus('tab-facts', 'eq')">Inserir fato <i class="fa fa-arrow-circle-up"></i></button>
+
+              <button ng-show="content == 'tab-hypothesis'" id="btn-insert-post" class="btn btn-primary btn-block" type="submit" data-toggle="modal" data-target="#enterPostModal" ng-if="canShowStatus('tab-hypothesis', 'eq')">Inserir hipótese <i class="fa fa-arrow-circle-up"></i></button>
+
+              <button ng-show="content == 'tab-resolution'" id="btn-insert-post" class="btn btn-primary btn-block" type="submit" data-toggle="modal" data-target="#enterPostModal" ng-if="canShowStatus('tab-resolution', 'eq')">Inserir resposta <i class="fa fa-arrow-circle-up"></i></button>
             </div>
             <div class="col-lg-5 col-md-7 col-sm-8 actions" pbl-permission="Professor">
-              <button ng-hide="content == 'tab-abstraction'" id="btn-next-status" class="btn btn-success pull-right" type="button" ng-click="nextStatus()" >Avançar estado <i class="fa fa-arrow-circle-right"></i></button>
+              <button ng-hide="content == 'tab-abstraction'" id="btn-next-status" class="btn btn-success pull-right" type="button" ng-click="nextStatus()" ng-if="canShowStatus(content, 'eq')">Avançar estado <i class="fa fa-arrow-circle-right"></i></button>
+
               <button ng-show="content == 'tab-abstraction'" id="btn-next-status" class="btn btn-success pull-right" type="submit" ng-click="finishActivity()">Encerrar atividade <i class="fa fa-check-circle"></i></button>
+
               <button ng-show="content == 'tab-abstraction'" id="btn-next-status" class="btn btn-primary btn-purple pull-right" type="submit" data-toggle="modal"             , confirmModal = angular.element('#nextStatusModal');="#restartActivityModal"><i class="fa fa-arrow-circle-left"></i> Recomeçar atividade</button>
             </div>
           </div>
