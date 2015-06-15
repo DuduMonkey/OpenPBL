@@ -27,7 +27,7 @@
 
     PostBaseService.prototype.listPostsFromActivity.call(this, activityId, this.ServiceType)
       .then(function (postBagList) {
-        deferred.resolve({ facts: postBagList });
+        deferred.resolve({ fact: postBagList });
       })
       .catch(function (error) {
         deferred.reject(error);
