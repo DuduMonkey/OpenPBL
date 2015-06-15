@@ -2,8 +2,8 @@
   'use strict';
 
   angular.module('openpbl.services')
-    .factory('activityService', ['$http', '$q', 'factService', 'globalValues', 'hypothesisService', 'participantService', 'resolutionService', 'storyService', 'researchService',
-      function ($http, $q, factService, globalValues, hypothesisService, participantService, resolutionService, storyService, researchService) {
+    .factory('activityService', ['$http', '$q', 'factService', 'globalValues', 'hypothesisService', 'participantService', 'resolutionService', 'storyService', 'researchService', 'abstractionService',
+      function ($http, $q, factService, globalValues, hypothesisService, participantService, resolutionService, storyService, researchService, abstractionService) {
 
       var addActivityFact = function (activityId, fact) {
         return factService.addFact(activityId, fact);
@@ -27,6 +27,10 @@
 
       var saveActivityResearch = function (activityId, research) {
         return researchService.addResearch(activityId, research);
+      };
+
+      var saveActivityAbstraction = function (activityId, abstraction) {
+        return abstractionService.addAbstraction(activityId, abstraction);
       };
 
       var deleteActivity = function (activityId) {
@@ -217,6 +221,7 @@
         addActivityResolution: addActivityResolution,
         saveActivityStory: saveActivityStory,
         saveActivityResearch: saveActivityResearch,
+        saveActivityAbstraction: saveActivityAbstraction,
         deleteActivity: deleteActivity,
         deleteActivityFact: deleteActivityFact,
         deleteActivityHypothesis: deleteActivityHypothesis,
