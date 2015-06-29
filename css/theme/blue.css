@@ -12,16 +12,14 @@ section.has-light-background, section.has-light-background h1, section.has-light
  * GLOBAL STYLES
  *********************************************/
 body {
-  /*background: #222;
-  background-color: #222;*/ 
-  background: #4297c2;
-background: -moz-radial-gradient(center, ellipse cover, #4297c2 0%, #277faa 100%);
-background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #4297c2), color-stop(100%, #277faa));
-background: -webkit-radial-gradient(center, ellipse cover, #4297c2 0%, #277faa 100%);
-background: -o-radial-gradient(center, ellipse cover, #4297c2 0%, #277faa 100%);
-background: -ms-radial-gradient(center, ellipse cover, #4297c2 0%, #277faa 100%);
-background: radial-gradient(ellipse at center, #4297c2 0%, #277faa 100%);
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4297c2', endColorstr='#277faa', GradientType=1 );}
+background: #1b5673;
+background: -moz-radial-gradient(center, ellipse cover, #1b5673 0%, #16465e 100%);
+background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #1b5673), color-stop(100%, #16465e));
+background: -webkit-radial-gradient(center, ellipse cover, #1b5673 0%, #16465e 100%);
+background: -o-radial-gradient(center, ellipse cover, #1b5673 0%, #16465e 100%);
+background: -ms-radial-gradient(center, ellipse cover, #1b5673 0%, #16465e 100%);
+background: radial-gradient(ellipse at center, #1b5673 0%, #16465e 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1b5673', endColorstr='#16465e', GradientType=1 );}
 
 .reveal {
   font-family: 'Helvetica Neue', Helvetica, sans-serif;
