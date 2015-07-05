@@ -18,6 +18,13 @@
           RESOLVING_PROBLEM: 5,
           ABSTRACTING: 6,
           FINISHED: 7
+        },
+        post: {
+          type: {
+            FACT: 1,
+            HYPOTHESIS: 2,
+            RESOLUTION: 3
+          }
         }
       }
     })

@@ -167,7 +167,7 @@
                 </div>
                 <div class="list-group" ng-if="currentActivity.posts.length">
                   <a class="list-group-item" ng-repeat="post in currentActivity.posts">
-                    <h4 class="list-group-item-heading">{{post.owner}} postou um fato</h4>
+                    <h4 class="list-group-item-heading">{{post.owner}} {{post.type | postType}}</h4>
                     <p class="list-group-item-text">{{post.content}}</p>
                     <p><small class="pull-right">{{currentActivity.created | date:'dd/MM/yy'}}</small></p>
                   </a>
