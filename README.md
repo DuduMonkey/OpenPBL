@@ -43,6 +43,7 @@ Para subir uma instância do `express` no endereço `localhost:9000`:
 ```sh
 $ grunt s
 ```
+Caso ocorra um erro relacionado ao BSON nas bibliotecas do Mongo, ver a issue [#7](https://github.com/DuduMonkey/OpenPBL/issues/7) para uma solução. Este erro já é conhecido pela comunidade que utiliza as bibliotecas do mongoose/mongo no windows.
 
 ## Métricas
 
