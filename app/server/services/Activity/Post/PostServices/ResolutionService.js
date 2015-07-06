@@ -16,7 +16,7 @@
     postData.type = this.ServiceType;
 
     var successResponse = {
-      message: Message.SUCCESS_INSERTING_HYPOTHESIS
+      message: Message.SUCCESS_INSERTING_RESOLUTION
     };
 
     return PostBaseService.prototype.savePostOnDatabase.call(this, postData, successResponse);
