@@ -70,6 +70,8 @@
 
                 if (scope.activities && scope.activities.active.length > 0) {
                   scope.setCurrentActivity(scope.activities.active[0]);
+                } else if (scope.activities && scope.activities.finished.length > 0) {
+                  scope.setCurrentActivity(scope.activities.finished[0]);
                 }
               })
               .catch(function (error) {
