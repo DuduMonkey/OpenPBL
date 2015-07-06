@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Plato - server/models/Activity.js</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+  <link href="../../assets/css/vendor/morris.css" rel="stylesheet">
+  <link href="../../assets/css/vendor/bootstrap.css" rel="stylesheet">
+  <link href="../../assets/css/vendor/font-awesome.css" rel="stylesheet">
+  <link href="../../assets/css/vendor/codemirror.css" rel="stylesheet">
+  <link href="../../assets/css/plato.css" rel="stylesheet">
+  <link href="../../assets/css/plato-file.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="navbar navbar-fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="http://github.com/es-analysis/plato">Plato on Github</a>
+    <ul class="nav navbar-nav">
+      <li>
+        <a href="../../index.html">Report Home</a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="jumbotron">
+  <div class="container">
+    <h1>server/models/Activity.js</h1>
+  </div>
+</div>
+
+<div class="container aggregate-stats">
+  <div class="row">
+    <div class="col-md-6">
+      <h2 class="header">Maintainability <a href="http://blogs.msdn.com/b/codeanalysis/archive/2007/11/20/maintainability-index-range-and-meaning.aspx"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="A value between 0 and 100 that represents the relative ease of maintaining the code. A high value means better maintainability." data-original-title="Maintainability Index"  data-container="body"></i></a></h2>
+      <p class="stat">66.35</p>
+    </div>
+    <div class="col-md-6">
+      <h2 class="header">Lines of code <i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Source Lines of Code / Logical Lines of Code" data-original-title="SLOC/LSLOC" data-container="body"></i></h2>
+      <p class="stat">164</p>
+    </div>
+  </div>
+  <div class="row historical">
+    <div class="col-md-6">
+      <p id="chart_historical_maint" class="chart"></p>
+    </div>
+    <div class="col-md-6">
+      <p id="chart_historical_sloc" class="chart"></p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <h2 class="header">Difficulty  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="The difficulty measure is related to the difficulty of the program to write or understand." data-original-title="Difficulty" data-container="body"></i></a></h2>
+      <p class="stat">21.03</p>
+    </div>
+    <div class="col-md-6">
+      <h2 class="header">Estimated Errors  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Halstead's delivered bugs is an estimate for the number of errors in the implementation." data-original-title="Delivered Bugs" data-container="body"></i></a></h2>
+      <p class="stat">1.08</p>
+    </div>
+  </div>
+</div>
+
+<div class="container charts">
+  <div class="row">
+    <h2 class="header">Function weight</h2>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <h3 class="chart-header">By Complexity <a href="http://en.wikipedia.org/wiki/Cyclomatic_complexity"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="This metric counts the number of distinct paths through a block of code. Lower values are better." data-original-title="Cyclomatic Complexity" data-container="body"></i></a></h3>
+      <div id="fn-by-complexity" class="stat"></div>
+    </div>
+    <div class="col-md-6">
+      <h3 class="chart-header">By SLOC  <i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Source Lines of Code / Logical Lines of Code" data-original-title="SLOC/LSLOC" data-container="body"></i></h3>
+      <div id="fn-by-sloc" class="stat"></div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <textarea id="file-source" class="col-md-12">/*global module, require, GLOBAL*/
+(function () {
+  &#039;use strict&#039;;
+
+  // Modules in use
+  var mongoose = require(&#039;mongoose&#039;);
+  var Schema = mongoose.Schema;
+  var Q = require(&#039;q&#039;);
+  var Exception = require(&#039;../shared/Exceptions&#039;);
+
+  var ActivitySchema = new Schema({
+    _creator: { type: String, ref: &#039;User&#039; },
+    name: { type: String, required: true },
+    story: { type: String, ref: &#039;Story&#039;, required: false },
+    status: { type: Number, min: 1, max: 7, default: 1 },
+    created: { type: Date, default: Date.now },
+    participants: [{ type: String, ref: &#039;User&#039;}],
+    posts: [{type: String, ref: &#039;Post&#039;}],
+    research: [{ type: String, required: false}],
+    abstraction: { type: String, required: false, default: null }
+  });
+
+  /**
+    Save an new instance activity model instance on database
+    The received data needs to be on format:
+      {
+        creatorId: String         =&gt;   Represents the creator Id
+        name: String              =&gt;   Represents the name of Activity
+        participants: String []   =&gt;   Represents the participants of activity
+      }
+  **/
+  ActivitySchema.statics.saveNewActivity = function (activityData) {
+    var deferred = Q.defer();
+
+    var newActivity = new this({
+      _creator: activityData.creatorId,
+      name: activityData.name,
+      participants: activityData.participants
+    });
+
+    newActivity.save(function (err, activity) {
+      if (!!err) {
+        deferred.reject(Exception.ACTIVITY_CREATION_ERROR);
+      }
+      deferred.resolve(activity);
+    });
+
+    return deferred.promise;
+  };
+
+  /**
+    Update an activity document by Id
+
+    updatedAttrs =&gt; attributes to be update
+
+    updatedAttrs format:
+    i.e:
+    {
+      $pull: { participants: userId }
+    }
+  **/
+  ActivitySchema.statics.updateActivity = function (activityId, updatedAttrs) {
+    var deferred = Q.defer();
+    //, set = { $set: updatedAttrs };
+
+    this.findByIdAndUpdate(activityId, updatedAttrs, function (err, activity) {
+      if (!!err) {
+        deferred.reject(Exception.ACTIVITY_UPDATING_ERROR);
+      }
+      deferred.resolve(activity);
+    });
+
+    return deferred.promise;
+  };
+
+  /**
+    Find all activities by comparisson between an passed column and an condition
+      whereColumn      =&gt;  column to compare on where condition
+      where Condition  =&gt;  a single value (equals condition) or a list (In condition)
+      Query Configuration need to be like the object below:
+      i.e:
+      {
+        select: [&#039;name _id _creator participants&#039;],
+        where: [&#039;created&#039;, &#039;name&#039;],
+        conditions: [&#039;Date.now()]&#039;, [&#039;blue&#039;,&#039;yello&#039;,&#039;time&#039;]],
+        join: [
+                {
+                  path: &#039;participants&#039;,
+                  select: &#039;-_id name &#039;
+                }
+                {
+                  path: &#039;_creator&#039;,
+                  select: &#039;-_id name &#039;
+                }
+              ]
+      }
+
+      the query result will select name and _id from all instances 
+      where created date is equals Date.now and name is in [&#039;blue&#039;,&#039;yello&#039;,&#039;time&#039;], 
+      the result will be populated with all the participants and the creator
+      without id, exclude the id from selected participants.
+  **/
+  ActivitySchema.statics.queryInActivities = function (queryAttr) {
+    var deferred = Q.defer()
+    , query = this.find();
+
+    if (!!queryAttr.select) {
+      query.select(queryAttr.select);
+    }
+
+    if (!!queryAttr.where &amp;&amp; !!queryAttr.where.length) {
+      queryAttr.where.forEach(function (column, index) {
+        query.where(column).equals(queryAttr.conditions[index]);
+      });
+    }
+
+    if (!!queryAttr.join &amp;&amp; !!queryAttr.join.length) {
+      queryAttr.join.forEach(function (documentAttr) {
+        query.populate(documentAttr);
+      });
+    }
+
+    query.exec(function (err, activities) {
+      if (!!err) {
+        deferred.reject(Exception.ACTIVITY_QUERY_ERROR);
+      }
+      deferred.resolve(activities);
+    });
+
+    return deferred.promise;
+  };
+
+  /**
+    Given the parameters remove an Activity document from database
+  **/
+  ActivitySchema.statics.removeActivity = function (activityId) {
+    var deferred = Q.defer();
+
+    this.findByIdAndRemove(activityId, function (err, activity) {
+      if (!!err) {
+        deferred.reject(Exception.ACTIVITY_DELETING_ERROR);
+      } else if (activity === GLOBAL.CONST_NULL_OBJECT) {
+        deferred.reject(Exception.ACTIVITY_INVALID_TO_DELETE);
+      }
+      deferred.resolve();
+    });
+
+    return deferred.promise;
+  };
+
+  /**
+    Get the default placeholder for activities without defined story
+  **/
+  ActivitySchema.statics.getDefaultStoryPlaceHolder = function () {
+    var defaultStoryPlaceHolder = {
+      description: null,
+      helpfulMaterials: GLOBAL.CONST_EMPTY_LIST,
+      externalLinks: GLOBAL.CONST_EMPTY_LIST
+    };
+
+    return defaultStoryPlaceHolder;
+  };
+
+  module.exports = mongoose.model(&#039;Activity&#039;, ActivitySchema);
+}());</textarea>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <p>.</p>
+  </div>
+</footer>
+
+<script type="text/html" id="complexity-popover-template">
+  <div class="complexity-notice">
+    Complexity : {{ complexity.cyclomatic }} <br>
+    Length : {{ complexity.halstead.length }} <br>
+    Difficulty : {{ complexity.halstead.difficulty.toFixed(2) }} <br>
+    Est # bugs : {{ complexity.halstead.bugs.toFixed(2) }}<br>
+  </div>
+</script>
+
+<script type="text/javascript" src="../../assets/scripts/bundles/core-bundle.js"></script>
+<script type="text/javascript" src="../../assets/scripts/bundles/codemirror.js"></script>
+<script type="text/javascript" src="../../assets/scripts/codemirror.markpopovertext.js"></script>
+<script type="text/javascript" src="report.js"></script>
+<script type="text/javascript" src="report.history.js"></script>
+<script type="text/javascript" src="../../assets/scripts/plato-file.js"></script>
+</body>
+</html>

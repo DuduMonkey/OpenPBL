@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Plato - server/shared/Exceptions.js</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+  <link href="../../assets/css/vendor/morris.css" rel="stylesheet">
+  <link href="../../assets/css/vendor/bootstrap.css" rel="stylesheet">
+  <link href="../../assets/css/vendor/font-awesome.css" rel="stylesheet">
+  <link href="../../assets/css/vendor/codemirror.css" rel="stylesheet">
+  <link href="../../assets/css/plato.css" rel="stylesheet">
+  <link href="../../assets/css/plato-file.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="navbar navbar-fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="http://github.com/es-analysis/plato">Plato on Github</a>
+    <ul class="nav navbar-nav">
+      <li>
+        <a href="../../index.html">Report Home</a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="jumbotron">
+  <div class="container">
+    <h1>server/shared/Exceptions.js</h1>
+  </div>
+</div>
+
+<div class="container aggregate-stats">
+  <div class="row">
+    <div class="col-md-6">
+      <h2 class="header">Maintainability <a href="http://blogs.msdn.com/b/codeanalysis/archive/2007/11/20/maintainability-index-range-and-meaning.aspx"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="A value between 0 and 100 that represents the relative ease of maintaining the code. A high value means better maintainability." data-original-title="Maintainability Index"  data-container="body"></i></a></h2>
+      <p class="stat">54.39</p>
+    </div>
+    <div class="col-md-6">
+      <h2 class="header">Lines of code <i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Source Lines of Code / Logical Lines of Code" data-original-title="SLOC/LSLOC" data-container="body"></i></h2>
+      <p class="stat">63</p>
+    </div>
+  </div>
+  <div class="row historical">
+    <div class="col-md-6">
+      <p id="chart_historical_maint" class="chart"></p>
+    </div>
+    <div class="col-md-6">
+      <p id="chart_historical_sloc" class="chart"></p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <h2 class="header">Difficulty  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="The difficulty measure is related to the difficulty of the program to write or understand." data-original-title="Difficulty" data-container="body"></i></a></h2>
+      <p class="stat">6.02</p>
+    </div>
+    <div class="col-md-6">
+      <h2 class="header">Estimated Errors  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Halstead's delivered bugs is an estimate for the number of errors in the implementation." data-original-title="Delivered Bugs" data-container="body"></i></a></h2>
+      <p class="stat">0.47</p>
+    </div>
+  </div>
+</div>
+
+<div class="container charts">
+  <div class="row">
+    <h2 class="header">Function weight</h2>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <h3 class="chart-header">By Complexity <a href="http://en.wikipedia.org/wiki/Cyclomatic_complexity"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="This metric counts the number of distinct paths through a block of code. Lower values are better." data-original-title="Cyclomatic Complexity" data-container="body"></i></a></h3>
+      <div id="fn-by-complexity" class="stat"></div>
+    </div>
+    <div class="col-md-6">
+      <h3 class="chart-header">By SLOC  <i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Source Lines of Code / Logical Lines of Code" data-original-title="SLOC/LSLOC" data-container="body"></i></h3>
+      <div id="fn-by-sloc" class="stat"></div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <textarea id="file-source" class="col-md-12">/*global module*/
+(function () {
+  &#039;use strict&#039;;
+
+  var declareNewError = function (errorMessage) {
+    return { message: errorMessage };
+  };
+
+  module.exports = {
+    // Token
+    TOKEN_INVALID : declareNewError(&#039;Usuário não autenticado&#039;),
+    TOKEN_CREATION_ERROR: declareNewError(&#039;Erro na geração de uma nova Token&#039;),
+    TOKEN_HASHING_ERROR: declareNewError(&#039;Erro na geração do hash de Token&#039;),
+    TOKEN_FIND_ERROR: declareNewError(&#039;Erro na do documento da token&#039;),
+    // User
+    USER_FIND_ERROR: declareNewError(&#039;Erro na busca de usuário&#039;),
+    USER_ALREADY_EXISTS: declareNewError(&#039;Email já cadastrado&#039;),
+    USER_PERSISTENCE_ERROR: declareNewError(&#039;Erro na persistencia dos dados de usuário&#039;),
+    USER_NOT_FIND: declareNewError(&#039;Email inválido&#039;),
+    USER_LIST_ERROR: declareNewError(&#039;Erro na busca da lista de usuários&#039;),
+    // Password
+    PASSWORD_HASHING_ERROR: declareNewError(&#039;Erro na geração do hash&#039;),
+    PASSWORD_NOT_MATCH: declareNewError(&#039;A senha não confere&#039;),
+    // Activity
+    ACTIVITY_CREATION_ERROR: declareNewError(&#039;Erro na persistencia da nova atividade&#039;),
+    ACTIVITY_QUERY_ERROR: declareNewError(&#039;Erro ao buscar dados de atividades na base de dados&#039;),
+    ACTIVITY_UPDATING_ERROR: declareNewError(&#039;Erro ao atualizar a atividade&#039;),
+    ACTIVITY_DELETING_ERROR: declareNewError(&#039;Erro ao deletar a atividade&#039;),
+    ACTIVITY_INVALID_TO_DELETE: declareNewError(&#039;Atividade para exclusão inexistente&#039;),
+    ACTIVITY_GET_BASIC_DATA_ERROR: declareNewError(&#039;Não foram encontrados os dados básicos da atividade&#039;),
+    ACTIVITY_FIND_ACTIVITY_ERROR: declareNewError(&#039;Erro ao executar a busca da atividade na base de dados&#039;),
+    // Status
+    ACTIVITY_STATUS_UPDATING_ERROR: declareNewError(&#039;Erro ao atualizar o status da atividade&#039;),
+    ACTIVITY_STATUS_IS_FINISHED: declareNewError(&#039;A atividade já foi encerrada&#039;),
+    // Activity User
+    ACTIVITY_USER_ALREADY_EXISTS: declareNewError(&#039;O usuário já foi convidado&#039;),
+    ACTIVITY_USER_NOT_EXISTS: declareNewError(&#039;Usuário não registrado&#039;),
+    ACTIVITY_USER_INSERTING_ERROR: declareNewError(&#039;Erro na inserção de usuário&#039;),
+    ACTIVITY_USER_REMOVE_NOT_FIND: declareNewError(&#039;O usuário já foi removido da atividade&#039;),
+    ACTIVITY_USER_REMOVE_ERROR: declareNewError(&#039;Erro ao remover usuário&#039;),
+    // Activity Story
+    ACTIVITY_STORY_INSERTING_ERROR: declareNewError(&#039;Erro ao salvar o problema da atividade&#039;),
+    ACTIVITY_STORY_UPDATE_ERROR: declareNewError(&#039;Erro ao atualizar o problema da atividade&#039;),
+    // Posts
+    ACTIVITY_POST_SERVICE_ERROR: declareNewError(&#039;Erro na geração do serviço de posts&#039;),
+    ACTIVITY_POST_INSERT_ERROR: declareNewError(&#039;Erro na persistencia do post&#039;),
+    ACTIVITY_POST_CREATING_ERROR: declareNewError(&#039;Erro na definição da postagem no serviço&#039;),
+    ACTIVITY_POST_DELETE_ERROR: declareNewError(&#039;Erro ao deletar o post&#039;),
+    ACTIVITY_POST_INVALID_TO_DELETE: declareNewError(&#039;Post para exclusão não encontrado&#039;),
+    ACTIVITY_POST_QUERY_ERROR: declareNewError(&#039;Erro ao buscar da postagem na base de dados&#039;),
+    // Research
+    ACTIVITY_RESEARCH_ERROR: declareNewError(&#039;Erro ao inserir os dados de pesquisa na atividade&#039;),
+    // Abstraction
+    ACTIVITY_ABSTRACTION_ERROR: declareNewError(&#039;Erro ao inserir os dados de abstração na atividade&#039;),
+    // JSON Helper
+    PARSE_TO_JSON_EXCEPTION: declareNewError(&#039;Falha ao fazer o parse para JSON&#039;),
+    //Exception for not implemented functions
+    FEATURE_NOT_IMPLEMENTED_EXCEPTION: declareNewError(&#039;Função não implementada no servidor&#039;),
+    //ROLE
+    ROLE_VALUE_NOT_EXISTS: declareNewError(&#039;Não existe role com o valor consultado&#039;),
+    //RESPONSE BAG
+    LOGIN_CANT_CREATE_TOKEN: declareNewError(&#039;Ocorreu um erro ao logar no sistema, contate o criador da aplicação&#039;),
+  };
+}());</textarea>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <p>.</p>
+  </div>
+</footer>
+
+<script type="text/html" id="complexity-popover-template">
+  <div class="complexity-notice">
+    Complexity : {{ complexity.cyclomatic }} <br>
+    Length : {{ complexity.halstead.length }} <br>
+    Difficulty : {{ complexity.halstead.difficulty.toFixed(2) }} <br>
+    Est # bugs : {{ complexity.halstead.bugs.toFixed(2) }}<br>
+  </div>
+</script>
+
+<script type="text/javascript" src="../../assets/scripts/bundles/core-bundle.js"></script>
+<script type="text/javascript" src="../../assets/scripts/bundles/codemirror.js"></script>
+<script type="text/javascript" src="../../assets/scripts/codemirror.markpopovertext.js"></script>
+<script type="text/javascript" src="report.js"></script>
+<script type="text/javascript" src="report.history.js"></script>
+<script type="text/javascript" src="../../assets/scripts/plato-file.js"></script>
+</body>
+</html>

@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Plato - public/shared/activity/activity.js</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+  <link href="../../assets/css/vendor/morris.css" rel="stylesheet">
+  <link href="../../assets/css/vendor/bootstrap.css" rel="stylesheet">
+  <link href="../../assets/css/vendor/font-awesome.css" rel="stylesheet">
+  <link href="../../assets/css/vendor/codemirror.css" rel="stylesheet">
+  <link href="../../assets/css/plato.css" rel="stylesheet">
+  <link href="../../assets/css/plato-file.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="navbar navbar-fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="http://github.com/es-analysis/plato">Plato on Github</a>
+    <ul class="nav navbar-nav">
+      <li>
+        <a href="../../index.html">Report Home</a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="jumbotron">
+  <div class="container">
+    <h1>public/shared/activity/activity.js</h1>
+  </div>
+</div>
+
+<div class="container aggregate-stats">
+  <div class="row">
+    <div class="col-md-6">
+      <h2 class="header">Maintainability <a href="http://blogs.msdn.com/b/codeanalysis/archive/2007/11/20/maintainability-index-range-and-meaning.aspx"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="A value between 0 and 100 that represents the relative ease of maintaining the code. A high value means better maintainability." data-original-title="Maintainability Index"  data-container="body"></i></a></h2>
+      <p class="stat">74.32</p>
+    </div>
+    <div class="col-md-6">
+      <h2 class="header">Lines of code <i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Source Lines of Code / Logical Lines of Code" data-original-title="SLOC/LSLOC" data-container="body"></i></h2>
+      <p class="stat">371</p>
+    </div>
+  </div>
+  <div class="row historical">
+    <div class="col-md-6">
+      <p id="chart_historical_maint" class="chart"></p>
+    </div>
+    <div class="col-md-6">
+      <p id="chart_historical_sloc" class="chart"></p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <h2 class="header">Difficulty  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="The difficulty measure is related to the difficulty of the program to write or understand." data-original-title="Difficulty" data-container="body"></i></a></h2>
+      <p class="stat">49.46</p>
+    </div>
+    <div class="col-md-6">
+      <h2 class="header">Estimated Errors  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Halstead's delivered bugs is an estimate for the number of errors in the implementation." data-original-title="Delivered Bugs" data-container="body"></i></a></h2>
+      <p class="stat">2.86</p>
+    </div>
+  </div>
+</div>
+
+<div class="container charts">
+  <div class="row">
+    <h2 class="header">Function weight</h2>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <h3 class="chart-header">By Complexity <a href="http://en.wikipedia.org/wiki/Cyclomatic_complexity"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="This metric counts the number of distinct paths through a block of code. Lower values are better." data-original-title="Cyclomatic Complexity" data-container="body"></i></a></h3>
+      <div id="fn-by-complexity" class="stat"></div>
+    </div>
+    <div class="col-md-6">
+      <h3 class="chart-header">By SLOC  <i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Source Lines of Code / Logical Lines of Code" data-original-title="SLOC/LSLOC" data-container="body"></i></h3>
+      <div id="fn-by-sloc" class="stat"></div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <textarea id="file-source" class="col-md-12">(function () {
+  &#039;use strict&#039;;
+
+  angular.module(&#039;openpbl.directives&#039;)
+    .directive(&#039;pblActivity&#039;, [&#039;$log&#039;, &#039;$q&#039;, &#039;$location&#039;, &#039;activityService&#039;, &#039;globalValues&#039;, &#039;notificationService&#039;, 
+      function ($log, $q, $location, activityService, globalValues, notificationService) {
+      return {
+        retrict: &#039;E&#039;,
+        templateUrl: &#039;/shared/activity/activity.tpl.html&#039;,
+        scope: {
+          activity: &#039;=&#039;
+        },
+        link: function (scope) {
+          var init = function () {
+            scope.vm = {};
+            loadActivityStatus(scope.activity, scope.activity.status)
+              .then(function (response) {
+                scope.vm.activity = response;
+                scope.content = getContentTabByStatus(scope.vm.activity.status);
+              })
+              .catch(function (error) {
+                notificationService.error(&#039;Erro&#039;, error);
+              });
+          };
+
+          var getApiAddMethodByContent = function (content) {
+            switch (content) {
+              case &#039;tab-facts&#039;:
+                return &#039;addActivityFact&#039;;
+
+              case &#039;tab-hypothesis&#039;:
+                return &#039;addActivityHypothesis&#039;;
+
+              case &#039;tab-resolution&#039;:
+                return &#039;addActivityResolution&#039;;
+            }
+          };
+
+          var getApiDeleteMethodByContent = function (content) {
+            switch (content) {
+              case &#039;tab-facts&#039;:
+                return &#039;deleteActivityFact&#039;;
+
+              case &#039;tab-hypothesis&#039;:
+                return &#039;deleteActivityHypothesis&#039;;
+
+              case &#039;tab-resolution&#039;:
+                return &#039;deleteActivityResolution&#039;;
+            }
+          };
+
+          var getContentTabByStatus = function (status) {
+            var activityStatus = globalValues.activity.status;
+
+            switch (status) {
+              case activityStatus.CREATING_STORY:
+                return &#039;tab-problem&#039;;
+
+              case activityStatus.GENERATING_FACTS:
+                return &#039;tab-facts&#039;;
+
+              case activityStatus.IDENTIFYING_HIPOTESYS:
+                return &#039;tab-hypothesis&#039;;
+
+              case activityStatus.RESEARCHING:
+                return &#039;tab-research&#039;;
+
+              case activityStatus.RESOLVING_PROBLEM:
+                return &#039;tab-resolution&#039;;
+
+              case activityStatus.ABSTRACTING:
+                return &#039;tab-abstraction&#039;;
+
+              case activityStatus.FINISHED:
+                return &#039;tab-abstraction&#039;;
+            }
+          };
+
+          var getStatusByContentTab = function (status) {
+            var activityStatus = globalValues.activity.status;
+
+            switch (status) {
+              case &#039;tab-problem&#039;:
+                return activityStatus.CREATING_STORY;
+
+              case &#039;tab-facts&#039;:
+                return activityStatus.GENERATING_FACTS;
+
+              case &#039;tab-hypothesis&#039;:
+                return activityStatus.IDENTIFYING_HIPOTESYS;
+
+              case &#039;tab-research&#039;:
+                return activityStatus.RESEARCHING;
+
+              case &#039;tab-resolution&#039;:
+                return activityStatus.RESOLVING_PROBLEM;
+
+              case &#039;tab-abstraction&#039;:
+                return activityStatus.ABSTRACTING;
+            }
+          };
+
+          var loadActivityStatus = function (activity, status) {
+            var deferred = $q.defer()
+            , statusName = activityService.getStatusPropertyName(status);
+
+            activityService.getActivityStatusData(activity.id, status)
+              .then(function (response) {
+                if (angular.isDefined(response[statusName])) {
+                  response = response[statusName];
+                }
+
+                activity[statusName] = response;
+                deferred.resolve(activity);
+              })
+              .catch(function (error) {
+                deferred.reject(error);
+              });
+
+            return deferred.promise;
+          };
+
+          /**
+           * Salva um item da atividade
+           */
+          var saveActivityItem = function (activityId, apiMethod, item, fromModal) {
+            var status;
+
+            if (angular.isUndefined(activityService[apiMethod])) {
+              return;
+            }
+
+            activityService[apiMethod](activityId, item)
+              .then(function (response) {
+                notificationService.success(response.message);
+
+                // Verifica se ação foi disparda por modal,
+                // se sim, fecha ela
+                if (angular.isDefined(fromModal)) {
+                  scope.toggleModal(fromModal);
+                }
+
+                status = getStatusByContentTab(scope.content);
+
+                // Recarrega a ativade
+                loadActivityStatus(scope.vm.activity, status)
+                  .then(function (response) {
+                    scope.vm.activity = response;
+                  });
+              })
+              .catch(function (error) {
+                $log.error(error);
+                notificationService.error(error.message);
+              });
+          };
+
+          scope.addItemToList = function (list, item) {
+            if (Array.isArray(list) &amp;&amp; list.indexOf(item) === -1) {
+              list.push(item);
+            }
+            
+            item = null;
+          };
+
+          scope.canShowStatus = function (tabName, comparator) {
+            if (!scope.vm || !scope.vm.activity) return false;
+
+            var tabStatus = getStatusByContentTab(tabName)
+            , status = scope.vm.activity.status;
+
+            switch (comparator) {
+              case &#039;eq&#039;:
+                return tabStatus === status;
+
+              case &#039;get&#039;:
+                return tabStatus &gt;= status;
+
+              case &#039;let&#039;:
+                return tabStatus &lt;= status;
+
+              case &#039;gt&#039;:
+                return tabStatus &gt; status;
+
+              case &#039;lt&#039;:
+                return tabStatus &lt; status;
+
+              default:
+                return tabStatus === status;
+            }
+          };
+
+          scope.removeItemFromList = function (list, index) {
+            if (Array.isArray(list)) {
+              list = list.splice(index, 1);
+            }
+          };
+
+          /**
+           * Salva o problema
+           */
+          scope.saveStory = function (from) {
+            var activityId = scope.vm.activity.id
+            , apiMethod = &#039;saveActivityStory&#039;
+            , story = scope.vm.activity.story;
+
+            saveActivityItem(activityId, apiMethod, story, from);
+          };
+
+          /**
+           * Salva pesquisa
+           */
+          scope.saveResearch = function (from) {
+            var activityId = scope.vm.activity.id
+            , apiMethod = &#039;saveActivityResearch&#039;
+            , story = scope.vm.activity.research;
+
+            saveActivityItem(activityId, apiMethod, story, from);
+          };
+
+          /**
+            * Salva abstração
+            */
+          scope.saveAbstraction = function (from) {
+            var activityId = scope.vm.activity.id
+            , apiMethod = &#039;saveActivityAbstraction&#039;
+            , story = scope.vm.activity.abstraction;
+
+            saveActivityItem(activityId, apiMethod, story, from);
+          };
+
+          scope.addPost = function (post, from) {
+            var activityId = scope.vm.activity.id
+            , apiMethod = getApiAddMethodByContent(scope.content);
+
+            saveActivityItem(activityId, apiMethod, post, from);
+            scope.postContent = null;
+          };
+
+          scope.deletePost = function (postId, from) {
+            var activityId = scope.vm.activity.id
+            , apiMethod = getApiDeleteMethodByContent(scope.content)
+            , confirmModal = angular.element(&#039;#confirmDeletePostModal&#039;);
+
+            confirmModal
+              .modal(&#039;toggle&#039;)
+              .one(&#039;click&#039;, &#039;#confirmDeletePost&#039;, function () {
+                saveActivityItem(activityId, apiMethod, postId, from);
+              });
+          };
+
+          scope.nextStatus = function () {
+            var activityId = scope.vm.activity.id
+            , currentStatus = scope.vm.activity.status
+            , confirmModal = angular.element(&#039;#nextStatusModal&#039;);
+
+            // Callback de confirmação
+            var callback = function () {
+              activityService.nextStatus(activityId, currentStatus)
+                .then(function (response) {
+                  notificationService.success(response.message);
+
+                  // Atualiza status da atividade
+                  scope.activity.status = response.status;
+                  init();
+                })
+                .catch(function (error) {
+                  notificationService.error(error.message);
+                });
+            };
+
+            confirmModal
+              .modal(&#039;toggle&#039;)
+              .one(&#039;click&#039;, &#039;#confirmNextStatus&#039;, function () {
+                callback();
+              });
+          };
+
+          scope.setStatusFacts = function () {
+            var activityId = scope.vm.activity.id;
+
+            activityService.nextStatus(activityId, 1)
+              .then(function (response) {
+                notificationService.success(response.message);
+
+                // Atualiza status da atividade
+                scope.activity.status = response.status;
+                init();
+              })
+              .catch(function (error) {
+                notificationService.error(error.message);
+              });
+          };
+
+          scope.setStatusHypothesis = function () {
+            var activityId = scope.vm.activity.id;
+
+            activityService.nextStatus(activityId, 2)
+              .then(function (response) {
+                notificationService.success(response.message);
+
+                // Atualiza status da atividade
+                scope.activity.status = response.status;
+                init();
+              })
+              .catch(function (error) {
+                notificationService.error(error.message);
+              });
+          };
+
+          scope.finishActivity = function () {
+            var activityId = scope.vm.activity.id
+            , currentStatus = scope.vm.activity.status
+            , confirmModal = angular.element(&#039;#finishActivityModal&#039;);
+
+            var callback = function () {
+              activityService.nextStatus(activityId, currentStatus)
+                .then(function (response) {
+                  notificationService.success(response.message);
+
+                  // Atualiza status da atividade
+                  scope.activity.status = response.status;
+                  $location.path(&#039;/dashboard&#039;);
+                })
+                .catch(function (error) {
+                  notificationService.error(error.message);
+                });
+            };
+
+            confirmModal
+              .modal(&#039;toggle&#039;)
+              .one(&#039;click&#039;, &#039;#confirmFinishActivity&#039;, function () {
+                callback();
+              });
+          };
+
+          scope.toggleModal = function (modalName) {
+            angular.element(modalName).modal(&#039;toggle&#039;);
+          };
+
+          scope.$watch(&#039;content&#039;, function () {
+            if (angular.isUndefined(scope.vm)) {
+              return;
+            }
+            
+            var currentTab = getContentTabByStatus(scope.vm.activity.status)
+            , status;
+
+            if (scope.content === currentTab) {
+              return;
+            }
+
+            status = getStatusByContentTab(scope.content);
+
+            loadActivityStatus(scope.vm.activity, status)
+              .then(function (response) {
+                scope.vm.activity = response;
+              })
+              .catch(function (error) {
+                $log.error(&#039;error&#039;, error);
+              });
+          });
+
+          scope.$watch(&#039;activity&#039;, function () {
+            if (angular.isDefined(scope.activity)) {
+              init();
+            }
+          });
+        }
+      };
+    }]);
+}());</textarea>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <p>.</p>
+  </div>
+</footer>
+
+<script type="text/html" id="complexity-popover-template">
+  <div class="complexity-notice">
+    Complexity : {{ complexity.cyclomatic }} <br>
+    Length : {{ complexity.halstead.length }} <br>
+    Difficulty : {{ complexity.halstead.difficulty.toFixed(2) }} <br>
+    Est # bugs : {{ complexity.halstead.bugs.toFixed(2) }}<br>
+  </div>
+</script>
+
+<script type="text/javascript" src="../../assets/scripts/bundles/core-bundle.js"></script>
+<script type="text/javascript" src="../../assets/scripts/bundles/codemirror.js"></script>
+<script type="text/javascript" src="../../assets/scripts/codemirror.markpopovertext.js"></script>
+<script type="text/javascript" src="report.js"></script>
+<script type="text/javascript" src="report.history.js"></script>
+<script type="text/javascript" src="../../assets/scripts/plato-file.js"></script>
+</body>
+</html>
