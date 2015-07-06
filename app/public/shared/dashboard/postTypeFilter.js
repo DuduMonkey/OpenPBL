@@ -8,13 +8,13 @@
 
         switch (status) {
           case postType.FACT :
-            return 'postou um fato';
+            return 'Fato';
 
           case postType.HYPOTHESIS :
-            return 'postou uma hipótese';
+            return 'Hipótese';
 
           case postType.RESOLUTION :
-            return 'postou uma resolução';
+            return 'Resolução';
 
           default:
             return status;
